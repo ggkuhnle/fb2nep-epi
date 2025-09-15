@@ -1,0 +1,65 @@
+[
+  {
+    "objectID": "metadata/provenance.html",
+    "href": "metadata/provenance.html",
+    "title": "1 Provenance (v2) — fb2nep synthetic cohort",
+    "section": "",
+    "text": "Generator: scripts/generate_dataset.py\nSeed: 11088\nSample size: N≈25,000 adults\nBaseline age: ≥40 years\nPeriod: Baseline between 2010‑01‑01 and 2015‑12‑31; follow‑up uniformly 5–10 years.\n\n\n\nTeach realistic cohort structure with two endpoints: CVD and Cancer.\n\nProvide both incident indicators and event dates.\n\nEncode SES (ABC1/C2DE) and IMD gradients.\n\nAdd clinically relevant covariates: SBP, family history, menopausal status.\n\nInclude selected non‑linear associations (BMI U‑shape, alcohol J‑shape, SBP quadratic in age, vitamin C saturation).\n\nAdd red meat intake as a positive risk factor for Cancer above ~50 g/d.\n\n\n\n\n\nAge ~ truncated Normal(μ=58, σ=10, 40–90). Sex: 52% F, 48% M.\n\nIMD_quintile skewed to 2–4.\n\nSES_class depends on IMD.\n\nMenopausal status age‑patterned.\n\nSmoking ~15% current.\n\nPA: depends on IMD.\n\nBMI: Normal(27, 4.5), rises with age/smoking.\n\nEnergy: log‑normal around 1900 kcal, scaled by PA/sex.\n\nDiet: FV, red meat, SSB, fibre, salt depend on IMD, SES, energy.\n\nBiomarkers: plasma vitC saturates with FV; urinary Na tracks salt.\n\nSBP: non‑linear in age plus salt, BMI, smoking, PA.\n\n\n\n\n\nCVD: age, BMI (U‑shape), smoking, sex, IMD, SES, salt, SBP, alcohol J‑shape, FHx CVD. Target 10–15%.\n\nCancer: age, BMI, smoking, SES, sex, FHx cancer, red meat &gt;50 g/d. Target 8–12%.\n\nEvent dates: baseline + simulated time for incidents.\n\n\n\n\n\nMCAR: ~2–3%.\n\nMAR: +5–8% tied to IMD/age.\n\nMNAR (tiny): alcohol→alcohol missing; high BMI→BMI missing.\n\n\n\n\n\nCorr(FV, vitC) &gt; 0.45.\n\nCorr(salt, urinary Na) &gt; 0.55.\n\nSBP vs age Spearman ρ &gt; 0.35.\n\nSES/IMD diet gradients as expected.\n\nCVD incidence 10–15%; Cancer 8–12%.\n\nRed meat higher in cancer cases.\n\nEvent dates present only if incident=1.\n\n\n\n\nThis is teaching data: tuned for pedagogy, not inference."
+  },
+  {
+    "objectID": "metadata/provenance.html#design-intents",
+    "href": "metadata/provenance.html#design-intents",
+    "title": "1 Provenance (v2) — fb2nep synthetic cohort",
+    "section": "",
+    "text": "Teach realistic cohort structure with two endpoints: CVD and Cancer.\n\nProvide both incident indicators and event dates.\n\nEncode SES (ABC1/C2DE) and IMD gradients.\n\nAdd clinically relevant covariates: SBP, family history, menopausal status.\n\nInclude selected non‑linear associations (BMI U‑shape, alcohol J‑shape, SBP quadratic in age, vitamin C saturation).\n\nAdd red meat intake as a positive risk factor for Cancer above ~50 g/d."
+  },
+  {
+    "objectID": "metadata/provenance.html#variable-generation-summary",
+    "href": "metadata/provenance.html#variable-generation-summary",
+    "title": "1 Provenance (v2) — fb2nep synthetic cohort",
+    "section": "",
+    "text": "Age ~ truncated Normal(μ=58, σ=10, 40–90). Sex: 52% F, 48% M.\n\nIMD_quintile skewed to 2–4.\n\nSES_class depends on IMD.\n\nMenopausal status age‑patterned.\n\nSmoking ~15% current.\n\nPA: depends on IMD.\n\nBMI: Normal(27, 4.5), rises with age/smoking.\n\nEnergy: log‑normal around 1900 kcal, scaled by PA/sex.\n\nDiet: FV, red meat, SSB, fibre, salt depend on IMD, SES, energy.\n\nBiomarkers: plasma vitC saturates with FV; urinary Na tracks salt.\n\nSBP: non‑linear in age plus salt, BMI, smoking, PA."
+  },
+  {
+    "objectID": "metadata/provenance.html#outcomes-and-dates",
+    "href": "metadata/provenance.html#outcomes-and-dates",
+    "title": "1 Provenance (v2) — fb2nep synthetic cohort",
+    "section": "",
+    "text": "CVD: age, BMI (U‑shape), smoking, sex, IMD, SES, salt, SBP, alcohol J‑shape, FHx CVD. Target 10–15%.\n\nCancer: age, BMI, smoking, SES, sex, FHx cancer, red meat &gt;50 g/d. Target 8–12%.\n\nEvent dates: baseline + simulated time for incidents."
+  },
+  {
+    "objectID": "metadata/provenance.html#missingness",
+    "href": "metadata/provenance.html#missingness",
+    "title": "1 Provenance (v2) — fb2nep synthetic cohort",
+    "section": "",
+    "text": "MCAR: ~2–3%.\n\nMAR: +5–8% tied to IMD/age.\n\nMNAR (tiny): alcohol→alcohol missing; high BMI→BMI missing."
+  },
+  {
+    "objectID": "metadata/provenance.html#validation-targets",
+    "href": "metadata/provenance.html#validation-targets",
+    "title": "1 Provenance (v2) — fb2nep synthetic cohort",
+    "section": "",
+    "text": "Corr(FV, vitC) &gt; 0.45.\n\nCorr(salt, urinary Na) &gt; 0.55.\n\nSBP vs age Spearman ρ &gt; 0.35.\n\nSES/IMD diet gradients as expected.\n\nCVD incidence 10–15%; Cancer 8–12%.\n\nRed meat higher in cancer cases.\n\nEvent dates present only if incident=1."
+  },
+  {
+    "objectID": "metadata/provenance.html#notes",
+    "href": "metadata/provenance.html#notes",
+    "title": "1 Provenance (v2) — fb2nep synthetic cohort",
+    "section": "",
+    "text": "This is teaching data: tuned for pedagogy, not inference."
+  },
+  {
+    "objectID": "notebooks/01_intro_epidemiology.html",
+    "href": "notebooks/01_intro_epidemiology.html",
+    "title": "01 · Introduction to Nutritional Epidemiology",
+    "section": "",
+    "text": "Learning objectives - Define epidemiology in the context of nutrition. - Recognise challenges: confounding, measurement error, missingness. - Load and inspect the FB2NEP synthetic cohort (N≈25k).\n# Imports & settings\nimport numpy as np, pandas as pd, matplotlib.pyplot as plt\nnp.random.seed(11088)\nplt.rcParams['figure.dpi']=130\nPATH='data/synthetic/fb2nep.csv'\n# Ensure dataset exists (works in Colab and locally)\nimport os, subprocess, shlex\nif not os.path.exists(PATH):\n    print(\"Dataset missing — generating via scripts/generate_dataset.py ...\")\n    ret = subprocess.run(shlex.split(\"python scripts/generate_dataset.py\"))\n    if ret.returncode != 0:\n        raise SystemExit(\"Generation failed. Check scripts/generate_dataset.py output.\")\ndf = pd.read_csv(PATH)\ndf.head(3)"
+  },
+  {
+    "objectID": "notebooks/01_intro_epidemiology.html#first-look",
+    "href": "notebooks/01_intro_epidemiology.html#first-look",
+    "title": "01 · Introduction to Nutritional Epidemiology",
+    "section": "1 First look",
+    "text": "1 First look\n\ndf.shape, df.columns.tolist()\n\n\ndf.describe(include='all', datetime_is_numeric=True)\n\n\n1.1 Measurement error (discussion)\n\nSelf-reported diet vs biomarkers (e.g. fruit/veg vs plasma vitamin C).\nDay-to-day variation and systematic bias.\n\n\n\n1.2 # TODO · Quintiles of fruit/veg vs plasma vitamin C\n\n# Compute mean vitamin C by quintiles of fruit_veg_g_d and assert monotonicity.\nq = pd.qcut(df['fruit_veg_g_d'], 5, duplicates='drop')\nres = df.groupby(q)['plasma_vitC_umol_L'].agg(['mean','std','count']).round(2)\n# Expect monotone increase in mean vit C\nassert res['mean'].is_monotonic_increasing, \"Mean vit C should increase across fruit/veg quintiles\"\nres\n\n\n\n1.3 Checkpoint\n\nNote any odd ranges or surprising values you want to revisit later."
+  }
+]
