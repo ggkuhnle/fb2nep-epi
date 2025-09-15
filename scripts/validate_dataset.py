@@ -95,3 +95,5 @@ check_dates("Cancer_incident","Cancer_date")
 
 print("Validation OK.")
 
+
+print(df["CVD_incident"].mean(), df["Cancer_incident"].mean())
