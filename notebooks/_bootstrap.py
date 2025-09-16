@@ -6,12 +6,13 @@ Usage (at the very top of each notebook):
     %run ../notebooks/_bootstrap.py
     # now: df, CSV_REL, REPO_ROOT, IN_COLAB are defined
 
-Or (import style):
+Or:
 
     from notebooks._bootstrap import init
-    df, ctx = init()  # ctx has paths and flags
+    df, ctx = init()
 
-British English; minimal side effects; transparent data generation.
+Default: load the committed CSV if present.
+Regeneration only happens if FB2NEP_FORCE_REGEN=1 is set.
 """
 
 from __future__ import annotations
@@ -23,13 +24,14 @@ import subprocess
 from dataclasses import dataclass
 
 # -----------------------
-# Configuration (override via env vars if needed)
+# Configuration
 # -----------------------
 REPO_NAME   = os.getenv("FB2NEP_REPO", "fb2nep-epi")
 REPO_URL    = os.getenv("FB2NEP_REPO_URL", "https://github.com/ggkuhnle/fb2nep-epi.git")
 CSV_REL     = os.getenv("FB2NEP_CSV", "data/synthetic/fb2nep.csv")
 GEN_SCRIPT  = os.getenv("FB2NEP_GEN", "scripts/generate_dataset.py")
 REQS_FILE   = os.getenv("FB2NEP_REQS", "requirements.txt")
+FORCE_REGEN = os.getenv("FB2NEP_FORCE_REGEN", "0") == "1"
 
 IN_COLAB = "google.colab" in sys.modules
 
@@ -48,78 +50,61 @@ def _run(cmd: str) -> int:
     return subprocess.run(shlex.split(cmd), check=False).returncode
 
 def ensure_repo_root() -> pathlib.Path:
-    """
-    Ensure CWD is the repo root (contains scripts/ and notebooks/).
-    If opened from notebooks/, go one level up.
-    If in Colab without the repo, clone it.
-    """
+    """Ensure CWD is the repo root (scripts/ + notebooks/ present)."""
     here = pathlib.Path.cwd()
     def looks_like_root(p: pathlib.Path) -> bool:
         return (p / "scripts").exists() and (p / "notebooks").exists()
-
-    if looks_like_root(here):
-        return here
+    if looks_like_root(here): return here
     if looks_like_root(here.parent):
         os.chdir(here.parent)
         return here.parent
     if IN_COLAB:
         print("Cloning repository (Colab)…")
         if not (pathlib.Path("/content") / REPO_NAME).exists():
-            rc = _run(f"git clone {REPO_URL}")
-            if rc != 0:
-                print("⚠️ git clone failed; will continue (you may need manual upload later).")
-        # cd into repo if present
+            _run(f"git clone {REPO_URL}")
         if (pathlib.Path.cwd() / REPO_NAME).exists():
             os.chdir(REPO_NAME)
             return pathlib.Path.cwd()
-        # last resort: stay where we are
-        return pathlib.Path.cwd()
-    # Local: assume user launched from elsewhere; do not chdir blindly
-    print("⚠️ Could not auto-detect repo root; continuing in", here)
     return here
 
 def ensure_deps():
-    """
-    Light dependency check. If core libs missing in Colab,
-    install from requirements.txt. Locally, just warn.
-    """
+    """Light dependency check; install in Colab if missing."""
     try:
         import numpy, pandas, matplotlib, statsmodels  # noqa: F401
     except Exception as e:
         if IN_COLAB:
-            print("Installing Python dependencies (Colab)…")
+            print("Installing dependencies in Colab…")
             if os.path.exists(REQS_FILE):
                 _run(f"pip install -q -r {REQS_FILE}")
             else:
                 _run("pip install -q numpy pandas matplotlib seaborn statsmodels")
         else:
-            print("⚠️ Missing dependencies locally:", e)
-            print("   Consider: `pip install -r requirements.txt` in your virtual environment.")
+            print("⚠️ Missing deps locally:", e)
 
 def ensure_data(csv_rel: str, gen_script: str):
     """
-    Ensure dataset CSV exists. Prefer generating via the script for transparency.
-    Colab fallback: manual file upload.
+    Ensure dataset exists.
+    - If file exists → load it.
+    - If FORCE_REGEN=1 → run generator.
+    - Else (missing + no regen) → Colab upload fallback.
     """
-    if os.path.exists(csv_rel):
+    if os.path.exists(csv_rel) and not FORCE_REGEN:
         print(f"Dataset found: {csv_rel} ✅")
         return
 
-    # Try to generate via the script
-    if os.path.exists(gen_script):
-        print("Generating dataset…")
-        rc = _run(f"python {gen_script}")
-        if rc == 0 and os.path.exists(csv_rel):
-            print(f"Generated: {csv_rel} ✅")
-            return
-        print("⚠️ Generation failed or file still missing.")
+    if FORCE_REGEN or not os.path.exists(csv_rel):
+        if os.path.exists(gen_script):
+            print("Generating dataset…")
+            rc = _run(f"python {gen_script}")
+            if rc == 0 and os.path.exists(csv_rel):
+                print(f"Generated: {csv_rel} ✅")
+                return
+            print("⚠️ Generation failed.")
 
-    # Colab fallback: manual upload
-    if IN_COLAB:
+    if IN_COLAB and not os.path.exists(csv_rel):
         try:
             from google.colab import files  # type: ignore
-            target_dir = os.path.dirname(csv_rel) or "."
-            os.makedirs(target_dir, exist_ok=True)
+            os.makedirs(os.path.dirname(csv_rel), exist_ok=True)
             print(f"Upload fb2nep.csv (will be saved to {csv_rel}) …")
             uploaded = files.upload()
             if "fb2nep.csv" in uploaded:
@@ -127,47 +112,23 @@ def ensure_data(csv_rel: str, gen_script: str):
                     f.write(uploaded["fb2nep.csv"])
                 print(f"Uploaded: {csv_rel} ✅")
                 return
-            else:
-                print("⚠️ fb2nep.csv not provided.")
         except Exception as e:
             print("Upload fallback failed:", e)
 
-    raise FileNotFoundError(f"Could not obtain dataset at {csv_rel}")
+    if not os.path.exists(csv_rel):
+        raise FileNotFoundError(f"Could not obtain dataset at {csv_rel}")
 
 def init():
-    """
-    One-call initialiser for notebooks.
-    Returns (df, ctx) where ctx is a Context dataclass with useful info.
-    Also binds df, CSV_REL, REPO_ROOT, IN_COLAB into globals for %run use.
-    """
+    """Return (df, ctx). Also binds df, CSV_REL, REPO_ROOT, IN_COLAB for `%run` use."""
     import pandas as pd
-
     repo_root = ensure_repo_root()
     ensure_deps()
     ensure_data(CSV_REL, GEN_SCRIPT)
-
     df = pd.read_csv(CSV_REL)
     print(df.shape, "— dataset ready")
-
-    ctx = Context(
-        repo_root=repo_root,
-        csv_rel=CSV_REL,
-        gen_script=GEN_SCRIPT,
-        in_colab=IN_COLAB,
-        repo_url=REPO_URL,
-        repo_name=REPO_NAME,
-    )
-
-    # Expose a few conveniences to `%run` users
-    globals().update({
-        "df": df,
-        "CSV_REL": CSV_REL,
-        "REPO_ROOT": repo_root,
-        "IN_COLAB": IN_COLAB,
-        "CTX": ctx,
-    })
+    ctx = Context(repo_root, CSV_REL, GEN_SCRIPT, IN_COLAB, REPO_URL, REPO_NAME)
+    globals().update({"df": df, "CSV_REL": CSV_REL, "REPO_ROOT": repo_root, "IN_COLAB": IN_COLAB, "CTX": ctx})
     return df, ctx
 
-# If executed via `%run notebooks/_bootstrap.py`, call init and leave df in global scope.
 if __name__ == "__main__":
     init()
