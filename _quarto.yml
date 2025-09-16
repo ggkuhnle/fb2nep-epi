@@ -17,8 +17,8 @@ website:
         text: Notebooks
       - href: metadata/provenance.md
         text: Provenance
-      - href: assessment/A1_brief.md
-        text: Assessment 1
+      - href: assessment/FB2NEP_Assessment_Brief.md
+        text: Assessment 
 
   sidebar:
     style: floating
