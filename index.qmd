@@ -1,73 +1,49 @@
 ---
-title: "Data Analysis Toolkit for Food and Nutrition Sciences"
+title: FB2NEP — Nutritional Epidemiology
+format:
+  html:
+    toc: false
 ---
 
-# Data Analysis Toolkit for Food and Nutrition Sciences 🦛
+## Welcome
 
-Welcome to the **Data Analysis Toolkit for Food and Nutrition Sciences**, a comprehensive resource for project students mastering data analysis in nutrition research. This toolkit features a number Jupyter notebooks across six modules (and some examples), rendered as interactive HTML tutorials using Quarto and hosted on GitHub Pages. Run the notebooks in Google Colab with one click or explore the rendered tutorials below. WIt covers Python basics, data handling, statistical analysis, advanced methods, and qualitative research.
-
-## Quick Start 🚀
-
-- **View the Site**: Browse tutorials at [https://ggkuhnle.github.io/data-analysis-projects/](https://ggkuhnle.github.io/data-analysis-projects/).
-- **Run in Colab**: Use the "Open in Colab" badges below to run notebooks in the cloud.
-- **GitHub**: Clone or fork the repo at [github.com/ggkuhnle/data-analysis-projects](https://github.com/ggkuhnle/data-analysis-projects).
-
-## Modules 📚
-
-Explore the six modules, each with notebooks you can view as HTML or run in Colab:
-
-- **Infrastructure**  
-  Set up Python, Jupyter, and Quarto for data analysis.  
-  [Explore Module](notebooks/01_infrastructure/)
-
-- **Programming Python**  
-  Master Python syntax and programming basics.  
-  [Explore Module](notebooks/02_programming_basics/) 
-
-- **Data Handling**  
-  Import, clean, and transform nutrition datasets.  
-  [Explore Module](notebooks/03_data_handling/) 
-
-- **Data Analysis**  
-  Visualise data and build regression models.  
-  [Explore Module](notebooks/04_data_analysis/) 
-
-- **Advanced Topics**  
-  Dive into Bayesian methods, SQL, and dashboards.
-  [Explore Module](notebooks/05_advanced/) 
-
-- **Qualitative Research**  
-  Analyse text data for nutrition studies.  
-  [Explore Module](notebooks/06_qualitative/) 
-
-- **Mini projects**
-  Some mini projects, e.g. RCT
-  [Explore Module](notebooks/10_mini_projects/)
-
-## Get Involved 🧑‍💻
-
-- **Clone the Repo**:
-  ```bash
-  git clone https://github.com/ggkuhnle/data-analysis-projects.git
-  cd data-analysis-projects
-  ```
-- **Set Up Locally**:
-  ```bash
-  python -m venv venv
-  source venv/bin/activate  # On Windows: venv\Scripts\activate
-  pip install -r requirements.txt
-  ```
-  Install Quarto: [quarto.org](https://quarto.org/docs/get-started/).
-- **Render Locally**:
-  ```bash
-  rm -rf _site/
-  quarto render
-  ```
-
-## License 📝
-
-Created by Gunter Kuhnle. Licensed under MIT.
+This site hosts the teaching materials for **FB2NEP: Nutritional Epidemiology & Public Health**.  
+Data are **synthetic and reproducible** — see the [provenance](metadata/provenance.md).  
+If you prefer to run notebooks interactively, use the **Colab launchers** below.
 
 ---
 
-Happy analysing! 🚀
+## Launch in Google Colab
+
+> Tip: the notebooks will auto-generate the dataset if it’s missing, or fall back to a manual upload in Colab.  
+> (We recommend keeping the committed CSV for speed.)
+
+### Open a notebook
+
+- 01 · Introduction to Nutritional Epidemiology  
+  [![Open 01 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/01_intro_epidemiology.ipynb)
+
+- 02 · Study Designs, Exposures, Outcomes  
+  [![Open 02 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/02_study_designs_exposure_outcomes.ipynb)
+
+- 03 · Cleaning, Missingness, Table 1  
+  [![Open 03 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/03_cleaning_missing_table1.ipynb)
+
+- 04 · Transformations, EDA, Visualisation  
+  [![Open 04 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/04_transform_eda_visualisation.ipynb)
+
+- 05 · Regression, Confounding, DAGs  
+  [![Open 05 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/05_regression_confounding_dags.ipynb)
+
+---
+
+## Materials
+
+- **Notebooks page:** [notebooks/index.qmd](notebooks/index.qmd)  
+- **Dataset generator:** `scripts/generate_dataset.py`  
+- **Validation checks:** `scripts/validate_dataset.py`  
+- **Metadata:** `metadata/` (data dictionary, provenance, diagram)  
+- **Assessment 1:** `assessment/` (brief, template)
+
+
+

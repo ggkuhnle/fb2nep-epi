@@ -1,0 +1,44 @@
+---
+title: Nutritional Epidemiology Notebooks
+format:
+  html:
+    toc: true
+---
+
+# FB2NEP Nutritional Epidemiology — Teaching Notebooks
+
+This page links to the Google Colab versions of the five notebooks, so you can run them interactively without installing anything locally.
+
+Each badge opens the notebook directly from GitHub into a fresh Colab session.  
+Data are synthetic and reproducible — see the [metadata/provenance](../metadata/provenance.md).
+
+---
+
+## 01 · Introduction to Nutritional Epidemiology
+
+[![Open 01 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/01_intro_epidemiology.ipynb)
+
+---
+
+## 02 · Study Designs, Exposures, Outcomes
+
+[![Open 02 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/02_study_designs_exposure_outcomes.ipynb)
+
+---
+
+## 03 · Cleaning, Missingness, Table 1
+
+[![Open 03 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/03_cleaning_missing_table1.ipynb)
+
+---
+
+## 04 · Transformations, EDA, Visualisation
+
+[![Open 04 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/04_transform_eda_visualisation.ipynb)
+
+---
+
+## 05 · Regression, Confounding, DAGs
+
+[![Open 05 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/05_regression_confounding_dags.ipynb)
+
