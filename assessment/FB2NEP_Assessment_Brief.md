@@ -3,7 +3,7 @@
 **Module:** FB2NEP: Nutritional Epidemiology & Public Health  
 **Weighting:** 50% of module (Epi half)  
 **Length/Format:** 2000–2500 words (+ figures/tables, code appendix excluded from count)  
-**Submission:** Single PDF report + the provided notebook `.ipynb` with executed outputs + your data mapping cell completed.  
+**Submission:** Single PDF report + the provided notebook `fb2nep_assignment_template.ipynb` with executed outputs + your data mapping cell completed.  
 **Dataset:** `fb2nep.csv` (as provided in the module repo).
 
 ---
