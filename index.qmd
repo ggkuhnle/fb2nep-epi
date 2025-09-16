@@ -1,0 +1,73 @@
+---
+title: "Data Analysis Toolkit for Food and Nutrition Sciences"
+---
+
+# Data Analysis Toolkit for Food and Nutrition Sciences 🦛
+
+Welcome to the **Data Analysis Toolkit for Food and Nutrition Sciences**, a comprehensive resource for project students mastering data analysis in nutrition research. This toolkit features a number Jupyter notebooks across six modules (and some examples), rendered as interactive HTML tutorials using Quarto and hosted on GitHub Pages. Run the notebooks in Google Colab with one click or explore the rendered tutorials below. WIt covers Python basics, data handling, statistical analysis, advanced methods, and qualitative research.
+
+## Quick Start 🚀
+
+- **View the Site**: Browse tutorials at [https://ggkuhnle.github.io/data-analysis-projects/](https://ggkuhnle.github.io/data-analysis-projects/).
+- **Run in Colab**: Use the "Open in Colab" badges below to run notebooks in the cloud.
+- **GitHub**: Clone or fork the repo at [github.com/ggkuhnle/data-analysis-projects](https://github.com/ggkuhnle/data-analysis-projects).
+
+## Modules 📚
+
+Explore the six modules, each with notebooks you can view as HTML or run in Colab:
+
+- **Infrastructure**  
+  Set up Python, Jupyter, and Quarto for data analysis.  
+  [Explore Module](notebooks/01_infrastructure/)
+
+- **Programming Python**  
+  Master Python syntax and programming basics.  
+  [Explore Module](notebooks/02_programming_basics/) 
+
+- **Data Handling**  
+  Import, clean, and transform nutrition datasets.  
+  [Explore Module](notebooks/03_data_handling/) 
+
+- **Data Analysis**  
+  Visualise data and build regression models.  
+  [Explore Module](notebooks/04_data_analysis/) 
+
+- **Advanced Topics**  
+  Dive into Bayesian methods, SQL, and dashboards.
+  [Explore Module](notebooks/05_advanced/) 
+
+- **Qualitative Research**  
+  Analyse text data for nutrition studies.  
+  [Explore Module](notebooks/06_qualitative/) 
+
+- **Mini projects**
+  Some mini projects, e.g. RCT
+  [Explore Module](notebooks/10_mini_projects/)
+
+## Get Involved 🧑‍💻
+
+- **Clone the Repo**:
+  ```bash
+  git clone https://github.com/ggkuhnle/data-analysis-projects.git
+  cd data-analysis-projects
+  ```
+- **Set Up Locally**:
+  ```bash
+  python -m venv venv
+  source venv/bin/activate  # On Windows: venv\Scripts\activate
+  pip install -r requirements.txt
+  ```
+  Install Quarto: [quarto.org](https://quarto.org/docs/get-started/).
+- **Render Locally**:
+  ```bash
+  rm -rf _site/
+  quarto render
+  ```
+
+## License 📝
+
+Created by Gunter Kuhnle. Licensed under MIT.
+
+---
+
+Happy analysing! 🚀

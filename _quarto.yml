@@ -1,22 +1,12 @@
 project:
-  type: website
-website:
-  title: "FB2NEP Nutritional Epidemiology"
-  navbar:
-    left:
-      - text: "Home"
-        href: index.qmd
-      - text: "Notebooks"
-        menu:
-          - notebooks/01_intro_epidemiology.ipynb
-          - notebooks/02_study_designs_exposure_outcomes.ipynb
-          - notebooks/03_cleaning_missing_table1.ipynb
-          - notebooks/04_transform_eda_visualisation.ipynb
-          - notebooks/05_regression_confounding_dags.ipynb
+  output-dir: _site
+
+book:
+  title: "FB2NEP - Nutritional Epidemiology"
+  chapters:
+    - index.qmd
+
 format:
   html:
     theme: cosmo
     toc: true
-execute:
-  eval: false   # don’t re-run notebooks during render
-
