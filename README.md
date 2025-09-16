@@ -1,17 +1,35 @@
-# FB2NEP – Nutritional Epidemiology (Dataset + Notebooks + Assessment 1)
+# FB2NEP: Nutritional Epidemiology & Public Health  
 
+This repository hosts the **Nutritional Epidemiology** teaching materials for FB2NEP.  
+It includes:
 
-This repository delivers the Nutritional Epidemiology half of FB2NEP via transparent synthetic data and five Colab‑ready notebooks, culminating in Assessment 1.
+- 📓 **Notebooks** — Colab-ready, teaching key epidemiology concepts  
+- 📑 **Slides (PDF)** — lecture materials  
+- 📊 **Synthetic dataset** — generated via `scripts/generate_dataset.py`  
+- 📝 **Assessment 1 brief & template**
 
+A rendered Quarto site with Colab launchers is available here:  
+👉 [FB2NEP website](https://ggkuhnle.github.io/fb2nep-epi/)
+
+---
+
+## Structure
+
+- `notebooks/` — interactive teaching notebooks (numbered & titled for clarity)  
+- `slides/` — lecture slides in PDF (same naming as notebooks)  
+- `scripts/` — dataset generator & validator  
+- `metadata/` — data dictionary & provenance  
+- `assessment/` — Assessment 1 brief & template
+
+---
 
 ## Quick start
 
+- Open notebooks in Google Colab via the website, or clone locally:
 
-- **Open in Colab:** (after you fork this repo)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/<YOUR_GITHUB_USERNAME>/fb2nep-epi)
-
-
-- **Regenerate data locally**
 ```bash
-python scripts/generate_dataset.py
-python scripts/validate_dataset.py
+git clone https://github.com/ggkuhnle/fb2nep-epi.git
+cd fb2nep-epi
+pip install -r requirements.txt
+jupyter notebook notebooks/
+
