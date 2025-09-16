@@ -1,11 +1,14 @@
 project:
   type: website
+  # If you prefer local /docs deploy instead of Actions, uncomment:
+  # output-dir: docs
 
 website:
   title: "FB2NEP Nutritional Epidemiology"
   site-url: https://ggkuhnle.github.io/fb2nep-epi/
   repo-url: https://github.com/ggkuhnle/fb2nep-epi
   repo-actions: [issue, source]
+
   navbar:
     left:
       - href: index.qmd
@@ -16,20 +19,23 @@ website:
         text: Provenance
       - href: assessment/A1_brief.md
         text: Assessment 1
+
   sidebar:
     style: floating
     search: true
     contents:
       - index.qmd
       - section: "Notebooks"
-        # Lists all .ipynb in notebooks/ in alphanumeric order
         contents:
           - notebooks/index.qmd
           - notebooks/*.ipynb
       - section: "Slides (PDF)"
-        # Links directly to PDFs in slides/
         contents:
           - slides/*.pdf
+
+  page-footer:
+    left: "© University of Reading 2025 · Licensed <a href='https://creativecommons.org/licenses/by/4.0/'>CC BY 4.0</a>"
+    right: "Built with Quarto"
 
 format:
   html:
@@ -39,22 +45,15 @@ format:
     number-sections: true
     code-tools: true
     smooth-scroll: true
-  # ensure PDFs are copied verbatim
-  pdf: default
+  # PDFs are just copied as resources; leaving this here is optional
+  # pdf: default
 
-# Don’t execute notebooks during render (fast, deterministic HTML)
 execute:
   eval: false
 
-# Copy these assets straight through to the site
 resources:
   - slides/**
   - data/**
   - metadata/**
   - assessment/**
 
-# Nice footer with licence and build info
-website:
-  page-footer:
-    left: "© University of Reading 2025 · Licensed <a href='https://creativecommons.org/licenses/by/4.0/'>CC BY 4.0</a>"
-    right: "Built with Quarto"
