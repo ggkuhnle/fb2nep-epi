@@ -5,6 +5,12 @@ format:
     toc: false
 ---
 
+> 🚀 **First time using Python or Colab?**  
+> Head straight to the **[How-To & Sandbox](howto_sandbox/index.qmd)** section.  
+> It explains how to open notebooks in Colab, which warnings to accept, and gives you a safe playground to practise before diving into the main material.
+
+---
+
 ## Welcome
 
 This site hosts the teaching materials for **FB2NEP: Nutritional Epidemiology & Public Health**.  
@@ -44,3 +50,4 @@ If you prefer to run notebooks interactively, use the **Colab launchers** below.
 - **Validation checks:** `scripts/validate_dataset.py`  
 - **Metadata:** `metadata/` (data dictionary, provenance, diagram)  
 - **Assessment 1:** `assessment/` (brief, template)
+
