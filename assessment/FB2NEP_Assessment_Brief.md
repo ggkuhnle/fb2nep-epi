@@ -12,6 +12,7 @@
 ---
 
 ## Provided Files
+- **`FB2NEP_Assessment_Brief.md`**: This document, outlining the assessment requirements, tasks, and marking rubric. Review it carefully to understand expectations and deliverables.
 - **`fb2nep_assignment_template.ipynb`**: The main notebook for the assessment. Complete the "Data mapping" cell and execute all cells to generate results for your report. Submit the executed notebook with outputs.  
   - **Link**: [Open Assessment Notebook in Google Colab](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/assessment/fb2nep_assignment_template.ipynb)
 - **`fb2nep_practice.ipynb`**: A practice notebook to explore the analysis tasks (e.g., Table 1, missingness, regressions) without needing to set up data or libraries. Use this to practice before working on the assessment.  
@@ -108,6 +109,7 @@ Discuss **strengths, limitations, and generalisability**. Address **measurement 
 
 ## Getting Started
 - Place `fb2nep.csv` in `./data/` (or adjust the path in the notebook).  
+- Review the **assessment brief** (`FB2NEP_Assessment_Brief.md`) to understand the tasks and expectations.  
 - Use the **practice notebook** (`fb2nep_practice.ipynb`) to experiment with the analyses. It auto-loads data and libraries, with cells for each task (Table 1, missingness, regressions). Access it via [Google Colab](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/assessment/fb2nep_practice.ipynb).  
 - Refer to the **cheat sheet** (`FB2NEP_Cheat_Sheet.md`) for explanations of Python functions used in the notebooks.  
 - Open and complete the **Data mapping** cell in `fb2nep_assignment_template.ipynb`. This is essential for reproducibility and marking. Access it via [Google Colab](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/assessment/fb2nep_assignment_template.ipynb).  
