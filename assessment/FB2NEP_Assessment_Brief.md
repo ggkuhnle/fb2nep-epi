@@ -3,7 +3,9 @@
 **Module:** FB2NEP: Nutritional Epidemiology & Public Health  
 **Weighting:** 50% of module (Epi half)  
 **Length/Format:** 2000–2500 words (+ figures/tables, code appendix excluded from count)  
-**Submission:** Single PDF report + the provided notebook `fb2nep_assignment_template.ipynb` with executed outputs + your data mapping cell completed.  [![Open Assessment](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/assessment/fb2nep_assignment_template.ipynb)
+**Submission:** Single PDF report + the provided notebook `fb2nep_assignment_template.ipynb` with executed outputs + your data mapping cell completed.
+[![Open Assessment](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/assessment/fb2nep_assignment_template.ipynb)
+
 **Dataset:** `fb2nep.csv` (as provided in the module repo).
 
 ---
