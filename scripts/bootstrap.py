@@ -151,7 +151,6 @@ def init():
     ensure_deps()
     ensure_data(CSV_REL, GEN_SCRIPT)
     df = pd.read_csv(CSV_REL)
-    print(df.shape, "— dataset ready")
 
     ctx = Context(
         repo_root=repo_root,
