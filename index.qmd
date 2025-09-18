@@ -5,26 +5,21 @@ format:
     toc: false
 ---
 
+## Welcome
+
+This site hosts the practical teaching materials for [**FB2NEP: Nutritional Epidemiology & Public Health**](https://www.reading.ac.uk/modules/documents?acyear=2024%252f5&modcode=FB2NEP&schoolcode=CFP%20CHEM%7CCFP%20FOODBI%7CCFP%20PHARM). The data used here are **synthetic and reproducible** — see the [provenance](metadata/provenance.md).  
+
+> It is important that you familiarise yourself with this repository. It will be used for **teaching** and part of the **assment.
+
+---
+
 > 🚀 **First time using Python or Colab?**  
 > Head straight to the **[How-To & Sandbox](howto_sandbox/index.qmd)** section.  
 > It explains how to open notebooks in Colab, which warnings to accept, and gives you a safe playground to practise before diving into the main material.
 
 ---
 
-## Welcome
-
-This site hosts the teaching materials for **FB2NEP: Nutritional Epidemiology & Public Health**.  
-Data are **synthetic and reproducible** — see the [provenance](metadata/provenance.md).  
-If you prefer to run notebooks interactively, use the **Colab launchers** below.
-
----
-
-## Launch in Google Colab
-
-> Tip: the notebooks will auto-generate the dataset if it’s missing, or fall back to a manual upload in Colab.  
-> (We recommend keeping the committed CSV for speed.)
-
-### Open a notebook
+## Contents
 
 - 01 · Introduction to Nutritional Epidemiology  
   [![Open 01 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/01_intro_epidemiology.ipynb)
@@ -43,11 +38,8 @@ If you prefer to run notebooks interactively, use the **Colab launchers** below.
 
 ---
 
-## Materials
+## Assemment
 
-- **Notebooks page:** [notebooks/index.qmd](notebooks/index.qmd)  
-- **Dataset generator:** `scripts/generate_dataset.py`  
-- **Validation checks:** `scripts/validate_dataset.py`  
-- **Metadata:** `metadata/` (data dictionary, provenance, diagram)  
-- **Assessment 1:** `assessment/` (brief, template)
+For your assessment, you will have to analyse some data - you can find all relevant details [here](./assessment/FB2NEP_Assessment_Brief.md).
+
 
