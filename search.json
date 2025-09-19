@@ -1,0 +1,1146 @@
+[
+  {
+    "objectID": "assessment/fb2nep_assignment_template.html",
+    "href": "assessment/fb2nep_assignment_template.html",
+    "title": "FB2NEP — Data Analysis Notebook (Assessment)",
+    "section": "",
+    "text": "This notebook supports the FB2NEP assessment. Complete the Data mapping cell and use the provided code to answer the question paper. The notebook allows: - Describing the study population (Table 1) with comparisons by factors like sex, deprivation, or disease incidence. - Comparing groups with/without cancer or CVD. - Assessing whether data are missing at random. - Analysing associations between nutrient intake and blood pressure (BP) or disease (via logistic or Cox regression). - Exploring different models and data transformations. - Drawing conclusions based on results.\nSet ADD_JITTER to True to add random noise to continuous variables (for varied results). If running on Google Colab, the repository will be cloned automatically.\n# Imports\nimport os, sys, math, json, textwrap, warnings\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nfrom pathlib import Path\n\n# Stats\nimport statsmodels.api as sm\nimport statsmodels.formula.api as smf\nfrom scipy import stats\nfrom lifelines import CoxPHFitter  # For Cox regression\n\nwarnings.filterwarnings(\"ignore\")\n\n# Display settings\npd.set_option(\"display.max_columns\", 120)\npd.set_option(\"display.width\", 200)\n\nprint(\"Versions:\")\nprint(\"pandas\", pd.__version__)\nprint(\"statsmodels\", sm.__version__)\nprint(\"numpy\", np.__version__)\n\n# Detect if running in Google Colab\ntry:\n    import google.colab\n    IN_COLAB = True\nexcept ImportError:\n    IN_COLAB = False\n\n# Option to add jitter to continuous variables\nADD_JITTER = False  # Set to True to add random noise\nJITTER_SCALE = 0.05  # Standard deviation of noise as proportion of variable std"
+  },
+  {
+    "objectID": "assessment/fb2nep_assignment_template.html#data-mapping-required",
+    "href": "assessment/fb2nep_assignment_template.html#data-mapping-required",
+    "title": "FB2NEP — Data Analysis Notebook (Assessment)",
+    "section": "1 Data mapping (REQUIRED)",
+    "text": "1 Data mapping (REQUIRED)\nAssign the correct column names from fb2nep.csv to the variables below. Run the next cell to list columns if unsure.\n\n# Clone repository if in Colab\nif IN_COLAB:\n    !git clone https://github.com/ggkuhnle/fb2nep-epi.git\n    %cd fb2nep-epi\n\nfrom scripts.bootstrap import init\ndf, ctx = init()\n\n# Add jitter to continuous variables if enabled\nif ADD_JITTER:\n    numeric_cols = df.select_dtypes(include=[np.number]).columns\n    for col in numeric_cols:\n        noise = np.random.normal(0, df[col].std() * JITTER_SCALE, size=len(df))\n        df[col] = df[col] + noise\n    print(\"Jitter added to numeric columns\")\n\nprint(df.shape, \"— dataset ready\")\ndf.head()\n\n\n# === EDIT THIS CELL ===\n# Map dataset columns here (strings). Use exact column names from fb2nep.csv.\n\nMAPPING = {\n    # Primary outcome (binary recommended: 0/1). Example: \"CVD_Incidence\"\n    \"outcome\": \"&lt;OUTCOME_COL&gt;\",\n    # Time-to-event for Cox regression (if applicable). Example: \"time_to_event\"\n    \"time\": \"&lt;TIME_COL&gt;\",\n    # Primary exposure: biomarker variable (continuous). Example: \"flavanol_biomarker\"\n    \"exposure_biomarker\": \"&lt;BIOMARKER_COL&gt;\",\n    # Secondary exposure: diet diary (DD) variable (continuous). Example: \"flavanol_dd\"\n    \"exposure_dd\": \"&lt;DD_COL&gt;\",\n    # Blood pressure (continuous). Example: \"systolic_bp\"\n    \"bp\": \"&lt;BP_COL&gt;\",\n    # Demographics/covariates\n    \"id\": \"&lt;ID_COL&gt;\",                 # e.g., \"ID\" or \"participant_id\"\n    \"age\": \"&lt;AGE_COL&gt;\",               # e.g., \"age\"\n    \"sex\": \"&lt;SEX_COL&gt;\",               # e.g., \"sex\" coded as 0/1 or 'M'/'F'\n    \"bmi\": \"&lt;BMI_COL&gt;\",               # e.g., \"BMI\"\n    \"smoking\": \"&lt;SMOKING_COL&gt;\",       # e.g., 'never','former','current'\n    \"ses\": \"&lt;SES_COL&gt;\",               # socioeconomic status\n    # Add other confounders as needed:\n    # \"physical_activity\": \"&lt;PA_COL&gt;\",\n    # \"energy_intake\": \"&lt;ENERGY_COL&gt;\",\n}\n\n# Candidate confounders for models\nCANDIDATE_CONFOUNDERS = [\"age\", \"sex\", \"bmi\", \"smoking\", \"ses\"]\n\n# Outcome type\nOUTCOME_IS_BINARY = True  # Set to False if outcome is continuous\nUSE_COX = False  # Set to True for Cox regression (requires 'time' in MAPPING)\n\n# Data transformation options\nTRANSFORM = None  # Options: None, 'log', 'sqrt', or lambda x: &lt;custom&gt;"
+  },
+  {
+    "objectID": "assessment/fb2nep_assignment_template.html#load-and-preprocess-data",
+    "href": "assessment/fb2nep_assignment_template.html#load-and-preprocess-data",
+    "title": "FB2NEP — Data Analysis Notebook (Assessment)",
+    "section": "2 Load and preprocess data",
+    "text": "2 Load and preprocess data\n\n# Load fb2nep.csv\ndef load_fb2nep():\n    DATA_PATHS = [Path(p) for p in [\"./data/fb2nep.csv\", \"./fb2nep.csv\", \"../data/fb2nep.csv\"]]\n    for p in DATA_PATHS:\n        if p.exists():\n            return pd.read_csv(p)\n    raise FileNotFoundError(\"fb2nep.csv not found. Place it in ./data, ./, or ../data\")\n\ndf = load_fb2nep()\n\n# Apply transformations\ndef apply_transform(data, col, transform):\n    if transform == 'log':\n        return np.log1p(data[col])\n    elif transform == 'sqrt':\n        return np.sqrt(data[col])\n    elif callable(transform):\n        return transform(data[col])\n    return data[col]\n\nif TRANSFORM:\n    for key in ['exposure_biomarker', 'exposure_dd', 'bp']:\n        if MAPPING.get(key) in df.columns:\n            df[MAPPING[key]] = apply_transform(df, MAPPING[key], TRANSFORM)\n            print(f\"Applied {TRANSFORM} transformation to {MAPPING[key]}\")\n\nprint(df.shape)\ndf.head()\n\n\n# Validate mapping and coerce types\ndef validate_mapping(df, mapping):\n    missing = [k for k, v in mapping.items() if isinstance(v, str) and v.startswith(\"&lt;\")]\n    if missing:\n        raise ValueError(f\"Please fill in MAPPING for: {missing}\")\n    for k, v in mapping.items():\n        if v and v not in df.columns:\n            raise KeyError(f\"MAPPING[{k}] refers to '{v}', which is not a column in the dataset.\")\n    if USE_COX and (not mapping.get(\"time\") or mapping[\"time\"] not in df.columns):\n        raise ValueError(\"Cox regression requires 'time' column in MAPPING.\")\n    return True\n\nvalidate_mapping(df, MAPPING)\n\ndef coerce_types(d, mapping, outcome_is_binary=True):\n    d = d.copy()\n    if mapping.get(\"sex\") in d:\n        if d[mapping[\"sex\"]].dtype == object:\n            d[mapping[\"sex\"]] = d[mapping[\"sex\"]].astype(str).str.strip().str[0].str.upper().map({\"M\":0, \"F\":1})\n    if outcome_is_binary and mapping.get(\"outcome\") in d:\n        if d[mapping[\"outcome\"]].dtype == object:\n            d[mapping[\"outcome\"]] = d[mapping[\"outcome\"]].astype(str).str.strip().str.lower().map({\"no\":0, \"yes\":1})\n        d[mapping[\"outcome\"]] = pd.to_numeric(d[mapping[\"outcome\"]], errors=\"coerce\")\n    return d\n\ndf = coerce_types(df, MAPPING, OUTCOME_IS_BINARY)\ndf.head()"
+  },
+  {
+    "objectID": "assessment/fb2nep_assignment_template.html#table-1-describe-study-population",
+    "href": "assessment/fb2nep_assignment_template.html#table-1-describe-study-population",
+    "title": "FB2NEP — Data Analysis Notebook (Assessment)",
+    "section": "3 Table 1: Describe study population",
+    "text": "3 Table 1: Describe study population\n\n# Summarise variables\ndef summarise_series(s):\n    if pd.api.types.is_numeric_dtype(s):\n        return pd.Series({\n            \"n\": s.notna().sum(),\n            \"mean\": s.mean(),\n            \"sd\": s.std(),\n            \"median\": s.median(),\n            \"iqr\": s.quantile(0.75) - s.quantile(0.25)\n        })\n    else:\n        vc = s.value_counts(dropna=False)\n        total = len(s)\n        return pd.Series({f\"{k} (n,%)\": f\"{v} ({v/total*100:.1f}%)\" for k, v in vc.items()})\n\ndef table1(df, cols, by=None):\n    out = {}\n    if by is None or by not in df.columns:\n        for c in cols:\n            out[c] = summarise_series(df[c])\n        res = pd.concat(out, axis=1)\n    else:\n        groups = df.groupby(by, dropna=False)\n        parts = []\n        for lvl, dsub in groups:\n            part = pd.concat({c: summarise_series(dsub[c]) for c in cols}, axis=1)\n            part.columns = pd.MultiIndex.from_product([[f\"{by}={lvl}\"], part.columns])\n            parts.append(part)\n        res = pd.concat(parts, axis=1)\n    return res\n\n# Select columns for Table 1\ncols = [c for c in [MAPPING.get(k) for k in [\"age\", \"sex\", \"bmi\", \"smoking\", \"ses\", \"exposure_biomarker\", \"exposure_dd\", \"bp\"]] if c in df.columns]\n\n# Compare by factor (edit 'by' to 'sex', 'ses', 'outcome', etc.)\nCOMPARE_BY = \"sex\"  # Change to MAPPING key (e.g., 'ses', 'outcome') to compare groups\ntbl1 = table1(df, cols, by=MAPPING.get(COMPARE_BY))\ntbl1"
+  },
+  {
+    "objectID": "assessment/fb2nep_assignment_template.html#missingness-audit-are-data-missing-at-random",
+    "href": "assessment/fb2nep_assignment_template.html#missingness-audit-are-data-missing-at-random",
+    "title": "FB2NEP — Data Analysis Notebook (Assessment)",
+    "section": "4 Missingness audit: Are data missing at random?",
+    "text": "4 Missingness audit: Are data missing at random?\n\n# Missingness summary\ndef missingness_summary(d):\n    miss = d.isna().mean().sort_values(ascending=False)\n    out = pd.DataFrame({\"missing_prop\": miss, \"missing_%\": (miss*100).round(1)})\n    out[\"n_missing\"] = d.isna().sum()\n    out[\"n\"] = len(d)\n    return out\n\nmiss = missingness_summary(df)\nmiss.head(20)\n\n# Test for missing at random (example: compare missingness of exposure_biomarker by outcome)\ndef test_mar(df, var, group_by):\n    if var not in df.columns or group_by not in df.columns:\n        return \"Invalid column names\"\n    miss = df[var].isna()\n    if df[group_by].dtype == object or pd.api.types.is_categorical_dtype(df[group_by]):\n        contingency = pd.crosstab(miss, df[group_by])\n        chi2, p = stats.chi2_contingency(contingency)[:2]\n        return {\"chi2\": chi2, \"p_value\": p, \"contingency\": contingency}\n    else:\n        miss_val = df.loc[miss, group_by]\n        not_miss_val = df.loc[~miss, group_by]\n        t_stat, p = stats.ttest_ind(miss_val.dropna(), not_miss_val.dropna(), equal_var=False)\n        return {\"t_stat\": t_stat, \"p_value\": p}\n\nmar_test = test_mar(df, MAPPING.get(\"exposure_biomarker\"), MAPPING.get(\"outcome\"))\nprint(\"MAR test (exposure_biomarker by outcome):\")\nprint(mar_test)\n\n\n# Visualise missingness matrix\ndef plot_missingness_matrix(d, max_cols=30):\n    d = d.copy()\n    if d.shape[1] &gt; max_cols:\n        d = d.iloc[:, :max_cols]\n        print(f\"(Showing first {max_cols} columns)\")\n    plt.figure(figsize=(10, 6))\n    plt.imshow(d.isna(), aspect='auto', interpolation='nearest')\n    plt.xlabel(\"Columns (subset if large)\")\n    plt.ylabel(\"Rows\")\n    plt.title(\"Missingness matrix\")\n    plt.show()\n\nplot_missingness_matrix(df)"
+  },
+  {
+    "objectID": "assessment/fb2nep_assignment_template.html#biomarker-vs-diet-diary-dd-comparison",
+    "href": "assessment/fb2nep_assignment_template.html#biomarker-vs-diet-diary-dd-comparison",
+    "title": "FB2NEP — Data Analysis Notebook (Assessment)",
+    "section": "5 Biomarker vs Diet Diary (DD) comparison",
+    "text": "5 Biomarker vs Diet Diary (DD) comparison\n\nbiom = MAPPING[\"exposure_biomarker\"]\ndd = MAPPING[\"exposure_dd\"]\n\nbiom_valid = df[biom].astype(float)\ndd_valid = df[dd].astype(float)\n\n# Scatter & correlation\nplt.figure(figsize=(6, 5))\nplt.scatter(dd_valid, biom_valid, alpha=0.6)\nplt.xlabel(f\"{dd}\")\nplt.ylabel(f\"{biom}\")\nplt.title(\"Biomarker vs DD: scatter\")\nplt.show()\n\nvalid = df[[biom, dd]].dropna()\nr = valid[biom].corr(valid[dd])\nprint(f\"Pearson r = {r:.3f} (n={len(valid)})\")\n\n# Bland–Altman\ndef bland_altman(a, b):\n    a, b = np.asarray(a), np.asarray(b)\n    diff = a - b\n    mean = (a + b) / 2\n    mdiff = np.mean(diff)\n    sd = np.std(diff, ddof=1)\n    loa = (mdiff - 1.96*sd, mdiff + 1.96*sd)\n    return mean, diff, mdiff, loa\n\nmean_ab, diff_ab, mdiff, loa = bland_altman(valid[biom], valid[dd])\nplt.figure(figsize=(6, 5))\nplt.scatter(mean_ab, diff_ab, alpha=0.6)\nplt.axhline(mdiff)\nplt.axhline(loa[0])\nplt.axhline(loa[1])\nplt.xlabel(\"Mean of biomarker and DD\")\nplt.ylabel(\"Difference (biomarker − DD)\")\nplt.title(\"Bland–Altman plot\")\nplt.show()\n\nprint(f\"Mean difference: {mdiff:.3f}; 95% LoA: [{loa[0]:.3f}, {loa[1]:.3f}]\")"
+  },
+  {
+    "objectID": "assessment/fb2nep_assignment_template.html#association-nutrient-intake-and-blood-pressure",
+    "href": "assessment/fb2nep_assignment_template.html#association-nutrient-intake-and-blood-pressure",
+    "title": "FB2NEP — Data Analysis Notebook (Assessment)",
+    "section": "6 Association: Nutrient intake and blood pressure",
+    "text": "6 Association: Nutrient intake and blood pressure\n\n# Linear regression: nutrient intake vs BP\ndef fit_linear_model(df, outcome, exposure, covars=None):\n    covars = covars or []\n    rhs = exposure if not covars else f\"{exposure} + {' + '.join(covars)}\"\n    formula = f\"{outcome} ~ {rhs}\"\n    d = df[[outcome, exposure] + covars].dropna()\n    model = smf.ols(formula, data=d).fit()\n    return model, formula\n\nbp = MAPPING.get(\"bp\")\nexposure = MAPPING.get(\"exposure_biomarker\")\nif bp and exposure in df.columns:\n    # Minimal model\n    bp_model, bp_formula = fit_linear_model(df, bp, exposure)\n    print(f\"Minimal model: {bp_formula}\")\n    print(bp_model.summary())\n\n    # Adjusted model\n    prespec_covars = [MAPPING[k] for k in CANDIDATE_CONFOUNDERS if MAPPING.get(k) in df.columns]\n    bp_adj_model, bp_adj_formula = fit_linear_model(df, bp, exposure, prespec_covars)\n    print(f\"Adjusted model: {bp_adj_formula}\")\n    print(bp_adj_model.summary())"
+  },
+  {
+    "objectID": "assessment/fb2nep_assignment_template.html#association-nutrient-intake-and-disease",
+    "href": "assessment/fb2nep_assignment_template.html#association-nutrient-intake-and-disease",
+    "title": "FB2NEP — Data Analysis Notebook (Assessment)",
+    "section": "7 Association: Nutrient intake and disease",
+    "text": "7 Association: Nutrient intake and disease\n\n# Logistic or Cox regression\ndef make_formula(outcome, exposure, covars=None, binary=True):\n    rhs = exposure if covars is None or len(covars) == 0 else f\"{exposure} + {' + '.join(covars)}\"\n    return f\"{outcome} ~ {rhs}\"\n\ndef fit_model(df, formula, covars=None, binary=True, use_cox=False):\n    d = df.dropna(subset=(covars or []) + formula.split(\"~\")[1].split(\" + \") + ([MAPPING[\"time\"]] if use_cox else []))\n    if use_cox:\n        covars = covars or []\n        model = CoxPHFitter()\n        d = d[[MAPPING[\"outcome\"], MAPPING[\"time\"], exposure] + covars]\n        model.fit(d, duration_col=MAPPING[\"time\"], event_col=MAPPING[\"outcome\"])\n        return model, d\n    elif binary:\n        model = smf.logit(formula, data=d).fit(disp=False)\n        return model, d\n    else:\n        model = smf.ols(formula, data=d).fit()\n        return model, d\n\noutcome = MAPPING[\"outcome\"]\nexposure = MAPPING[\"exposure_biomarker\"]\n\n# Minimal model\nmin_formula = make_formula(outcome, exposure, covars=[], binary=OUTCOME_IS_BINARY)\nmin_model, min_data = fit_model(df, min_formula, binary=OUTCOME_IS_BINARY, use_cox=USE_COX)\nprint(f\"Minimal model: {min_formula}\")\nif USE_COX:\n    min_model.print_summary()\nelse:\n    print(min_model.summary())\n\n# Adjusted model\nprespec_covars = [MAPPING[k] for k in CANDIDATE_CONFOUNDERS if MAPPING.get(k) in df.columns]\nadj_formula = make_formula(outcome, exposure, covars=prespec_covars, binary=OUTCOME_IS_BINARY)\nadj_model, adj_data = fit_model(df, adj_formula, covars=prespec_covars, binary=OUTCOME_IS_BINARY, use_cox=USE_COX)\nprint(f\"Adjusted model: {adj_formula}\")\nif USE_COX:\n    adj_model.print_summary()\nelse:\n    print(adj_model.summary())\n\n\n7.1 Change-in-estimate (≥10%) procedure\n\ndef get_effect(model, exposure, binary=True, use_cox=False):\n    if use_cox:\n        b = model.params_[exposure]\n        se = model.standard_errors_[exposure]\n        hr = np.exp(b)\n        lo = np.exp(b - 1.96*se)\n        hi = np.exp(b + 1.96*se)\n        return {\"effect\": hr, \"lo\": lo, \"hi\": hi, \"scale\": \"HR\"}\n    elif binary:\n        b = model.params[exposure]\n        se = model.bse[exposure]\n        OR = np.exp(b)\n        lo = np.exp(b - 1.96*se)\n        hi = np.exp(b + 1.96*se)\n        return {\"effect\": OR, \"lo\": lo, \"hi\": hi, \"scale\": \"OR\"}\n    else:\n        b = model.params[exposure]\n        se = model.bse[exposure]\n        lo = b - 1.96*se\n        hi = b + 1.96*se\n        return {\"effect\": b, \"lo\": lo, \"hi\": hi, \"scale\": \"beta\"}\n\nbase_eff = get_effect(min_model, exposure, OUTCOME_IS_BINARY, USE_COX)[\"effect\"]\n\nresults = []\nfor k in CANDIDATE_CONFOUNDERS:\n    cov = MAPPING.get(k)\n    if not cov or cov not in df.columns:\n        continue\n    f = make_formula(outcome, exposure, covars=[cov], binary=OUTCOME_IS_BINARY)\n    m, _ = fit_model(df, f, covars=[cov], binary=OUTCOME_IS_BINARY, use_cox=USE_COX)\n    eff = get_effect(m, exposure, OUTCOME_IS_BINARY, USE_COX)[\"effect\"]\n    change = 100 * (eff - base_eff) / base_eff if base_eff != 0 else np.nan\n    results.append({\"added\": cov, \"effect\": eff, \"% change vs minimal\": change})\n\ncei = pd.DataFrame(results).sort_values(\"% change vs minimal\", key=lambda s: s.abs(), ascending=False)\ncei"
+  },
+  {
+    "objectID": "assessment/fb2nep_assignment_template.html#diagnostics",
+    "href": "assessment/fb2nep_assignment_template.html#diagnostics",
+    "title": "FB2NEP — Data Analysis Notebook (Assessment)",
+    "section": "8 Diagnostics",
+    "text": "8 Diagnostics\n\n# Standardised residuals\ndef standardised_residuals(model, use_cox=False):\n    if use_cox:\n        return pd.Series(model.residuals, name=\"martingale_resid\")\n    elif OUTCOME_IS_BINARY:\n        return pd.Series(model.resid_pearson, name=\"std_resid\")\n    else:\n        return pd.Series(model.get_influence().resid_studentized_internal, name=\"std_resid\")\n\nresid = standardised_residuals(adj_model, USE_COX)\nplt.figure(figsize=(6, 4))\nplt.plot(resid.values, marker='o', linestyle='none', alpha=0.6)\nplt.axhline(3, color='red', linestyle='--')\nplt.axhline(-3, color='red', linestyle='--')\nplt.title(\"Residuals (approx.)\")\nplt.xlabel(\"Observation (index in complete-case sample)\")\nplt.ylabel(\"Residual\")\nplt.show()"
+  },
+  {
+    "objectID": "assessment/fb2nep_assignment_template.html#model-exploration-helpers",
+    "href": "assessment/fb2nep_assignment_template.html#model-exploration-helpers",
+    "title": "FB2NEP — Data Analysis Notebook (Assessment)",
+    "section": "9 Model exploration helpers",
+    "text": "9 Model exploration helpers\n\n# Run custom models\ndef run_model_with_covars(outcome, exposure, covars, use_cox=False):\n    f = make_formula(outcome, exposure, covars=covars, binary=OUTCOME_IS_BINARY)\n    m, _ = fit_model(df, f, covars=covars, binary=OUTCOME_IS_BINARY, use_cox=use_cox)\n    print(f\"Formula: {f}\")\n    if use_cox:\n        m.print_summary()\n    else:\n        print(m.summary())\n\n# Example: try different exposure or outcome\nprint(\"Use run_model_with_covars(outcome, exposure, covars, use_cox=False) to experiment.\")\nprint(\"Example: run_model_with_covars(MAPPING['bp'], MAPPING['exposure_dd'], prespec_covars)\")\nprint(\"Set use_cox=True for Cox regression (requires 'time' in MAPPING).\")"
+  },
+  {
+    "objectID": "assessment/fb2nep_assignment_template.html#save-mapping-snapshot",
+    "href": "assessment/fb2nep_assignment_template.html#save-mapping-snapshot",
+    "title": "FB2NEP — Data Analysis Notebook (Assessment)",
+    "section": "10 Save mapping snapshot",
+    "text": "10 Save mapping snapshot\n\nsnapshot = {\n    \"mapping\": MAPPING,\n    \"candidates\": CANDIDATE_CONFOUNDERS,\n    \"binary_outcome\": OUTCOME_IS_BINARY,\n    \"use_cox\": USE_COX,\n    \"transform\": str(TRANSFORM),\n    \"jitter\": ADD_JITTER,\n}\n\nPath(\"./artifacts\").mkdir(exist_ok=True, parents=True)\nwith open(\"./artifacts/data_mapping_snapshot.json\", \"w\") as f:\n    json.dump(snapshot, f, indent=2)\nprint(\"Saved ./artifacts/data_mapping_snapshot.json\")"
+  },
+  {
+    "objectID": "assessment/fb2nep_practice.html",
+    "href": "assessment/fb2nep_practice.html",
+    "title": "FB2NEP — Practice Notebook",
+    "section": "",
+    "text": "This notebook is for practising data analysis for the FB2NEP assessment. It automatically loads the dataset and libraries, so you can focus on exploring the data and answering questions like: - Describing the study population (Table 1) and comparing groups (e.g., by sex, deprivation, or disease). - Checking if data are missing at random. - Analysing associations between nutrient intake and blood pressure (BP) or disease (logistic or Cox regression). - Experimenting with models and data transformations.\nInstructions: Run all cells in order. Edit the cells marked “Try it!” to practice. Use the accompanying cheat sheet for function explanations.\n# Imports and setup\nimport os, sys, math, json, textwrap, warnings\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nfrom pathlib import Path\n\n# Stats\nimport statsmodels.api as sm\nimport statsmodels.formula.api as smf\nfrom scipy import stats\nfrom lifelines import CoxPHFitter\n\nwarnings.filterwarnings(\"ignore\")\npd.set_option(\"display.max_columns\", 120)\npd.set_option(\"display.width\", 200)\n\n# Detect Google Colab\ntry:\n    import google.colab\n    IN_COLAB = True\nexcept ImportError:\n    IN_COLAB = False\n\n# Clone repository if in Colab\nif IN_COLAB:\n    !git clone https://github.com/ggkuhnle/fb2nep-epi.git\n    %cd fb2nep-epi\n\nfrom scripts.bootstrap import init\ndf, ctx = init()\nprint(df.shape, \"— dataset ready\")\ndf.head()\n# Data mapping (pre-filled for practice)\nMAPPING = {\n    \"outcome\": \"CVD_Incidence\",       # Binary: 0 (no event), 1 (event)\n    \"time\": \"Time_to_Event\",          # Time-to-event for Cox regression\n    \"exposure_biomarker\": \"Flavanol_Biomarker\",  # Nutrient biomarker (continuous)\n    \"exposure_dd\": \"Flavanol_DD\",     # Diet diary nutrient (continuous)\n    \"bp\": \"Systolic_BP\",              # Blood pressure (continuous)\n    \"id\": \"Participant_ID\",           # Participant identifier\n    \"age\": \"Age\",                     # Age in years\n    \"sex\": \"Sex\",                     # 0 (male), 1 (female)\n    \"bmi\": \"BMI\",                     # Body mass index\n    \"smoking\": \"Smoking_Status\",      # 'never', 'former', 'current'\n    \"ses\": \"SES_Index\",               # Socioeconomic status\n}\n\nCANDIDATE_CONFOUNDERS = [\"age\", \"sex\", \"bmi\", \"smoking\", \"ses\"]\nOUTCOME_IS_BINARY = True\nUSE_COX = False  # Change to True for Cox regression\nTRANSFORM = None  # Options: None, 'log', 'sqrt'\n# Preprocess data\ndef load_fb2nep():\n    DATA_PATHS = [Path(p) for p in [\"./data/fb2nep.csv\", \"./fb2nep.csv\", \"../data/fb2nep.csv\"]]\n    for p in DATA_PATHS:\n        if p.exists():\n            return pd.read_csv(p)\n    raise FileNotFoundError(\"fb2nep.csv not found\")\n\ndf = load_fb2nep()\n\n# Apply transformation\ndef apply_transform(data, col, transform):\n    if transform == 'log':\n        return np.log1p(data[col])\n    elif transform == 'sqrt':\n        return np.sqrt(data[col])\n    return data[col]\n\nif TRANSFORM:\n    for key in ['exposure_biomarker', 'exposure_dd', 'bp']:\n        if MAPPING.get(key) in df.columns:\n            df[MAPPING[key]] = apply_transform(df, MAPPING[key], TRANSFORM)\n            print(f\"Applied {TRANSFORM} transformation to {MAPPING[key]}\")\n\n# Coerce types\ndef coerce_types(d, mapping, outcome_is_binary):\n    d = d.copy()\n    if mapping.get(\"sex\") in d:\n        if d[mapping[\"sex\"]].dtype == object:\n            d[mapping[\"sex\"]] = d[mapping[\"sex\"]].astype(str).str.strip().str[0].str.upper().map({\"M\":0, \"F\":1})\n    if outcome_is_binary and mapping.get(\"outcome\") in d:\n        if d[mapping[\"outcome\"]].dtype == object:\n            d[mapping[\"outcome\"]] = d[mapping[\"outcome\"]].astype(str).str.strip().str.lower().map({\"no\":0, \"yes\":1})\n        d[mapping[\"outcome\"]] = pd.to_numeric(d[mapping[\"outcome\"]], errors=\"coerce\")\n    return d\n\ndf = coerce_types(df, MAPPING, OUTCOME_IS_BINARY)\ndf.head()"
+  },
+  {
+    "objectID": "assessment/fb2nep_practice.html#practice-1-describe-study-population-table-1",
+    "href": "assessment/fb2nep_practice.html#practice-1-describe-study-population-table-1",
+    "title": "FB2NEP — Practice Notebook",
+    "section": "1 Practice 1: Describe study population (Table 1)",
+    "text": "1 Practice 1: Describe study population (Table 1)\nGoal: Summarise variables and compare groups (e.g., by sex, SES, or disease). Try it: Change COMPARE_BY to ‘ses’, ‘outcome’, or another MAPPING key.\n\ndef summarise_series(s):\n    if pd.api.types.is_numeric_dtype(s):\n        return pd.Series({\n            \"n\": s.notna().sum(),\n            \"mean\": s.mean(),\n            \"sd\": s.std(),\n            \"median\": s.median(),\n        })\n    else:\n        vc = s.value_counts(dropna=False)\n        total = len(s)\n        return pd.Series({f\"{k} (n,%)\": f\"{v} ({v/total*100:.1f}%)\" for k, v in vc.items()})\n\ndef table1(df, cols, by=None):\n    if by is None or by not in df.columns:\n        return pd.concat({c: summarise_series(df[c]) for c in cols}, axis=1)\n    groups = df.groupby(by, dropna=False)\n    parts = [pd.concat({c: summarise_series(dsub[c]) for c in cols}, axis=1).set_axis(pd.MultiIndex.from_product([[f\"{by}={lvl}\"], cols]), axis=1) for lvl, dsub in groups]\n    return pd.concat(parts, axis=1)\n\ncols = [MAPPING.get(k) for k in [\"age\", \"sex\", \"bmi\", \"smoking\", \"ses\", \"exposure_biomarker\", \"exposure_dd\", \"bp\"] if MAPPING.get(k) in df.columns]\nCOMPARE_BY = \"sex\"  # Try 'ses', 'outcome', etc.\ntbl1 = table1(df, cols, MAPPING.get(COMPARE_BY))\ntbl1"
+  },
+  {
+    "objectID": "assessment/fb2nep_practice.html#practice-2-missingness-audit",
+    "href": "assessment/fb2nep_practice.html#practice-2-missingness-audit",
+    "title": "FB2NEP — Practice Notebook",
+    "section": "2 Practice 2: Missingness audit",
+    "text": "2 Practice 2: Missingness audit\nGoal: Check missing data patterns and test if missingness is random. Try it: Change var or group_by to test different variables (e.g., ‘exposure_dd’, ‘ses’).\n\ndef missingness_summary(d):\n    miss = d.isna().mean().sort_values(ascending=False)\n    return pd.DataFrame({\"missing_%\": (miss*100).round(1), \"n_missing\": d.isna().sum()})\n\ndef test_mar(df, var, group_by):\n    if var not in df.columns or group_by not in df.columns:\n        return \"Invalid column names\"\n    miss = df[var].isna()\n    if df[group_by].dtype == object or pd.api.types.is_categorical_dtype(df[group_by]):\n        contingency = pd.crosstab(miss, df[group_by])\n        chi2, p = stats.chi2_contingency(contingency)[:2]\n        return {\"chi2\": chi2, \"p_value\": p, \"contingency\": contingency}\n    else:\n        miss_val = df.loc[miss, group_by]\n        not_miss_val = df.loc[~miss, group_by]\n        t_stat, p = stats.ttest_ind(miss_val.dropna(), not_miss_val.dropna(), equal_var=False)\n        return {\"t_stat\": t_stat, \"p_value\": p}\n\nmiss = missingness_summary(df)\nmiss.head(10)\n\n# Test missingness\nvar = MAPPING.get(\"exposure_biomarker\")\ngroup_by = MAPPING.get(\"outcome\")\nmar_test = test_mar(df, var, group_by)\nprint(f\"MAR test for {var} by {group_by}:\")\nprint(mar_test)"
+  },
+  {
+    "objectID": "assessment/fb2nep_practice.html#practice-3-nutrient-intake-vs.-blood-pressure",
+    "href": "assessment/fb2nep_practice.html#practice-3-nutrient-intake-vs.-blood-pressure",
+    "title": "FB2NEP — Practice Notebook",
+    "section": "3 Practice 3: Nutrient intake vs. Blood Pressure",
+    "text": "3 Practice 3: Nutrient intake vs. Blood Pressure\nGoal: Explore association between nutrient intake and BP. Try it: Change exposure to ‘exposure_dd’ or add/remove covariates.\n\ndef fit_linear_model(df, outcome, exposure, covars=None):\n    covars = covars or []\n    rhs = exposure if not covars else f\"{exposure} + {' + '.join(covars)}\"\n    formula = f\"{outcome} ~ {rhs}\"\n    d = df[[outcome, exposure] + covars].dropna()\n    model = smf.ols(formula, data=d).fit()\n    return model, formula\n\nbp = MAPPING.get(\"bp\")\nexposure = MAPPING.get(\"exposure_biomarker\")\ncovars = [MAPPING.get(k) for k in [\"age\", \"sex\", \"bmi\"] if MAPPING.get(k) in df.columns]\n\nbp_model, bp_formula = fit_linear_model(df, bp, exposure, covars)\nprint(f\"Model: {bp_formula}\")\nprint(bp_model.summary())"
+  },
+  {
+    "objectID": "assessment/fb2nep_practice.html#practice-4-nutrient-intake-vs.-disease",
+    "href": "assessment/fb2nep_practice.html#practice-4-nutrient-intake-vs.-disease",
+    "title": "FB2NEP — Practice Notebook",
+    "section": "4 Practice 4: Nutrient intake vs. Disease",
+    "text": "4 Practice 4: Nutrient intake vs. Disease\nGoal: Test association between nutrient intake and disease (logistic or Cox). Try it: Toggle USE_COX, change exposure, or adjust covars.\n\ndef make_formula(outcome, exposure, covars=None):\n    rhs = exposure if not covars else f\"{exposure} + {' + '.join(covars)}\"\n    return f\"{outcome} ~ {rhs}\"\n\ndef fit_model(df, formula, covars=None, binary=True, use_cox=False):\n    d = df.dropna(subset=(covars or []) + formula.split(\"~\")[1].split(\" + \") + ([MAPPING[\"time\"]] if use_cox else []))\n    if use_cox:\n        covars = covars or []\n        model = CoxPHFitter()\n        d = d[[MAPPING[\"outcome\"], MAPPING[\"time\"], exposure] + covars]\n        model.fit(d, duration_col=MAPPING[\"time\"], event_col=MAPPING[\"outcome\"])\n        return model, d\n    elif binary:\n        model = smf.logit(formula, data=d).fit(disp=False)\n        return model, d\n    else:\n        model = smf.ols(formula, data=d).fit()\n        return model, d\n\noutcome = MAPPING[\"outcome\"]\nexposure = MAPPING[\"exposure_biomarker\"]\ncovars = [MAPPING.get(k) for k in CANDIDATE_CONFOUNDERS if MAPPING.get(k) in df.columns]\n\nformula = make_formula(outcome, exposure, covars)\nmodel, data = fit_model(df, formula, covars, OUTCOME_IS_BINARY, USE_COX)\nprint(f\"Model: {formula}\")\nif USE_COX:\n    model.print_summary()\nelse:\n    print(model.summary())"
+  },
+  {
+    "objectID": "assessment/fb2nep_practice.html#practice-5-experiment-with-transformations",
+    "href": "assessment/fb2nep_practice.html#practice-5-experiment-with-transformations",
+    "title": "FB2NEP — Practice Notebook",
+    "section": "5 Practice 5: Experiment with transformations",
+    "text": "5 Practice 5: Experiment with transformations\nGoal: Try transforming variables (e.g., log, sqrt) and re-run models. Try it: Change TRANSFORM in the mapping cell to ‘log’ or ‘sqrt’, then re-run earlier cells.\n\n# Example: Re-run BP model with transformed exposure\nif TRANSFORM:\n    bp_model, bp_formula = fit_linear_model(df, MAPPING[\"bp\"], MAPPING[\"exposure_biomarker\"], covars)\n    print(f\"Model with {TRANSFORM} transformation: {bp_formula}\")\n    print(bp_model.summary())"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "FB2NEP — Nutritional Epidemiology",
+    "section": "",
+    "text": "This site hosts the practical teaching materials for FB2NEP: Nutritional Epidemiology & Public Health.\nThe data used here are synthetic and reproducible — see the provenance.\n\nIt is important that you familiarise yourself with this repository. It will be used for teaching and is part of the assessment.\n\n\n\n🚀 First time using Python or Colab?\nHead straight to the How-To & Sandbox section.\nIt explains how to open notebooks in Colab, which warnings to accept, and gives you a safe playground to practise before diving into the main material.",
+    "crumbs": [
+      "Home",
+      "FB2NEP — Nutritional Epidemiology"
+    ]
+  },
+  {
+    "objectID": "index.html#welcome",
+    "href": "index.html#welcome",
+    "title": "FB2NEP — Nutritional Epidemiology",
+    "section": "",
+    "text": "This site hosts the practical teaching materials for FB2NEP: Nutritional Epidemiology & Public Health.\nThe data used here are synthetic and reproducible — see the provenance.\n\nIt is important that you familiarise yourself with this repository. It will be used for teaching and is part of the assessment.\n\n\n\n🚀 First time using Python or Colab?\nHead straight to the How-To & Sandbox section.\nIt explains how to open notebooks in Colab, which warnings to accept, and gives you a safe playground to practise before diving into the main material.",
+    "crumbs": [
+      "Home",
+      "FB2NEP — Nutritional Epidemiology"
+    ]
+  },
+  {
+    "objectID": "index.html#contents",
+    "href": "index.html#contents",
+    "title": "FB2NEP — Nutritional Epidemiology",
+    "section": "2 Contents",
+    "text": "2 Contents\n\n01 · Introduction to Epidemiology\n\n02 · Study designs, exposure and outcomes\n\n02b · Study population & missing data plan\n\n03 · Exposure analysis (dietary intake vs biomarker)\n\n04 · Theoretical model building — DAGs\n\n05 · Regression analysis (cross-sectional)\n\n06 · Regression analysis (prospective: logistic & survival)\n\n07 · Advanced topics (confounding, colliders, mediation, imputation)\n\n08 · Summary",
+    "crumbs": [
+      "Home",
+      "FB2NEP — Nutritional Epidemiology"
+    ]
+  },
+  {
+    "objectID": "index.html#assessment",
+    "href": "index.html#assessment",
+    "title": "FB2NEP — Nutritional Epidemiology",
+    "section": "3 Assessment",
+    "text": "3 Assessment\nFor your assessment, you will analyse the dataset and report results.\nAll relevant details are here: Assessment Brief.",
+    "crumbs": [
+      "Home",
+      "FB2NEP — Nutritional Epidemiology"
+    ]
+  },
+  {
+    "objectID": "howto_sandbox/Playground.html",
+    "href": "howto_sandbox/Playground.html",
+    "title": "Playground (Sandbox)",
+    "section": "",
+    "text": "This is a safe space to experiment. It generates a small synthetic dataset so you can practise plotting and simple analyses used in FB2NEP.\n# Setup: imports\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\nimport scipy.stats as stats\nimport statsmodels.api as sm\nimport statsmodels.formula.api as smf\n\npd.set_option(\"display.max_columns\", 50)"
+  },
+  {
+    "objectID": "howto_sandbox/Playground.html#parameters-change-these-and-rerun",
+    "href": "howto_sandbox/Playground.html#parameters-change-these-and-rerun",
+    "title": "Playground (Sandbox)",
+    "section": "1 1) Parameters — change these and re‑run",
+    "text": "1 1) Parameters — change these and re‑run\n\n# ▶ Try changing N or the effect sizes and re‑run the next cells\nN = 400          # sample size\nSEED = 11088     # random seed for reproducibility\nRATIO_F = 0.6    # fraction female\nGROUP_EFFECT = -3.5  # mean SBP difference (B vs A), in mmHg\n\nnp.random.seed(SEED)"
+  },
+  {
+    "objectID": "howto_sandbox/Playground.html#generate-a-simple-dataset",
+    "href": "howto_sandbox/Playground.html#generate-a-simple-dataset",
+    "title": "Playground (Sandbox)",
+    "section": "2 2) Generate a simple dataset",
+    "text": "2 2) Generate a simple dataset\n\nages = np.random.normal(45, 12, N).round(1)\nbmi  = np.random.normal(26, 4, N).round(1)\n\nsex = np.where(np.random.rand(N) &lt; RATIO_F, \"F\", \"M\")\ngroup = np.where(np.random.rand(N) &lt; 0.5, \"A\", \"B\")\n\n# SBP depends on age, BMI, sex, and group (B has lower mean by GROUP_EFFECT)\nbase = 110 + 0.35*ages + 0.9*bmi + np.where(sex==\"M\", 4.0, 0.0)\nsbp = base + np.where(group==\"B\", GROUP_EFFECT, 0.0) + np.random.normal(0, 8, N)\n\n# Total cholesterol (mmol/L) loosely related to age/BMI\nchol = 3.8 + 0.015*ages + 0.05*bmi + np.random.normal(0, 0.4, N)\n\n# Binary outcome: high SBP (≥140)\nhigh_sbp = (sbp &gt;= 140).astype(int)\n\ndf = pd.DataFrame({\n    \"age\": ages,\n    \"bmi\": bmi,\n    \"sex\": sex,\n    \"group\": group,\n    \"sbp\": sbp.round(1),\n    \"chol\": chol.round(2),\n    \"high_sbp\": high_sbp\n})\ndf.head()"
+  },
+  {
+    "objectID": "howto_sandbox/Playground.html#quick-exploration",
+    "href": "howto_sandbox/Playground.html#quick-exploration",
+    "title": "Playground (Sandbox)",
+    "section": "3 3) Quick exploration",
+    "text": "3 3) Quick exploration\nRun the following cells; then try changing parameters above (e.g. N, GROUP_EFFECT) and re‑run.\n\ndf.shape, df.info()\n\n\ndf.describe(include=\"all\")\n\n\ndf['sex'].value_counts(), df['group'].value_counts()\n\n\ndf.isna().mean()  # missingness per column"
+  },
+  {
+    "objectID": "howto_sandbox/Playground.html#plots",
+    "href": "howto_sandbox/Playground.html#plots",
+    "title": "Playground (Sandbox)",
+    "section": "4 4) Plots",
+    "text": "4 4) Plots\n\n# Histogram of SBP\ndf['sbp'].hist(bins=25)\nplt.xlabel(\"SBP (mmHg)\"); plt.ylabel(\"Count\"); plt.title(\"SBP distribution\")\nplt.show()\n\n\n# Boxplot by group\ndf.boxplot(column=\"sbp\", by=\"group\")\nplt.suptitle(\"\"); plt.title(\"SBP by group\"); plt.xlabel(\"group\"); plt.ylabel(\"SBP (mmHg)\")\nplt.show()\n\n\n# Scatter: BMI vs SBP\nplt.scatter(df['bmi'], df['sbp'])\nplt.xlabel(\"BMI\"); plt.ylabel(\"SBP (mmHg)\"); plt.title(\"BMI vs SBP\")\nplt.show()"
+  },
+  {
+    "objectID": "howto_sandbox/Playground.html#table-1style-summary",
+    "href": "howto_sandbox/Playground.html#table-1style-summary",
+    "title": "Playground (Sandbox)",
+    "section": "5 5) Table 1‑style summary",
+    "text": "5 5) Table 1‑style summary\n\n# Continuous variables by group\ncont = df.groupby('group')[['age','bmi','sbp','chol']].agg(['mean','std','count'])\ncont\n\n\n# Categorical variables by group\npd.crosstab(df['group'], df['sex'], margins=True, normalize='index')"
+  },
+  {
+    "objectID": "howto_sandbox/Playground.html#basic-hypothesis-tests",
+    "href": "howto_sandbox/Playground.html#basic-hypothesis-tests",
+    "title": "Playground (Sandbox)",
+    "section": "6 6) Basic hypothesis tests",
+    "text": "6 6) Basic hypothesis tests\n\n# Two-sample t-test: SBP between A and B\na = df.loc[df['group']=='A','sbp']\nb = df.loc[df['group']=='B','sbp']\nstats.ttest_ind(a, b, equal_var=False)\n\n\n# Chi-square test: sex distribution by group\ntab = pd.crosstab(df['group'], df['sex'])\ntab, stats.chi2_contingency(tab)[:2]  # (table, (chi2, p))"
+  },
+  {
+    "objectID": "howto_sandbox/Playground.html#simple-models",
+    "href": "howto_sandbox/Playground.html#simple-models",
+    "title": "Playground (Sandbox)",
+    "section": "7 7) Simple models",
+    "text": "7 7) Simple models\nWe’ll use statsmodels with formula syntax. C(var) treats a variable as categorical.\n\n# OLS: SBP ~ age + BMI + sex + group\nols = smf.ols(\"sbp ~ age + bmi + C(sex) + C(group)\", data=df).fit()\nols.summary()\n\n\n# Logistic regression: high_sbp (0/1) ~ predictors\nlogit = smf.logit(\"high_sbp ~ age + bmi + C(sex) + C(group)\", data=df).fit(disp=False)\nlogit.summary()"
+  },
+  {
+    "objectID": "howto_sandbox/Playground.html#your-turn-try-these",
+    "href": "howto_sandbox/Playground.html#your-turn-try-these",
+    "title": "Playground (Sandbox)",
+    "section": "8 8) Your turn — try these",
+    "text": "8 8) Your turn — try these\n\nChange GROUP_EFFECT to +2.0 (so group B has higher SBP) and re‑generate. What happens to the t‑test and model coefficients?\n\nIncrease N to 2000. Do p‑values change? Why?\n\nAdd C(group):C(sex) interaction to the OLS formula. Does it help?\n\nCreate a new variable waist = 2.5*bmi + noise and see how it relates to SBP."
+  },
+  {
+    "objectID": "howto_sandbox/Introduction-Notebook.html",
+    "href": "howto_sandbox/Introduction-Notebook.html",
+    "title": "Introduction to Colab & Python (FB2NEP)",
+    "section": "",
+    "text": "Welcome — this notebook assumes no prior Python experience. You’ll learn how to run cells, accept Colab warnings, and make tiny edits to code."
+  },
+  {
+    "objectID": "howto_sandbox/Introduction-Notebook.html#what-does-python-code-look-like-read-this-first",
+    "href": "howto_sandbox/Introduction-Notebook.html#what-does-python-code-look-like-read-this-first",
+    "title": "Introduction to Colab & Python (FB2NEP)",
+    "section": "1 0. What does Python code look like? (read this first)",
+    "text": "1 0. What does Python code look like? (read this first)\nPython is a set of instructions written line by line.\nAnything after a # on a line is a comment — it’s for humans to read and Python ignores it.\nExample:\n# This is a comment — it explains the next line\nx = 2 + 3            # ← comment at the end of a line\nprint(x)             # prints 5 on the screen\nYou run code by clicking the little ▶ button to the left of a cell, or by pressing Shift + Enter.\n\nIf you see a warning like “This notebook was not authored by Google”, click Run anyway.\nColab runs code safely in the cloud and won’t change anything on your computer.\n\n(Psst… if you spot a tiny hippo 🦛 in a comment later, it’s an easter egg.)"
+  },
+  {
+    "objectID": "howto_sandbox/Introduction-Notebook.html#running-a-cell",
+    "href": "howto_sandbox/Introduction-Notebook.html#running-a-cell",
+    "title": "Introduction to Colab & Python (FB2NEP)",
+    "section": "2 1. Running a cell",
+    "text": "2 1. Running a cell\nClick the ▶ icon to the left of a cell, or press Shift + Enter.\nTry it now — run the cell below.\n\n# ----------------------------------------------\n# Adding two numbers\n# This cell has comments that explain each step.\n# Lines starting with '#' are comments and do not run.\n# ----------------------------------------------\n# 🦛 Friendly hippo says: Maths can be fun!\n2 + 2    # add two numbers\n\nNow edit the code above (e.g. change it to 2 + 3) and run it again. You should see the new result immediately."
+  },
+  {
+    "objectID": "howto_sandbox/Introduction-Notebook.html#what-python-are-we-using",
+    "href": "howto_sandbox/Introduction-Notebook.html#what-python-are-we-using",
+    "title": "Introduction to Colab & Python (FB2NEP)",
+    "section": "3 2. What Python are we using?",
+    "text": "3 2. What Python are we using?\n\n# ----------------------------------------------\n# Show Python version and executable\n# ----------------------------------------------\nimport sys, platform   # import = bring tools into Python\nprint(\"Python executable:\", sys.executable)    # where Python lives in Colab\nprint(\"Python version:\", sys.version.split()[0])  # which Python version"
+  },
+  {
+    "objectID": "howto_sandbox/Introduction-Notebook.html#variables-and-printing",
+    "href": "howto_sandbox/Introduction-Notebook.html#variables-and-printing",
+    "title": "Introduction to Colab & Python (FB2NEP)",
+    "section": "4 3. Variables and printing",
+    "text": "4 3. Variables and printing\nRun the next cell, then change the values and run again.\n\n# ----------------------------------------------\n# Say hello with variables\n# ----------------------------------------------\nname = \"Jessica\"      # a text value (a 'string')\nyear = 2025           # a number\nprint(\"Hello\", name, \"— welcome to FB2NEP\", year)   # show something on the screen"
+  },
+  {
+    "objectID": "howto_sandbox/Introduction-Notebook.html#lists-and-simple-maths",
+    "href": "howto_sandbox/Introduction-Notebook.html#lists-and-simple-maths",
+    "title": "Introduction to Colab & Python (FB2NEP)",
+    "section": "5 4. Lists and simple maths",
+    "text": "5 4. Lists and simple maths\n\n# ----------------------------------------------\n# List of numbers — total and mean\n# ----------------------------------------------\nnums = [3, 5, 8, 12]  # a list: an ordered box of values\ntotal = sum(nums)     # sum() adds up numbers\nn     = len(nums)     # Length of list = number of observations\nmean = total / n      # average = total divided by how many\nprint(\"Numbers:\", nums)\nprint(\"Total:\", total, \"Obervations:\", n, \"Mean:\", mean)"
+  },
+  {
+    "objectID": "howto_sandbox/Introduction-Notebook.html#first-steps-with-data",
+    "href": "howto_sandbox/Introduction-Notebook.html#first-steps-with-data",
+    "title": "Introduction to Colab & Python (FB2NEP)",
+    "section": "6 5. First steps with data",
+    "text": "6 5. First steps with data\nPandas is a Python library that makes it easy to handle tables of data (like spreadsheets).\nThe main building block is the DataFrame, which is like a whole sheet with rows and columns.\nYou can put numbers or text inside, and then quickly look at, sort, filter, or calculate things.\nThink of pandas as your spreadsheet inside Python — but much more powerful and flexible.\nNumPy is the library Python uses for numbers and maths with arrays.\nAn array is like a list, but stored very efficiently — so you can do big calculations quickly.\nFor example, you can add two arrays together in one go, instead of looping through numbers.\nPandas actually uses NumPy under the hood to store and crunch the numbers inside its tables.\n\n# ----------------------------------------------\n# Create a tiny table (DataFrame)\n# ----------------------------------------------\n\nimport numpy as np       # import = bring tools into Python\nimport pandas as pd\n\n# --- NumPy examples ---\n# Make a small NumPy array (like a list, but faster for maths)\narr = np.array([1, 2, 3, 4, 5])\nprint(\"Array:\", arr)\n\n# Do maths with the whole array at once\nprint(\"Array + 10:\", arr + 10)     # add 10 to each element\nprint(\"Array squared:\", arr ** 2)  # square every element\n\n# 🦛 Hippo hint: NumPy = numbers, pandas = tables\n\n\n\n# --- pandas example ---\n# Create a tiny DataFrame (like a mini spreadsheet)\ndf = pd.DataFrame({\n    \"age\": [8, 9, 10, 11, 12],\n    \"height_cm\": [130, 135, 140, 145, 150],\n})\n\n# Show the DataFrame\ndf\n\nChange a number in the table creation above (e.g. one of the heights) and run again. Do you see the change?"
+  },
+  {
+    "objectID": "howto_sandbox/Introduction-Notebook.html#a-first-plot",
+    "href": "howto_sandbox/Introduction-Notebook.html#a-first-plot",
+    "title": "Introduction to Colab & Python (FB2NEP)",
+    "section": "7 6. A first plot",
+    "text": "7 6. A first plot\nMatplotlib is Python’s main tool for making graphs and pictures.\nIt lets you draw lines, bars, scatter plots, histograms, and much more.\nThink of it as the drawing toolbox:\n- You tell it what data to use (x and y values).\n- You can add labels, titles, and colours.\n- When you’re ready, plt.show() displays the finished picture.\n(pandas can also plot directly, but under the hood it still uses matplotlib).\n\n# ----------------------------------------------\n# Line plot of age vs height\n# ----------------------------------------------\nimport matplotlib.pyplot as plt   # plotting library\n\n# 🦛 Friendly hippo says: A picture tells a story!\n\nplt.plot(df[\"age\"], df[\"height_cm\"], marker=\"o\")   # draw a line with dots\nplt.xlabel(\"Age (years)\")   # label the x-axis\nplt.ylabel(\"Height (cm)\")   # label the y-axis\nplt.title(\"Example plot\")   # add a title\nplt.show()                   # display the picture"
+  },
+  {
+    "objectID": "howto_sandbox/Introduction-Notebook.html#save-your-own-copy-important",
+    "href": "howto_sandbox/Introduction-Notebook.html#save-your-own-copy-important",
+    "title": "Introduction to Colab & Python (FB2NEP)",
+    "section": "8 7. Save your own copy (important)",
+    "text": "8 7. Save your own copy (important)\nGo to File → Save a copy in Drive. That creates a personal copy you can edit without affecting the teaching version."
+  },
+  {
+    "objectID": "howto_sandbox/Introduction-Notebook.html#if-something-breaks",
+    "href": "howto_sandbox/Introduction-Notebook.html#if-something-breaks",
+    "title": "Introduction to Colab & Python (FB2NEP)",
+    "section": "9 8. If something breaks",
+    "text": "9 8. If something breaks\n\nRuntime → Restart runtime, then run cells again from the top.\n\nIf a library is missing, install it with !pip install ... then restart the runtime."
+  },
+  {
+    "objectID": "howto_sandbox/Introduction-Notebook.html#some-further-reading",
+    "href": "howto_sandbox/Introduction-Notebook.html#some-further-reading",
+    "title": "Introduction to Colab & Python (FB2NEP)",
+    "section": "10 9. Some further reading",
+    "text": "10 9. Some further reading\nThese are ideas you’ll meet later. It’s okay if they feel new!\n\nList: an ordered collection that you can change.\n\nTuple: like a list, but fixed once created.\n\nDictionary (dict): pairs of key: value (like a mini address book).\n\nSet: a bag of unique items, no duplicates.\n\nOOP (Object-Oriented Programming): a way to bundle data and behaviour together.\n\n\n# ----------------------------------------------\n# Advanced containers (lists, tuples, dicts, sets)\n# ----------------------------------------------\n\n# List: ordered, changeable\nfruits = [\"apple\", \"banana\", \"pear\"]\nfruits.append(\"apple\")        # duplicate allowed\n# 🦛 notice: lists keep order and allow repeats\nprint(\"List:\", fruits)\n\n# Tuple: ordered, not changeable (immutable)\ncoords = (51.44, -0.94)       # (lat, lon) for Reading-ish\nprint(\"Tuple:\", coords)\n\n# Dict: key → value mapping\nheights = {\"Alex\": 150, \"Sam\": 145}\nheights[\"Sam\"] = 146          # update a value\nprint(\"Dict:\", heights)\n\n# Set: unique items, no order\nunique_fruits = set(fruits)\nprint(\"Set (unique):\", unique_fruits)\n\n\n10.1 A tiny taste of OOP (classes)\nThink of a class as a blueprint. An object is a thing made from that blueprint.\n\n# ----------------------------------------------\n# A tiny class: Hippo — with data and behaviours\n# ----------------------------------------------\n\nclass Hippo:\n    # The special __init__ method sets up new hippos\n    def __init__(self, name, favourite_food=\"water plants\"):\n        self.name = name                    # data (an attribute)\n        self.favourite_food = favourite_food\n\n    # A behaviour (a method): the hippo can introduce itself\n    def introduce(self):\n        print(f\"Hello, I'm {self.name} the hippo. I like {self.favourite_food}.\")\n    \n    # Another behaviour\n    def eat(self, food):\n        if food == self.favourite_food:\n            print(f\"Yum! {self.name} loves {food}. 🦛\")\n        else:\n            print(f\"{self.name} tries {food}… not bad!\")\n\n# Make an object (an instance) from the class\nh = Hippo(\"Hildegard\", favourite_food=\"lotus leaves\")\nh.introduce()      # call a method\nh.eat(\"lotus leaves\")\nh.eat(\"cabbage\")"
+  },
+  {
+    "objectID": "howto_sandbox/Introduction-Notebook.html#further-information-resources",
+    "href": "howto_sandbox/Introduction-Notebook.html#further-information-resources",
+    "title": "Introduction to Colab & Python (FB2NEP)",
+    "section": "11 10. Further information & resources",
+    "text": "11 10. Further information & resources\nIf you’d like to explore beyond this notebook:\n\n📘 Course-specific projects\nData Analysis Projects — examples, workflows, and ideas for project students.\n🌐 Official documentation:\n\nNumPy — arrays and fast maths.\n\npandas — data tables and analysis.\n\nmatplotlib — plotting and visualisation.\n\n💡 Gentle tutorials:\n\nW3Schools Python Tutorial (step-by-step basics).\n\nReal Python (clear, example-driven articles).\n\nGoogle Colab Guide (how Colab works).\n\n\n(These are optional reading — you don’t need to learn everything at once!)"
+  },
+  {
+    "objectID": "notebooks/02_study_designs_exposure_outcomes.html",
+    "href": "notebooks/02_study_designs_exposure_outcomes.html",
+    "title": "02 · Study Designs, Exposures & Outcomes",
+    "section": "",
+    "text": "Learning objectives - Distinguish major epidemiological designs (cross-sectional, cohort, case–control, RCT). - Explain why nutrition studies are often observational. - Contrast self-reported vs biomarker exposures. - Recognise outcome definitions and risks of misclassification. - Illustrate design logic using DAGs (Directed Acyclic Graphs).\n# Make sure the repo root (which has scripts/bootstrap.py) is on sys.path.\nimport sys, os, pathlib, subprocess\n\nREPO_NAME = \"fb2nep-epi\"\nREPO_URL  = \"https://github.com/ggkuhnle/fb2nep-epi.git\"\nIN_COLAB  = \"google.colab\" in sys.modules\n\ndef ensure_repo_on_path():\n    here = pathlib.Path.cwd()\n    # Walk up a few levels to find scripts/bootstrap.py\n    for p in [here, *here.parents]:\n        if (p / \"scripts\" / \"bootstrap.py\").exists():\n            os.chdir(p)                 # normalise CWD to repo root\n            sys.path.append(str(p))     # ensure imports like \"from scripts...\" work\n            return p\n    # Not found locally: if on Colab, clone then chdir\n    if IN_COLAB:\n        # clone only if missing\n        if not (pathlib.Path(\"/content\") / REPO_NAME).exists():\n            subprocess.run([\"git\", \"clone\", REPO_URL], check=False)\n        os.chdir(f\"/content/{REPO_NAME}\")\n        sys.path.append(os.getcwd())\n        return pathlib.Path.cwd()\n    # Otherwise, we can’t proceed\n    raise FileNotFoundError(\"Could not find repo root containing scripts/bootstrap.py\")\n\nrepo_root = ensure_repo_on_path()\nprint(\"Repo root:\", repo_root)\n# one-time per runtime\n!git clone https://github.com/ggkuhnle/fb2nep-epi.git\n%cd fb2nep-epi\n\nfrom scripts.bootstrap import init\ndf, ctx = init()\ndf.head()\n\nprint(df.shape, \"— dataset ready\")"
+  },
+  {
+    "objectID": "notebooks/02_study_designs_exposure_outcomes.html#study-designs-in-nutrition-research",
+    "href": "notebooks/02_study_designs_exposure_outcomes.html#study-designs-in-nutrition-research",
+    "title": "02 · Study Designs, Exposures & Outcomes",
+    "section": "1 1. Study designs in nutrition research",
+    "text": "1 1. Study designs in nutrition research\n\n\n\n\n\n\n\n\n\nDesign\nStrengths\nWeaknesses\nTypical use\n\n\n\n\nCross-sectional\nQuick, cheap; hypothesis generation\nNo temporality, prone to confounding\nSurveys\n\n\nCohort\nTemporal sequence; multiple outcomes\nCostly; loss to follow-up; confounding\nDiet & CVD\n\n\nCase–control\nEfficient for rare outcomes\nRecall & selection bias\nCancer\n\n\nNested case–control\nStored biosamples; efficient\nSmaller sample; matching issues\nBiomarkers\n\n\nRCT\nRandomisation reduces confounding\nExpensive, short-term; ethics\nSalt/BP\n\n\n\n\n1.1 Discussion\n\nWhy are RCTs difficult in nutrition? (cost, compliance, long-term exposure).\nWhy are cross-sectional designs weak for causal inference?\nWhy do we still rely on them for policy signals?"
+  },
+  {
+    "objectID": "notebooks/02_study_designs_exposure_outcomes.html#exposures-self-report-vs-biomarkers",
+    "href": "notebooks/02_study_designs_exposure_outcomes.html#exposures-self-report-vs-biomarkers",
+    "title": "02 · Study Designs, Exposures & Outcomes",
+    "section": "2 2. Exposures: self-report vs biomarkers",
+    "text": "2 2. Exposures: self-report vs biomarkers\n\nSelf-report: 24HR, FFQ, diet diaries → cheap, scalable, but misreporting.\nBiomarkers: recovery (urinary N), concentration (plasma vit C), replacement (urinary Na) → more objective, but costly, sometimes invasive.\n\n🟢 Practice: check that fruit & veg intake (self-report) aligns with plasma vitamin C (biomarker).\n\nimport pandas as pd\nq = pd.qcut(df['fruit_veg_g_d'], 5, duplicates='drop')\ndf.groupby(q)['plasma_vitC_umol_L'].mean().round(1)"
+  },
+  {
+    "objectID": "notebooks/02_study_designs_exposure_outcomes.html#outcomes-definitions-misclassification",
+    "href": "notebooks/02_study_designs_exposure_outcomes.html#outcomes-definitions-misclassification",
+    "title": "02 · Study Designs, Exposures & Outcomes",
+    "section": "3 3. Outcomes: definitions & misclassification",
+    "text": "3 3. Outcomes: definitions & misclassification\n\nClinical: myocardial infarction, cancer diagnosis (often registry-confirmed).\nIntermediate: blood pressure, cholesterol.\nMisclassification can be:\n\nNon-differential: biases towards null.\nDifferential: can bias in either direction.\n\n\nCheck integrity: if CVD_incident=1 then CVD_date must not be empty.\n\nfor flag,date in [(\"CVD_incident\",\"CVD_date\"),(\"Cancer_incident\",\"Cancer_date\")]:\n    f = df[flag].astype(int)\n    d = df[date].fillna(\"\")\n    assert ((f==1) &lt;= (d!=\"\")).all(), f\"{date}: missing dates for incidents\"\nprint(\"Outcome-date integrity OK ✅\")"
+  },
+  {
+    "objectID": "notebooks/02_study_designs_exposure_outcomes.html#dag-illustration-exposure-outcome",
+    "href": "notebooks/02_study_designs_exposure_outcomes.html#dag-illustration-exposure-outcome",
+    "title": "02 · Study Designs, Exposures & Outcomes",
+    "section": "4 4. DAG illustration (exposure → outcome)",
+    "text": "4 4. DAG illustration (exposure → outcome)\nWe can represent causal assumptions with a Directed Acyclic Graph (DAG). Example: red meat → cancer, confounded by SES and smoking.\n\nimport networkx as nx\nimport matplotlib.pyplot as plt\n\nG = nx.DiGraph()\nG.add_edges_from([\n    (\"SES\",\"red_meat\"),(\"SES\",\"Cancer\"),\n    (\"Smoking\",\"red_meat\"),(\"Smoking\",\"Cancer\"),\n    (\"red_meat\",\"Cancer\")\n])\npos = {\"SES\":(-1,1),\"Smoking\":(1,1),\"red_meat\":(0,0),\"Cancer\":(0,-1)}\nplt.figure(figsize=(4,4))\nnx.draw(G,pos,with_labels=True,node_color=\"#e0f7fa\",node_size=2000,arrows=True)\nplt.title(\"DAG: confounding in red meat–cancer\")\nplt.show()"
+  },
+  {
+    "objectID": "notebooks/02_study_designs_exposure_outcomes.html#todo-exercises",
+    "href": "notebooks/02_study_designs_exposure_outcomes.html#todo-exercises",
+    "title": "02 · Study Designs, Exposures & Outcomes",
+    "section": "5 # TODO exercises",
+    "text": "5 # TODO exercises\n\nCompute crude incidence (%) of cancer by SES group (ABC1 vs C2DE). Do you see a gradient?\nStratify red meat intake by smoking status (never/former/current). Comment on possible confounding.\nDraft (Markdown cell) one sentence describing the strength of cohort vs case–control for studying diet and cancer.\n\n\n# 1. Crude cancer incidence by SES\nres = df.groupby('SES')['Cancer_incident'].mean().round(3)\nprint(res)\nassert 0.05 &lt;= res.min() &lt;= 0.20, \"SES-specific incidence should be plausible\"\n\n\n# 2. Red meat intake by smoking\ndf.groupby('smoking_status')['red_meat_g_d'].mean().round(1)\n\n\n6 Key takeaways\n\nDifferent designs answer different questions; no single design is sufficient.\nNutrition research leans heavily on cohorts due to long-term exposures/outcomes.\nExposures: self-report is noisy; biomarkers strengthen inference but add cost.\nOutcomes: careful definitions matter; misclassification dilutes effects.\nDAGs clarify assumptions: who to adjust for, who not.\n\n\n\n6.1 Checkpoint\n\nWhich design is best for rare cancers? Why?\nWhich design is best for short-term effects of diet on BP? Why?\nNext session: Data foundations — cleaning, types, missingness."
+  },
+  {
+    "objectID": "notebooks/07_advanced_missing_confounds.html",
+    "href": "notebooks/07_advanced_missing_confounds.html",
+    "title": "07 · Advanced topics — confounding, colliders, mediation, imputation",
+    "section": "",
+    "text": "Purpose: sharpen causal thinking (confounders vs colliders vs mediators), show how (mis)adjustment shifts estimates, and run simple missing-data sensitivity checks.\n# Make sure the repo root (which has scripts/bootstrap.py) is on sys.path.\nimport sys, os, pathlib, subprocess\n\nREPO_NAME = \"fb2nep-epi\"\nREPO_URL  = \"https://github.com/ggkuhnle/fb2nep-epi.git\"\nIN_COLAB  = \"google.colab\" in sys.modules\n\ndef ensure_repo_on_path():\n    here = pathlib.Path.cwd()\n    # Walk up a few levels to find scripts/bootstrap.py\n    for p in [here, *here.parents]:\n        if (p / \"scripts\" / \"bootstrap.py\").exists():\n            os.chdir(p)                 # normalise CWD to repo root\n            sys.path.append(str(p))     # ensure imports like \"from scripts...\" work\n            return p\n    # Not found locally: if on Colab, clone then chdir\n    if IN_COLAB:\n        # clone only if missing\n        if not (pathlib.Path(\"/content\") / REPO_NAME).exists():\n            subprocess.run([\"git\", \"clone\", REPO_URL], check=False)\n        os.chdir(f\"/content/{REPO_NAME}\")\n        sys.path.append(os.getcwd())\n        return pathlib.Path.cwd()\n    # Otherwise, we can’t proceed\n    raise FileNotFoundError(\"Could not find repo root containing scripts/bootstrap.py\")\n\nrepo_root = ensure_repo_on_path()\nprint(\"Repo root:\", repo_root)\n# Bootstrap: ensure repo root on path, then import init\nimport sys, pathlib\nsys.path.append(str(pathlib.Path.cwd().parent))\nfrom scripts.bootstrap import init\ndf, ctx = init()\ndf.head(2)"
+  },
+  {
+    "objectID": "notebooks/07_advanced_missing_confounds.html#definitions-succinct",
+    "href": "notebooks/07_advanced_missing_confounds.html#definitions-succinct",
+    "title": "07 · Advanced topics — confounding, colliders, mediation, imputation",
+    "section": "1 1) Definitions (succinct)",
+    "text": "1 1) Definitions (succinct)\n\nConfounder: causes both exposure and outcome; opens a backdoor path. Adjust for it.\nCollider: is caused by two (or more) variables; conditioning opens a spurious path. Do not adjust.\nMediator: lies on the causal path from exposure to outcome. Adjusting estimates the direct effect (not total). Adjust only if your target is the direct effect.\n\nExample questions - Red meat → Cancer: likely confounded by SES, smoking, age; uncertain role for BMI (pathway vs confounding). - Salt → CVD: age/SES confound; SBP is a plausible mediator."
+  },
+  {
+    "objectID": "notebooks/07_advanced_missing_confounds.html#adjustment-demo-red-meat-cancer",
+    "href": "notebooks/07_advanced_missing_confounds.html#adjustment-demo-red-meat-cancer",
+    "title": "07 · Advanced topics — confounding, colliders, mediation, imputation",
+    "section": "2 2) Adjustment demo — red meat → Cancer",
+    "text": "2 2) Adjustment demo — red meat → Cancer\nWe’ll fit three logistic models and compare ORs for red_meat_g_d: 1) Unadjusted\n2) + Confounders: age, sex, SES, IMD, smoking, BMI\n3) + Mediator candidate: add SBP (if you argue salt → SBP → CVD is analogous; for cancer, this is a didactic overadjustment example)\nInterpretation focus: how the OR shifts and why that could happen under the DAG.\n\nimport pandas as pd, numpy as np, statsmodels.api as sm\nfrom patsy import dmatrices\n\nOUTCOME = 'Cancer_incident'\nEXPOSURE = 'red_meat_g_d'\nconf = ['age','BMI','sex','SES_class','IMD_quintile','smoking_status']\n\nm = df[[OUTCOME, EXPOSURE] + conf + ['SBP']].dropna().copy()\nprint('n (complete-cases for this block):', len(m))\n\ndef cat(v):\n    return f\"C({v})\" if (m[v].dtype=='object' or str(m[v].dtype).startswith('category')) else v\n\ndef tidy_or(fit):\n    OR = np.exp(fit.params).rename('OR')\n    CI = np.exp(fit.conf_int()).rename(columns={0:'2.5%',1:'97.5%'})\n    return pd.concat([OR,CI], axis=1).round(3)\n\n# 1) Unadjusted\ny1, X1 = dmatrices(f'{OUTCOME} ~ {EXPOSURE}', data=m, return_type='dataframe')\nfit1 = sm.Logit(y1, X1).fit(disp=False)\n\n# 2) + Confounders\nrhs2 = ' + '.join([EXPOSURE] + [cat(v) for v in conf])\ny2, X2 = dmatrices(f'{OUTCOME} ~ ' + rhs2, data=m, return_type='dataframe')\nfit2 = sm.Logit(y2, X2).fit(disp=False)\n\n# 3) + Mediator candidate (overadjustment example)\nrhs3 = rhs2 + ' + SBP'\ny3, X3 = dmatrices(f'{OUTCOME} ~ ' + rhs3, data=m, return_type='dataframe')\nfit3 = sm.Logit(y3, X3).fit(disp=False)\n\nt1, t2, t3 = tidy_or(fit1), tidy_or(fit2), tidy_or(fit3)\nt1.loc[[EXPOSURE]], t2.filter(like=EXPOSURE, axis=0), t3.filter(like=EXPOSURE, axis=0)\n\nReading the shift - If the OR moves towards 1 after adjusting for confounders → confounding was inflating the crude association. - If adding a mediator (like SBP in salt→CVD; here didactic) pulls the OR towards 1 → you’re estimating a more direct effect (part of the total effect is soaked up)."
+  },
+  {
+    "objectID": "notebooks/07_advanced_missing_confounds.html#collider-caution-mini-simulation-within-our-cohort",
+    "href": "notebooks/07_advanced_missing_confounds.html#collider-caution-mini-simulation-within-our-cohort",
+    "title": "07 · Advanced topics — confounding, colliders, mediation, imputation",
+    "section": "3 3) Collider caution (mini simulation within our cohort)",
+    "text": "3 3) Collider caution (mini simulation within our cohort)\nCreate an artificial collider CL influenced by both exposure and outcome risk, then show that conditioning on it induces association even if we randomise exposure within levels of confounders. This is an illustration — don’t add such variables to your real models.\n\nrng = np.random.default_rng(11088)\nd = df[[EXPOSURE, OUTCOME] + conf].dropna().copy()\n\n# Build a collider CL that is more likely when exposure high AND outcome=1\nx = (d[EXPOSURE] - d[EXPOSURE].mean())/d[EXPOSURE].std()\np = 1/(1+np.exp(-(0.6*x + 1.0*d[OUTCOME] - 0.1)))\nd['CL'] = (rng.uniform(size=len(d)) &lt; p).astype(int)\n\nimport statsmodels.api as sm\nfrom patsy import dmatrices\n\n# Model without conditioning on CL\ny_nc, X_nc = dmatrices(f'{OUTCOME} ~ {EXPOSURE} + ' + ' + '.join([f'C({v})' if d[v].dtype=='object' or str(d[v].dtype).startswith('category') else v for v in conf]), data=d, return_type='dataframe')\nfit_nc = sm.Logit(y_nc, X_nc).fit(disp=False)\n# Model conditioning on the collider (WRONG)\ny_c, X_c = dmatrices(f'{OUTCOME} ~ {EXPOSURE} + CL + ' + ' + '.join([f'C({v})' if d[v].dtype=='object' or str(d[v].dtype).startswith('category') else v for v in conf]), data=d, return_type='dataframe')\nfit_c = sm.Logit(y_c, X_c).fit(disp=False)\n\ndef or_of(term, fit):\n    import numpy as np, pandas as pd\n    OR = np.exp(fit.params[term])\n    lo, hi = np.exp(fit.conf_int().loc[term].values)\n    return pd.Series({'OR': round(float(OR),3), '2.5%': round(float(lo),3), '97.5%': round(float(hi),3)})\n\nor_nc = or_of(EXPOSURE, fit_nc)\nor_c  = or_of(EXPOSURE, fit_c)\nprint('Without collider conditioning (correct):\\n', or_nc.to_dict())\nprint('With collider conditioning (WRONG):\\n', or_c.to_dict())\n\nExpectation: adding CL typically distorts the exposure OR compared with the non-collider model. In real work, colliders are often inadvertently introduced via restricting the sample or adjusting for variables affected by both exposure and outcome (e.g., conditioning on a selection mechanism)."
+  },
+  {
+    "objectID": "notebooks/07_advanced_missing_confounds.html#missing-data-complete-case-vs-simple-imputation-teaching",
+    "href": "notebooks/07_advanced_missing_confounds.html#missing-data-complete-case-vs-simple-imputation-teaching",
+    "title": "07 · Advanced topics — confounding, colliders, mediation, imputation",
+    "section": "4 4) Missing data — complete-case vs simple imputation (teaching)",
+    "text": "4 4) Missing data — complete-case vs simple imputation (teaching)\nWe’ll compare complete-case (CC) analysis to a crude median/mode imputation. This is for teaching only; in practice prefer multiple imputation (not covered here to avoid new dependencies).\n\nvars_model = [OUTCOME, EXPOSURE] + conf\ncc = df[vars_model].dropna().copy()\nprint('CC n =', len(cc))\n\nimp = df[vars_model].copy()\nfor c in imp.select_dtypes(include=['float64','int64']).columns:\n    imp[c] = imp[c].fillna(imp[c].median())\nfor c in imp.select_dtypes(include=['object','category']).columns:\n    md = imp[c].mode(dropna=True)\n    if len(md): imp[c] = imp[c].fillna(md.iloc[0])\nprint('Imputed n =', len(imp) - imp.isna().sum(axis=1).gt(0).sum())\n\ndef fit_logit(dat):\n    def cat(v):\n        return f\"C({v})\" if (dat[v].dtype=='object' or str(dat[v].dtype).startswith('category')) else v\n    rhs = ' + '.join([EXPOSURE] + [cat(v) for v in conf])\n    y, X = dmatrices(f'{OUTCOME} ~ ' + rhs, data=dat, return_type='dataframe')\n    return sm.Logit(y, X).fit(disp=False)\n\nfit_cc  = fit_logit(cc)\nfit_imp = fit_logit(imp)\n\ndef tidy_or_table(term, *fits):\n    rows = []\n    for tag, ft in fits:\n        OR = np.exp(ft.params[term])\n        lo, hi = np.exp(ft.conf_int().loc[term].values)\n        rows.append({'Model': tag, 'OR': round(float(OR),3), '2.5%': round(float(lo),3), '97.5%': round(float(hi),3)})\n    return pd.DataFrame(rows)\n\ntidy_or_table(EXPOSURE, ('Complete-case', fit_cc), ('Median/mode impute', fit_imp))\n\nInterpretation - Differences between CC and imputed estimates indicate missingness sensitivity. If MAR is plausible and the imputation model is poor, bias can remain. - MNAR (e.g., sicker participants underreport diet) cannot be diagnosed from observed data alone — acknowledge and explore bounds if critical to inference."
+  },
+  {
+    "objectID": "notebooks/07_advanced_missing_confounds.html#optional-dag-visual-to-justify-adjustment-set",
+    "href": "notebooks/07_advanced_missing_confounds.html#optional-dag-visual-to-justify-adjustment-set",
+    "title": "07 · Advanced topics — confounding, colliders, mediation, imputation",
+    "section": "5 5) (Optional) DAG visual to justify adjustment set",
+    "text": "5 5) (Optional) DAG visual to justify adjustment set\nUse a small DAG to state your assumptions for red meat → Cancer (or your chosen pair), then argue your adjustment set from the graph.\n\ntry:\n    import networkx as nx, matplotlib.pyplot as plt\n    G = nx.DiGraph()\n    G.add_edges_from([\n        ('SES','red_meat_g_d'),('SES','Cancer_incident'),\n        ('smoking_status','red_meat_g_d'),('smoking_status','Cancer_incident'),\n        ('age','red_meat_g_d'),('age','Cancer_incident'),\n        ('red_meat_g_d','Cancer_incident')\n    ])\n    pos = {'SES':(-1,1),'smoking_status':(1,1),'age':(0,1.4),'red_meat_g_d':(0,0),'Cancer_incident':(0,-1)}\n    plt.figure(figsize=(5.5,4.2))\n    nx.draw(G, pos, with_labels=True, node_size=1600, node_color='#e6f2ff', arrows=True)\n    plt.title('DAG: confounding in red meat → cancer'); plt.axis('off'); plt.tight_layout(); plt.show()\nexcept Exception as e:\n    print('DAG skipped (networkx optional):', e)"
+  },
+  {
+    "objectID": "notebooks/07_advanced_missing_confounds.html#todo-your-practice",
+    "href": "notebooks/07_advanced_missing_confounds.html#todo-your-practice",
+    "title": "07 · Advanced topics — confounding, colliders, mediation, imputation",
+    "section": "6 6) # TODO — your practice",
+    "text": "6 6) # TODO — your practice\n\nChoose a primary question (e.g., salt_g_d → CVD_incident). Specify a minimal sufficient adjustment set in Markdown and justify with a DAG sketch (optional cell below).\nFit unadjusted, confounder-adjusted, and mediator-adjusted (if applicable) models; compare ORs.\nRepeat with complete-case vs simple imputation; summarise how sensitive your estimate is to missingness handling.\nIn 3–5 sentences, explain a plausible MNAR mechanism for your exposure and what direction of bias it would induce.\n\n\n7 Key takeaways\n\nCausal clarity first: confounders in, colliders out; mediators only if your estimand is the direct effect.\n(Mis)adjustment visibly moves estimates — always link choices back to a DAG.\nMissing data strategy matters; complete-case vs crude imputation can differ. Real work uses multiple imputation with a rich imputation model.\nBe explicit about assumptions and sensitivity — that’s the craft of epidemiology."
+  },
+  {
+    "objectID": "notebooks/01_intro_epidemiology.html",
+    "href": "notebooks/01_intro_epidemiology.html",
+    "title": "01 · Introduction to the dataset (light touch)",
+    "section": "",
+    "text": "Purpose: load the synthetic cohort (N≈25k), orient yourself, and do minimal integrity checks. No modelling yet — just get a feel for the data.\n# Make sure the repo root (which has scripts/bootstrap.py) is on sys.path.\nimport sys, os, pathlib, subprocess\n\nREPO_NAME = \"fb2nep-epi\"\nREPO_URL  = \"https://github.com/ggkuhnle/fb2nep-epi.git\"\nIN_COLAB  = \"google.colab\" in sys.modules\n\ndef ensure_repo_on_path():\n    here = pathlib.Path.cwd()\n    # Walk up a few levels to find scripts/bootstrap.py\n    for p in [here, *here.parents]:\n        if (p / \"scripts\" / \"bootstrap.py\").exists():\n            os.chdir(p)                 # normalise CWD to repo root\n            sys.path.append(str(p))     # ensure imports like \"from scripts...\" work\n            return p\n    # Not found locally: if on Colab, clone then chdir\n    if IN_COLAB:\n        # clone only if missing\n        if not (pathlib.Path(\"/content\") / REPO_NAME).exists():\n            subprocess.run([\"git\", \"clone\", REPO_URL], check=False)\n        os.chdir(f\"/content/{REPO_NAME}\")\n        sys.path.append(os.getcwd())\n        return pathlib.Path.cwd()\n    # Otherwise, we can’t proceed\n    raise FileNotFoundError(\"Could not find repo root containing scripts/bootstrap.py\")\n\nrepo_root = ensure_repo_on_path()\nprint(\"Repo root:\", repo_root)\n# Bootstrap: ensure repo on path, then load df via scripts/bootstrap.py\nimport sys, pathlib\n# Add repo root (parent of notebooks/) to sys.path — works locally and in Colab\nsys.path.append(str(pathlib.Path.cwd().parent))\nfrom scripts.bootstrap import init\ndf, ctx = init()\ndf.head(3)"
+  },
+  {
+    "objectID": "notebooks/01_intro_epidemiology.html#whats-in-here",
+    "href": "notebooks/01_intro_epidemiology.html#whats-in-here",
+    "title": "01 · Introduction to the dataset (light touch)",
+    "section": "1 What’s in here?",
+    "text": "1 What’s in here?\n\nmetadata/data_dictionary.csv — variable types, units, coding.\nmetadata/provenance.md — how the data were generated (assumptions, seed=11088).\nscripts/generate_dataset.py — transparent generator (re-run if needed).\nscripts/validate_dataset.py — basic checks (ranges, monotone relations, incidence).\n\n\ndf.shape, sorted(df.columns)[:12], sorted(df.columns)[12:24]"
+  },
+  {
+    "objectID": "notebooks/01_intro_epidemiology.html#quick-summaries-numeric-categorical",
+    "href": "notebooks/01_intro_epidemiology.html#quick-summaries-numeric-categorical",
+    "title": "01 · Introduction to the dataset (light touch)",
+    "section": "2 Quick summaries (numeric & categorical)",
+    "text": "2 Quick summaries (numeric & categorical)\n\nnum_desc = df.select_dtypes(include=[\"float64\",\"int64\"]).describe().T.round(2)\ncat_desc = df.select_dtypes(include=[\"object\",\"category\"]).describe().T\nnum_desc.head(12), cat_desc.head(12)"
+  },
+  {
+    "objectID": "notebooks/01_intro_epidemiology.html#distributions-age-bmi-sbp-orientation-not-inference",
+    "href": "notebooks/01_intro_epidemiology.html#distributions-age-bmi-sbp-orientation-not-inference",
+    "title": "01 · Introduction to the dataset (light touch)",
+    "section": "3 Distributions: age, BMI, SBP (orientation, not inference)",
+    "text": "3 Distributions: age, BMI, SBP (orientation, not inference)\n\nimport matplotlib.pyplot as plt\nfor col in [\"age\",\"BMI\",\"SBP\"]:\n    if col in df:\n        x = df[col].dropna()\n        plt.figure(); plt.hist(x, bins=40, alpha=0.9)\n        plt.xlabel(col); plt.ylabel(\"count\"); plt.title(col)\n        plt.show()"
+  },
+  {
+    "objectID": "notebooks/01_intro_epidemiology.html#lightweight-integrity-checks",
+    "href": "notebooks/01_intro_epidemiology.html#lightweight-integrity-checks",
+    "title": "01 · Introduction to the dataset (light touch)",
+    "section": "4 Lightweight integrity checks",
+    "text": "4 Lightweight integrity checks\nThese are deliberately simple — just enough to catch glaring problems.\n\n# Cohort age range\nassert df['age'].min() &gt;= 40, \"Cohort should be age ≥ 40\"\n\n# Required columns exist\nrequired = {\n    'id','baseline_date','age','sex','BMI','SBP','IMD_quintile','SES_class','smoking_status',\n    'fruit_veg_g_d','red_meat_g_d','salt_g_d','energy_kcal',\n    'plasma_vitC_umol_L','urinary_sodium_mmol_L',\n    'CVD_incident','CVD_date','Cancer_incident','Cancer_date'\n}\nmissing = required - set(df.columns)\nassert not missing, f\"Missing columns: {missing}\"\n\n# Binary incident flags are 0/1 and match dates\nfor flag, date in [(\"CVD_incident\",\"CVD_date\"),(\"Cancer_incident\",\"Cancer_date\")]:\n    vals = set(df[flag].dropna().unique().tolist())\n    assert vals.issubset({0,1}), f\"{flag} should be 0/1\"\n    f = df[flag].astype(int); d = df[date].fillna(\"\")\n    assert ((f==1) &lt;= (d!=\"\")).all(), f\"{date}: incident=1 rows must have a date\"\nprint(\"Integrity checks passed ✅\")"
+  },
+  {
+    "objectID": "notebooks/01_intro_epidemiology.html#construct-validity-spot-checks-signal-amidst-noise",
+    "href": "notebooks/01_intro_epidemiology.html#construct-validity-spot-checks-signal-amidst-noise",
+    "title": "01 · Introduction to the dataset (light touch)",
+    "section": "5 Construct-validity spot checks (signal amidst noise)",
+    "text": "5 Construct-validity spot checks (signal amidst noise)\n\nFruit & veg → plasma vitamin C should be monotone increasing on average.\nSalt intake → urinary sodium should be monotone increasing on average.\n\n\nimport pandas as pd, numpy as np\nq_fv = pd.qcut(df['fruit_veg_g_d'], 5, duplicates='drop')\nm_vitc = df.groupby(q_fv)['plasma_vitC_umol_L'].mean().round(2)\nq_salt = pd.qcut(df['salt_g_d'], 5, duplicates='drop')\nm_urna = df.groupby(q_salt)['urinary_sodium_mmol_L'].mean().round(2)\ndisplay(m_vitc, m_urna)\nassert m_vitc.is_monotonic_increasing, \"Vitamin C means should increase across fruit/veg quintiles\"\nassert m_urna.is_monotonic_increasing, \"Urinary sodium means should increase across salt quintiles\""
+  },
+  {
+    "objectID": "notebooks/01_intro_epidemiology.html#very-crude-incidences-orientation-only",
+    "href": "notebooks/01_intro_epidemiology.html#very-crude-incidences-orientation-only",
+    "title": "01 · Introduction to the dataset (light touch)",
+    "section": "6 Very crude incidences (orientation only)",
+    "text": "6 Very crude incidences (orientation only)\nWe’ll revisit definitions later; for now just confirm ballpark magnitudes.\n\np_cvd = df['CVD_incident'].mean().round(4)\np_cancer = df['Cancer_incident'].mean().round(4)\nprint({\"CVD\": p_cvd, \"Cancer\": p_cancer})\nassert 0.06 &lt;= p_cvd &lt;= 0.20 and 0.06 &lt;= p_cancer &lt;= 0.20, \"Incidences should be plausible in this synthetic cohort\"\n\n\n7 Key takeaways\n\nYou can reliably load the dataset in Colab or locally using the bootstrap.\nRun a handful of simple checks up front (ranges, flags↔︎dates, monotone relations).\nKeep today’s view strictly descriptive — modelling begins later.\n\nNext: produce a defensible description of the population (Table 1) and explore missing data."
+  },
+  {
+    "objectID": "notebooks/03_exposure_analysis.html",
+    "href": "notebooks/03_exposure_analysis.html",
+    "title": "03 · Exposure analysis — intake vs biomarker",
+    "section": "",
+    "text": "Purpose: characterise dietary exposures and examine construct validity via biomarkers.\n# Make sure the repo root (which has scripts/bootstrap.py) is on sys.path.\nimport sys, os, pathlib, subprocess\n\nREPO_NAME = \"fb2nep-epi\"\nREPO_URL  = \"https://github.com/ggkuhnle/fb2nep-epi.git\"\nIN_COLAB  = \"google.colab\" in sys.modules\n\ndef ensure_repo_on_path():\n    here = pathlib.Path.cwd()\n    # Walk up a few levels to find scripts/bootstrap.py\n    for p in [here, *here.parents]:\n        if (p / \"scripts\" / \"bootstrap.py\").exists():\n            os.chdir(p)                 # normalise CWD to repo root\n            sys.path.append(str(p))     # ensure imports like \"from scripts...\" work\n            return p\n    # Not found locally: if on Colab, clone then chdir\n    if IN_COLAB:\n        # clone only if missing\n        if not (pathlib.Path(\"/content\") / REPO_NAME).exists():\n            subprocess.run([\"git\", \"clone\", REPO_URL], check=False)\n        os.chdir(f\"/content/{REPO_NAME}\")\n        sys.path.append(os.getcwd())\n        return pathlib.Path.cwd()\n    # Otherwise, we can’t proceed\n    raise FileNotFoundError(\"Could not find repo root containing scripts/bootstrap.py\")\n\nrepo_root = ensure_repo_on_path()\nprint(\"Repo root:\", repo_root)\n# Bootstrap: ensure repo root on sys.path, then import init\nimport sys, pathlib\nsys.path.append(str(pathlib.Path.cwd().parent))\nfrom scripts.bootstrap import init\ndf, ctx = init()\ndf.head(2)"
+  },
+  {
+    "objectID": "notebooks/03_exposure_analysis.html#variables-of-interest",
+    "href": "notebooks/03_exposure_analysis.html#variables-of-interest",
+    "title": "03 · Exposure analysis — intake vs biomarker",
+    "section": "1 1) Variables of interest",
+    "text": "1 1) Variables of interest\n\nexpo = ['energy_kcal','fruit_veg_g_d','red_meat_g_d','salt_g_d','alcohol_units_wk','fibre_g_d','ssb_ml_d']\nbiom = ['plasma_vitC_umol_L','urinary_sodium_mmol_L']\ncore = ['age','sex','BMI','SES_class']\navail = [c for c in expo+biom+core if c in df.columns]\ndf[avail].describe(include='all').T.head(12)"
+  },
+  {
+    "objectID": "notebooks/03_exposure_analysis.html#distributions-orientation-not-inference",
+    "href": "notebooks/03_exposure_analysis.html#distributions-orientation-not-inference",
+    "title": "03 · Exposure analysis — intake vs biomarker",
+    "section": "2 2) Distributions (orientation, not inference)",
+    "text": "2 2) Distributions (orientation, not inference)\nLook for skew/heavy tails that might motivate transformations later (log1p, z-score).\n\nimport matplotlib.pyplot as plt\nplot_cols = [c for c in ['energy_kcal','fruit_veg_g_d','red_meat_g_d','salt_g_d','alcohol_units_wk','plasma_vitC_umol_L','urinary_sodium_mmol_L'] if c in df]\nfor col in plot_cols:\n    x = df[col].dropna()\n    plt.figure(figsize=(5.2,4))\n    plt.hist(x, bins=40, alpha=0.9)\n    plt.xlabel(col); plt.ylabel('count'); plt.title(col)\n    plt.tight_layout(); plt.show()"
+  },
+  {
+    "objectID": "notebooks/03_exposure_analysis.html#energy-scaling",
+    "href": "notebooks/03_exposure_analysis.html#energy-scaling",
+    "title": "03 · Exposure analysis — intake vs biomarker",
+    "section": "3 3) Energy scaling",
+    "text": "3 3) Energy scaling\nDietary components tend to correlate with total energy. Normalise selected intakes per 1000 kcal to reduce confounding by energy intake (a simple density approach; not universally appropriate but useful as a teaching baseline).\n\nimport numpy as np, pandas as pd\nd = df.copy()\neps = 1e-6\nif 'energy_kcal' in d:\n    for v in ['fruit_veg_g_d','red_meat_g_d','salt_g_d','fibre_g_d','ssb_ml_d']:\n        if v in d:\n            d[v+'_per_1k'] = d[v] / (d['energy_kcal']+eps) * 1000\n            \n# Correlations with energy (raw vs density) — orientation\ncorrs = {}\nfor v in ['fruit_veg_g_d','red_meat_g_d','salt_g_d']:\n    if v in d:\n        cr = d[[v,'energy_kcal']].corr().iloc[0,1]\n        dv = v+'_per_1k'\n        cr_den = d[[dv,'energy_kcal']].corr().iloc[0,1] if dv in d else np.nan\n        corrs[v] = {'raw_vs_energy': round(cr,3), 'density_vs_energy': round(cr_den,3)}\npd.DataFrame(corrs).T\n\nInterpretation prompt: Do density adjustments reduce the apparent energy correlation as expected? When might density scaling be inappropriate (e.g., if energy is on the causal pathway for your question)?"
+  },
+  {
+    "objectID": "notebooks/03_exposure_analysis.html#intake-biomarker-alignment-construct-validity",
+    "href": "notebooks/03_exposure_analysis.html#intake-biomarker-alignment-construct-validity",
+    "title": "03 · Exposure analysis — intake vs biomarker",
+    "section": "4 4) Intake ↔︎ biomarker alignment (construct validity)",
+    "text": "4 4) Intake ↔︎ biomarker alignment (construct validity)\nTwo expected monotone patterns:\n\nFruit & veg (g/day) → plasma vitamin C (µmol/L)\nSalt (g/day) → urinary sodium (mmol/L)\n\nWe’ll check both quintile monotonicity and scatter with linear fit, and then a simple partialled estimate adjusting for energy and basic covariates.\n\nimport pandas as pd\n\nout = {}\nif {'fruit_veg_g_d','plasma_vitC_umol_L'} &lt;= set(d):\n    q = pd.qcut(d['fruit_veg_g_d'], 5, duplicates='drop')\n    fv_tab = d.groupby(q)['plasma_vitC_umol_L'].agg(['mean','std','count']).round(2)\n    out['fruitveg→vitC'] = fv_tab\n    display(fv_tab)\n    assert fv_tab['mean'].is_monotonic_increasing, \"Vitamin C should increase across fruit/veg quintiles\"\n\nif {'salt_g_d','urinary_sodium_mmol_L'} &lt;= set(d):\n    q = pd.qcut(d['salt_g_d'], 5, duplicates='drop')\n    na_tab = d.groupby(q)['urinary_sodium_mmol_L'].agg(['mean','std','count']).round(2)\n    out['salt→urNa'] = na_tab\n    display(na_tab)\n    assert na_tab['mean'].is_monotonic_increasing, \"Urinary sodium should increase across salt quintiles\"\n\nprint('Monotone checks passed where applicable ✅')\n\n\n4.1 Scatter + fitted line\nNote the noise: within-person variation, assay error, and reporting error all dilute the signal. We use simple least squares for the visual trend (not a causal estimate).\n\nimport numpy as np, matplotlib.pyplot as plt\npairs = [\n    ('fruit_veg_g_d','plasma_vitC_umol_L','Fruit & veg (g/day)','Plasma vitamin C (µmol/L)'),\n    ('salt_g_d','urinary_sodium_mmol_L','Salt (g/day)','Urinary sodium (mmol/L)')\n]\nfor xcol,ycol,xlab,ylab in pairs:\n    if {xcol,ycol} &lt;= set(d):\n        xy = d[[xcol,ycol]].dropna()\n        if xy.empty: continue\n        plt.figure(figsize=(5.4,4))\n        plt.scatter(xy[xcol], xy[ycol], s=10, alpha=0.6)\n        b1,b0 = np.polyfit(xy[xcol], xy[ycol], 1)\n        grid = np.linspace(xy[xcol].min(), xy[xcol].max(), 120)\n        plt.plot(grid, b1*grid+b0)\n        plt.xlabel(xlab); plt.ylabel(ylab); plt.title(f\"{xcol} vs {ycol}\")\n        plt.tight_layout(); plt.show()\n\n\n\n4.2 Partialled estimates (adjusting for energy and basics)\nWe’re not doing causal inference here—just showing that the exposure–biomarker signal persists after adjusting for energy, age, sex, and SES. We report the adjusted slope (per unit exposure).\n\nimport statsmodels.api as sm\nfrom patsy import dmatrix\n\ndef partial_slope(df_, x, y, adjust=('energy_kcal','age','sex','SES_class')):\n    cols = [c for c in [x,y,*adjust] if c in df_.columns]\n    dd = df_[cols].dropna().copy()\n    # encode categoricals\n    rhs_terms = []\n    for v in adjust:\n        if v in dd.columns:\n            if dd[v].dtype=='object' or str(dd[v].dtype).startswith('category'):\n                rhs_terms.append(f'C({v})')\n            else:\n                rhs_terms.append(v)\n    RHS = ' + '.join(rhs_terms) if rhs_terms else '1'\n    # Build design by hand: y ~ x + adjust\n    X = dmatrix('1 + ' + x + (' + ' + RHS if RHS!='1' else ''), data=dd, return_type='dataframe')\n    mod = sm.OLS(dd[y], X).fit()\n    coef = mod.params.get(x, float('nan'))\n    ci = mod.conf_int().loc[x].tolist() if x in mod.params.index else [float('nan'), float('nan')]\n    return {'n': len(dd), 'beta': coef, 'lo': ci[0], 'hi': ci[1]}\n\nres = []\nif {'fruit_veg_g_d','plasma_vitC_umol_L'} &lt;= set(d):\n    res.append(('fruit_veg_g_d → plasma_vitC_umol_L', partial_slope(d,'fruit_veg_g_d','plasma_vitC_umol_L')))\nif {'salt_g_d','urinary_sodium_mmol_L'} &lt;= set(d):\n    res.append(('salt_g_d → urinary_sodium_mmol_L', partial_slope(d,'salt_g_d','urinary_sodium_mmol_L')))\n\npd.DataFrame([{'Relation': k, **v} for k,v in res]).round(3)"
+  },
+  {
+    "objectID": "notebooks/03_exposure_analysis.html#non-linearity-check-bins-splines",
+    "href": "notebooks/03_exposure_analysis.html#non-linearity-check-bins-splines",
+    "title": "03 · Exposure analysis — intake vs biomarker",
+    "section": "5 5) Non-linearity check (bins & splines)",
+    "text": "5 5) Non-linearity check (bins & splines)\nVisualise possible curvature with exposure bins and optionally a spline term (for flexible fit). Use this to motivate transformations in later modelling, not as proof of causality.\n\nfrom patsy import bs\n\ndef binned_means(df_, x, y, k=10):\n    dd = df_[[x,y]].dropna().copy()\n    dd['bin'] = pd.qcut(dd[x], q=k, duplicates='drop')\n    return dd.groupby('bin')[y].mean()\n\nchecks = [\n    ('fruit_veg_g_d','plasma_vitC_umol_L','Fruit & veg (g/day)','Vit C (µmol/L)'),\n    ('salt_g_d','urinary_sodium_mmol_L','Salt (g/day)','Urinary Na (mmol/L)')\n]\nimport numpy as np, matplotlib.pyplot as plt\nfor x,y,xlab,ylab in checks:\n    if {x,y} &lt;= set(d):\n        dd = d[[x,y]].dropna().copy()\n        # Binned means\n        bm = binned_means(d, x, y, k=10)\n        # Spline fit (df=4)\n        Xs = dmatrix('1 + bs('+x+', df=4)', data=dd, return_type='dataframe')\n        fit = sm.OLS(dd[y], Xs).fit()\n        grid = np.linspace(dd[x].min(), dd[x].max(), 120)\n        Xg = dmatrix('1 + bs(x, df=4)', data={'x':grid}, return_type='dataframe')\n        yg = fit.predict(Xg)\n\n        plt.figure(figsize=(5.6,4.2))\n        # plot binned means\n        ctrs = bm.index.map(lambda c: 0.5*(c.left+c.right))\n        plt.scatter(list(ctrs), bm.values, s=24, alpha=0.8, label='Binned means')\n        # spline\n        plt.plot(grid, yg, label='Spline (df=4)')\n        plt.xlabel(xlab); plt.ylabel(ylab); plt.title(f\"Non-linearity check: {x} → {y}\")\n        plt.legend(); plt.tight_layout(); plt.show()"
+  },
+  {
+    "objectID": "notebooks/03_exposure_analysis.html#todo-your-turn",
+    "href": "notebooks/03_exposure_analysis.html#todo-your-turn",
+    "title": "03 · Exposure analysis — intake vs biomarker",
+    "section": "6 6) # TODO — your turn",
+    "text": "6 6) # TODO — your turn\n\nEnergy scaling: Create red_meat_g_d_per_1k and salt_g_d_per_1k if not already present. Compare their correlations with energy vs the raw variables. Write one sentence interpreting the change.\nBiomarker alignment: Compute Spearman correlations for (fruit&veg, vit C) and (salt, urinary Na). Are results consistent with the monotone checks?\nAdjusted slope: Re-run partial_slope adding BMI to the adjusters. Does the exposure coefficient change meaningfully?\nNon-linearity: Using the spline plot you created, argue briefly (2–3 sentences) whether a log or spline term is warranted in later models.\n\n\n# (2) Spearman correlations (example)\nimport scipy.stats as st\npairs = []\nif {'fruit_veg_g_d','plasma_vitC_umol_L'} &lt;= set(d):\n    a = d[['fruit_veg_g_d','plasma_vitC_umol_L']].dropna()\n    rho,p = st.spearmanr(a['fruit_veg_g_d'], a['plasma_vitC_umol_L'])\n    pairs.append({'pair':'fruit&veg ~ vitC','rho':round(rho,3),'p':p})\nif {'salt_g_d','urinary_sodium_mmol_L'} &lt;= set(d):\n    b = d[['salt_g_d','urinary_sodium_mmol_L']].dropna()\n    rho,p = st.spearmanr(b['salt_g_d'], b['urinary_sodium_mmol_L'])\n    pairs.append({'pair':'salt ~ urinaryNa','rho':round(rho,3),'p':p})\nimport pandas as pd\npd.DataFrame(pairs)\n\n\n7 Key takeaways\n\nEnergy drives many diet correlations; density scaling can clarify patterns but must align with your causal story.\nConstruct validity checks (intake ↔︎ biomarker) should show monotone trends despite noise.\nSimple partialling (energy, age, sex, SES) helps show the signal is not purely compositional.\nNon-linearity diagnostics guide later modelling choices (transform, polynomial, or spline)."
+  },
+  {
+    "objectID": "notebooks/08_summary.html",
+    "href": "notebooks/08_summary.html",
+    "title": "08 · Summary & Assessment prep",
+    "section": "",
+    "text": "Purpose: consolidate the full workflow, align outputs with Assessment 1, and generate a short submission checklist.\n# Make sure the repo root (which has scripts/bootstrap.py) is on sys.path.\nimport sys, os, pathlib, subprocess\n\nREPO_NAME = \"fb2nep-epi\"\nREPO_URL  = \"https://github.com/ggkuhnle/fb2nep-epi.git\"\nIN_COLAB  = \"google.colab\" in sys.modules\n\ndef ensure_repo_on_path():\n    here = pathlib.Path.cwd()\n    # Walk up a few levels to find scripts/bootstrap.py\n    for p in [here, *here.parents]:\n        if (p / \"scripts\" / \"bootstrap.py\").exists():\n            os.chdir(p)                 # normalise CWD to repo root\n            sys.path.append(str(p))     # ensure imports like \"from scripts...\" work\n            return p\n    # Not found locally: if on Colab, clone then chdir\n    if IN_COLAB:\n        # clone only if missing\n        if not (pathlib.Path(\"/content\") / REPO_NAME).exists():\n            subprocess.run([\"git\", \"clone\", REPO_URL], check=False)\n        os.chdir(f\"/content/{REPO_NAME}\")\n        sys.path.append(os.getcwd())\n        return pathlib.Path.cwd()\n    # Otherwise, we can’t proceed\n    raise FileNotFoundError(\"Could not find repo root containing scripts/bootstrap.py\")\n\nrepo_root = ensure_repo_on_path()\nprint(\"Repo root:\", repo_root)\n# Bootstrap: ensure repo root on path, then import init\nimport sys, pathlib\nsys.path.append(str(pathlib.Path.cwd().parent))\nfrom scripts.bootstrap import init\ndf, ctx = init()\ndf.head(2)"
+  },
+  {
+    "objectID": "notebooks/08_summary.html#recap-the-workflow-you-implemented",
+    "href": "notebooks/08_summary.html#recap-the-workflow-you-implemented",
+    "title": "08 · Summary & Assessment prep",
+    "section": "1 1) Recap — the workflow you implemented",
+    "text": "1 1) Recap — the workflow you implemented\n\nIntro & integrity: load data, check ranges, flags ↔︎ dates, expected monotone signals.\nDescribe the population: robust Table 1; missingness exploration.\nExposure analysis: distributions; intake vs biomarker (construct validity).\nTheory → Model: DAGs; decide a minimal sufficient adjustment set.\nCross-sectional models: transformations, non-linearity, diagnostics, VIF.\nProspective models: incident outcomes (logistic / survival), interpretation.\nAdvanced: confounding vs collider vs mediator; missing-data sensitivity.\n\nYour assessment now asks you to pull a defensible thread through these steps for one clear question."
+  },
+  {
+    "objectID": "notebooks/08_summary.html#reproducibility-snapshot-optional-in-submission",
+    "href": "notebooks/08_summary.html#reproducibility-snapshot-optional-in-submission",
+    "title": "08 · Summary & Assessment prep",
+    "section": "2 2) Reproducibility snapshot (optional in submission)",
+    "text": "2 2) Reproducibility snapshot (optional in submission)\nCapture versions to make your environment explicit.\n\nimport sys, numpy, pandas, matplotlib, statsmodels\nprint({\n  'python': sys.version.split()[0],\n  'numpy': numpy.__version__,\n  'pandas': pandas.__version__,\n  'matplotlib': matplotlib.__version__,\n  'statsmodels': statsmodels.__version__\n})"
+  },
+  {
+    "objectID": "notebooks/08_summary.html#assessment-1-checklist-generator",
+    "href": "notebooks/08_summary.html#assessment-1-checklist-generator",
+    "title": "08 · Summary & Assessment prep",
+    "section": "3 3) Assessment 1 — checklist generator",
+    "text": "3 3) Assessment 1 — checklist generator\nThis cell checks for the expected artefacts and gives you a quick status table.\nExpected at minimum: - A DAG figure (PNG/PDF) describing your reasoning & adjustment set. - A 500-word methods/results/interpretation/limitations text. - One clear Table 1 (CSV or embedded output) relevant to your question. - One primary logistic regression on the chosen outcome (unadjusted + adjusted).\n\nimport os, pandas as pd, pathlib\nroot = pathlib.Path.cwd().parent  # repo root\nartefacts = {\n    'Table 1 CSV (submission/table1_by_OUTCOME.csv)': root / 'submission' / 'table1_by_OUTCOME.csv',\n    'DAG image (submission/dag.png)':                 root / 'submission' / 'dag.png',\n    'DAG PDF (optional)':                             root / 'submission' / 'dag.pdf',\n    '500 words (submission/summary_500w.txt)':        root / 'submission' / 'summary_500w.txt',\n}\nrows = []\nfor label, path in artefacts.items():\n    exists = path.exists()\n    size = path.stat().st_size if exists else 0\n    rows.append({'Artefact': label, 'Exists': bool(exists), 'Bytes': int(size), 'Path': str(path)})\npd.DataFrame(rows)\n\nIf an item is missing, use the helper snippets below to create it. Use the versions you produced in earlier notebooks if you prefer — the point is consistency with your chosen question and DAG."
+  },
+  {
+    "objectID": "notebooks/08_summary.html#helper-export-your-dag-image-template",
+    "href": "notebooks/08_summary.html#helper-export-your-dag-image-template",
+    "title": "08 · Summary & Assessment prep",
+    "section": "4 4) Helper — export your DAG image (template)",
+    "text": "4 4) Helper — export your DAG image (template)\nIf you built a DAG in a previous notebook, re-run the cell there to regenerate the figure into submission/. Otherwise, adapt this minimal template.\nNote: networkx is optional; feel free to export a diagram made elsewhere as long as it matches your model narrative.\n\nimport pathlib\nfrom pathlib import Path\nPath('submission').mkdir(exist_ok=True)\ntry:\n    import networkx as nx, matplotlib.pyplot as plt\n    G = nx.DiGraph()\n    # EDIT THESE EDGES to match your final model\n    G.add_edges_from([\n        ('SES','Exposure'), ('SES','Outcome'),\n        ('Age','Exposure'), ('Age','Outcome'),\n        ('Smoking','Outcome'),\n        ('Exposure','Outcome')\n    ])\n    pos = {'SES':(-1,1),'Age':(1,1),'Smoking':(1.8,0.7),'Exposure':(0,0),'Outcome':(0,-1)}\n    plt.figure(figsize=(5.2,4.2))\n    nx.draw(G, pos, with_labels=True, node_size=1600, node_color='#e6f2ff', arrows=True)\n    plt.axis('off'); plt.tight_layout()\n    plt.savefig('submission/dag.png', dpi=200)\n    plt.savefig('submission/dag.pdf')\n    print('Saved submission/dag.png and dag.pdf')\nexcept Exception as e:\n    print('DAG export skipped — install networkx/matplotlib or supply your own image. Error:', e)"
+  },
+  {
+    "objectID": "notebooks/08_summary.html#helper-logistic-model-export-tidy-or-table",
+    "href": "notebooks/08_summary.html#helper-logistic-model-export-tidy-or-table",
+    "title": "08 · Summary & Assessment prep",
+    "section": "5 5) Helper — logistic model export (tidy OR table)",
+    "text": "5 5) Helper — logistic model export (tidy OR table)\nRun your unadjusted and adjusted logistic regressions and save a simple OR table for the primary exposure. Edit OUTCOME, EXPOSURE, and adj to match your assessment choice.\n\nimport numpy as np, pandas as pd, statsmodels.api as sm\nfrom patsy import dmatrices\n\n# === EDIT THESE FOR YOUR QUESTION ===\nOUTCOME  = 'Cancer_incident'          # e.g., 'Cancer_incident' or 'CVD_incident'\nEXPOSURE = 'red_meat_g_d'             # e.g., 'red_meat_g_d' or 'salt_g_d'\nadj = ['age','sex','BMI','SES_class','IMD_quintile','smoking_status']\n# ===================================\n\ndat = df[[OUTCOME, EXPOSURE] + adj].dropna().copy()\ndef wrap_cat(d, v):\n    return f\"C({v})\" if (d[v].dtype=='object' or str(d[v].dtype).startswith('category')) else v\nrhs_adj = ' + '.join([EXPOSURE] + [wrap_cat(dat, v) for v in adj])\n\ndef fitlog(formula, data):\n    y, X = dmatrices(formula, data=data, return_type='dataframe')\n    return sm.Logit(y, X).fit(disp=False)\n\nfit_u  = fitlog(f\"{OUTCOME} ~ {EXPOSURE}\", dat)\nfit_a  = fitlog(f\"{OUTCOME} ~ \" + rhs_adj, dat)\n\ndef tidy_or(f):\n    OR = np.exp(f.params).rename('OR')\n    CI = np.exp(f.conf_int()).rename(columns={0:'2.5%',1:'97.5%'})\n    return pd.concat([OR,CI], axis=1).round(3)\n\ntab_u = tidy_or(fit_u).filter(like=EXPOSURE, axis=0)\ntab_a = tidy_or(fit_a).filter(like=EXPOSURE, axis=0)\ntab = pd.concat([tab_u.assign(Model='Unadjusted'), tab_a.assign(Model='Adjusted')])\ntab = tab[['Model','OR','2.5%','97.5%']]\ntab.to_csv('submission/primary_logistic_or.csv', index=True)\ntab"
+  },
+  {
+    "objectID": "notebooks/08_summary.html#helper-table-1-export",
+    "href": "notebooks/08_summary.html#helper-table-1-export",
+    "title": "08 · Summary & Assessment prep",
+    "section": "6 6) Helper — Table 1 export",
+    "text": "6 6) Helper — Table 1 export\nIf you used the make_table1 utility in notebook 02, re-use it here. Otherwise, this quick variant creates a minimal overall + by-outcome table and writes to CSV. Edit the outcome and variable lists as needed.\n\nimport pandas as pd, numpy as np\nfrom pathlib import Path\nPath('submission').mkdir(exist_ok=True)\n\nOUTCOME = OUTCOME  # keep aligned with the cell above\ncont = ['age','BMI','SBP','energy_kcal','fruit_veg_g_d','red_meat_g_d','salt_g_d']\ncat  = ['sex','smoking_status','physical_activity','SES_class','IMD_quintile','menopausal_status']\n\ndef simple_table1(data, group, cont, cat):\n    pieces = []\n    # continuous\n    for v in cont:\n        g = data.groupby(group)[v].agg(['mean','std','median','count']).round(2)\n        g.index.name = 'group'\n        g['variable'] = v\n        g = g.reset_index().set_index(['variable','group'])\n        pieces.append(g)\n    # categorical\n    for v in cat:\n        ct = (data.groupby([group, v]).size().unstack(fill_value=0))\n        pct = (ct.T / ct.T.sum()).T.round(3)\n        combined = pd.concat({'n': ct, 'pct': pct}, axis=1)\n        combined['variable'] = v\n        combined = combined.rename_axis(index={'':'level'}).reset_index().set_index(['variable','level'])\n        pieces.append(combined)\n    return pd.concat(pieces, axis=0, sort=False)\n\nt1 = simple_table1(df, OUTCOME, cont, cat)\nt1.to_csv(f'submission/table1_by_{OUTCOME}.csv')\nt1.head(12)"
+  },
+  {
+    "objectID": "notebooks/08_summary.html#helper-500-words-template",
+    "href": "notebooks/08_summary.html#helper-500-words-template",
+    "title": "08 · Summary & Assessment prep",
+    "section": "7 7) Helper — 500 words template",
+    "text": "7 7) Helper — 500 words template\nRun this to create submission/summary_500w.txt; paste or edit it to fit your analysis. Keep to ≤ 500 words (the assert warns if you exceed).\n\nfrom pathlib import Path\ntext = (\n    \"Title: [Your exposure → outcome question here]\\n\\n\"\n    \"Methods: We analysed N=[…] adults from the FB2NEP synthetic cohort. The primary outcome was […]. \"\n    \"The exposure was […], with construct validity supported by […]. We specified a DAG and selected a minimal \"\n    \"adjustment set: […]. We fit unadjusted and adjusted logistic regressions; sensitivity checks included […] (e.g., simple imputation vs CC).\\n\\n\"\n    \"Results: [Key numbers: Table 1 highlights; unadjusted OR; adjusted OR with 95% CI; brief direction of change.]\\n\\n\"\n    \"Interpretation: The adjusted association suggests […]. Given measurement error and residual confounding, \"\n    \"the true effect may be […]. Findings align/contrast with […].\\n\\n\"\n    \"Limitations: Synthetic data; exposure misclassification; potential MNAR missingness; model misspecification; generalisability.\\n\"\n)\nPath('submission').mkdir(exist_ok=True)\nPath('submission/summary_500w.txt').write_text(text, encoding='utf-8')\nprint('Wrote submission/summary_500w.txt (edit this file to finalise text).')\nassert len(text.split()) &lt;= 500, 'Keep the summary ≤ 500 words.'"
+  },
+  {
+    "objectID": "notebooks/08_summary.html#self-check-vs-marking-rubric",
+    "href": "notebooks/08_summary.html#self-check-vs-marking-rubric",
+    "title": "08 · Summary & Assessment prep",
+    "section": "8 8) Self-check vs marking rubric",
+    "text": "8 8) Self-check vs marking rubric\n\nData handling & clarity (25%): Does your Table 1 match the question? Missingness patterns noted? Units/coding clear?\nCorrectness & interpretation (30%): Are models appropriate (logistic/survival as needed)? OR/CI reported correctly?\nCausal reasoning (25%): Is the DAG coherent? Is the adjustment set minimal and justified (no colliders/mediators unless direct effect intended)?\nCommunication (20%): Is the DAG legible; table readable; 500 words concise and precise (British English)?\n\nFinal tip: make sure the n used in models is explicit (after exclusions/imputation).\n\n9 Key takeaways\n\nYour analysis should tell a coherent causal story from DAG → model → result → interpretation.\nPrefer simplicity with justification over complicated models without diagnostics.\nExport your artefacts to submission/ and verify with the checklist before uploading."
+  },
+  {
+    "objectID": "notebooks/05_regression_crosssectional.html",
+    "href": "notebooks/05_regression_crosssectional.html",
+    "title": "05 · Regression analysis (cross-sectional)",
+    "section": "",
+    "text": "Purpose: build and assess cross-sectional models: linear (SBP) and logistic (prevalent hypertension). Focus on transformations, non-linear terms, diagnostics, and clear interpretation.\n# Make sure the repo root (which has scripts/bootstrap.py) is on sys.path.\nimport sys, os, pathlib, subprocess\n\nREPO_NAME = \"fb2nep-epi\"\nREPO_URL  = \"https://github.com/ggkuhnle/fb2nep-epi.git\"\nIN_COLAB  = \"google.colab\" in sys.modules\n\ndef ensure_repo_on_path():\n    here = pathlib.Path.cwd()\n    # Walk up a few levels to find scripts/bootstrap.py\n    for p in [here, *here.parents]:\n        if (p / \"scripts\" / \"bootstrap.py\").exists():\n            os.chdir(p)                 # normalise CWD to repo root\n            sys.path.append(str(p))     # ensure imports like \"from scripts...\" work\n            return p\n    # Not found locally: if on Colab, clone then chdir\n    if IN_COLAB:\n        # clone only if missing\n        if not (pathlib.Path(\"/content\") / REPO_NAME).exists():\n            subprocess.run([\"git\", \"clone\", REPO_URL], check=False)\n        os.chdir(f\"/content/{REPO_NAME}\")\n        sys.path.append(os.getcwd())\n        return pathlib.Path.cwd()\n    # Otherwise, we can’t proceed\n    raise FileNotFoundError(\"Could not find repo root containing scripts/bootstrap.py\")\n\nrepo_root = ensure_repo_on_path()\nprint(\"Repo root:\", repo_root)\n# Bootstrap: ensure repo root on path, then import init\nimport sys, pathlib\nsys.path.append(str(pathlib.Path.cwd().parent))\nfrom scripts.bootstrap import init\ndf, ctx = init()\ndf.head(2)"
+  },
+  {
+    "objectID": "notebooks/05_regression_crosssectional.html#outcome-predictors-cross-sectional-setup",
+    "href": "notebooks/05_regression_crosssectional.html#outcome-predictors-cross-sectional-setup",
+    "title": "05 · Regression analysis (cross-sectional)",
+    "section": "1 1) Outcome & predictors (cross-sectional setup)",
+    "text": "1 1) Outcome & predictors (cross-sectional setup)\nWe’ll treat SBP (systolic BP) as a continuous outcome for linear regression. For a binary example, define prevalent hypertension as SBP ≥ 140 mmHg (teaching-only threshold).\nCandidate predictors: age, sex, BMI, IMD_quintile, SES_class, smoking_status, salt_g_d, fruit_veg_g_d, red_meat_g_d, physical_activity.\n\nimport numpy as np, pandas as pd\n\nwork = df[['SBP','age','sex','BMI','IMD_quintile','SES_class','smoking_status','salt_g_d','fruit_veg_g_d','red_meat_g_d','physical_activity']].copy()\nwork = work.dropna()\nwork['HT_prev'] = (work['SBP'] &gt;= 140).astype(int)\nwork.head(3), work.shape"
+  },
+  {
+    "objectID": "notebooks/05_regression_crosssectional.html#linear-regression-sbp-as-outcome",
+    "href": "notebooks/05_regression_crosssectional.html#linear-regression-sbp-as-outcome",
+    "title": "05 · Regression analysis (cross-sectional)",
+    "section": "2 2) Linear regression — SBP as outcome",
+    "text": "2 2) Linear regression — SBP as outcome\nStart simple (salt only), then build up with plausible confounders and compare models by fit and interpretability.\n\nimport statsmodels.api as sm\nfrom patsy import dmatrices\n\n# Unadjusted: SBP ~ salt_g_d\ny_u, X_u = dmatrices('SBP ~ salt_g_d', data=work, return_type='dataframe')\nfit_u = sm.OLS(y_u, X_u).fit()\nfit_u.summary().tables[1]\n\n\n# Adjusted: SBP ~ salt + age + sex + BMI + IMD_quintile + SES_class + smoking + physical_activity\n# C() wraps categoricals; continuous left as-is (for now)\nformula_a = 'SBP ~ salt_g_d + age + BMI + C(sex) + C(IMD_quintile) + C(SES_class) + C(smoking_status) + C(physical_activity)'\ny_a, X_a = dmatrices(formula_a, data=work, return_type='dataframe')\nfit_a = sm.OLS(y_a, X_a).fit()\nfit_a.summary().tables[1]\n\n\n2.1 Diagnostics — residual plots & QQ\nWe’re aiming for adequate teaching diagnostics: residuals vs fitted, and normal Q–Q. Look for patterning (non-linearity) or heavy tails (outliers/influence).\n\nimport matplotlib.pyplot as plt\nresid = fit_a.resid.values.ravel()\nfitted = fit_a.fittedvalues.values.ravel()\n\nplt.figure(figsize=(5.2,4)); plt.scatter(fitted, resid, s=8, alpha=0.6)\nplt.axhline(0, ls='--'); plt.xlabel('Fitted'); plt.ylabel('Residual'); plt.title('Residuals vs Fitted'); plt.tight_layout(); plt.show()\n\nsm.qqplot(resid, line='45'); plt.title('Normal Q–Q (residuals)'); plt.tight_layout(); plt.show()\n\n\n\n2.2 Multicollinearity — quick VIF check\nRule of thumb: VIF &gt; ~5–10 suggests strong collinearity (teaching heuristic, not law).\n\nfrom statsmodels.stats.outliers_influence import variance_inflation_factor\nimport numpy as np\n\n# Build a numeric design matrix (expand categoricals as dummies without intercept)\nXA = pd.get_dummies(work[['salt_g_d','age','BMI','sex','IMD_quintile','SES_class','smoking_status','physical_activity']], drop_first=True)\nXA = sm.add_constant(XA, has_constant='add')\nvif = pd.Series([variance_inflation_factor(XA.values, i) for i in range(XA.shape[1])], index=XA.columns)\nvif.round(2).sort_values(ascending=False).head(12)"
+  },
+  {
+    "objectID": "notebooks/05_regression_crosssectional.html#transformations-non-linear-terms",
+    "href": "notebooks/05_regression_crosssectional.html#transformations-non-linear-terms",
+    "title": "05 · Regression analysis (cross-sectional)",
+    "section": "3 3) Transformations & non-linear terms",
+    "text": "3 3) Transformations & non-linear terms\n\nSkewed predictors (e.g., salt) may behave better on log1p scale.\nConsider polynomial terms (e.g., BMI²) or splines for flexible curvature.\n\nTeaching note: do this when diagnostics or prior knowledge suggest non-linearity — not by default.\n\nwork2 = work.copy()\nwork2['salt_log1p'] = np.log1p(work2['salt_g_d'])\nwork2['BMI2'] = work2['BMI']**2\n\nformula_nl = 'SBP ~ salt_log1p + age + BMI + BMI2 + C(sex) + C(IMD_quintile) + C(SES_class) + C(smoking_status) + C(physical_activity)'\ny_nl, X_nl = dmatrices(formula_nl, data=work2, return_type='dataframe')\nfit_nl = sm.OLS(y_nl, X_nl).fit()\nfit_nl.summary().tables[1]\n\nOptional: cubic B-splines for age (requires patsy.bs).\n\nfrom patsy import bs\nformula_s = 'SBP ~ salt_log1p + bs(age, df=4) + BMI + C(sex) + C(IMD_quintile) + C(SES_class) + C(smoking_status) + C(physical_activity)'\ny_s, X_s = dmatrices(formula_s, data=work2, return_type='dataframe')\nfit_s = sm.OLS(y_s, X_s).fit()\nprint('Adj R^2 (linear age):', round(fit_nl.rsquared_adj,4))\nprint('Adj R^2 (spline age):', round(fit_s.rsquared_adj,4))"
+  },
+  {
+    "objectID": "notebooks/05_regression_crosssectional.html#logistic-regression-prevalent-hypertension-teaching-example",
+    "href": "notebooks/05_regression_crosssectional.html#logistic-regression-prevalent-hypertension-teaching-example",
+    "title": "05 · Regression analysis (cross-sectional)",
+    "section": "4 4) Logistic regression — prevalent hypertension (teaching example)",
+    "text": "4 4) Logistic regression — prevalent hypertension (teaching example)\nDefine HT_prev = 1 if SBP ≥ 140 mmHg. Fit unadjusted and adjusted models. Report odds ratios (OR) with 95% CIs. Reminder: cross-sectional prevalent hypertension mixes incidence and duration; this is a didactic example.\n\nimport statsmodels.api as sm\nfrom patsy import dmatrices\n\nlog_u_y, log_u_X = dmatrices('HT_prev ~ salt_log1p', data=work2, return_type='dataframe')\nlog_u = sm.Logit(log_u_y, log_u_X).fit(disp=False)\n\ndef cat_term(df_, v):\n    return f\"C({v})\" if (df_[v].dtype=='object' or str(df_[v].dtype).startswith('category')) else v\n\nadj_terms = [\n    'salt_log1p','age','BMI',\n    cat_term(work2,'sex'), cat_term(work2,'IMD_quintile'), cat_term(work2,'SES_class'),\n    cat_term(work2,'smoking_status'), cat_term(work2,'physical_activity')\n]\nformula_log_a = 'HT_prev ~ ' + ' + '.join(adj_terms)\nlog_a_y, log_a_X = dmatrices(formula_log_a, data=work2, return_type='dataframe')\nlog_a = sm.Logit(log_a_y, log_a_X).fit(disp=False)\n\nimport numpy as np\ndef tidy_or(fit):\n    OR = np.exp(fit.params).rename('OR')\n    CI = np.exp(fit.conf_int()).rename(columns={0:'2.5%',1:'97.5%'})\n    return pd.concat([OR,CI], axis=1).round(3)\n\ntidy_or(log_u), tidy_or(log_a)\n\n\n4.1 Brief interpretation guide\n\nLinear model: coefficient on salt_log1p ≈ change in SBP (mmHg) per 1-unit change in log(1+salt g/day), holding others constant.\nLogistic model: OR for salt_log1p — multiplicative change in odds of prevalent hypertension per 1-unit increase in log(1+salt), adjusted for covariates.\nNon-linear terms (e.g., BMI2, bs(age)) let the effect vary by level; interpret via predicted margins not just coefficients."
+  },
+  {
+    "objectID": "notebooks/05_regression_crosssectional.html#todo-hands-on-tasks",
+    "href": "notebooks/05_regression_crosssectional.html#todo-hands-on-tasks",
+    "title": "05 · Regression analysis (cross-sectional)",
+    "section": "5 5) # TODO — hands-on tasks",
+    "text": "5 5) # TODO — hands-on tasks\n\nModel comparison: Compare fit_a, fit_nl, and fit_s using adjusted R² and residual plots. Which balances fit and simplicity?\nAlternative exposure: Swap salt_log1p for red_meat_g_d (log1p as needed). Refit linear SBP model and logistic HT model; interpret changes.\nPredicted margins (bonus): Compute predicted SBP at the 10th, 50th, 90th percentiles of salt_g_d holding other vars at typical values. Summarise in one sentence.\nCollinearity reflection: Which predictors show higher VIF? Suggest a remedy (e.g., remove, combine, or centre variables).\n\n\n# (3) Predicted margins demo\nq = work2['salt_g_d'].quantile([0.1,0.5,0.9]).rename({0.1:'p10',0.5:'p50',0.9:'p90'})\nnew = work2.median(numeric_only=True).to_frame().T\nnew = new.assign(salt_g_d=[q['p10'], q['p50'], q['p90']])\nnew['salt_log1p'] = np.log1p(new['salt_g_d'])\n# Keep categoricals at mode\nfor v in ['sex','IMD_quintile','SES_class','smoking_status','physical_activity']:\n    new[v] = work2[v].mode().iloc[0]\n_, Xp = dmatrices(formula_nl, data=new, return_type='dataframe')\npred = fit_nl.predict(Xp)\npd.DataFrame({'salt_g_d': new['salt_g_d'].values, 'pred_SBP': pred.values})\n\n\n6 Key takeaways\n\nLet design and diagnostics motivate transformation or non-linearity — don’t add complexity by default.\nReport effects clearly: units for linear; OR (95% CI) for logistic.\nCheck residuals and VIF; reflect on practical remedies for violations.\nCross-sectional models describe associations; causal interpretation demands a DAG and longitudinal design (next notebook)."
+  },
+  {
+    "objectID": "notebooks/04_theoretical_dags.html",
+    "href": "notebooks/04_theoretical_dags.html",
+    "title": "04 · Theoretical model building — DAGs",
+    "section": "",
+    "text": "Purpose: formalise assumptions with Directed Acyclic Graphs (DAGs) and identify adjustment sets.\n# Make sure the repo root (which has scripts/bootstrap.py) is on sys.path.\nimport sys, os, pathlib, subprocess\n\nREPO_NAME = \"fb2nep-epi\"\nREPO_URL  = \"https://github.com/ggkuhnle/fb2nep-epi.git\"\nIN_COLAB  = \"google.colab\" in sys.modules\n\ndef ensure_repo_on_path():\n    here = pathlib.Path.cwd()\n    # Walk up a few levels to find scripts/bootstrap.py\n    for p in [here, *here.parents]:\n        if (p / \"scripts\" / \"bootstrap.py\").exists():\n            os.chdir(p)                 # normalise CWD to repo root\n            sys.path.append(str(p))     # ensure imports like \"from scripts...\" work\n            return p\n    # Not found locally: if on Colab, clone then chdir\n    if IN_COLAB:\n        # clone only if missing\n        if not (pathlib.Path(\"/content\") / REPO_NAME).exists():\n            subprocess.run([\"git\", \"clone\", REPO_URL], check=False)\n        os.chdir(f\"/content/{REPO_NAME}\")\n        sys.path.append(os.getcwd())\n        return pathlib.Path.cwd()\n    # Otherwise, we can’t proceed\n    raise FileNotFoundError(\"Could not find repo root containing scripts/bootstrap.py\")\n\nrepo_root = ensure_repo_on_path()\nprint(\"Repo root:\", repo_root)\n# Bootstrap: ensure repo root on path, then import init\nimport sys, pathlib\nsys.path.append(str(pathlib.Path.cwd().parent))\nfrom scripts.bootstrap import init\ndf, ctx = init()\ndf.head(2)"
+  },
+  {
+    "objectID": "notebooks/04_theoretical_dags.html#dag-basics-very-short",
+    "href": "notebooks/04_theoretical_dags.html#dag-basics-very-short",
+    "title": "04 · Theoretical model building — DAGs",
+    "section": "1 1) DAG basics (very short)",
+    "text": "1 1) DAG basics (very short)\n\nNodes = variables; arrows = assumed direct causal effects.\nBackdoor paths (non-causal paths from exposure to outcome) create confounding.\nA minimal sufficient adjustment set blocks all backdoors without conditioning on colliders/mediators."
+  },
+  {
+    "objectID": "notebooks/04_theoretical_dags.html#example-dag-red-meat-cancer",
+    "href": "notebooks/04_theoretical_dags.html#example-dag-red-meat-cancer",
+    "title": "04 · Theoretical model building — DAGs",
+    "section": "2 2) Example DAG: red meat → cancer",
+    "text": "2 2) Example DAG: red meat → cancer\nAssume SES and smoking confound; age confounds; BMI may be on a risk pathway for cancer depending on the hypothesis.\n\ntry:\n    import networkx as nx\n    import matplotlib.pyplot as plt\nexcept Exception as e:\n    raise RuntimeError(\"Install optional dependency: networkx (and matplotlib)\") from e\n\n# Build DAG (as a DiGraph for visual)\nG = nx.DiGraph()\nG.add_edges_from([\n    (\"SES\",\"red_meat\"),(\"SES\",\"Cancer\"),\n    (\"Smoking\",\"red_meat\"),(\"Smoking\",\"Cancer\"),\n    (\"Age\",\"red_meat\"),(\"Age\",\"Cancer\"),\n    (\"red_meat\",\"Cancer\")\n])\n\npos = {\"SES\":(-1,1),\"Smoking\":(1,1),\"Age\":(0,1.4),\"red_meat\":(0,0),\"Cancer\":(0,-1)}\nplt.figure(figsize=(5.5,4.2))\nnx.draw(G, pos, with_labels=True, node_size=1600, node_color=\"#e6f2ff\", arrows=True)\nplt.title(\"DAG: confounding in red meat → cancer\")\nplt.axis('off'); plt.tight_layout(); plt.show()"
+  },
+  {
+    "objectID": "notebooks/04_theoretical_dags.html#identify-a-minimal-sufficient-adjustment-set",
+    "href": "notebooks/04_theoretical_dags.html#identify-a-minimal-sufficient-adjustment-set",
+    "title": "04 · Theoretical model building — DAGs",
+    "section": "3 3) Identify a minimal sufficient adjustment set",
+    "text": "3 3) Identify a minimal sufficient adjustment set\nFrom the DAG above, a plausible set is {Age, SES, Smoking}. Avoid adjusting for colliders or mediators.\nTask: In your own words, state a minimal sufficient set for your primary analysis (you can include BMI if you argue it confounds rather than mediates in your causal story)."
+  },
+  {
+    "objectID": "notebooks/04_theoretical_dags.html#practice-dag-for-salt-cvd-via-sbp",
+    "href": "notebooks/04_theoretical_dags.html#practice-dag-for-salt-cvd-via-sbp",
+    "title": "04 · Theoretical model building — DAGs",
+    "section": "4 4) Practice: DAG for salt → CVD via SBP",
+    "text": "4 4) Practice: DAG for salt → CVD via SBP\nSketch a DAG with: Salt (exposure), CVD (outcome), SBP (mediator), Age, SES, Smoking (potential confounders). Decide whether BMI is a confounder or mediator in your story and justify.\n\n# OPTIONAL: draw your salt → CVD DAG\nH = nx.DiGraph()\nH.add_edges_from([\n    (\"Age\",\"Salt\"),(\"Age\",\"CVD\"),\n    (\"SES\",\"Salt\"),(\"SES\",\"CVD\"),\n    (\"Smoking\",\"CVD\"),\n    (\"Salt\",\"SBP\"),(\"SBP\",\"CVD\")\n])\npos2 = {\"Age\":(-1,1),\"SES\":(1,1),\"Smoking\":(2,0.8),\"Salt\":(-0.3,0),\"SBP\":(0.7,-0.2),\"CVD\":(0.2,-1)}\nplt.figure(figsize=(5.8,4.2))\nnx.draw(H, pos2, with_labels=True, node_size=1600, node_color=\"#eef7e9\", arrows=True)\nplt.title(\"DAG: salt → SBP → CVD (with confounding)\")\nplt.axis('off'); plt.tight_layout(); plt.show()"
+  },
+  {
+    "objectID": "notebooks/04_theoretical_dags.html#todo-short-exercises",
+    "href": "notebooks/04_theoretical_dags.html#todo-short-exercises",
+    "title": "04 · Theoretical model building — DAGs",
+    "section": "5 5) # TODO — short exercises",
+    "text": "5 5) # TODO — short exercises\n\nIn a markdown cell, specify your adjustment set for red_meat → Cancer and justify briefly.\nIn a markdown cell, specify your adjustment set for Salt → CVD given the DAG above.\nWhich variables would be colliders in either DAG if mistakenly adjusted for? Explain.\n\n\n6 Key takeaways\n\nDAGs make assumptions explicit and guide adjustment choices.\nAim to block backdoor paths without opening new ones via colliders/mediators.\nYour statistical model should follow your DAG, not the other way around."
+  },
+  {
+    "objectID": "notebooks/06_regression_prospective.html",
+    "href": "notebooks/06_regression_prospective.html",
+    "title": "06 · Regression analysis (prospective: logistic & survival)",
+    "section": "",
+    "text": "Purpose: analyse incident outcomes using logistic regression (risk over follow-up) and time-to-event models (Cox proportional hazards).\n# Make sure the repo root (which has scripts/bootstrap.py) is on sys.path.\nimport sys, os, pathlib, subprocess\n\nREPO_NAME = \"fb2nep-epi\"\nREPO_URL  = \"https://github.com/ggkuhnle/fb2nep-epi.git\"\nIN_COLAB  = \"google.colab\" in sys.modules\n\ndef ensure_repo_on_path():\n    here = pathlib.Path.cwd()\n    # Walk up a few levels to find scripts/bootstrap.py\n    for p in [here, *here.parents]:\n        if (p / \"scripts\" / \"bootstrap.py\").exists():\n            os.chdir(p)                 # normalise CWD to repo root\n            sys.path.append(str(p))     # ensure imports like \"from scripts...\" work\n            return p\n    # Not found locally: if on Colab, clone then chdir\n    if IN_COLAB:\n        # clone only if missing\n        if not (pathlib.Path(\"/content\") / REPO_NAME).exists():\n            subprocess.run([\"git\", \"clone\", REPO_URL], check=False)\n        os.chdir(f\"/content/{REPO_NAME}\")\n        sys.path.append(os.getcwd())\n        return pathlib.Path.cwd()\n    # Otherwise, we can’t proceed\n    raise FileNotFoundError(\"Could not find repo root containing scripts/bootstrap.py\")\n\nrepo_root = ensure_repo_on_path()\nprint(\"Repo root:\", repo_root)\n# Bootstrap: ensure repo root on path, then import init\nimport sys, pathlib\nsys.path.append(str(pathlib.Path.cwd().parent))\nfrom scripts.bootstrap import init\ndf, ctx = init()\ndf.head(2)"
+  },
+  {
+    "objectID": "notebooks/06_regression_prospective.html#build-a-survival-dataset",
+    "href": "notebooks/06_regression_prospective.html#build-a-survival-dataset",
+    "title": "06 · Regression analysis (prospective: logistic & survival)",
+    "section": "1 1) Build a survival dataset",
+    "text": "1 1) Build a survival dataset\nWe need time from baseline to event (or censor) and an event indicator (1=event, 0=censored). If there’s no explicit study end date, we assume administrative censoring at 10 years (teaching default). Edit the outcome/exposure below to change question.\nDefault example: salt_g_d → CVD_incident (confounders: age, sex, SES, IMD, smoking, BMI).\n\nimport pandas as pd, numpy as np\n\n# === EDIT THESE FOR YOUR QUESTION ===\nOUTCOME_FLAG = 'CVD_incident'       # or 'Cancer_incident'\nOUTCOME_DATE = 'CVD_date'           # or 'Cancer_date'\nEXPOSURE     = 'salt_g_d'           # e.g., 'red_meat_g_d'\nADJUST = ['age','sex','BMI','SES_class','IMD_quintile','smoking_status']\n# ===================================\n\nuse = ['id','baseline_date', OUTCOME_FLAG, OUTCOME_DATE, EXPOSURE] + ADJUST\nsurv = df[use].copy()\n\n# Parse dates (robust to string/NA)\nfor c in ['baseline_date', OUTCOME_DATE]:\n    if c in surv:\n        surv[c] = pd.to_datetime(surv[c], errors='coerce')\n\n# Administrative censor if no event: 10 years after baseline (teaching default)\nadmin_censor_days = 3650\nsurv['censor_date'] = surv['baseline_date'] + pd.to_timedelta(admin_censor_days, unit='D')\nsurv['event'] = surv[OUTCOME_FLAG].fillna(0).astype(int)\nsurv['event_date'] = np.where(surv['event']==1, surv[OUTCOME_DATE], pd.NaT)\nsurv['time_end'] = np.where(surv['event']==1, surv['event_date'], surv['censor_date'])\nsurv['time_days'] = (pd.to_datetime(surv['time_end']) - pd.to_datetime(surv['baseline_date'])).dt.days\nsurv['time_years'] = surv['time_days'] / 365.25\n\n# Drop impossible/negative times\nsurv = surv[(surv['time_years'] &gt; 0) & ~surv['time_years'].isna()].copy()\nsurv[['time_years','event']].describe().T\n\nSanity: median follow-up should be several years; event proportion matches cohort design (roughly 10–12% by construction)."
+  },
+  {
+    "objectID": "notebooks/06_regression_prospective.html#incident-logistic-regression-teaching",
+    "href": "notebooks/06_regression_prospective.html#incident-logistic-regression-teaching",
+    "title": "06 · Regression analysis (prospective: logistic & survival)",
+    "section": "2 2) Incident logistic regression (teaching)",
+    "text": "2 2) Incident logistic regression (teaching)\nTreat the incident flag as a binary outcome and model it with logistic regression. This ignores varying follow-up time but is useful as a didactic baseline; Cox below is preferred for time-to-event with censoring.\n\nimport statsmodels.api as sm\nfrom patsy import dmatrices\n\nwork = surv.dropna(subset=[OUTCOME_FLAG, EXPOSURE]).copy()\nwork['exp_log1p'] = np.log1p(work[EXPOSURE])  # often helpful\n\ndef cat_term(df_, v):\n    return f\"C({v})\" if (v in df_.columns and (df_[v].dtype=='object' or str(df_[v].dtype).startswith('category'))) else v\n\nrhs_u = 'exp_log1p'\ny_u, X_u = dmatrices(f'{OUTCOME_FLAG} ~ {rhs_u}', data=work, return_type='dataframe')\nfit_log_u = sm.Logit(y_u, X_u).fit(disp=False)\n\nrhs_a = ' + '.join(['exp_log1p'] + [cat_term(work, v) for v in ADJUST])\ny_a, X_a = dmatrices(f'{OUTCOME_FLAG} ~ ' + rhs_a, data=work, return_type='dataframe')\nfit_log_a = sm.Logit(y_a, X_a).fit(disp=False)\n\ndef tidy_or(f):\n    OR = np.exp(f.params).rename('OR')\n    CI = np.exp(f.conf_int()).rename(columns={0:'2.5%',1:'97.5%'})\n    return pd.concat([OR,CI], axis=1).round(3)\n\ntidy_or(fit_log_u).filter(like='exp_log1p', axis=0), tidy_or(fit_log_a).filter(like='exp_log1p', axis=0)\n\nInterpretation: OR for exp_log1p approximates the multiplicative change in odds of having an event during follow-up per 1-unit increase in log(1+exposure), adjusted for covariates. Use hazard ratios from Cox below when time matters (it usually does)."
+  },
+  {
+    "objectID": "notebooks/06_regression_prospective.html#cox-proportional-hazards-phreg-statsmodels",
+    "href": "notebooks/06_regression_prospective.html#cox-proportional-hazards-phreg-statsmodels",
+    "title": "06 · Regression analysis (prospective: logistic & survival)",
+    "section": "3 3) Cox proportional hazards (PHReg, statsmodels)",
+    "text": "3 3) Cox proportional hazards (PHReg, statsmodels)\nWe model time_years with censoring using the Cox PH model as implemented in statsmodels.duration.hazard_regression.PHReg. We’ll include the exposure (log1p) and the same confounders. (No extra dependencies.)\n\nfrom statsmodels.duration.hazard_regression import PHReg\n\n# Build design: encode categoricals as dummies (no intercept; PHReg handles baseline via partial likelihood)\nZ = work[['exp_log1p'] + ADJUST].copy()\nZ = pd.get_dummies(Z, drop_first=True)\n\nendog = work['time_years']\nstatus = work['event']\n\ncox = PHReg(endog, Z, status=status)\nres_cox = cox.fit(disp=False)\nres_cox.summary()  # shows log(HR) coefficients and SEs\n\nExtract hazard ratios (HR) for readability:\n\nparams = res_cox.params\nconf   = res_cox.conf_int()\nHR = np.exp(params).rename('HR')\nHR_CI = np.exp(conf)\nhr_tab = pd.concat([HR, HR_CI], axis=1).rename(columns={0:'2.5%',1:'97.5%'}).round(3)\nhr_tab.filter(like='exp_log1p', axis=0)\n\nInterpretation: HR &gt; 1 for exp_log1p suggests higher hazard (instantaneous risk) with higher exposure, conditional on the covariates and the PH assumption.\n\n3.1 Non-linearity / scaling\nAs in cross-sectional models, it’s reasonable to consider a log transform (log1p) for skewed exposures and to test simple curvature (e.g., quadratic term) if diagnostics suggest it. Keep models interpretable; justify with EDA and clinical sense."
+  },
+  {
+    "objectID": "notebooks/06_regression_prospective.html#light-ph-diagnostics",
+    "href": "notebooks/06_regression_prospective.html#light-ph-diagnostics",
+    "title": "06 · Regression analysis (prospective: logistic & survival)",
+    "section": "4 4) Light PH diagnostics",
+    "text": "4 4) Light PH diagnostics\nFormal tests are involved; here’s a quick, pragmatic check: interact key covariates with log(time) and test if interactions are ~0 (violations if large & significant). This is a heuristic rather than a full Schoenfeld analysis.\n\nwork_diag = work.copy()\nwork_diag['log_t'] = np.log(work_diag['time_years'])\nZ0 = pd.get_dummies(work_diag[['exp_log1p'] + ADJUST], drop_first=True)\nZt = Z0.mul(work_diag['log_t'], axis=0)\nZ_ph = pd.concat([Z0, Zt.add_suffix(':log_t')], axis=1)\n\ncox_ph = PHReg(work_diag['time_years'], Z_ph, status=work_diag['event'])\nres_ph = cox_ph.fit(disp=False)\n# Pull interaction rows only\nph_terms = res_ph.params[res_ph.params.index.str.endswith(':log_t')]\nph_ci = res_ph.conf_int().loc[ph_terms.index]\nph_tab = pd.concat([ph_terms.rename('coef'), ph_ci], axis=1).rename(columns={0:'2.5%',1:'97.5%'}).round(3)\nph_tab.head(10)\n\nHeuristic: large interactions (CI far from 0) suggest PH issues for those covariates. If present, consider stratification, time-varying effects, or restricting follow-up periods, and report the limitation transparently."
+  },
+  {
+    "objectID": "notebooks/06_regression_prospective.html#sensitivity-alternative-adjustment-sets",
+    "href": "notebooks/06_regression_prospective.html#sensitivity-alternative-adjustment-sets",
+    "title": "06 · Regression analysis (prospective: logistic & survival)",
+    "section": "5 5) Sensitivity: alternative adjustment sets",
+    "text": "5 5) Sensitivity: alternative adjustment sets\nCompare unadjusted, minimal sufficient set (from your DAG), and an over-adjusted set (including a potential mediator) to illustrate estimate movement. Keep your primary estimand clear (total vs direct effect).\n\ndef cox_fit(exposure, adjust_vars):\n    Z = pd.get_dummies(work[['exp_log1p'] + adjust_vars].rename(columns={exposure:'exp_log1p'}), drop_first=True)\n    model = PHReg(work['time_years'], Z, status=work['event'])\n    res = model.fit(disp=False)\n    # return HR for the exposure term\n    b = res.params['exp_log1p']\n    lo, hi = res.conf_int().loc['exp_log1p']\n    return float(np.exp(b)), float(np.exp(lo)), float(np.exp(hi))\n\nsets = {\n  'Unadjusted': [],\n  'Minimal DAG set': ['age','sex','SES_class','IMD_quintile','smoking_status'],\n  'Over-adjusted (adds BMI)': ['age','sex','SES_class','IMD_quintile','smoking_status','BMI']\n}\nrows = []\nfor name, s in sets.items():\n    try:\n        hr, lo, hi = cox_fit(EXPOSURE, s)\n        rows.append({'Model': name, 'HR': round(hr,3), '2.5%': round(lo,3), '97.5%': round(hi,3)})\n    except Exception as e:\n        rows.append({'Model': name, 'HR': np.nan, '2.5%': np.nan, '97.5%': np.nan})\nimport pandas as pd\npd.DataFrame(rows)"
+  },
+  {
+    "objectID": "notebooks/06_regression_prospective.html#todo-your-practice",
+    "href": "notebooks/06_regression_prospective.html#todo-your-practice",
+    "title": "06 · Regression analysis (prospective: logistic & survival)",
+    "section": "6 6) # TODO — your practice",
+    "text": "6 6) # TODO — your practice\n\nSwap to EXPOSURE='red_meat_g_d' and OUTCOME='Cancer_incident'; repeat the logistic and Cox analyses. Report OR and HR with 95% CI.\nTest a non-linear exposure term (e.g., quadratic or log1p vs raw). Does fit or interpretation improve?\nRerun Cox with your minimal sufficient adjustment set from the DAG notebook. How does the exposure HR move vs unadjusted and over-adjusted?\nBriefly comment on PH reasonableness using the log-time interactions table. Any large deviations?\n(Optional) Export a tidy CSV with your final HR result for the assessment submission.\n\n\n# (5) Export final HR for the exposure (edit label as needed)\nfinal = {'Exposure': EXPOSURE, 'Outcome': OUTCOME_FLAG, 'HR': hr_tab.loc['exp_log1p','HR'] if 'HR' in hr_tab else np.nan,\n         'CI_low': hr_tab.loc['exp_log1p','2.5%'] if 'HR' in hr_tab else np.nan,\n         'CI_high': hr_tab.loc['exp_log1p','97.5%'] if 'HR' in hr_tab else np.nan}\npd.DataFrame([final]).to_csv('submission/final_hr.csv', index=False)\nprint('Saved submission/final_hr.csv')\n\n\n7 Key takeaways\n\nConstruct time & censoring carefully; Cox PH is the standard for time-to-event with censoring.\nLogistic on the incident flag is didactic; report ORs but prefer HRs when time varies.\nKeep transformations and non-linearity motivated by EDA and diagnostics.\nAdjustment sets should follow your DAG; show how estimates move under different sets and discuss why.\nDocument assumptions (PH, measurement error, residual confounding) and provide a brief sensitivity narrative."
+  },
+  {
+    "objectID": "notebooks/index.html",
+    "href": "notebooks/index.html",
+    "title": "Nutritional Epidemiology Notebooks",
+    "section": "",
+    "text": "This page links to the Google Colab versions of the notebooks, so you can run them interactively without installing anything locally.\nEach badge opens the notebook directly from GitHub into a fresh Colab session.\nData are synthetic and reproducible — see the ../metadata/provenance.md.\n\n\n\n\n\n\nOpen 01 in Colab\n\n\n\n\n\n\n\n\n\nOpen 02 in Colab\n\n\n\n\n\n\n\n\n\nOpen 03 in Colab\n\n\n\n\n\n\n\n\n\nOpen 04 in Colab\n\n\n\n\n\n\n\n\n\nOpen 05 in Colab\n\n\n\n\n\n\n\n\n\nOpen 06 in Colab\n\n\n\n\n\n\n\n\n\nOpen 07 in Colab\n\n\n\n\n\n\n\n\n\nOpen 08 in Colab\n\n\n\n\n\n\n\n\n\nOpen Assessment 1 in Colab",
+    "crumbs": [
+      "Home",
+      "Notebooks",
+      "Nutritional Epidemiology Notebooks"
+    ]
+  },
+  {
+    "objectID": "notebooks/index.html#introduction-to-the-dataset",
+    "href": "notebooks/index.html#introduction-to-the-dataset",
+    "title": "Nutritional Epidemiology Notebooks",
+    "section": "",
+    "text": "Open 01 in Colab",
+    "crumbs": [
+      "Home",
+      "Notebooks",
+      "Nutritional Epidemiology Notebooks"
+    ]
+  },
+  {
+    "objectID": "notebooks/index.html#population-description-table-1-missing-data",
+    "href": "notebooks/index.html#population-description-table-1-missing-data",
+    "title": "Nutritional Epidemiology Notebooks",
+    "section": "",
+    "text": "Open 02 in Colab",
+    "crumbs": [
+      "Home",
+      "Notebooks",
+      "Nutritional Epidemiology Notebooks"
+    ]
+  },
+  {
+    "objectID": "notebooks/index.html#exposure-analysis-dietary-intake-vs-biomarker",
+    "href": "notebooks/index.html#exposure-analysis-dietary-intake-vs-biomarker",
+    "title": "Nutritional Epidemiology Notebooks",
+    "section": "",
+    "text": "Open 03 in Colab",
+    "crumbs": [
+      "Home",
+      "Notebooks",
+      "Nutritional Epidemiology Notebooks"
+    ]
+  },
+  {
+    "objectID": "notebooks/index.html#theoretical-model-building-dags",
+    "href": "notebooks/index.html#theoretical-model-building-dags",
+    "title": "Nutritional Epidemiology Notebooks",
+    "section": "",
+    "text": "Open 04 in Colab",
+    "crumbs": [
+      "Home",
+      "Notebooks",
+      "Nutritional Epidemiology Notebooks"
+    ]
+  },
+  {
+    "objectID": "notebooks/index.html#regression-analysis-cross-sectional",
+    "href": "notebooks/index.html#regression-analysis-cross-sectional",
+    "title": "Nutritional Epidemiology Notebooks",
+    "section": "",
+    "text": "Open 05 in Colab",
+    "crumbs": [
+      "Home",
+      "Notebooks",
+      "Nutritional Epidemiology Notebooks"
+    ]
+  },
+  {
+    "objectID": "notebooks/index.html#regression-analysis-prospective",
+    "href": "notebooks/index.html#regression-analysis-prospective",
+    "title": "Nutritional Epidemiology Notebooks",
+    "section": "",
+    "text": "Open 06 in Colab",
+    "crumbs": [
+      "Home",
+      "Notebooks",
+      "Nutritional Epidemiology Notebooks"
+    ]
+  },
+  {
+    "objectID": "notebooks/index.html#advanced-topics-confounding-colliders-mediation-imputation",
+    "href": "notebooks/index.html#advanced-topics-confounding-colliders-mediation-imputation",
+    "title": "Nutritional Epidemiology Notebooks",
+    "section": "",
+    "text": "Open 07 in Colab",
+    "crumbs": [
+      "Home",
+      "Notebooks",
+      "Nutritional Epidemiology Notebooks"
+    ]
+  },
+  {
+    "objectID": "notebooks/index.html#summary",
+    "href": "notebooks/index.html#summary",
+    "title": "Nutritional Epidemiology Notebooks",
+    "section": "",
+    "text": "Open 08 in Colab",
+    "crumbs": [
+      "Home",
+      "Notebooks",
+      "Nutritional Epidemiology Notebooks"
+    ]
+  },
+  {
+    "objectID": "notebooks/index.html#assessment-1-template",
+    "href": "notebooks/index.html#assessment-1-template",
+    "title": "Nutritional Epidemiology Notebooks",
+    "section": "",
+    "text": "Open Assessment 1 in Colab",
+    "crumbs": [
+      "Home",
+      "Notebooks",
+      "Nutritional Epidemiology Notebooks"
+    ]
+  },
+  {
+    "objectID": "notebooks/02b_study_population_missing.html",
+    "href": "notebooks/02b_study_population_missing.html",
+    "title": "02b · Study population & missing data plan",
+    "section": "",
+    "text": "Purpose: define the analysis cohort transparently (inclusion/exclusion), describe exclusions with a simple flow, compare included vs excluded participants, and agree a pragmatic missing-data strategy to carry forward.\n# Make sure the repo root (which has scripts/bootstrap.py) is on sys.path.\nimport sys, os, pathlib, subprocess\n\nREPO_NAME = \"fb2nep-epi\"\nREPO_URL  = \"https://github.com/ggkuhnle/fb2nep-epi.git\"\nIN_COLAB  = \"google.colab\" in sys.modules\n\ndef ensure_repo_on_path():\n    here = pathlib.Path.cwd()\n    # Walk up a few levels to find scripts/bootstrap.py\n    for p in [here, *here.parents]:\n        if (p / \"scripts\" / \"bootstrap.py\").exists():\n            os.chdir(p)                 # normalise CWD to repo root\n            sys.path.append(str(p))     # ensure imports like \"from scripts...\" work\n            return p\n    # Not found locally: if on Colab, clone then chdir\n    if IN_COLAB:\n        # clone only if missing\n        if not (pathlib.Path(\"/content\") / REPO_NAME).exists():\n            subprocess.run([\"git\", \"clone\", REPO_URL], check=False)\n        os.chdir(f\"/content/{REPO_NAME}\")\n        sys.path.append(os.getcwd())\n        return pathlib.Path.cwd()\n    # Otherwise, we can’t proceed\n    raise FileNotFoundError(\"Could not find repo root containing scripts/bootstrap.py\")\n\nrepo_root = ensure_repo_on_path()\nprint(\"Repo root:\", repo_root)\n# Bootstrap: ensure repo root on path, then import init\nimport sys, pathlib\nsys.path.append(str(pathlib.Path.cwd().parent))\nfrom scripts.bootstrap import init\ndf, ctx = init()\ndf.head(2)"
+  },
+  {
+    "objectID": "notebooks/02b_study_population_missing.html#inclusion-exclusion-rules-edit-if-needed",
+    "href": "notebooks/02b_study_population_missing.html#inclusion-exclusion-rules-edit-if-needed",
+    "title": "02b · Study population & missing data plan",
+    "section": "1 1) Inclusion / Exclusion rules (edit if needed)",
+    "text": "1 1) Inclusion / Exclusion rules (edit if needed)\nDefault rules for this cohort - Age ≥ 40 years at baseline. - Non-missing: key covariates for modelling: age, sex, BMI, SES_class, IMD_quintile, smoking_status. - For prospective analyses later, require baseline_date present. - Exposure/outcome specific requirements will be applied in their respective notebooks.\nYou can tighten/relax these below and regenerate the flow.\n\nimport pandas as pd\nN0 = len(df)\n\n# Start: all participants\npop = df.copy()\n\n# Rule A: age &gt;= 40 (already true by design, but keep explicit)\nmask_age = pop['age'] &gt;= 40\nN_age = mask_age.sum()\npop = pop[mask_age].copy()\n\n# Rule B: baseline_date present (prospective work later)\nmask_base = pop['baseline_date'].notna()\nN_base = mask_base.sum()\npop = pop[mask_base].copy()\n\n# Rule C: key covariates non-missing (for a default teaching cohort)\nkey_covars = ['age','sex','BMI','SES_class','IMD_quintile','smoking_status']\nmask_cov = pop[key_covars].notna().all(axis=1)\nN_cov = mask_cov.sum()\nanalysis_cohort = pop[mask_cov].copy()\n\nflow = pd.DataFrame([\n    {\"step\":\"Start (all)\", \"n\": N0},\n    {\"step\":\"Age ≥ 40\", \"n\": int(N_age)},\n    {\"step\":\"Baseline date present\", \"n\": int(N_base)},\n    {\"step\":\"Key covariates non-missing\", \"n\": int(N_cov)}\n])\nflow\n\n\n1.1 Save flow and derived cohort\nWe keep a CSV of the flow and a derived cohort for reproducibility (later notebooks may choose further, question-specific filters).\n\nfrom pathlib import Path\nPath('derived').mkdir(exist_ok=True)\nflow.to_csv('derived/consort_flow_default.csv', index=False)\nanalysis_cohort.to_csv('derived/analysis_cohort_default.csv', index=False)\nprint('Saved: derived/consort_flow_default.csv; derived/analysis_cohort_default.csv')\nanalysis_cohort.shape"
+  },
+  {
+    "objectID": "notebooks/02b_study_population_missing.html#included-vs-excluded-selection-check",
+    "href": "notebooks/02b_study_population_missing.html#included-vs-excluded-selection-check",
+    "title": "02b · Study population & missing data plan",
+    "section": "2 2) Included vs excluded (selection check)",
+    "text": "2 2) Included vs excluded (selection check)\nCompare some baseline variables between included and excluded after Rule C (key covariates complete). Large differences suggest possible selection bias if missingness relates to exposure/outcome.\n\nimport numpy as np\ndf_tmp = df.copy()\nneed = df_tmp[['age','sex','BMI','SES_class','IMD_quintile','smoking_status','SBP']].copy()\ninc_mask = need.notna().all(axis=1)\nneed['included'] = np.where(inc_mask, 'Included','Excluded')\n\ndef num_summary(d, v):\n    return d.groupby('included')[v].agg(['mean','std','median','count']).round(2)\ndef cat_summary(d, v):\n    ct = pd.crosstab(d['included'], d[v], normalize='index').round(3)\n    return ct\n\ntab_age  = num_summary(need, 'age')\ntab_bmi  = num_summary(need, 'BMI')\ntab_sex  = cat_summary(need, 'sex')\ntab_ses  = cat_summary(need, 'SES_class')\ntab_imd  = cat_summary(need, 'IMD_quintile')\ntab_smok = cat_summary(need, 'smoking_status')\ntab_age, tab_bmi, tab_sex, tab_ses.head(), tab_imd.head(), tab_smok.head()\n\nPrompt: Are excluded participants older / more deprived / different smokers? If yes, discuss direction of potential bias for your question (e.g., could complete-case inflate/attenuate associations?)."
+  },
+  {
+    "objectID": "notebooks/02b_study_population_missing.html#missing-data-map-and-drivers",
+    "href": "notebooks/02b_study_population_missing.html#missing-data-map-and-drivers",
+    "title": "02b · Study population & missing data plan",
+    "section": "3 3) Missing-data map and drivers",
+    "text": "3 3) Missing-data map and drivers\nHigh-level visual of missingness and quick probes of likely MAR drivers (age, IMD, SES).\n\nimport matplotlib.pyplot as plt\nmiss_rate = df.isna().mean().sort_values(ascending=False)\n\nplt.figure(figsize=(7.5,3.6))\nplt.bar(miss_rate.index[:20], miss_rate.values[:20])\nplt.xticks(rotation=75, ha='right'); plt.ylabel('Proportion missing')\nplt.title('Top 20 variables by missingness')\nplt.tight_layout(); plt.show()\n\n# Example probe: missing vit C by SES\nimport pandas as pd\nif 'plasma_vitC_umol_L' in df:\n    mflag = df['plasma_vitC_umol_L'].isna().astype(int)\n    pd.crosstab(df['SES_class'], mflag, normalize='index').round(3)"
+  },
+  {
+    "objectID": "notebooks/02b_study_population_missing.html#default-missing-data-strategy-to-carry-forward",
+    "href": "notebooks/02b_study_population_missing.html#default-missing-data-strategy-to-carry-forward",
+    "title": "02b · Study population & missing data plan",
+    "section": "4 4) Default missing-data strategy to carry forward",
+    "text": "4 4) Default missing-data strategy to carry forward\nFor teaching (no extra deps), choose one of:\n\nComplete-case per-analysis: drop rows with any missingness in variables used for that analysis (preferred base).\n\nCrude imputation for select covariates: median for continuous, mode for categoricals (only if you need stable n for in-class comparisons).\n\nRecord your choice below; later notebooks will respect it if you load the saved cohort or reapply the function here.\n\nCHOICE = 'A'  # 'A' or 'B'\n\ndef impute_simple(d):\n    out = d.copy()\n    for c in out.select_dtypes(include=['float64','int64']).columns:\n        out[c] = out[c].fillna(out[c].median())\n    for c in out.select_dtypes(include=['object','category']).columns:\n        md = out[c].mode(dropna=True)\n        if len(md): out[c] = out[c].fillna(md.iloc[0])\n    return out\n\ncohort_for_next = analysis_cohort.copy() if CHOICE=='A' else impute_simple(analysis_cohort)\ncohort_for_next.to_csv('derived/analysis_cohort_default_next.csv', index=False)\nprint('Saved: derived/analysis_cohort_default_next.csv (strategy', CHOICE, ')')\ncohort_for_next.shape"
+  },
+  {
+    "objectID": "notebooks/02b_study_population_missing.html#todo-your-turn",
+    "href": "notebooks/02b_study_population_missing.html#todo-your-turn",
+    "title": "02b · Study population & missing data plan",
+    "section": "5 5) # TODO — your turn",
+    "text": "5 5) # TODO — your turn\n\nTighten one rule (e.g., require non-missing SBP) and regenerate the flow. What’s the new n and who did you drop?\nCreate an exposure-specific cohort for salt → CVD by requiring non-missing salt_g_d and urinary_sodium_mmol_L; save as derived/cohort_salt.csv.\nWrite 2–3 sentences on the selection risk posed by your exclusions. Which direction of bias is plausible for your primary analysis?\nIf you chose B (impute), list at least two limitations vs multiple imputation.\n\nWe will load derived/analysis_cohort_default_next.csv in Notebook 03 unless you override the path there."
+  },
+  {
+    "objectID": "howto_sandbox/python-cheatsheet.html",
+    "href": "howto_sandbox/python-cheatsheet.html",
+    "title": "",
+    "section": "",
+    "text": "Code"
+  },
+  {
+    "objectID": "howto_sandbox/python-cheatsheet.html#imports",
+    "href": "howto_sandbox/python-cheatsheet.html#imports",
+    "title": "",
+    "section": "1.1 0) Imports",
+    "text": "1.1 0) Imports\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\n# Stats & modelling (install if missing)\nimport scipy.stats as stats\nimport statsmodels.api as sm\nimport statsmodels.formula_api as smf\nIf a library is missing in Colab:\n!pip -q install statsmodels\n# then: Runtime → Restart runtime"
+  },
+  {
+    "objectID": "howto_sandbox/python-cheatsheet.html#load-save-data",
+    "href": "howto_sandbox/python-cheatsheet.html#load-save-data",
+    "title": "",
+    "section": "1.2 1) Load / save data",
+    "text": "1.2 1) Load / save data\n# CSV from local upload or Drive\ndf = pd.read_csv(\"my_data.csv\")\n\n# CSV from GitHub (raw)\nurl = \"https://raw.githubusercontent.com/USER/REPO/BRANCH/path/to/file.csv\"\ndf = pd.read_csv(url)\n\n# Save\ndf.to_csv(\"output.csv\", index=False)"
+  },
+  {
+    "objectID": "howto_sandbox/python-cheatsheet.html#quick-look",
+    "href": "howto_sandbox/python-cheatsheet.html#quick-look",
+    "title": "",
+    "section": "1.3 2) Quick look",
+    "text": "1.3 2) Quick look\ndf.head()\ndf.tail()\ndf.shape\ndf.info()\ndf.describe(include=\"all\")\ndf[\"sex\"].value_counts(dropna=False)\ndf.isna().mean()  # fraction missing per column"
+  },
+  {
+    "objectID": "howto_sandbox/python-cheatsheet.html#select-filter-transform",
+    "href": "howto_sandbox/python-cheatsheet.html#select-filter-transform",
+    "title": "",
+    "section": "1.4 3) Select / filter / transform",
+    "text": "1.4 3) Select / filter / transform\n# Columns\ndf[[\"age\", \"bmi\"]]\n\n# Rows\ndf[df[\"age\"] &gt;= 50]\n\n# New columns\ndf[\"bmi_sq\"] = df[\"bmi\"] ** 2\n\n# Rename\ndf = df.rename(columns={\"cholesterol\": \"chol\"})\n\n# Sort\ndf = df.sort_values([\"age\", \"bmi\"], ascending=[True, False])"
+  },
+  {
+    "objectID": "howto_sandbox/python-cheatsheet.html#grouping-summaries",
+    "href": "howto_sandbox/python-cheatsheet.html#grouping-summaries",
+    "title": "",
+    "section": "1.5 4) Grouping & summaries",
+    "text": "1.5 4) Grouping & summaries\ndf.groupby(\"group\")[\"bmi\"].mean()\ndf.groupby([\"group\", \"sex\"])[\"sbp\"].agg([\"mean\", \"std\", \"count\"])\n\n# Crosstab\npd.crosstab(df[\"group\"], df[\"sex\"], margins=True, normalize=\"index\")"
+  },
+  {
+    "objectID": "howto_sandbox/python-cheatsheet.html#plotting-quick",
+    "href": "howto_sandbox/python-cheatsheet.html#plotting-quick",
+    "title": "",
+    "section": "1.6 5) Plotting (quick)",
+    "text": "1.6 5) Plotting (quick)\ndf[\"bmi\"].hist(bins=20)\nplt.title(\"BMI distribution\")\nplt.xlabel(\"BMI\"); plt.ylabel(\"Count\")\nplt.show()\n\n# Boxplot by group\ndf.boxplot(column=\"sbp\", by=\"group\")\nplt.suptitle(\"\"); plt.title(\"SBP by group\"); plt.xlabel(\"group\"); plt.ylabel(\"SBP\")\nplt.show()\n\n# Scatter\nplt.scatter(df[\"bmi\"], df[\"sbp\"])\nplt.xlabel(\"BMI\"); plt.ylabel(\"SBP\"); plt.show()"
+  },
+  {
+    "objectID": "howto_sandbox/python-cheatsheet.html#basic-stats",
+    "href": "howto_sandbox/python-cheatsheet.html#basic-stats",
+    "title": "",
+    "section": "1.7 6) Basic stats",
+    "text": "1.7 6) Basic stats\n# Two-sample t-test\na = df.loc[df[\"group\"] == \"A\", \"sbp\"]\nb = df.loc[df[\"group\"] == \"B\", \"sbp\"]\nstats.ttest_ind(a, b, equal_var=False, nan_policy=\"omit\")\n\n# Chi-square test on a 2x2\ntab = pd.crosstab(df[\"group\"], df[\"sex\"])\nstats.chi2_contingency(tab)"
+  },
+  {
+    "objectID": "howto_sandbox/python-cheatsheet.html#simple-models-statsmodels",
+    "href": "howto_sandbox/python-cheatsheet.html#simple-models-statsmodels",
+    "title": "",
+    "section": "1.8 7) Simple models (statsmodels)",
+    "text": "1.8 7) Simple models (statsmodels)\n# OLS regression\nmodel = smf.ols(\"sbp ~ age + bmi + C(sex) + C(group)\", data=df).fit()\nprint(model.summary())\n\n# Logistic regression (binary outcome)\n# e.g., 'high_sbp' is 0/1\nlogit = smf.logit(\"high_sbp ~ age + bmi + C(sex) + C(group)\", data=df).fit()\nprint(logit.summary())"
+  },
+  {
+    "objectID": "howto_sandbox/python-cheatsheet.html#jupyter-basics",
+    "href": "howto_sandbox/python-cheatsheet.html#jupyter-basics",
+    "title": "",
+    "section": "1.9 8) Jupyter basics",
+    "text": "1.9 8) Jupyter basics\n\nRun cell: Shift + Enter\nInsert cell above/below: A / B\nInterrupt: stop button (■) or Kernel/Runtime → Interrupt\nRestart: Kernel/Runtime → Restart\nMarkdown cell: text with # headings, **bold**, lists, etc."
+  },
+  {
+    "objectID": "howto_sandbox/python-cheatsheet.html#reproducibility",
+    "href": "howto_sandbox/python-cheatsheet.html#reproducibility",
+    "title": "",
+    "section": "1.10 9) Reproducibility",
+    "text": "1.10 9) Reproducibility\nSEED = 11088\nnp.random.seed(SEED)\n\nRecord: dataset version, random seed, and exact code you ran."
+  },
+  {
+    "objectID": "howto_sandbox/index.html",
+    "href": "howto_sandbox/index.html",
+    "title": "FB2NEP — How‑To & Sandbox (Colab/Jupyter)",
+    "section": "",
+    "text": "This page shows you exactly how to open and use our notebooks in Google Colab (or locally in Jupyter). It includes direct links and plain‑English guidance. If you’ve never touched Python before, you’re in the right place."
+  },
+  {
+    "objectID": "howto_sandbox/index.html#quick-links",
+    "href": "howto_sandbox/index.html#quick-links",
+    "title": "FB2NEP — How‑To & Sandbox (Colab/Jupyter)",
+    "section": "1 Quick links",
+    "text": "1 Quick links\nOpen the notebooks directly in Colab:\n\nIntroduction Notebook\n · View on GitHub\nPlayground (Sandbox)\n · View on GitHub\n\nPrintable cheat‑sheet:\n- python‑cheatsheet.md (open “Raw”, then save/print)\n\nIf you fork or use a different repository, update the links by replacing ggkuhnle/fb2nep-epi with your repo slug."
+  },
+  {
+    "objectID": "howto_sandbox/index.html#how-to-open-a-notebook-in-colab-stepbystep",
+    "href": "howto_sandbox/index.html#how-to-open-a-notebook-in-colab-stepbystep",
+    "title": "FB2NEP — How‑To & Sandbox (Colab/Jupyter)",
+    "section": "2 How to open a notebook in Colab (step‑by‑step)",
+    "text": "2 How to open a notebook in Colab (step‑by‑step)\n\nClick an Open in Colab button above. Colab will load the notebook from GitHub.\n\nAt the top‑right, click Connect if it isn’t already connected. This starts a fresh, temporary Python session (a “runtime”).\n\nYou may see a warning like “This notebook was not authored by Google.”\n\nClick Run anyway. Our notebooks are plain text and safe to run.\n\n\nYou might also see “Warning: This notebook requires permissions to run.”\n\nClick Run anyway. Colab sandboxes code; nothing runs on your computer.\n\n\nTo run a cell, click the small ▶ button on its left, or press Shift + Enter.\n\nTo run every cell from top to bottom, go to Runtime → Run all.\n\nTo save your own editable copy, go to File → Save a copy in Drive. You now have a personal copy you can edit freely.\n\n\n2.1 Useful Colab options\n\nRuntime → Restart runtime resets the session if things get stuck.\n\nRuntime → Change runtime type (we use Python 3; no GPU needed).\n\nFile → Download lets you save the executed notebook as .ipynb or PDF."
+  },
+  {
+    "objectID": "howto_sandbox/index.html#working-locally-in-jupyter-optional",
+    "href": "howto_sandbox/index.html#working-locally-in-jupyter-optional",
+    "title": "FB2NEP — How‑To & Sandbox (Colab/Jupyter)",
+    "section": "3 Working locally in Jupyter (optional)",
+    "text": "3 Working locally in Jupyter (optional)\nIf you prefer local execution: 1. Install Anaconda or Miniconda, then open Jupyter Lab.\n2. Download the .ipynb files from GitHub and open them in Jupyter Lab.\n3. Run cells with Shift + Enter as in Colab."
+  },
+  {
+    "objectID": "howto_sandbox/index.html#troubleshooting",
+    "href": "howto_sandbox/index.html#troubleshooting",
+    "title": "FB2NEP — How‑To & Sandbox (Colab/Jupyter)",
+    "section": "4 Troubleshooting",
+    "text": "4 Troubleshooting\n\nModuleNotFoundError (e.g. statsmodels): run the cell that starts with !pip install ..., then Runtime → Restart runtime, and re‑run the code.\n\nKernel crashed / out of memory: restart the runtime. Don’t open huge datasets in this sandbox.\n\nLong‑running cells: click the stop icon (■) next to the cell number, or Runtime → Interrupt execution."
+  },
+  {
+    "objectID": "howto_sandbox/index.html#what-youll-learn-here",
+    "href": "howto_sandbox/index.html#what-youll-learn-here",
+    "title": "FB2NEP — How‑To & Sandbox (Colab/Jupyter)",
+    "section": "5 What you’ll learn here",
+    "text": "5 What you’ll learn here\n\nHow to run Python cells safely in the cloud (Colab).\n\nHow to make small edits and immediately see their effect.\n\nHow to generate simple synthetic data and make basic plots & analyses you’ll reuse in FB2NEP.\n\nNow jump into the Introduction Notebook first, then play in the Playground."
+  },
+  {
+    "objectID": "metadata/provenance.html",
+    "href": "metadata/provenance.html",
+    "title": "",
+    "section": "",
+    "text": "Code"
+  },
+  {
+    "objectID": "metadata/provenance.html#design-intents",
+    "href": "metadata/provenance.html#design-intents",
+    "title": "",
+    "section": "1.1 Design intents",
+    "text": "1.1 Design intents\n\nTeach realistic cohort structure with two endpoints: CVD and Cancer.\n\nProvide both incident indicators and event dates.\n\nEncode SES (ABC1/C2DE) and IMD gradients.\n\nAdd clinically relevant covariates: SBP, family history, menopausal status.\n\nInclude selected non‑linear associations (BMI U‑shape, alcohol J‑shape, SBP quadratic in age, vitamin C saturation).\n\nAdd red meat intake as a positive risk factor for Cancer above ~50 g/d."
+  },
+  {
+    "objectID": "metadata/provenance.html#variable-generation-summary",
+    "href": "metadata/provenance.html#variable-generation-summary",
+    "title": "",
+    "section": "1.2 Variable generation (summary)",
+    "text": "1.2 Variable generation (summary)\n\nAge ~ truncated Normal(μ=58, σ=10, 40–90). Sex: 52% F, 48% M.\n\nIMD_quintile skewed to 2–4.\n\nSES_class depends on IMD.\n\nMenopausal status age‑patterned.\n\nSmoking ~15% current.\n\nPA: depends on IMD.\n\nBMI: Normal(27, 4.5), rises with age/smoking.\n\nEnergy: log‑normal around 1900 kcal, scaled by PA/sex.\n\nDiet: FV, red meat, SSB, fibre, salt depend on IMD, SES, energy.\n\nBiomarkers: plasma vitC saturates with FV; urinary Na tracks salt.\n\nSBP: non‑linear in age plus salt, BMI, smoking, PA."
+  },
+  {
+    "objectID": "metadata/provenance.html#outcomes-and-dates",
+    "href": "metadata/provenance.html#outcomes-and-dates",
+    "title": "",
+    "section": "1.3 Outcomes and dates",
+    "text": "1.3 Outcomes and dates\n\nCVD: age, BMI (U‑shape), smoking, sex, IMD, SES, salt, SBP, alcohol J‑shape, FHx CVD. Target 10–15%.\n\nCancer: age, BMI, smoking, SES, sex, FHx cancer, red meat &gt;50 g/d. Target 8–12%.\n\nEvent dates: baseline + simulated time for incidents."
+  },
+  {
+    "objectID": "metadata/provenance.html#missingness",
+    "href": "metadata/provenance.html#missingness",
+    "title": "",
+    "section": "1.4 Missingness",
+    "text": "1.4 Missingness\n\nMCAR: ~2–3%.\n\nMAR: +5–8% tied to IMD/age.\n\nMNAR (tiny): alcohol→alcohol missing; high BMI→BMI missing."
+  },
+  {
+    "objectID": "metadata/provenance.html#validation-targets",
+    "href": "metadata/provenance.html#validation-targets",
+    "title": "",
+    "section": "1.5 Validation targets",
+    "text": "1.5 Validation targets\n\nCorr(FV, vitC) &gt; 0.45.\n\nCorr(salt, urinary Na) &gt; 0.55.\n\nSBP vs age Spearman ρ &gt; 0.35.\n\nSES/IMD diet gradients as expected.\n\nCVD incidence 10–15%; Cancer 8–12%.\n\nRed meat higher in cancer cases.\n\nEvent dates present only if incident=1."
+  },
+  {
+    "objectID": "metadata/provenance.html#notes",
+    "href": "metadata/provenance.html#notes",
+    "title": "",
+    "section": "1.6 Notes",
+    "text": "1.6 Notes\nThis is teaching data: tuned for pedagogy, not inference."
+  },
+  {
+    "objectID": "assessment/FB2NEP_Cheat_Sheet.html",
+    "href": "assessment/FB2NEP_Cheat_Sheet.html",
+    "title": "",
+    "section": "",
+    "text": "Code"
+  },
+  {
+    "objectID": "assessment/FB2NEP_Cheat_Sheet.html#general-python-and-numpy",
+    "href": "assessment/FB2NEP_Cheat_Sheet.html#general-python-and-numpy",
+    "title": "",
+    "section": "1.1 1. General Python and NumPy",
+    "text": "1.1 1. General Python and NumPy\n\nnp.random.normal(0, scale, size) (NumPy)\n\nPurpose: Generates random noise (jitter) for data variability.\nExample: np.random.normal(0, df['Age'].std() * 0.05, len(df)) adds noise to Age (5% of its standard deviation).\nContext: Used to simulate slight variations in continuous variables for practice.\n\nnp.log1p(x) (NumPy)\n\nPurpose: Computes log(1 + x) for data transformation (stabilises variance).\nExample: np.log1p(df['Flavanol_Biomarker']) transforms biomarker values.\nContext: Used for log-transformation in regression analyses.\n\nnp.sqrt(x) (NumPy)\n\nPurpose: Computes square root for data transformation (reduces skewness).\nExample: np.sqrt(df['Systolic_BP']) transforms blood pressure.\nContext: Alternative transformation for continuous variables."
+  },
+  {
+    "objectID": "assessment/FB2NEP_Cheat_Sheet.html#pandas-data-handling",
+    "href": "assessment/FB2NEP_Cheat_Sheet.html#pandas-data-handling",
+    "title": "",
+    "section": "1.2 2. Pandas (Data Handling)",
+    "text": "1.2 2. Pandas (Data Handling)\n\npd.read_csv(file)\n\nPurpose: Loads a CSV file into a DataFrame.\nExample: pd.read_csv('fb2nep.csv') loads the dataset.\nContext: Used to import the FB2NEP dataset.\n\ndf.head()\n\nPurpose: Displays the first 5 rows of a DataFrame.\nExample: df.head() shows a preview of the dataset.\nContext: Helps inspect data structure and column names.\n\ndf.isna()\n\nPurpose: Checks for missing values (returns True/False).\nExample: df.isna().mean() calculates the proportion of missing values per column.\nContext: Used in the missingness audit.\n\ndf.groupby(by)\n\nPurpose: Groups data by a column for summary statistics.\nExample: df.groupby('Sex') groups by sex for Table 1 comparisons.\nContext: Enables comparisons by sex, SES, or disease status.\n\npd.concat(objs, axis)\n\nPurpose: Combines DataFrames or Series (e.g., for tables).\nExample: pd.concat({c: summarise_series(df[c]) for c in cols}, axis=1) creates Table 1.\nContext: Used to build summary tables.\n\ndf.select_dtypes(include)\n\nPurpose: Selects columns by data type (e.g., numeric).\nExample: df.select_dtypes(include=[np.number]) gets numeric columns for jitter.\nContext: Identifies continuous variables for transformations."
+  },
+  {
+    "objectID": "assessment/FB2NEP_Cheat_Sheet.html#matplotlib-plotting",
+    "href": "assessment/FB2NEP_Cheat_Sheet.html#matplotlib-plotting",
+    "title": "",
+    "section": "1.3 3. Matplotlib (Plotting)",
+    "text": "1.3 3. Matplotlib (Plotting)\n\nplt.scatter(x, y, alpha)\n\nPurpose: Creates a scatter plot.\nExample: plt.scatter(df['Flavanol_DD'], df['Flavanol_Biomarker'], alpha=0.6) plots diet diary vs. biomarker.\nContext: Used for biomarker vs. diet diary comparison.\n\nplt.imshow(data, aspect, interpolation)\n\nPurpose: Displays a matrix (e.g., missingness patterns).\nExample: plt.imshow(df.isna(), aspect='auto') shows missing data.\nContext: Visualises missingness matrix.\n\nplt.axhline(y)\n\nPurpose: Adds a horizontal line to a plot.\nExample: plt.axhline(3, color='red') marks residual thresholds.\nContext: Used in residual and Bland-Altman plots."
+  },
+  {
+    "objectID": "assessment/FB2NEP_Cheat_Sheet.html#statsmodels-regression",
+    "href": "assessment/FB2NEP_Cheat_Sheet.html#statsmodels-regression",
+    "title": "",
+    "section": "1.4 4. Statsmodels (Regression)",
+    "text": "1.4 4. Statsmodels (Regression)\n\nsmf.ols(formula, data).fit()\n\nPurpose: Fits a linear regression model.\nExample: smf.ols('Systolic_BP ~ Flavanol_Biomarker', df).fit() regresses BP on nutrient intake.\nContext: Used for nutrient vs. BP analysis.\n\nsmf.logit(formula, data).fit(disp=False)\n\nPurpose: Fits a logistic regression model for binary outcomes.\nExample: smf.logit('CVD_Incidence ~ Flavanol_Biomarker', df).fit() models disease risk.\nContext: Used for nutrient vs. disease association.\n\nmodel.summary()\n\nPurpose: Prints regression results (coefficients, p-values, etc.).\nExample: bp_model.summary() shows linear regression output.\nContext: Used to interpret model results.\n\nmodel.params, model.bse\n\nPurpose: Access regression coefficients and standard errors.\nExample: np.exp(model.params['Flavanol_Biomarker']) computes odds ratio.\nContext: Used in change-in-estimate analysis."
+  },
+  {
+    "objectID": "assessment/FB2NEP_Cheat_Sheet.html#scipy-statistics",
+    "href": "assessment/FB2NEP_Cheat_Sheet.html#scipy-statistics",
+    "title": "",
+    "section": "1.5 5. SciPy (Statistics)",
+    "text": "1.5 5. SciPy (Statistics)\n\nstats.chi2_contingency(table)\n\nPurpose: Performs chi-squared test for independence.\nExample: stats.chi2_contingency(pd.crosstab(miss, df['CVD_Incidence'])) tests if missingness is random.\nContext: Used in missingness audit for categorical variables.\n\nstats.ttest_ind(a, b, equal_var=False)\n\nPurpose: Performs t-test for comparing means.\nExample: stats.ttest_ind(miss_val, not_miss_val) compares groups for missingness.\nContext: Used for continuous variables in missingness tests."
+  },
+  {
+    "objectID": "assessment/FB2NEP_Cheat_Sheet.html#lifelines-cox-regression",
+    "href": "assessment/FB2NEP_Cheat_Sheet.html#lifelines-cox-regression",
+    "title": "",
+    "section": "1.6 6. Lifelines (Cox Regression)",
+    "text": "1.6 6. Lifelines (Cox Regression)\n\nCoxPHFitter()\n\nPurpose: Creates a Cox proportional hazards model.\nExample: CoxPHFitter().fit(df, duration_col='Time_to_Event', event_col='CVD_Incidence') fits Cox model.\nContext: Used for time-to-event analysis (disease).\n\nmodel.print_summary()\n\nPurpose: Displays Cox model results (hazard ratios, etc.).\nExample: cox_model.print_summary() shows Cox regression output.\nContext: Interprets nutrient vs. disease association.\n\nmodel.params_, model.standard_errors_\n\nPurpose: Access hazard ratios and standard errors.\nExample: np.exp(model.params_['Flavanol_Biomarker']) computes hazard ratio.\nContext: Used in change-in-estimate for Cox models."
+  },
+  {
+    "objectID": "assessment/FB2NEP_Cheat_Sheet.html#tips-for-assessment",
+    "href": "assessment/FB2NEP_Cheat_Sheet.html#tips-for-assessment",
+    "title": "",
+    "section": "1.7 Tips for Assessment",
+    "text": "1.7 Tips for Assessment\n\nTable 1: Use table1(df, cols, by=MAPPING['sex']) to compare groups. Try by=MAPPING['outcome'] for disease.\nMissingness: Check missingness_summary(df) for proportions, then use test_mar(df, var, group_by) to test patterns.\nRegression: Use fit_linear_model for BP, fit_model for disease. Toggle USE_COX for Cox regression.\nTransformations: Set TRANSFORM='log' or 'sqrt' in the mapping cell to experiment.\nInterpretation: Look at p-values, coefficients (or OR/HR), and residuals to draw conclusions."
+  },
+  {
+    "objectID": "assessment/FB2NEP_Assessment_Brief.html",
+    "href": "assessment/FB2NEP_Assessment_Brief.html",
+    "title": "",
+    "section": "",
+    "text": "Code"
+  },
+  {
+    "objectID": "assessment/FB2NEP_Assessment_Brief.html#provided-files",
+    "href": "assessment/FB2NEP_Assessment_Brief.html#provided-files",
+    "title": "",
+    "section": "1.1 Provided Files",
+    "text": "1.1 Provided Files\n\nFB2NEP_Assessment_Brief.md: This document, outlining the assessment requirements, tasks, and marking rubric. Review it carefully to understand expectations and deliverables.\nfb2nep_assignment_template.ipynb: The main notebook for the assessment. Complete the “Data mapping” cell and execute all cells to generate results for your report. Submit the executed notebook with outputs.\n\nLink: Open Assessment Notebook in Google Colab\n\nfb2nep_practice.ipynb: A practice notebook to explore the analysis tasks (e.g., Table 1, missingness, regressions) without needing to set up data or libraries. Use this to practice before working on the assessment.\n\nLink: Open Practice Notebook in Google Colab\n\nFB2NEP_Cheat_Sheet.md: A guide explaining key Python functions (e.g., pandas, statsmodels, lifelines) used in the notebooks, with examples relevant to the assessment tasks. Refer to this for understanding code and interpreting outputs."
+  },
+  {
+    "objectID": "assessment/FB2NEP_Assessment_Brief.html#learning-outcomes-assessed",
+    "href": "assessment/FB2NEP_Assessment_Brief.html#learning-outcomes-assessed",
+    "title": "",
+    "section": "1.2 Learning Outcomes Assessed",
+    "text": "1.2 Learning Outcomes Assessed\n\nExplain core principles of nutritional epidemiology (exposure/outcome definitions, bias, confounding, measurement error).\n\nConduct basic epidemiological data analysis (Table 1, missingness audit, regression modelling).\n\nCritically appraise the impact of measurement error and confounding on inference (biomarker vs diet diary (DD) comparison; model diagnostics; change-in-estimate).\n\nCommunicate findings clearly, with correct interpretation and limitations."
+  },
+  {
+    "objectID": "assessment/FB2NEP_Assessment_Brief.html#academic-integrity-llmproofing",
+    "href": "assessment/FB2NEP_Assessment_Brief.html#academic-integrity-llmproofing",
+    "title": "",
+    "section": "1.3 Academic Integrity & “LLM‑Proofing”",
+    "text": "1.3 Academic Integrity & “LLM‑Proofing”\n\nThis assessment requires dataset‑specific results that cannot be guessed. Your grade depends on the numerical results you obtain from fb2nep.csv and on your reasoned interpretation.\nProvide a short Methods section that explains exactly what you did and why (model choices, confounder justification, inclusion criteria). Copy‑pasting generic text will be penalised.\nInclude a code appendix (the executed fb2nep_assignment_template.ipynb notebook). Keep intermediate outputs. We may reproduce your results.\n\nYou must complete the “Data mapping” cell in the notebook where you assign the correct columns for outcome, exposures, and candidate confounders.\nWhere appropriate, justify your choices using study design logic, DAG reasoning, or change‑in‑estimate rules (≥10% rule). Merely citing “the model told me” is not acceptable.\nWe may request a brief viva to discuss your workflow and choices."
+  },
+  {
+    "objectID": "assessment/FB2NEP_Assessment_Brief.html#task",
+    "href": "assessment/FB2NEP_Assessment_Brief.html#task",
+    "title": "",
+    "section": "1.4 Task",
+    "text": "1.4 Task\nWrite a concise report (2000–2500 words) supported by your executed notebook that addresses the following numbered questions. Label sections accordingly in your report.\n\n1.4.1 1) Data Audit and Table 1 (10 marks)\n\nDescribe the cohort derivation (inclusion/exclusion). Report N at each step.\n\nProduce Table 1 (overall and, if sensible, stratified by your chosen outcome or exposure). Include counts, %, means/SD, or medians/IQR as appropriate.\n\nBriefly interpret notable imbalances or patterns relevant to potential confounding.\n\n\n\n1.4.2 2) Missingness (10 marks)\n\nProvide a missingness summary (per variable; total rows with any missing).\n\nShow a visualisation of missingness patterns (matrix/heatmap).\n\nExplain whether missingness is likely MCAR/MAR/MNAR and the implications for your analysis. State and justify your chosen handling approach (e.g., complete‑case, simple imputation for covariates, or sensitivity analysis).\n\n\n\n1.4.3 3) Biomarker vs Diet Diary (DD) Comparison (15 marks)\n\nCompare the biomarker exposure and the DD‑based exposure: produce a scatter plot, correlation, and a Bland–Altman plot.\n\nQuantify and interpret agreement vs association.\n\nDiscuss likely measurement error structure (classical vs Berkson; differential vs non‑differential) and expected bias directions in regression.\n\n\n\n1.4.4 4) Primary Association & Confounding (15 marks)\n\nSpecify a primary outcome (binary or continuous) and a primary exposure (use biomarker as the main exposure; DD as a secondary).\n\nFit a minimally adjusted model and a confounder‑adjusted model using a pre‑specified confounder set (justify via DAG or domain logic).\n\nApply a change‑in‑estimate (≥10%) procedure to identify additional confounders from a candidate pool. Report the % change and justify final model.\n\nPresent results as effect sizes with 95% CIs and provide a plain‑language interpretation (“On average…”, “Odds are…”) that is aligned with model scale.\n\n\n\n1.4.5 5) Sensitivity Analyses (10 marks)\nPerform at least two of:\n- Replace the exposure (DD ↔︎ biomarker) and compare estimates.\n- Use robust SEs; check influential points; or re‑fit with/without outliers.\n- Add plausible interaction (e.g., sex×exposure) and interpret.\n- Re‑express exposure (e.g., per SD, log‑transform, or quintiles) and compare.\n\n\n1.4.6 6) Reflection & Limitations (10 marks)\nDiscuss strengths, limitations, and generalisability. Address measurement error, residual confounding, selection bias, and how they might shift the effect size (direction and magnitude)."
+  },
+  {
+    "objectID": "assessment/FB2NEP_Assessment_Brief.html#report-structure-recommended",
+    "href": "assessment/FB2NEP_Assessment_Brief.html#report-structure-recommended",
+    "title": "",
+    "section": "1.5 Report Structure (Recommended)",
+    "text": "1.5 Report Structure (Recommended)\n\nTitle, Abstract (≤150 words)\n\nMethods (data mapping, inclusion/exclusion, variables, models, confounder rationale, handling of missingness)\n\nResults (sections 1–5, with numbered figures/tables that correspond to the questions)\n\nDiscussion (section 6)\n\nReferences (if used)\n\nAppendix: Executed fb2nep_assignment_template.ipynb"
+  },
+  {
+    "objectID": "assessment/FB2NEP_Assessment_Brief.html#marking-rubric-100-marks",
+    "href": "assessment/FB2NEP_Assessment_Brief.html#marking-rubric-100-marks",
+    "title": "",
+    "section": "1.6 Marking Rubric (100 marks)",
+    "text": "1.6 Marking Rubric (100 marks)\n\nTechnical Correctness & Reproducibility (30): Code runs; outputs reproducible; sensible diagnostics; correct effect metrics/CI.\n\nEpidemiological Reasoning (30): Appropriate confounder handling; clear justification (DAG/change‑in‑estimate); valid interpretation of bias sources.\n\nInsight & Critical Thinking (25): Data‑driven insights; limitations acknowledged; sensitivity analyses inform conclusions.\n\nPresentation & Clarity (15): Coherent narrative; well‑labelled figures/tables; concise writing within word limit.\n\nBand Descriptors (Indicative):\n- High First (≥80): Methodologically rigorous; exemplary reasoning; insightful sensitivity work that changes or sharpens conclusions.\n- First (70–79): Correct, well‑justified models; clear interpretation; minor issues only.\n- Upper Second (60–69): Mostly correct; some gaps in justification or diagnostics; interpretation broadly sound.\n- Lower Second (50–59): Basic pipeline present; limited justification; superficial interpretation.\n- Third (&lt;50): Major errors; irreproducible; weak or incorrect interpretation."
+  },
+  {
+    "objectID": "assessment/FB2NEP_Assessment_Brief.html#deliverables",
+    "href": "assessment/FB2NEP_Assessment_Brief.html#deliverables",
+    "title": "",
+    "section": "1.7 Deliverables",
+    "text": "1.7 Deliverables\n\nPDF report (2000–2500 words) named FB2NEP_&lt;studentID&gt;.pdf.\n\nExecuted notebook fb2nep_assignment_&lt;studentID&gt;.ipynb with all cells run.\n\nOptional: a short DAG image (if used), included in the report."
+  },
+  {
+    "objectID": "assessment/FB2NEP_Assessment_Brief.html#getting-started",
+    "href": "assessment/FB2NEP_Assessment_Brief.html#getting-started",
+    "title": "",
+    "section": "1.8 Getting Started",
+    "text": "1.8 Getting Started\n\nPlace fb2nep.csv in ./data/ (or adjust the path in the notebook).\n\nReview the assessment brief (FB2NEP_Assessment_Brief.md) to understand the tasks and expectations.\n\nUse the practice notebook (fb2nep_practice.ipynb) to experiment with the analyses. It auto-loads data and libraries, with cells for each task (Table 1, missingness, regressions). Access it via Google Colab.\n\nRefer to the cheat sheet (FB2NEP_Cheat_Sheet.md) for explanations of Python functions used in the notebooks.\n\nOpen and complete the Data mapping cell in fb2nep_assignment_template.ipynb. This is essential for reproducibility and marking. Access it via Google Colab.\n\nRun all cells in the assignment notebook to generate outputs for your report.\n\nNote: The Google Colab links assume the notebooks are in the assessment folder of the ggkuhnle/fb2nep-epi repository. If the repository structure or paths differ, please inform the module coordinator to ensure the links work correctly."
+  }
+]

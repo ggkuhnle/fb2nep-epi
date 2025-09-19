@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>05 · Regression analysis (cross-sectional) – FB2NEP Nutritional Epidemiology</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">FB2NEP Nutritional Epidemiology</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../notebooks/index.html"> 
+<span class="menu-text">Notebooks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../metadata/provenance.html"> 
+<span class="menu-text">Provenance</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../assessment/FB2NEP_Assessment_Brief.html"> 
+<span class="menu-text">Assessment</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">05 · Regression analysis (cross-sectional)</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FB2NEP — Nutritional Epidemiology</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Notebooks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notebooks/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nutritional Epidemiology Notebooks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">notebooks/*.ipynb</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Slides (PDF)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">slides/*.pdf</span>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#outcome-predictors-cross-sectional-setup" id="toc-outcome-predictors-cross-sectional-setup" class="nav-link active" data-scroll-target="#outcome-predictors-cross-sectional-setup"><span class="header-section-number">1</span> 1) Outcome &amp; predictors (cross-sectional setup)</a></li>
+  <li><a href="#linear-regression-sbp-as-outcome" id="toc-linear-regression-sbp-as-outcome" class="nav-link" data-scroll-target="#linear-regression-sbp-as-outcome"><span class="header-section-number">2</span> 2) Linear regression — SBP as outcome</a>
+  <ul class="collapse">
+  <li><a href="#diagnostics-residual-plots-qq" id="toc-diagnostics-residual-plots-qq" class="nav-link" data-scroll-target="#diagnostics-residual-plots-qq"><span class="header-section-number">2.1</span> Diagnostics — residual plots &amp; QQ</a></li>
+  <li><a href="#multicollinearity-quick-vif-check" id="toc-multicollinearity-quick-vif-check" class="nav-link" data-scroll-target="#multicollinearity-quick-vif-check"><span class="header-section-number">2.2</span> Multicollinearity — quick VIF check</a></li>
+  </ul></li>
+  <li><a href="#transformations-non-linear-terms" id="toc-transformations-non-linear-terms" class="nav-link" data-scroll-target="#transformations-non-linear-terms"><span class="header-section-number">3</span> 3) Transformations &amp; non-linear terms</a></li>
+  <li><a href="#logistic-regression-prevalent-hypertension-teaching-example" id="toc-logistic-regression-prevalent-hypertension-teaching-example" class="nav-link" data-scroll-target="#logistic-regression-prevalent-hypertension-teaching-example"><span class="header-section-number">4</span> 4) Logistic regression — prevalent hypertension (teaching example)</a>
+  <ul class="collapse">
+  <li><a href="#brief-interpretation-guide" id="toc-brief-interpretation-guide" class="nav-link" data-scroll-target="#brief-interpretation-guide"><span class="header-section-number">4.1</span> Brief interpretation guide</a></li>
+  </ul></li>
+  <li><a href="#todo-hands-on-tasks" id="toc-todo-hands-on-tasks" class="nav-link" data-scroll-target="#todo-hands-on-tasks"><span class="header-section-number">5</span> 5) # TODO — hands-on tasks</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/ggkuhnle/fb2nep-epi/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ggkuhnle/fb2nep-epi/blob/main/notebooks/05_regression_crosssectional.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">05 · Regression analysis (cross-sectional)</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<blockquote class="blockquote">
+<p><strong>Purpose</strong>: build and assess cross-sectional models: linear (SBP) and logistic (prevalent hypertension). Focus on transformations, non-linear terms, diagnostics, and clear interpretation.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Learning objectives</strong> - Fit linear regression for a continuous outcome (SBP) and interpret coefficients. - Fit logistic regression for a derived binary outcome (hypertension). Report ORs (95% CI). - Apply transformations (log, z) and non-linear terms (polynomial, splines) when justified. - Run basic diagnostics: residuals, QQ, influence, and multicollinearity (VIF).</p>
+</blockquote>
+<hr>
+<div id="c114968e" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure the repo root (which has scripts/bootstrap.py) is on sys.path.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys, os, pathlib, subprocess</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>REPO_NAME <span class="op">=</span> <span class="st">"fb2nep-epi"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>REPO_URL  <span class="op">=</span> <span class="st">"https://github.com/ggkuhnle/fb2nep-epi.git"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>IN_COLAB  <span class="op">=</span> <span class="st">"google.colab"</span> <span class="kw">in</span> sys.modules</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ensure_repo_on_path():</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    here <span class="op">=</span> pathlib.Path.cwd()</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Walk up a few levels to find scripts/bootstrap.py</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> p <span class="kw">in</span> [here, <span class="op">*</span>here.parents]:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (p <span class="op">/</span> <span class="st">"scripts"</span> <span class="op">/</span> <span class="st">"bootstrap.py"</span>).exists():</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            os.chdir(p)                 <span class="co"># normalise CWD to repo root</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            sys.path.append(<span class="bu">str</span>(p))     <span class="co"># ensure imports like "from scripts..." work</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> p</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Not found locally: if on Colab, clone then chdir</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> IN_COLAB:</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># clone only if missing</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> (pathlib.Path(<span class="st">"/content"</span>) <span class="op">/</span> REPO_NAME).exists():</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>            subprocess.run([<span class="st">"git"</span>, <span class="st">"clone"</span>, REPO_URL], check<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        os.chdir(<span class="ss">f"/content/</span><span class="sc">{</span>REPO_NAME<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        sys.path.append(os.getcwd())</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> pathlib.Path.cwd()</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Otherwise, we can’t proceed</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(<span class="st">"Could not find repo root containing scripts/bootstrap.py"</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>repo_root <span class="op">=</span> ensure_repo_on_path()</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Repo root:"</span>, repo_root)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-3" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bootstrap: ensure repo root on path, then import init</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys, pathlib</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="bu">str</span>(pathlib.Path.cwd().parent))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scripts.bootstrap <span class="im">import</span> init</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>df, ctx <span class="op">=</span> init()</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="outcome-predictors-cross-sectional-setup" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="outcome-predictors-cross-sectional-setup"><span class="header-section-number">1</span> 1) Outcome &amp; predictors (cross-sectional setup)</h2>
+<p>We’ll treat <strong>SBP</strong> (systolic BP) as a continuous outcome for linear regression. For a binary example, define <strong>prevalent hypertension</strong> as SBP ≥ 140 mmHg (teaching-only threshold).</p>
+<p><strong>Candidate predictors</strong>: <code>age</code>, <code>sex</code>, <code>BMI</code>, <code>IMD_quintile</code>, <code>SES_class</code>, <code>smoking_status</code>, <code>salt_g_d</code>, <code>fruit_veg_g_d</code>, <code>red_meat_g_d</code>, <code>physical_activity</code>.</p>
+<div id="cell-5" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np, pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>work <span class="op">=</span> df[[<span class="st">'SBP'</span>,<span class="st">'age'</span>,<span class="st">'sex'</span>,<span class="st">'BMI'</span>,<span class="st">'IMD_quintile'</span>,<span class="st">'SES_class'</span>,<span class="st">'smoking_status'</span>,<span class="st">'salt_g_d'</span>,<span class="st">'fruit_veg_g_d'</span>,<span class="st">'red_meat_g_d'</span>,<span class="st">'physical_activity'</span>]].copy()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>work <span class="op">=</span> work.dropna()</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>work[<span class="st">'HT_prev'</span>] <span class="op">=</span> (work[<span class="st">'SBP'</span>] <span class="op">&gt;=</span> <span class="dv">140</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>work.head(<span class="dv">3</span>), work.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="linear-regression-sbp-as-outcome" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="linear-regression-sbp-as-outcome"><span class="header-section-number">2</span> 2) Linear regression — SBP as outcome</h2>
+<p>Start simple (salt only), then build up with plausible confounders and compare models by fit and interpretability.</p>
+<div id="cell-7" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> patsy <span class="im">import</span> dmatrices</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Unadjusted: SBP ~ salt_g_d</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>y_u, X_u <span class="op">=</span> dmatrices(<span class="st">'SBP ~ salt_g_d'</span>, data<span class="op">=</span>work, return_type<span class="op">=</span><span class="st">'dataframe'</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>fit_u <span class="op">=</span> sm.OLS(y_u, X_u).fit()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>fit_u.summary().tables[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-8" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjusted: SBP ~ salt + age + sex + BMI + IMD_quintile + SES_class + smoking + physical_activity</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># C() wraps categoricals; continuous left as-is (for now)</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>formula_a <span class="op">=</span> <span class="st">'SBP ~ salt_g_d + age + BMI + C(sex) + C(IMD_quintile) + C(SES_class) + C(smoking_status) + C(physical_activity)'</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>y_a, X_a <span class="op">=</span> dmatrices(formula_a, data<span class="op">=</span>work, return_type<span class="op">=</span><span class="st">'dataframe'</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>fit_a <span class="op">=</span> sm.OLS(y_a, X_a).fit()</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>fit_a.summary().tables[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="diagnostics-residual-plots-qq" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="diagnostics-residual-plots-qq"><span class="header-section-number">2.1</span> Diagnostics — residual plots &amp; QQ</h3>
+<p>We’re aiming for <em>adequate</em> teaching diagnostics: residuals vs fitted, and normal Q–Q. Look for patterning (non-linearity) or heavy tails (outliers/influence).</p>
+<div id="cell-10" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>resid <span class="op">=</span> fit_a.resid.values.ravel()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fitted <span class="op">=</span> fit_a.fittedvalues.values.ravel()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="fl">5.2</span>,<span class="dv">4</span>))<span class="op">;</span> plt.scatter(fitted, resid, s<span class="op">=</span><span class="dv">8</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, ls<span class="op">=</span><span class="st">'--'</span>)<span class="op">;</span> plt.xlabel(<span class="st">'Fitted'</span>)<span class="op">;</span> plt.ylabel(<span class="st">'Residual'</span>)<span class="op">;</span> plt.title(<span class="st">'Residuals vs Fitted'</span>)<span class="op">;</span> plt.tight_layout()<span class="op">;</span> plt.show()</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>sm.qqplot(resid, line<span class="op">=</span><span class="st">'45'</span>)<span class="op">;</span> plt.title(<span class="st">'Normal Q–Q (residuals)'</span>)<span class="op">;</span> plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="multicollinearity-quick-vif-check" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="multicollinearity-quick-vif-check"><span class="header-section-number">2.2</span> Multicollinearity — quick VIF check</h3>
+<p>Rule of thumb: VIF &gt; ~5–10 suggests strong collinearity (teaching heuristic, not law).</p>
+<div id="cell-12" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.stats.outliers_influence <span class="im">import</span> variance_inflation_factor</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Build a numeric design matrix (expand categoricals as dummies without intercept)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>XA <span class="op">=</span> pd.get_dummies(work[[<span class="st">'salt_g_d'</span>,<span class="st">'age'</span>,<span class="st">'BMI'</span>,<span class="st">'sex'</span>,<span class="st">'IMD_quintile'</span>,<span class="st">'SES_class'</span>,<span class="st">'smoking_status'</span>,<span class="st">'physical_activity'</span>]], drop_first<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>XA <span class="op">=</span> sm.add_constant(XA, has_constant<span class="op">=</span><span class="st">'add'</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>vif <span class="op">=</span> pd.Series([variance_inflation_factor(XA.values, i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(XA.shape[<span class="dv">1</span>])], index<span class="op">=</span>XA.columns)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>vif.<span class="bu">round</span>(<span class="dv">2</span>).sort_values(ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="transformations-non-linear-terms" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="transformations-non-linear-terms"><span class="header-section-number">3</span> 3) Transformations &amp; non-linear terms</h2>
+<ul>
+<li>Skewed predictors (e.g., salt) may behave better on <code>log1p</code> scale.</li>
+<li>Consider <strong>polynomial</strong> terms (e.g., BMI²) or <strong>splines</strong> for flexible curvature.</li>
+</ul>
+<p><em>Teaching note</em>: do this when diagnostics or prior knowledge suggest non-linearity — not by default.</p>
+<div id="cell-14" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>work2 <span class="op">=</span> work.copy()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>work2[<span class="st">'salt_log1p'</span>] <span class="op">=</span> np.log1p(work2[<span class="st">'salt_g_d'</span>])</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>work2[<span class="st">'BMI2'</span>] <span class="op">=</span> work2[<span class="st">'BMI'</span>]<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>formula_nl <span class="op">=</span> <span class="st">'SBP ~ salt_log1p + age + BMI + BMI2 + C(sex) + C(IMD_quintile) + C(SES_class) + C(smoking_status) + C(physical_activity)'</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>y_nl, X_nl <span class="op">=</span> dmatrices(formula_nl, data<span class="op">=</span>work2, return_type<span class="op">=</span><span class="st">'dataframe'</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>fit_nl <span class="op">=</span> sm.OLS(y_nl, X_nl).fit()</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>fit_nl.summary().tables[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Optional</em>: cubic B-splines for age (requires <code>patsy.bs</code>).</p>
+<div id="cell-16" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> patsy <span class="im">import</span> bs</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>formula_s <span class="op">=</span> <span class="st">'SBP ~ salt_log1p + bs(age, df=4) + BMI + C(sex) + C(IMD_quintile) + C(SES_class) + C(smoking_status) + C(physical_activity)'</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>y_s, X_s <span class="op">=</span> dmatrices(formula_s, data<span class="op">=</span>work2, return_type<span class="op">=</span><span class="st">'dataframe'</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>fit_s <span class="op">=</span> sm.OLS(y_s, X_s).fit()</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Adj R^2 (linear age):'</span>, <span class="bu">round</span>(fit_nl.rsquared_adj,<span class="dv">4</span>))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Adj R^2 (spline age):'</span>, <span class="bu">round</span>(fit_s.rsquared_adj,<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="logistic-regression-prevalent-hypertension-teaching-example" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="logistic-regression-prevalent-hypertension-teaching-example"><span class="header-section-number">4</span> 4) Logistic regression — prevalent hypertension (teaching example)</h2>
+<p>Define <code>HT_prev = 1</code> if SBP ≥ 140 mmHg. Fit unadjusted and adjusted models. Report odds ratios (OR) with 95% CIs. <em>Reminder</em>: cross-sectional <strong>prevalent</strong> hypertension mixes incidence and duration; this is a didactic example.</p>
+<div id="cell-18" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> patsy <span class="im">import</span> dmatrices</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>log_u_y, log_u_X <span class="op">=</span> dmatrices(<span class="st">'HT_prev ~ salt_log1p'</span>, data<span class="op">=</span>work2, return_type<span class="op">=</span><span class="st">'dataframe'</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>log_u <span class="op">=</span> sm.Logit(log_u_y, log_u_X).fit(disp<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cat_term(df_, v):</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"C(</span><span class="sc">{</span>v<span class="sc">}</span><span class="ss">)"</span> <span class="cf">if</span> (df_[v].dtype<span class="op">==</span><span class="st">'object'</span> <span class="kw">or</span> <span class="bu">str</span>(df_[v].dtype).startswith(<span class="st">'category'</span>)) <span class="cf">else</span> v</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>adj_terms <span class="op">=</span> [</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'salt_log1p'</span>,<span class="st">'age'</span>,<span class="st">'BMI'</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    cat_term(work2,<span class="st">'sex'</span>), cat_term(work2,<span class="st">'IMD_quintile'</span>), cat_term(work2,<span class="st">'SES_class'</span>),</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    cat_term(work2,<span class="st">'smoking_status'</span>), cat_term(work2,<span class="st">'physical_activity'</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>formula_log_a <span class="op">=</span> <span class="st">'HT_prev ~ '</span> <span class="op">+</span> <span class="st">' + '</span>.join(adj_terms)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>log_a_y, log_a_X <span class="op">=</span> dmatrices(formula_log_a, data<span class="op">=</span>work2, return_type<span class="op">=</span><span class="st">'dataframe'</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>log_a <span class="op">=</span> sm.Logit(log_a_y, log_a_X).fit(disp<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tidy_or(fit):</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    OR <span class="op">=</span> np.exp(fit.params).rename(<span class="st">'OR'</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    CI <span class="op">=</span> np.exp(fit.conf_int()).rename(columns<span class="op">=</span>{<span class="dv">0</span>:<span class="st">'2.5%'</span>,<span class="dv">1</span>:<span class="st">'97.5%'</span>})</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.concat([OR,CI], axis<span class="op">=</span><span class="dv">1</span>).<span class="bu">round</span>(<span class="dv">3</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>tidy_or(log_u), tidy_or(log_a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="brief-interpretation-guide" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="brief-interpretation-guide"><span class="header-section-number">4.1</span> Brief interpretation guide</h3>
+<ul>
+<li><strong>Linear model</strong>: coefficient on <code>salt_log1p</code> ≈ change in SBP (mmHg) per 1-unit change in log(1+salt g/day), holding others constant.</li>
+<li><strong>Logistic model</strong>: OR for <code>salt_log1p</code> — multiplicative change in odds of prevalent hypertension per 1-unit increase in log(1+salt), adjusted for covariates.</li>
+<li>Non-linear terms (e.g., <code>BMI2</code>, <code>bs(age)</code>) let the effect vary by level; interpret via <strong>predicted margins</strong> not just coefficients.</li>
+</ul>
+</section>
+</section>
+<section id="todo-hands-on-tasks" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="todo-hands-on-tasks"><span class="header-section-number">5</span> 5) # TODO — hands-on tasks</h2>
+<ol type="1">
+<li><strong>Model comparison</strong>: Compare <code>fit_a</code>, <code>fit_nl</code>, and <code>fit_s</code> using adjusted R² and residual plots. Which balances fit and simplicity?</li>
+<li><strong>Alternative exposure</strong>: Swap <code>salt_log1p</code> for <code>red_meat_g_d</code> (log1p as needed). Refit linear SBP model and logistic HT model; interpret changes.</li>
+<li><strong>Predicted margins (bonus)</strong>: Compute predicted SBP at the 10th, 50th, 90th percentiles of <code>salt_g_d</code> holding other vars at typical values. Summarise in one sentence.</li>
+<li><strong>Collinearity reflection</strong>: Which predictors show higher VIF? Suggest a remedy (e.g., remove, combine, or centre variables).</li>
+</ol>
+<div id="cell-21" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (3) Predicted margins demo</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> work2[<span class="st">'salt_g_d'</span>].quantile([<span class="fl">0.1</span>,<span class="fl">0.5</span>,<span class="fl">0.9</span>]).rename({<span class="fl">0.1</span>:<span class="st">'p10'</span>,<span class="fl">0.5</span>:<span class="st">'p50'</span>,<span class="fl">0.9</span>:<span class="st">'p90'</span>})</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>new <span class="op">=</span> work2.median(numeric_only<span class="op">=</span><span class="va">True</span>).to_frame().T</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>new <span class="op">=</span> new.assign(salt_g_d<span class="op">=</span>[q[<span class="st">'p10'</span>], q[<span class="st">'p50'</span>], q[<span class="st">'p90'</span>]])</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>new[<span class="st">'salt_log1p'</span>] <span class="op">=</span> np.log1p(new[<span class="st">'salt_g_d'</span>])</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep categoricals at mode</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> v <span class="kw">in</span> [<span class="st">'sex'</span>,<span class="st">'IMD_quintile'</span>,<span class="st">'SES_class'</span>,<span class="st">'smoking_status'</span>,<span class="st">'physical_activity'</span>]:</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    new[v] <span class="op">=</span> work2[v].mode().iloc[<span class="dv">0</span>]</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>_, Xp <span class="op">=</span> dmatrices(formula_nl, data<span class="op">=</span>new, return_type<span class="op">=</span><span class="st">'dataframe'</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> fit_nl.predict(Xp)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>pd.DataFrame({<span class="st">'salt_g_d'</span>: new[<span class="st">'salt_g_d'</span>].values, <span class="st">'pred_SBP'</span>: pred.values})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<h2 id="key-takeaways" data-number="6" class="anchored"><span class="header-section-number">6</span> Key takeaways</h2>
+<ul>
+<li>Let <strong>design and diagnostics</strong> motivate transformation or non-linearity — don’t add complexity by default.</li>
+<li>Report effects clearly: units for linear; <strong>OR (95% CI)</strong> for logistic.</li>
+<li>Check residuals and <strong>VIF</strong>; reflect on practical remedies for violations.</li>
+<li>Cross-sectional models describe associations; causal interpretation demands a DAG and longitudinal design (next notebook).</li>
+</ul>
+</blockquote>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/ggkuhnle\.github\.io\/fb2nep-epi\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© University of Reading 2025 · Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ggkuhnle/fb2nep-epi/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ggkuhnle/fb2nep-epi/blob/main/notebooks/05_regression_crosssectional.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with Quarto</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
