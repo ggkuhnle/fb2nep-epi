@@ -25,8 +25,8 @@ The data used here are **synthetic and reproducible** — see the [provenance](m
 - 01 · Introduction to Epidemiology  
   [![Open 01 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/01_intro_epidemiology.ipynb)
 
-- 02 · Population description, Table 1, missing data  
-  [![Open 02 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/02_description_table1_missing.ipynb)
+- 02 · Study designs, exposure and outcomes  
+  [![Open 02 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/02_study_designs_exposure_outcomes.ipynb)
 
 - 03 · Exposure analysis (dietary intake vs biomarker)  
   [![Open 03 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/03_exposure_analysis.ipynb)
