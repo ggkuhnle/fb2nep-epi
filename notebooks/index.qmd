@@ -10,7 +10,7 @@ format:
 This page links to the Google Colab versions of the notebooks, so you can run them interactively without installing anything locally.
 
 Each badge opens the notebook directly from GitHub into a fresh Colab session.  
-Data are synthetic and reproducible — see the [metadata/provenance](metadata/provenance.md).
+Data are synthetic and reproducible — see the [../metadata/provenance.md](provenance.md).
 
 ---
 
