@@ -22,6 +22,10 @@ The data used here are **synthetic and reproducible** — see the [provenance](m
 
 ## Contents
 
+- 00 · Introduction to FB2NEP  
+  [![Open 01 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/00_Introduction_to_Module.ipynb)
+
+
 - 01 · Introduction to Epidemiology  
   [![Open 01 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/01_intro_epidemiology.ipynb)
 
