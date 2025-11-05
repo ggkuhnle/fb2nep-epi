@@ -12,11 +12,6 @@ The data used here are **synthetic and reproducible** — see the [provenance](m
 
 > It is important that you familiarise yourself with this repository. It will be used for **teaching** and is part of the **assessment**.
 
----
-
-> 🚀 **First time using Python or Colab?**  
-> Head straight to the **[How-To & Sandbox](howto_sandbox/index.qmd)** section.  
-> It explains how to open notebooks in Colab, which warnings to accept, and gives you a safe playground to practise before diving into the main material.
 
 ---
 
