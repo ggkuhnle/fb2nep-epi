@@ -6,8 +6,12 @@ format:
     theme: default
 page-layout: article
 author: "Gunter Kuhnle"
+lang: en-GB
 date: today
+date-format: "D MMMM YYYY"
 ---
+
+
 
 > This page shows you how to open and use the module notebooks in **Google Colab** (or locally in Jupyter). It includes direct links and easy to understand guidance. If you have never used Python before, you are in the right place.
 
