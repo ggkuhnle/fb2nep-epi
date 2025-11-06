@@ -32,7 +32,7 @@ If a library is missing in Colab:
 df = pd.read_csv("my_data.csv")
 
 # CSV from GitHub (raw)
-url = "https://raw.githubusercontent.com/USER/REPO/BRANCH/path/to/file.csv"
+url = "https://raw.githubusercontent.com/ggkuhnke/fb2nep-eoi/main/data/synthetic/fb2nep.csv"
 df = pd.read_csv(url)
 
 # Save
