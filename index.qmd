@@ -28,8 +28,8 @@ You can open any notebook in **Google Colab** using the button provided.
 - **01 · Introduction to Epidemiology**  
   [![Open 01 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/01_intro_epidemiology.ipynb)
 
-- **02 · Study designs, exposure and outcomes**  
-  [![Open 02 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/02_study_designs_exposure_outcomes.ipynb)
+- **02 · Representative** 
+  [![Open 02 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/02_representative.ipynb)
 
 - **03 · Study population & missing data plan**  
   [![Open 03 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/03_study_population_missing.ipynb)
