@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>FB2NEP — Sampling, Representativeness, and Bias – FB2NEP Nutritional Epidemiology</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">FB2NEP Nutritional Epidemiology</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../notebooks/index.html"> 
+<span class="menu-text">Notebooks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../metadata/provenance.html"> 
+<span class="menu-text">Provenance</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../assessment/FB2NEP_Assessment_Brief.html"> 
+<span class="menu-text">Assessment</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">FB2NEP — Sampling, Representativeness, and Bias</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FB2NEP — Nutritional Epidemiology</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Notebooks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notebooks/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nutritional Epidemiology Notebooks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">notebooks/*.ipynb</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Slides (PDF)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">slides/*.pdf</span>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link active" data-scroll-target="#learning-outcomes"><span class="header-section-number">1</span> Learning outcomes</a></li>
+  <li><a href="#concepts-and-definitions" id="toc-concepts-and-definitions" class="nav-link" data-scroll-target="#concepts-and-definitions"><span class="header-section-number">2</span> 1. Concepts and definitions</a>
+  <ul class="collapse">
+  <li><a href="#representativeness" id="toc-representativeness" class="nav-link" data-scroll-target="#representativeness"><span class="header-section-number">2.1</span> Representativeness</a></li>
+  <li><a href="#recruitment-bias-examples" id="toc-recruitment-bias-examples" class="nav-link" data-scroll-target="#recruitment-bias-examples"><span class="header-section-number">2.2</span> Recruitment bias (examples)</a></li>
+  <li><a href="#addressing-bias" id="toc-addressing-bias" class="nav-link" data-scroll-target="#addressing-bias"><span class="header-section-number">2.3</span> Addressing bias</a></li>
+  </ul></li>
+  <li><a href="#simulated-nhanes-like-reference-population" id="toc-simulated-nhanes-like-reference-population" class="nav-link" data-scroll-target="#simulated-nhanes-like-reference-population"><span class="header-section-number">3</span> 2. Simulated NHANES-like reference population</a></li>
+  <li><a href="#study-archetypes-and-samples" id="toc-study-archetypes-and-samples" class="nav-link" data-scroll-target="#study-archetypes-and-samples"><span class="header-section-number">4</span> 3. Study archetypes and samples</a>
+  <ul class="collapse">
+  <li><a href="#visualise-representation-ratios" id="toc-visualise-representation-ratios" class="nav-link" data-scroll-target="#visualise-representation-ratios"><span class="header-section-number">4.1</span> Visualise representation ratios</a></li>
+  </ul></li>
+  <li><a href="#post-stratification-weighting-a-worked-example" id="toc-post-stratification-weighting-a-worked-example" class="nav-link" data-scroll-target="#post-stratification-weighting-a-worked-example"><span class="header-section-number">5</span> 4. Post-stratification weighting: a worked example</a></li>
+  <li><a href="#under-representation-who-is-missing" id="toc-under-representation-who-is-missing" class="nav-link" data-scroll-target="#under-representation-who-is-missing"><span class="header-section-number">6</span> 5. Under-representation: who is missing?</a>
+  <ul class="collapse">
+  <li><a href="#consequences-for-effect-estimates-simulation" id="toc-consequences-for-effect-estimates-simulation" class="nav-link" data-scroll-target="#consequences-for-effect-estimates-simulation"><span class="header-section-number">6.1</span> Consequences for effect estimates (simulation)</a></li>
+  </ul></li>
+  <li><a href="#beyond-the-us-global-transferability" id="toc-beyond-the-us-global-transferability" class="nav-link" data-scroll-target="#beyond-the-us-global-transferability"><span class="header-section-number">7</span> 6. Beyond the US: global transferability</a>
+  <ul class="collapse">
+  <li><a href="#mini-simulation-global-vs-us-distributions" id="toc-mini-simulation-global-vs-us-distributions" class="nav-link" data-scroll-target="#mini-simulation-global-vs-us-distributions"><span class="header-section-number">7.1</span> Mini simulation: “Global” vs “US” distributions</a></li>
+  </ul></li>
+  <li><a href="#exercises-for-students" id="toc-exercises-for-students" class="nav-link" data-scroll-target="#exercises-for-students"><span class="header-section-number">8</span> 7. Exercises (for students)</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">9</span> 8. Summary</a></li>
+  <li><a href="#appendix-helper-functions-optional" id="toc-appendix-helper-functions-optional" class="nav-link" data-scroll-target="#appendix-helper-functions-optional"><span class="header-section-number">10</span> Appendix: helper functions (optional)</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/ggkuhnle/fb2nep-epi/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ggkuhnle/fb2nep-epi/blob/main/notebooks/02_representative.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">FB2NEP — Sampling, Representativeness, and Bias</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Date:</strong> 09 November 2025</p>
+<p>This notebook introduces core ideas in sampling for nutritional epidemiology: the difference between the <strong>general population</strong>, a <strong>study’s target (sample) population</strong>, and an actual <strong>study sample</strong>; common <strong>recruitment biases</strong>; and approaches to <strong>addressing bias</strong> (e.g., post-stratification weights). We will simulate data to compare well-known United States cohorts (by design archetype) with a United States reference survey (NHANES-like), and demonstrate how bias can distort estimates and how weighting can partially correct them.</p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> The cohort labels below are illustrative archetypes (e.g., “NHS-like”, “HPFS-like”, “WHI-like”), generated using simulated data for teaching purposes.</p>
+</blockquote>
+<section id="learning-outcomes" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="learning-outcomes"><span class="header-section-number">1</span> Learning outcomes</h2>
+<p>By the end of this notebook, students should be able to: - Distinguish clearly between <strong>general population</strong>, <strong>sample population</strong>, and <strong>study sample</strong>. - Explain what <strong>representativeness</strong> means and why it matters for inference. - Identify typical <strong>recruitment biases</strong> (e.g., “worried well”, sex imbalance, education skew). - Apply simple <strong>post-stratification (weighting)</strong> to address imbalance and evaluate its effect. - Compare large observational studies to the general public and discuss <strong>under-representation</strong>. - Reflect on what this means <strong>globally</strong>, including issues of transferability beyond the US. - Discuss why a global multi-country study may fail when using <strong>US-centric dietary assessment</strong> methods (e.g., limited food lists, portion sizes, and misclassification across diverse cuisines).</p>
+<blockquote class="blockquote">
+<p>Hippo cameo: only one, later, and strictly pedagogical.</p>
+</blockquote>
+<div id="9f121eb3" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports. We keep dependencies minimal for Colab friendliness.</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># For reproducibility across sessions (as requested for the module).</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>RANDOM_SEED <span class="op">=</span> <span class="dv">11088</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(RANDOM_SEED)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Display options for cleaner tables.</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max_columns"</span>, <span class="dv">50</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.width"</span>, <span class="dv">120</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="concepts-and-definitions" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="concepts-and-definitions"><span class="header-section-number">2</span> 1. Concepts and definitions</h2>
+<ul>
+<li><strong>General population</strong>: The entire group of interest (for example, all US adults aged 20+).</li>
+<li><strong>Sample population (target population)</strong>: The subset of the general population that a study <em>intends</em> to represent (for example, all registered nurses aged 30–55 in the United States at baseline).</li>
+<li><strong>Study sample</strong>: The actual individuals recruited and measured. This may deviate from the intended target population due to recruitment processes, non-response, and eligibility criteria.</li>
+</ul>
+<section id="representativeness" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="representativeness"><span class="header-section-number">2.1</span> Representativeness</h3>
+<p>A study is <strong>representative</strong> when the distribution of key characteristics in the sample matches that of the population of interest (for example, sex, age, ethnicity, education, socioeconomic position). Lack of representativeness can bias estimates and reduce external validity (generalisation).</p>
+</section>
+<section id="recruitment-bias-examples" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="recruitment-bias-examples"><span class="header-section-number">2.2</span> Recruitment bias (examples)</h3>
+<ul>
+<li><strong>“Worried well”</strong>: People who are more health-conscious are more likely to join studies.</li>
+<li><strong>Occupational cohorts</strong>: Often healthier, with higher education and different behaviours than the general public.</li>
+<li><strong>Sex imbalance</strong>: Some studies include only women (e.g., women’s health initiatives) or only men (e.g., certain professional cohorts).</li>
+<li><strong>Under-representation</strong>: Minority groups or lower-income strata may be under-represented.</li>
+</ul>
+</section>
+<section id="addressing-bias" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="addressing-bias"><span class="header-section-number">2.3</span> Addressing bias</h3>
+<ul>
+<li><strong>Design stage</strong>: Sampling frames, stratified sampling, oversampling under-represented groups.</li>
+<li><strong>Analysis stage</strong>: <strong>Post-stratification weighting</strong> to align sample distributions to a reference population (e.g., NHANES). Weighting helps for variables captured in the weighting scheme; it cannot fix unmeasured differences.</li>
+</ul>
+</section>
+</section>
+<section id="simulated-nhanes-like-reference-population" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="simulated-nhanes-like-reference-population"><span class="header-section-number">3</span> 2. Simulated NHANES-like reference population</h2>
+<p>We simulate a large reference dataset with distributions loosely inspired by modern US adult demographics. These are <strong>synthetic</strong> and for teaching only. Variables include: - Sex (Female/Male) - Age group (20–39 / 40–59 / 60+) - Race/ethnicity (simplified categories) - Education (≤High school / Some college / Bachelor+) - Income band (Low / Middle / High) - Body mass index (BMI) (continuous, generated with group-specific means) - Current smoking (Yes/No) - “Fruit &amp; Vegetables” (F&amp;V) portions per day (simulated dietary proxy)</p>
+<p>We will treat this reference as the “population” for assessing representativeness.</p>
+<div id="09b9c6ce" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper: categorical sampler</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sample_categorical(rng, categories, probs, size):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Sample from named categories with specified probabilities."""</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> rng.choice(categories, size<span class="op">=</span>size, p<span class="op">=</span>np.array(probs))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>N_POP <span class="op">=</span> <span class="dv">150_000</span>  <span class="co"># big enough to act as a pseudo-population</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Define marginal distributions for the synthetic US adult population.</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>sex_cats <span class="op">=</span> [<span class="st">"Female"</span>, <span class="st">"Male"</span>]</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>sex_p <span class="op">=</span> [<span class="fl">0.51</span>, <span class="fl">0.49</span>]</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>age_cats <span class="op">=</span> [<span class="st">"20–39"</span>, <span class="st">"40–59"</span>, <span class="st">"60+"</span>]</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>age_p <span class="op">=</span> [<span class="fl">0.34</span>, <span class="fl">0.34</span>, <span class="fl">0.32</span>]</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>race_cats <span class="op">=</span> [<span class="st">"White"</span>, <span class="st">"Black"</span>, <span class="st">"Hispanic"</span>, <span class="st">"Asian"</span>, <span class="st">"Other"</span>]</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>race_p <span class="op">=</span> [<span class="fl">0.58</span>, <span class="fl">0.12</span>, <span class="fl">0.19</span>, <span class="fl">0.06</span>, <span class="fl">0.05</span>]</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>edu_cats <span class="op">=</span> [<span class="st">"≤High school"</span>, <span class="st">"Some college"</span>, <span class="st">"Bachelor+"</span>]</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>edu_p <span class="op">=</span> [<span class="fl">0.40</span>, <span class="fl">0.35</span>, <span class="fl">0.25</span>]</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>inc_cats <span class="op">=</span> [<span class="st">"Low"</span>, <span class="st">"Middle"</span>, <span class="st">"High"</span>]</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>inc_p <span class="op">=</span> [<span class="fl">0.35</span>, <span class="fl">0.45</span>, <span class="fl">0.20</span>]</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate independent marginals. In reality, these are correlated;</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># we keep it simple for pedagogy, then induce outcome differences by group.</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>pop <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sex"</span>: sample_categorical(rng, sex_cats, sex_p, N_POP),</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"age_group"</span>: sample_categorical(rng, age_cats, age_p, N_POP),</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">"race_eth"</span>: sample_categorical(rng, race_cats, race_p, N_POP),</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">"education"</span>: sample_categorical(rng, edu_cats, edu_p, N_POP),</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">"income"</span>: sample_categorical(rng, inc_cats, inc_p, N_POP),</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a simple binary current-smoking variable with group differences.</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>base_smoke <span class="op">=</span> <span class="fl">0.16</span>  <span class="co"># baseline prevalence</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>smoke <span class="op">=</span> np.full(N_POP, base_smoke)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust smoking by education (lower education -&gt; higher smoking)</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>smoke <span class="op">+=</span> np.where(pop[<span class="st">"education"</span>].eq(<span class="st">"≤High school"</span>), <span class="fl">0.06</span>, <span class="fl">0.0</span>)</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>smoke <span class="op">+=</span> np.where(pop[<span class="st">"education"</span>].eq(<span class="st">"Bachelor+"</span>), <span class="op">-</span><span class="fl">0.05</span>, <span class="fl">0.0</span>)</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust smoking by age (younger slightly higher than 60+ here, for illustration)</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>smoke <span class="op">+=</span> np.where(pop[<span class="st">"age_group"</span>].eq(<span class="st">"20–39"</span>), <span class="fl">0.02</span>, <span class="fl">0.0</span>)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>smoke <span class="op">+=</span> np.where(pop[<span class="st">"age_group"</span>].eq(<span class="st">"60+"</span>), <span class="op">-</span><span class="fl">0.02</span>, <span class="fl">0.0</span>)</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Clip to [0,1] and sample</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>smoke <span class="op">=</span> np.clip(smoke, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>pop[<span class="st">"smoker"</span>] <span class="op">=</span> rng.binomial(<span class="dv">1</span>, smoke).astype(<span class="bu">bool</span>)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate BMI with group-level means (education &amp; age effects) and random noise.</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="co"># This is purely pedagogical; do not interpret as real surveillance values.</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>bmi_mean <span class="op">=</span> <span class="fl">28.0</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>bmi <span class="op">=</span> np.full(N_POP, bmi_mean, dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>bmi <span class="op">+=</span> np.where(pop[<span class="st">"education"</span>].eq(<span class="st">"Bachelor+"</span>), <span class="op">-</span><span class="fl">1.0</span>, <span class="fl">0.0</span>)</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>bmi <span class="op">+=</span> np.where(pop[<span class="st">"education"</span>].eq(<span class="st">"≤High school"</span>), <span class="op">+</span><span class="fl">0.7</span>, <span class="fl">0.0</span>)</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>bmi <span class="op">+=</span> np.where(pop[<span class="st">"age_group"</span>].eq(<span class="st">"60+"</span>), <span class="op">+</span><span class="fl">0.5</span>, <span class="fl">0.0</span>)</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>bmi <span class="op">+=</span> rng.normal(<span class="dv">0</span>, <span class="fl">3.5</span>, N_POP)  <span class="co"># individual noise</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>pop[<span class="st">"bmi"</span>] <span class="op">=</span> bmi</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate Fruit &amp; Veg portions/day (F&amp;V) as a simple diet quality proxy.</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>fv <span class="op">=</span> np.full(N_POP, <span class="fl">3.2</span>, dtype<span class="op">=</span><span class="bu">float</span>)  <span class="co"># baseline</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>fv <span class="op">+=</span> np.where(pop[<span class="st">"education"</span>].eq(<span class="st">"Bachelor+"</span>), <span class="op">+</span><span class="fl">0.8</span>, <span class="fl">0.0</span>)</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>fv <span class="op">+=</span> np.where(pop[<span class="st">"education"</span>].eq(<span class="st">"≤High school"</span>), <span class="op">-</span><span class="fl">0.4</span>, <span class="fl">0.0</span>)</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>fv <span class="op">+=</span> np.where(pop[<span class="st">"smoker"</span>], <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.0</span>)</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>fv <span class="op">+=</span> rng.normal(<span class="dv">0</span>, <span class="fl">0.7</span>, N_POP)</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>pop[<span class="st">"fv_day"</span>] <span class="op">=</span> np.clip(fv, <span class="dv">0</span>, <span class="va">None</span>)</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>pop.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Check basic distributions in the simulated population.</strong></p>
+<div id="22da5f86" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> prop_table(df, col):</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Return a tidy proportion table for a categorical column."""</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> (df[col].value_counts(normalize<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>             .rename(<span class="st">"proportion"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>             .reset_index()</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>             .rename(columns<span class="op">=</span>{<span class="st">"index"</span>: col}))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> out</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>summary_demog <span class="op">=</span> {</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sex"</span>: prop_table(pop, <span class="st">"sex"</span>),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"age_group"</span>: prop_table(pop, <span class="st">"age_group"</span>),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"race_eth"</span>: prop_table(pop, <span class="st">"race_eth"</span>),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"education"</span>: prop_table(pop, <span class="st">"education"</span>),</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"income"</span>: prop_table(pop, <span class="st">"income"</span>),</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>summary_demog</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="study-archetypes-and-samples" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="study-archetypes-and-samples"><span class="header-section-number">4</span> 3. Study archetypes and samples</h2>
+<p>We now define <em>archetypal</em> United States cohorts (for teaching only) and draw samples from the same underlying population with <strong>selection probabilities</strong> that mimic key design features:</p>
+<ul>
+<li><strong>NHS-like (Nurses’ Health Study)</strong>: Predominantly women with higher education; under-representation of some minority groups.</li>
+<li><strong>HPFS-like (Health Professionals Follow-up Study)</strong>: Predominantly men with higher education.</li>
+<li><strong>WHI-like (Women’s Health Initiative)</strong>: Women aged 50–79 at enrolment (we approximate using our 40–59 and 60+ groups, but apply stronger selection weight for 60+).</li>
+</ul>
+<p>For contrast, we also create a <strong>Convenience online sample</strong>: over-represents health-conscious non-smokers with higher F&amp;V intake and higher education (a “worried well” pattern).</p>
+<div id="70e6d9f2" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper: weighted sampler</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> draw_weighted_sample(df, p_select, n_draw, rng):</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Draw n_draw rows from df with probability proportional to p_select."""</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> p_select <span class="op">/</span> p_select.<span class="bu">sum</span>()</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    idx <span class="op">=</span> rng.choice(df.index.values, size<span class="op">=</span>n_draw, replace<span class="op">=</span><span class="va">False</span>, p<span class="op">=</span>p)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df.loc[idx].copy()</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Selection weights for each archetype</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> selection_weights_nhs_like(df):</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> np.ones(<span class="bu">len</span>(df))</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    w <span class="op">*=</span> np.where(df[<span class="st">"sex"</span>].eq(<span class="st">"Female"</span>), <span class="fl">4.0</span>, <span class="fl">0.2</span>)          <span class="co"># mostly women</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    w <span class="op">*=</span> np.where(df[<span class="st">"education"</span>].eq(<span class="st">"Bachelor+"</span>), <span class="fl">2.0</span>, <span class="fl">1.0</span>) <span class="co"># higher education</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    w <span class="op">*=</span> np.where(df[<span class="st">"race_eth"</span>].eq(<span class="st">"Asian"</span>), <span class="fl">1.0</span>, <span class="fl">1.0</span>)      <span class="co"># neutral here</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> w</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> selection_weights_hpfs_like(df):</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> np.ones(<span class="bu">len</span>(df))</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    w <span class="op">*=</span> np.where(df[<span class="st">"sex"</span>].eq(<span class="st">"Male"</span>), <span class="fl">4.0</span>, <span class="fl">0.2</span>)            <span class="co"># mostly men</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    w <span class="op">*=</span> np.where(df[<span class="st">"education"</span>].eq(<span class="st">"Bachelor+"</span>), <span class="fl">2.5</span>, <span class="fl">1.0</span>) <span class="co"># higher education</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> w</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> selection_weights_whi_like(df):</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> np.ones(<span class="bu">len</span>(df))</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    w <span class="op">*=</span> np.where(df[<span class="st">"sex"</span>].eq(<span class="st">"Female"</span>), <span class="fl">5.0</span>, <span class="fl">0.01</span>)         <span class="co"># women only (virtually)</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    w <span class="op">*=</span> np.where(df[<span class="st">"age_group"</span>].eq(<span class="st">"60+"</span>), <span class="fl">3.5</span>, <span class="fl">0.8</span>)       <span class="co"># emphasise older women</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> w</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> selection_weights_convenience(df):</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> np.ones(<span class="bu">len</span>(df))</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    w <span class="op">*=</span> np.where(df[<span class="st">"education"</span>].eq(<span class="st">"Bachelor+"</span>), <span class="fl">2.5</span>, <span class="fl">1.0</span>) <span class="co"># over-represent higher education</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    w <span class="op">*=</span> np.where(df[<span class="st">"smoker"</span>].eq(<span class="va">False</span>), <span class="fl">1.8</span>, <span class="fl">0.5</span>)          <span class="co"># fewer smokers</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Small tilt towards higher F&amp;V consumers</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    w <span class="op">*=</span> <span class="fl">1.0</span> <span class="op">+</span> (df[<span class="st">"fv_day"</span>] <span class="op">-</span> df[<span class="st">"fv_day"</span>].mean())<span class="op">*</span><span class="fl">0.05</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.clip(w, <span class="fl">0.01</span>, <span class="va">None</span>)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw samples (n ~ 5,000 for stable comparisons).</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>N_SAMPLE <span class="op">=</span> <span class="dv">5_000</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>nhs <span class="op">=</span> draw_weighted_sample(pop, selection_weights_nhs_like(pop), N_SAMPLE, rng)</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>hpfs <span class="op">=</span> draw_weighted_sample(pop, selection_weights_hpfs_like(pop), N_SAMPLE, rng)</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>whi <span class="op">=</span> draw_weighted_sample(pop, selection_weights_whi_like(pop), N_SAMPLE, rng)</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>conv <span class="op">=</span> draw_weighted_sample(pop, selection_weights_convenience(pop), N_SAMPLE, rng)</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, df <span class="kw">in</span> [(<span class="st">"NHS_like"</span>, nhs), (<span class="st">"HPFS_like"</span>, hpfs), (<span class="st">"WHI_like"</span>, whi), (<span class="st">"Convenience_online"</span>, conv)]:</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"cohort"</span>] <span class="op">=</span> name</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>cohorts <span class="op">=</span> pd.concat([nhs, hpfs, whi, conv], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>cohorts.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Compare key distributions</strong> across population and cohorts.</p>
+<div id="492bee4c" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compare_distribution(pop_df, sample_df, col):</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    pop_prop <span class="op">=</span> prop_table(pop_df, col).set_index(col)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    samp_prop <span class="op">=</span> prop_table(sample_df, col).set_index(col)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Align categories</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    all_idx <span class="op">=</span> pop_prop.index.union(samp_prop.index)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    pop_prop <span class="op">=</span> pop_prop.reindex(all_idx).fillna(<span class="fl">0.0</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    samp_prop <span class="op">=</span> samp_prop.reindex(all_idx).fillna(<span class="fl">0.0</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    comp <span class="op">=</span> pd.concat([pop_prop, samp_prop], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    comp.columns <span class="op">=</span> [<span class="st">"population_prop"</span>, <span class="st">"sample_prop"</span>]</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    comp[<span class="st">"representation_ratio"</span>] <span class="op">=</span> comp[<span class="st">"sample_prop"</span>] <span class="op">/</span> comp[<span class="st">"population_prop"</span>].replace(<span class="dv">0</span>, np.nan)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> comp.reset_index()</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cohort_tables(col):</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> []</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> name, df <span class="kw">in</span> [(<span class="st">"NHS_like"</span>, nhs), (<span class="st">"HPFS_like"</span>, hpfs), (<span class="st">"WHI_like"</span>, whi), (<span class="st">"Convenience_online"</span>, conv)]:</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        comp <span class="op">=</span> compare_distribution(pop, df, col)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        comp.insert(<span class="dv">0</span>, <span class="st">"cohort"</span>, name)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        out.append(comp)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.concat(out, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>tables_sex <span class="op">=</span> cohort_tables(<span class="st">"sex"</span>)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>tables_age <span class="op">=</span> cohort_tables(<span class="st">"age_group"</span>)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>tables_race <span class="op">=</span> cohort_tables(<span class="st">"race_eth"</span>)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>tables_edu <span class="op">=</span> cohort_tables(<span class="st">"education"</span>)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>tables_sex, tables_age.head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="visualise-representation-ratios" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="visualise-representation-ratios"><span class="header-section-number">4.1</span> Visualise representation ratios</h3>
+<p>A <strong>representation ratio</strong> = (sample proportion) / (population proportion).<br>
+- ≈ 1.0 means the group is proportionally represented.<br>
+- &lt; 1.0 means <strong>under-represented</strong>.<br>
+- &gt; 1.0 means <strong>over-represented</strong>.</p>
+<div id="19dc201f" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_representation(comp_df, col, cohort_name):</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Filter to one cohort and plot the representation ratios</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> comp_df[comp_df[<span class="st">"cohort"</span>].eq(cohort_name)].copy()</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.sort_values(<span class="st">"representation_ratio"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">4.5</span>))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    plt.bar(df[col].astype(<span class="bu">str</span>), df[<span class="st">"representation_ratio"</span>])</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    plt.axhline(<span class="fl">1.0</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="ss">f"Representation ratios — </span><span class="sc">{</span>cohort_name<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"Representation ratio (sample / population)"</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>, ha<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> [<span class="st">"NHS_like"</span>, <span class="st">"HPFS_like"</span>, <span class="st">"WHI_like"</span>, <span class="st">"Convenience_online"</span>]:</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    plot_representation(tables_sex, <span class="st">"sex"</span>, c)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    plot_representation(tables_age, <span class="st">"age_group"</span>, c)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    plot_representation(tables_race, <span class="st">"race_eth"</span>, c)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    plot_representation(tables_edu, <span class="st">"education"</span>, c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="post-stratification-weighting-a-worked-example" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="post-stratification-weighting-a-worked-example"><span class="header-section-number">5</span> 4. Post-stratification weighting: a worked example</h2>
+<p>We demonstrate how <strong>weights</strong> can partially correct bias for an estimator. Suppose the estimand is <strong>mean F&amp;V portions/day</strong> in US adults. We will: 1. Compute the true mean in the simulated population. 2. Compute the (biased) mean in a skewed cohort (e.g., the “Convenience online” sample). 3. Construct <strong>raking-style</strong> weights to match the population margins for <strong>sex, age group, and education</strong>. 4. Recompute the <strong>weighted mean</strong> and compare with the truth.</p>
+<blockquote class="blockquote">
+<p>Limitation: Weighting corrects only for variables included in the weighting scheme and measured without error. It does not eliminate bias from unmeasured differences or selection on outcomes.</p>
+</blockquote>
+<div id="daba8be3" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper: compute marginal distributions (proportions) for weighting</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> marginal_props(df, col):</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    vc <span class="op">=</span> df[col].value_counts(normalize<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> vc.to_dict()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>pop_margins <span class="op">=</span> {</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sex"</span>: marginal_props(pop, <span class="st">"sex"</span>),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"age_group"</span>: marginal_props(pop, <span class="st">"age_group"</span>),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"education"</span>: marginal_props(pop, <span class="st">"education"</span>),</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple iterative proportional fitting (raking) for three margins.</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rake_weights(df, cols, target_margins, max_iter<span class="op">=</span><span class="dv">30</span>, tol<span class="op">=</span><span class="fl">1e-7</span>):</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> np.ones(<span class="bu">len</span>(df), dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(max_iter):</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        w_old <span class="op">=</span> w.copy()</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> col <span class="kw">in</span> cols:</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>            <span class="co"># current weighted shares by category</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>            shares <span class="op">=</span> (</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>                df.groupby(col)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>                  .<span class="bu">apply</span>(<span class="kw">lambda</span> g: w[g.index].<span class="bu">sum</span>())</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>            shares <span class="op">=</span> shares <span class="op">/</span> shares.<span class="bu">sum</span>()</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>            <span class="co"># compute adjustment factors for each category</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>            adj <span class="op">=</span> {}</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> k, target <span class="kw">in</span> target_margins[col].items():</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>                current <span class="op">=</span> shares.get(k, <span class="fl">0.0</span>)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> current <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>                    adj[k] <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># avoid division by zero; no members in sample</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>                <span class="cf">else</span>:</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>                    adj[k] <span class="op">=</span> target <span class="op">/</span> current</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>            <span class="co"># apply</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>            factors <span class="op">=</span> df[col].<span class="bu">map</span>(adj).to_numpy()</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>            w <span class="op">=</span> w <span class="op">*</span> factors</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># convergence check</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.<span class="bu">max</span>(np.<span class="bu">abs</span>(w <span class="op">-</span> w_old)) <span class="op">&lt;</span> tol:</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> w</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose the Convenience sample (most skewed) for the demo</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>samp <span class="op">=</span> conv.copy()</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>true_pop_mean <span class="op">=</span> pop[<span class="st">"fv_day"</span>].mean()</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>unweighted_mean <span class="op">=</span> samp[<span class="st">"fv_day"</span>].mean()</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>weights <span class="op">=</span> rake_weights(samp, [<span class="st">"sex"</span>, <span class="st">"age_group"</span>, <span class="st">"education"</span>], pop_margins)</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>samp[<span class="st">"weight"</span>] <span class="op">=</span> weights</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>weighted_mean <span class="op">=</span> np.average(samp[<span class="st">"fv_day"</span>], weights<span class="op">=</span>samp[<span class="st">"weight"</span>])</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>true_pop_mean, unweighted_mean, weighted_mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Interpretation.</strong><br>
+- The <strong>true</strong> population mean F&amp;V is given by the (simulated) NHANES-like reference.<br>
+- The <strong>unweighted</strong> convenience sample mean is expected to be <strong>higher</strong> (over-representation of health-conscious participants).<br>
+- The <strong>weighted</strong> estimate should move <strong>towards</strong> the population truth, often substantially, though not perfectly if there are unmeasured imbalances.</p>
+</section>
+<section id="under-representation-who-is-missing" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="under-representation-who-is-missing"><span class="header-section-number">6</span> 5. Under-representation: who is missing?</h2>
+<p>We identify groups with representation ratio &lt; 0.8 in each cohort. Persistent under-representation can weaken external validity and mask important subgroup effects.</p>
+<div id="4055ba49" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> underrepresented_groups(comp_df, threshold<span class="op">=</span><span class="fl">0.8</span>):</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> comp_df[comp_df[<span class="st">"representation_ratio"</span>] <span class="op">&lt;</span> threshold].copy()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>under_sex <span class="op">=</span> {c: underrepresented_groups(tables_sex[tables_sex[<span class="st">"cohort"</span>].eq(c)]) <span class="cf">for</span> c <span class="kw">in</span> tables_sex[<span class="st">"cohort"</span>].unique()}</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>under_age <span class="op">=</span> {c: underrepresented_groups(tables_age[tables_age[<span class="st">"cohort"</span>].eq(c)]) <span class="cf">for</span> c <span class="kw">in</span> tables_age[<span class="st">"cohort"</span>].unique()}</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>under_race <span class="op">=</span> {c: underrepresented_groups(tables_race[tables_race[<span class="st">"cohort"</span>].eq(c)]) <span class="cf">for</span> c <span class="kw">in</span> tables_race[<span class="st">"cohort"</span>].unique()}</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>under_edu <span class="op">=</span> {c: underrepresented_groups(tables_edu[tables_edu[<span class="st">"cohort"</span>].eq(c)]) <span class="cf">for</span> c <span class="kw">in</span> tables_edu[<span class="st">"cohort"</span>].unique()}</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Display a compact summary for race/ethnicity</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>summary_under_race <span class="op">=</span> []</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c, dfc <span class="kw">in</span> under_race.items():</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _, r <span class="kw">in</span> dfc.iterrows():</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        summary_under_race.append((c, r[<span class="st">"race_eth"</span>], <span class="bu">float</span>(r[<span class="st">"representation_ratio"</span>])))</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>summary_under_race <span class="op">=</span> pd.DataFrame(summary_under_race, columns<span class="op">=</span>[<span class="st">"cohort"</span>,<span class="st">"race_eth"</span>,<span class="st">"repr_ratio"</span>]).sort_values([<span class="st">"cohort"</span>,<span class="st">"repr_ratio"</span>])</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>summary_under_race.head(<span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="consequences-for-effect-estimates-simulation" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="consequences-for-effect-estimates-simulation"><span class="header-section-number">6.1</span> Consequences for effect estimates (simulation)</h3>
+<p>We simulate a simple association: <strong>Smokers consume fewer F&amp;V</strong> and have <strong>higher BMI</strong>. If smokers are under-represented, unweighted estimates may be biased upward for F&amp;V and downward for BMI. Weighting helps but cannot resolve <em>all</em> structural differences.</p>
+<div id="9b7c7ae3" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cohort_estimates(df, label):</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.Series({</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"mean_BMI"</span>: df[<span class="st">"bmi"</span>].mean(),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"mean_FV"</span>: df[<span class="st">"fv_day"</span>].mean(),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"smoking_prev"</span>: df[<span class="st">"smoker"</span>].mean(),</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"n"</span>: <span class="bu">len</span>(df),</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"label"</span>: label,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>ests <span class="op">=</span> pd.DataFrame([</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    cohort_estimates(pop, <span class="st">"Population (NHANES-like)"</span>),</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    cohort_estimates(nhs, <span class="st">"NHS-like"</span>),</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    cohort_estimates(hpfs, <span class="st">"HPFS-like"</span>),</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    cohort_estimates(whi, <span class="st">"WHI-like"</span>),</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    cohort_estimates(conv, <span class="st">"Convenience"</span>),</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Weighted estimate for the convenience cohort</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>w_mean_bmi <span class="op">=</span> np.average(conv[<span class="st">"bmi"</span>], weights<span class="op">=</span>weights)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>w_mean_fv  <span class="op">=</span> np.average(conv[<span class="st">"fv_day"</span>], weights<span class="op">=</span>weights)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>est_weighted_conv <span class="op">=</span> pd.Series({</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mean_BMI"</span>: w_mean_bmi,</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mean_FV"</span>: w_mean_fv,</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"smoking_prev"</span>: np.average(conv[<span class="st">"smoker"</span>].astype(<span class="bu">float</span>), weights<span class="op">=</span>weights),</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"n"</span>: <span class="bu">len</span>(conv),</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"label"</span>: <span class="st">"Convenience (weighted)"</span>,</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>ests <span class="op">=</span> pd.concat([ests, est_weighted_conv.to_frame().T], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>ests</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="beyond-the-us-global-transferability" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="beyond-the-us-global-transferability"><span class="header-section-number">7</span> 6. Beyond the US: global transferability</h2>
+<p>Representativeness within the US does not imply <strong>global</strong> representativeness. Dietary patterns, food composition, preparation methods, and portion sizes vary widely. A <strong>US-centric dietary assessment</strong> (for example, food lists and portion images tuned to US cuisine) can cause <strong>systematic misclassification</strong> when applied elsewhere. This may bias exposure distributions and attenuate or distort associations.</p>
+<section id="mini-simulation-global-vs-us-distributions" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="mini-simulation-global-vs-us-distributions"><span class="header-section-number">7.1</span> Mini simulation: “Global” vs “US” distributions</h3>
+<p>We simulate a contrasting “Global” population with: - Different age structure, - Different education and income distributions, - Different baseline diet proxy (F&amp;V), to show that a US-derived cohort can be a poor proxy for other regions.</p>
+<div id="e9f2fce4" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct a different 'Global' reference with altered margins and diet levels.</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>g_age_p <span class="op">=</span> [<span class="fl">0.45</span>, <span class="fl">0.35</span>, <span class="fl">0.20</span>]    <span class="co"># younger age structure</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>g_edu_p <span class="op">=</span> [<span class="fl">0.55</span>, <span class="fl">0.30</span>, <span class="fl">0.15</span>]    <span class="co"># lower overall formal education</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>g_inc_p <span class="op">=</span> [<span class="fl">0.55</span>, <span class="fl">0.35</span>, <span class="fl">0.10</span>]    <span class="co"># more low-income</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>G_POP <span class="op">=</span> <span class="dv">120_000</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>gpop <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sex"</span>: sample_categorical(rng, sex_cats, sex_p, G_POP),</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"age_group"</span>: sample_categorical(rng, age_cats, g_age_p, G_POP),</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"race_eth"</span>: sample_categorical(rng, race_cats, race_p, G_POP),  <span class="co"># keep simple</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"education"</span>: sample_categorical(rng, edu_cats, g_edu_p, G_POP),</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"income"</span>: sample_categorical(rng, inc_cats, g_inc_p, G_POP),</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Diet proxy and BMI with different baselines</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>g_smoke <span class="op">=</span> np.full(G_POP, <span class="fl">0.18</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>g_smoke <span class="op">+=</span> np.where(gpop[<span class="st">"education"</span>].eq(<span class="st">"≤High school"</span>), <span class="fl">0.05</span>, <span class="fl">0.0</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>g_smoke <span class="op">=</span> np.clip(g_smoke, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>gpop[<span class="st">"smoker"</span>] <span class="op">=</span> rng.binomial(<span class="dv">1</span>, g_smoke).astype(<span class="bu">bool</span>)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>gbmi <span class="op">=</span> np.full(G_POP, <span class="fl">26.5</span>, dtype<span class="op">=</span><span class="bu">float</span>)  <span class="co"># different baseline</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>gbmi <span class="op">+=</span> np.where(gpop[<span class="st">"education"</span>].eq(<span class="st">"Bachelor+"</span>), <span class="op">-</span><span class="fl">0.8</span>, <span class="fl">0.0</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>gbmi <span class="op">+=</span> rng.normal(<span class="dv">0</span>, <span class="fl">3.8</span>, G_POP)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>gpop[<span class="st">"bmi"</span>] <span class="op">=</span> gbmi</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>gfv <span class="op">=</span> np.full(G_POP, <span class="fl">3.8</span>, dtype<span class="op">=</span><span class="bu">float</span>)    <span class="co"># different baseline F&amp;V</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>gfv <span class="op">+=</span> np.where(gpop[<span class="st">"education"</span>].eq(<span class="st">"Bachelor+"</span>), <span class="op">+</span><span class="fl">0.6</span>, <span class="fl">0.0</span>)</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>gfv <span class="op">+=</span> np.where(gpop[<span class="st">"smoker"</span>], <span class="op">-</span><span class="fl">0.4</span>, <span class="fl">0.0</span>)</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>gfv <span class="op">+=</span> rng.normal(<span class="dv">0</span>, <span class="fl">0.8</span>, G_POP)</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>gpop[<span class="st">"fv_day"</span>] <span class="op">=</span> np.clip(gfv, <span class="dv">0</span>, <span class="va">None</span>)</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare a US cohort (e.g., NHS-like) to this global 'population'</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>comp_global <span class="op">=</span> compare_distribution(gpop, nhs, <span class="st">"education"</span>)</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>comp_global</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Observation.</strong><br>
+Even if a cohort is well-characterised and internally valid, its external validity depends on the target population. When dietary assessment tools are not adapted (for example, <strong>US-centric FFQs</strong> applied in countries with different staple foods and cooking methods), <strong>measurement error</strong> and <strong>differential misclassification</strong> can invalidate comparisons and pooled analyses.</p>
+<blockquote class="blockquote">
+<p>Hippo cameo (pedagogical): imagine a diligent hippo completing an FFQ with “peanut butter and jelly sandwich” options but no entries for fermented cassava or millet ugali. The form can be filled in, but the <strong>construct validity</strong> for that dietary context is poor.</p>
+</blockquote>
+</section>
+</section>
+<section id="exercises-for-students" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="exercises-for-students"><span class="header-section-number">8</span> 7. Exercises (for students)</h2>
+<ol type="1">
+<li><strong>Compute representation ratios</strong> for <strong>income</strong> and <strong>smoking</strong> across the cohorts. Which cohort deviates most from the population? Provide a brief written interpretation.</li>
+<li><strong>Design a weighting scheme</strong> that uses <strong>sex, age group, education, and smoking</strong>. Compare weighted and unweighted means for <strong>BMI</strong> and <strong>F&amp;V</strong> in the <strong>NHS-like</strong> cohort.</li>
+<li><strong>Sensitivity</strong>: Change the selection weights in the <code>selection_weights_convenience</code> function to produce a <em>more extreme</em> “worried well” sample. How do the biases change?</li>
+<li><strong>Global generalisation</strong>: Create a second “Global” reference with a different education profile and test whether US cohorts approximate it after reweighting. Where does reweighting fail? Why?</li>
+</ol>
+</section>
+<section id="summary" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="summary"><span class="header-section-number">9</span> 8. Summary</h2>
+<ul>
+<li><strong>Population vs sample</strong>: Analytical conclusions depend on who was studied. Be explicit about the target population and who ended up in the sample.</li>
+<li><strong>Representativeness matters</strong>: Distributions of sex, age, ethnicity, education, and socioeconomic position influence both exposures and outcomes.</li>
+<li><strong>Recruitment bias is common</strong>: “Worried well”, occupational cohorts, and single-sex studies can be highly non-representative of the general public.</li>
+<li><strong>Weighting helps, within limits</strong>: Post-stratification can reduce bias for variables that are included and measured well. It does not fix unmeasured selection or poor measurement.</li>
+<li><strong>Global relevance is not automatic</strong>: Methods and tools must be adapted to local diets and contexts. Applying <strong>US-centric</strong> dietary instruments elsewhere risks misclassification and misleading inference.</li>
+</ul>
+</section>
+<section id="appendix-helper-functions-optional" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="appendix-helper-functions-optional"><span class="header-section-number">10</span> Appendix: helper functions (optional)</h2>
+<p>For convenience, we reprint key helpers used above.</p>
+<div id="15d57613" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inspect</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(inspect.getsource(prop_table))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(inspect.getsource(compare_distribution))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(inspect.getsource(rake_weights))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/ggkuhnle\.github\.io\/fb2nep-epi\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© University of Reading 2025 · Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ggkuhnle/fb2nep-epi/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ggkuhnle/fb2nep-epi/blob/main/notebooks/02_representative.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with Quarto</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
