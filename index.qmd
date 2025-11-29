@@ -22,11 +22,8 @@ The data used throughout are **synthetic and reproducible** — see the [provena
 Each topic below links directly to a Jupyter notebook.  
 You can open any notebook in **Google Colab** using the button provided.
 
-- **00 · Introduction to FB2NEP**  
-  [![Open 00 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/00_Introduction_to_Module.ipynb)
-
-- **01 · Introduction to Epidemiology**  
-  [![Open 01 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/01_intro_epidemiology.ipynb)
+- **01 · Introduction to Colab and Jupyter**  
+  [![Open 01 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/01_introduction_colab_jupyter.ipynb)
 
 - **02 · Representative** 
   [![Open 02 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/02_representative.ipynb)
