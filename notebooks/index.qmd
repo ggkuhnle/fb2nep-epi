@@ -16,7 +16,7 @@ Data are synthetic and reproducible — see the [../metadata/provenance.md](prov
 
 ## 01 · Introduction to the dataset
 
-[![Open 01 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/01_intro_dataset.ipynb)
+[![Open 01 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/01_introdoction_colab_jupyter.ipynb)
 
 ---
 
