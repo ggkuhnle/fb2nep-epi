@@ -25,29 +25,29 @@ You can open any notebook in **Google Colab** using the button provided.
 - **01 · Introduction to Colab and Jupyter**  
   [![Open 01 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/01_introduction_colab_jupyter.ipynb)
 
-- **02 · Representative** 
+- **02 · Representative samples and external validity**  
   [![Open 02 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/02_representative.ipynb)
 
-- **03 · Study population & missing data plan**  
-  [![Open 03 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/03_study_population_missing.ipynb)
+- **03 · Data collection and cleaning**  
+  [![Open 03 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/03_data_collection_cleaning.ipynb)
 
-- **04 · Exposure analysis (dietary intake vs biomarker)**  
-  [![Open 04 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/04_exposure_analysis.ipynb)
+- **04 · Data exploration and “Table 1”**  
+  [![Open 04 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/04_data_exploration.ipynb)
 
-- **05 · Theoretical model building — DAGs**  
-  [![Open 05 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/05_theoretical_dags.ipynb)
+- **05 · Data transformation and preparation for modelling**  
+  [![Open 05 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/05_data_transformation.ipynb)
 
-- **06 · Regression analysis (cross-sectional)**  
-  [![Open 06 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/06_regression_crosssectional.ipynb)
+- **06 · Regression and modelling (Part 1)**  
+  [![Open 06 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/06_regression_modelling_01.ipynb)
 
-- **07 · Regression analysis (prospective: logistic & survival)**  
-  [![Open 07 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/07_regression_prospective.ipynb)
+- **07 · Regression and modelling (Part 2)**  
+  [![Open 07 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/07_regression_modelling_02.ipynb)
 
-- **08 · Advanced topics (confounding, colliders, mediation, imputation)**  
-  [![Open 08 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/08_advanced_missing_confounds.ipynb)
+- **08 · Missing data and sensitivity analysis**  
+  [![Open 08 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/08_missing_data_and_sensitivity.ipynb)
 
-- **10 · Summary**  
-  [![Open 10 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/10_summary.ipynb)
+- **09 · Causal inference in nutritional epidemiology: where next?**  
+  [![Open 09 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/09_causal_inference.ipynb)
 
 ---
 
