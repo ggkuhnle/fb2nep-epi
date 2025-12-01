@@ -28,11 +28,11 @@ from typing import Tuple
 import pandas as pd
 
 # URLs for NHANES 2017–2018 XPT files (DEMO_J and BMX_J)
-DEMO_URL = "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DEMO_J.XPT"
-BMX_URL = "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/BMX_J.XPT"
+DEMO_URL = "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/Datafiles/DEMO_J.XPT"
+BMX_URL = "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/Datafiles/BMX_J.XPT"
 
 # Local cache path for the processed CSV
-CACHE_PATH = pathlib.Path("data/nhanes_demo_2017_2018.csv")
+CACHE_PATH = pathlib.Path("data/private/nhanes_demo_2017_2018.csv")
 
 
 def _download_raw() -> Tuple[pd.DataFrame, pd.DataFrame]:
