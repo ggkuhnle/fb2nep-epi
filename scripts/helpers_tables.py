@@ -15,6 +15,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
+
 def proportion_table(
     data: pd.DataFrame,
     column: str,
@@ -366,3 +367,99 @@ def make_table1(data, group, continuous, categorical):
     # - outer keys (groups) → columns
     # - inner keys (variable names) → rows
     return pd.DataFrame(table)
+
+def log_transform(x: pd.Series, constant: float = 0.0) -> pd.Series:
+    """Apply a log transformation with optional constant.
+
+    We add a small constant if the variable can take the value 0, because
+    log(0) is undefined. The constant changes the scale slightly but keeps
+    the ordering of values.
+    """
+    return np.log(x + constant)
+
+
+def plot_hist_pair(
+    original: pd.Series,
+    transformed: pd.Series,
+    original_label: str,
+    transformed_label: str,
+) -> None:
+    """
+    Plot histograms of original and transformed data side by side.
+
+    This function is intended as a simple visual aid when comparing the
+    distribution of a variable before and after a transformation
+    (for example, raw intake vs log-transformed intake, or raw values vs
+    Box–Cox transformed values).
+
+    Parameters
+    ----------
+    original : pd.Series
+        Original values (for example, raw dietary intake or biomarker
+        concentrations). Missing values (NaN) are removed before plotting.
+    transformed : pd.Series
+        Transformed values corresponding to the same variable (for example,
+        log- or Box–Cox-transformed values). Missing values (NaN) are
+        removed before plotting.
+    original_label : str
+        Label for the original variable. This is used as the x-axis label
+        for the left-hand histogram.
+    transformed_label : str
+        Label for the transformed variable. This is used as the x-axis label
+        for the right-hand histogram.
+
+    Returns
+    -------
+    None
+        The function creates a matplotlib figure and displays it. It does not
+        return any object.
+    """
+
+    # ------------------------------------------------------------------
+    # 1. Remove missing values
+    # ------------------------------------------------------------------
+    # Histograms cannot handle NaN values directly. We therefore drop any
+    # missing values from both series before plotting. This affects only
+    # the visualisation, not the underlying data frame.
+    o = original.dropna()
+    t = transformed.dropna()
+
+    # ------------------------------------------------------------------
+    # 2. Create a new figure and define its size
+    # ------------------------------------------------------------------
+    # We use a 1 × 2 layout (two panels next to each other). The figure
+    # size can be adjusted if necessary, but 10 × 4 inches works well for
+    # most notebook displays.
+    plt.figure(figsize=(10, 4))
+
+    # ------------------------------------------------------------------
+    # 3. Left panel: histogram of the original data
+    # ------------------------------------------------------------------
+    plt.subplot(1, 2, 1)          # First subplot: 1 row, 2 columns, position 1
+    o.hist(bins=30)               # Use 30 bins as a reasonable default
+    plt.xlabel(original_label)    # Label the x-axis with the original variable
+    plt.ylabel("Number of participants")
+    plt.title("Original scale")
+
+    # ------------------------------------------------------------------
+    # 4. Right panel: histogram of the transformed data
+    # ------------------------------------------------------------------
+    plt.subplot(1, 2, 2)          # Second subplot: position 2
+    t.hist(bins=30)
+    plt.xlabel(transformed_label) # Label the x-axis with the transformed variable
+    plt.ylabel("Number of participants")
+    plt.title("Transformed scale")
+
+    # ------------------------------------------------------------------
+    # 5. Adjust layout and display the figure
+    # ------------------------------------------------------------------
+    # tight_layout() reduces overlap between axis labels and titles.
+    plt.tight_layout()
+    plt.show()
+
+def z_score(x: pd.Series) -> pd.Series:
+    """Return the z-score of a variable.
+
+    The function subtracts the mean and divides by the standard deviation.
+    """
+    return (x - x.mean()) / x.std()

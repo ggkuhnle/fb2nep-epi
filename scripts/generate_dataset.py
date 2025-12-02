@@ -150,14 +150,30 @@ salt_base  = 6.3 + 0.55*imd_inv - 0.2*(SES == "ABC1")
 
 energy_scale = (energy_kcal/2000)
 FV   = rng.normal(fv_base*energy_scale,   60)
-RED  = rng.normal(red_base*energy_scale,  30)
-SSB  = rng.normal(ssb_base*energy_scale, 120)
 FIB  = rng.normal(fibre_base*energy_scale, 5)
 SALT = rng.normal(salt_base*energy_scale, 1.1)
 
+# Red meat and SSB: explicitly right-skewed (log-normal-like)
+
+# We treat red_base * energy_scale as a target mean and back-calculate
+# the log-normal μ parameter for a chosen σ. This preserves an
+# interpretable magnitude while inducing skewness.
+red_mean = red_base * energy_scale
+sigma_red = 0.75  # larger σ -> more skew; adjust if needed
+
+# Prevent numerical problems for very small means
+mu_red = np.log(np.maximum(red_mean, 1e-3)) - 0.5 * sigma_red**2
+RED = rng.lognormal(mean=mu_red, sigma=sigma_red)
+
+# SSB can be even more skewed
+ssb_mean = ssb_base * energy_scale
+sigma_ssb = 0.90
+mu_ssb = np.log(np.maximum(ssb_mean, 1e-3)) - 0.5 * sigma_ssb**2
+SSB = rng.lognormal(mean=mu_ssb, sigma=sigma_ssb)
+
 FV   = np.clip(FV,   0, 1500)
 RED  = np.clip(RED,  0, 500)
-SSB  = np.clip(SSB,  0, 2000)
+SSB  = np.clip(SSB,  0, 2500)
 FIB  = np.clip(FIB,  0, 100)
 SALT = np.clip(SALT, 2, 20)
 
