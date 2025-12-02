@@ -280,3 +280,89 @@ def compare_two_sources(
     )
 
     return merged
+
+import pandas as pd
+
+def make_table1(data, group, continuous, categorical):
+    """
+    Create a simple 'Table 1' of baseline characteristics by group.
+
+    Parameters
+    ----------
+    data : pandas.DataFrame
+        The dataset containing all variables.
+    group : str
+        Name of the grouping variable (e.g. 'sex', 'treatment').
+        Each level of this variable will become a column in the table.
+    continuous : list of str
+        List of variable names to summarise as continuous variables.
+        For each group, these will be shown as "mean ± SD".
+    categorical : list of str
+        List of variable names to summarise as categorical variables.
+        For each group, these will be shown as "category: count (percent%)"
+        for all observed categories.
+
+    Returns
+    -------
+    pandas.DataFrame
+        A table where:
+        - rows are variables (continuous + categorical),
+        - columns are groups (levels of the `group` variable),
+        - cells are formatted strings ready to display in a notebook.
+    """
+
+    # Find all observed (non-missing) group levels, e.g. 'M' and 'F' for sex.
+    # These will become the columns of the final table.
+    groups = data[group].dropna().unique()
+
+    # Dictionary to hold one column (summary) per group.
+    # Keys: group levels; values: dict of {variable_name: formatted_string}.
+    table = {}
+
+    # Loop over each group level (e.g. 'M', 'F').
+    for g in groups:
+        # Subset the dataframe to the current group only.
+        df_g = data[data[group] == g]
+
+        # Temporary dictionary to store all summaries for this group.
+        col_dict = {}
+
+        # 1) Summarise continuous variables as mean ± SD
+        for v in continuous:
+            # Only proceed if the variable actually exists in the dataframe.
+            if v in data.columns:
+                # Compute mean and standard deviation for this group,
+                # ignoring missing values by default.
+                m = df_g[v].mean()
+                s = df_g[v].std()
+
+                # Format as "mean ± SD" with one decimal place.
+                col_dict[v] = f"{m:.1f} ± {s:.1f}"
+
+        # 2) Summarise categorical variables as counts and percentages
+        for v in categorical:
+            # Only proceed if the variable exists in the dataframe.
+            if v in data.columns:
+                # Count how often each category occurs in this group.
+                # `normalize=False` returns absolute counts (not proportions).
+                vc = df_g[v].value_counts(normalize=False)
+
+                # Total number of participants in this group
+                total = len(df_g)
+
+                # Build a string such as:
+                # "never: 500 (40.0%); former: 600 (48.0%); current: 150 (12.0%)"
+                col_dict[v] = "; ".join(
+                    [
+                        f"{cat}: {count} ({count / total * 100:.1f}%)"
+                        for cat, count in vc.items()
+                    ]
+                )
+
+        # Store the summary for this group as one column in the table.
+        table[g] = col_dict
+
+    # Convert the dictionary-of-dicts to a DataFrame:
+    # - outer keys (groups) → columns
+    # - inner keys (variable names) → rows
+    return pd.DataFrame(table)
