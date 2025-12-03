@@ -693,3 +693,64 @@ def summarise_logit_coef(model, var_name, label=None, prefix=None):
         data = prefixed
 
     return pd.Series(data)
+
+def stan_summary_table(fit, param_order=None, ci=0.95):
+    """
+    Create a tidy summary table for a CmdStanPy MCMC fit.
+
+    This helper produces a compact table with posterior means, standard deviations,
+    and credible intervals, formatted in a structure similar to the other summary
+    tables used in FB2NEP (for example, complete-case and imputation outputs).
+
+    Parameters
+    ----------
+    fit : cmdstanpy.CmdStanMCMC
+        The fitted Stan model returned by CmdStanPy.
+    param_order : list of str, optional
+        If provided, parameters will appear in this order. Useful for placing
+        regression coefficients (e.g. intercept, BMI, age, sex) in a consistent
+        layout for teaching.
+    ci : float, default 0.95
+        The posterior credible interval width. The table will show the lower and
+        upper bounds of the equal-tailed interval.
+
+    Returns
+    -------
+    pandas.DataFrame
+        A tidy table with columns:
+        - 'mean'
+        - 'sd'
+        - 'lower'
+        - 'upper'
+
+    Notes
+    -----
+    - Internally uses CmdStanPy's ``summary()`` method.
+    - By default, parameters appear in the Stan model order unless
+      ``param_order`` is explicitly supplied.
+    - Designed for use in teaching notebooks so that Bayesian results match the
+      layout of frequentist results from ``statsmodels``.
+    """
+
+    import pandas as pd
+
+    # Extract raw summary from CmdStanPy
+    summ = fit.summary()
+
+    # Identify credible interval column names from CmdStanPy's conventions
+    ci_low = f"{int((1-ci)/2 * 100)}%"
+    ci_high = f"{int((1 + ci)/2 * 100)}%"
+
+    # Build the core table
+    tbl = pd.DataFrame({
+        "mean": summ["Mean"],
+        "sd": summ["SD"],
+        "lower": summ[ci_low],
+        "upper": summ[ci_high],
+    })
+
+    # Reorder if a parameter order is provided
+    if param_order is not None:
+        tbl = tbl.loc[param_order]
+
+    return tbl
