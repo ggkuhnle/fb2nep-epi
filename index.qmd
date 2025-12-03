@@ -7,51 +7,50 @@ format:
 
 ## Welcome
 
-This site hosts the **practical teaching materials** for  
-[**FB2NEP: Nutritional Epidemiology & Public Health**](https://www.reading.ac.uk/modules/documents?acyear=2024%252f5&modcode=FB2NEP&schoolcode=CFP%20CHEM%7CCFP%20FOODBI%7CCFP%20PHARM).
+This site hosts the **practical workbooks** for  
+[**FB2NEP: Nutritional Epidemiology & Public Health**](https://www.reading.ac.uk/ready-to-study/study/2024/food-and-nutritional-sciences-ug/fb2nep-nutritional-epidemiology-and-public-health).
 
-The data used throughout are **synthetic and reproducible** — see the [provenance file](metadata/provenance.md) for details on how they were generated.
+All analyses use a **synthetic, reproducible dataset** based on a fictional cohort.  
+For details, see the provenance notes in the repository.
 
-> Please familiarise yourself with this repository.  
-> It is an integral part of the **teaching** and will be used in the **assessment**.
+> Please familiarise yourself with these materials.  
+> They are an integral part of the **teaching** and will be used in the **assessment**.
 
 ---
 
-## Contents
+## Workbooks (open in Google Colab)
 
-Each topic below links directly to a Jupyter notebook.  
-You can open any notebook in **Google Colab** using the button provided.
+Each link opens the corresponding notebook directly in **Google Colab**.  
+You may also download the notebooks and run them locally in Jupyter.
 
-- **01 · Introduction to Colab and Jupyter**  
-  [![Open 01 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/01_introduction_colab_jupyter.ipynb)
+- **01 · Introduction to Jupyter and Google Colab**  
+  [![Open 01 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kuhnle/fb2nep-epi/blob/main/notebooks/01_introduction_colab_jupyter.ipynb)
 
 - **02 · Data collection and cleaning**  
-  [![Open 03 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/02_data_collection_cleaning.ipynb)
+  [![Open 02 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kuhnle/fb2nep-epi/blob/main/notebooks/02_data_collection_cleaning.ipynb)
 
-- **03 · Representative samples and external validity**  
-  [![Open 02 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/03_representative.ipynb)
+- **03 · Representativeness and sampling**  
+  [![Open 03 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kuhnle/fb2nep-epi/blob/main/notebooks/03_representative.ipynb)
 
 - **04 · Data exploration and “Table 1”**  
-  [![Open 04 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/04_data_exploration.ipynb)
+  [![Open 04 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kuhnle/fb2nep-epi/blob/main/notebooks/04_data_exploration.ipynb)
 
-- **05 · Data transformation and preparation for modelling**  
-  [![Open 05 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/05_data_transformation.ipynb)
+- **05 · Data transformation**  
+  [![Open 05 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kuhnle/fb2nep-epi/blob/main/notebooks/05_data_transformation.ipynb)
 
 - **06 · Regression and modelling (Part 1)**  
-  [![Open 06 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/06_regression_modelling_01.ipynb)
+  [![Open 06 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kuhnle/fb2nep-epi/blob/main/notebooks/06_regression_modelling_01.ipynb)
 
 - **07 · Regression and modelling (Part 2)**  
-  [![Open 07 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/07_regression_modelling_02.ipynb)
+  [![Open 07 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kuhnle/fb2nep-epi/blob/main/notebooks/07_regression_modelling_02.ipynb)
 
 - **08 · Missing data and sensitivity analysis**  
-  [![Open 08 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/08_missing_data_and_sensitivity.ipynb)
-
-- **09 · Causal inference in nutritional epidemiology: where next?**  
-  [![Open 09 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/09_causal_inference.ipynb)
+  [![Open 08 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kuhnle/fb2nep-epi/blob/main/notebooks/08_missing_data_and_sensitivity.ipynb)
 
 ---
 
 ## Assessment
 
-For your **coursework assessment**, you will analyse the synthetic dataset provided and prepare a written report of your findings.  
-Full details and marking criteria are given in the [Assessment Brief](assessment/FB2NEP_Assessment_Brief.md).
+For the **coursework assessment**, you will analyse the synthetic FB2NEP dataset and prepare a written report of your findings.
+
+Full details and marking criteria are provided in the **Assessment Brief** on Blackboard.
