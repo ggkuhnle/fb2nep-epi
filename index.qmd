@@ -54,4 +54,4 @@ You can open any notebook in **Google Colab** using the button provided.
 ## Assessment
 
 For your **coursework assessment**, you will analyse the synthetic dataset provided and prepare a written report of your findings.  
-Full details and marking criteria are given in the [Assessment Brief](assessment/A1_brief.md).
+Full details and marking criteria are given in the [Assessment Brief](assessment/FB2NEP_Assessment_Brief.md).

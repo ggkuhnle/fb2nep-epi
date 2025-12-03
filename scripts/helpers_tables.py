@@ -8,14 +8,30 @@ Currently provides:
 - representation_table: compare sample proportions to Census (or other)
   reference proportions and compute representation ratios.
 - plot_representation: bar plot of representation ratios.
+- draw_sample_mean_bmi / simulate_sampling_distribution: simple tools
+  for illustrating sampling variation of the mean.
+- compare_two_sources: side-by-side comparison of category distributions.
+- make_table1: very simple 'Table 1' of baseline characteristics by group.
+- log_transform / z_score: basic transformations often used before modelling.
+- plot_hist_pair: helper to show the effect of a transformation.
+- ensure_lifelines: import (and if necessary install) the lifelines package.
 """
 
-import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
+# ---------------------------------------------------------------------
+# Imports
+# ---------------------------------------------------------------------
+
 import sys
 import subprocess
 
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
+# ---------------------------------------------------------------------
+# 1. Simple tables and representation
+# ---------------------------------------------------------------------
 
 
 def proportion_table(
@@ -45,9 +61,14 @@ def proportion_table(
         - "count": number of observations in this category;
         - "proportion": fraction of all observations in this category.
     """
+    # value_counts gives the frequency of each category.
+    # dropna controls whether NaN is treated as its own category.
     counts = data[column].value_counts(dropna=dropna)
+
+    # value_counts(normalize=True) gives the proportion (i.e. counts / total).
     props = data[column].value_counts(normalize=True, dropna=dropna)
 
+    # Combine counts and proportions into a single table.
     table = pd.DataFrame(
         {
             "count": counts,
@@ -70,7 +91,8 @@ def representation_table(
     ----------
     sample_tab : pandas.DataFrame
         Table with columns [key, 'proportion'] from the sample
-        (for example, NHANES).
+        (for example, NHANES). This would typically come from
+        proportion_table(...).reset_index().
     census_tab : pandas.DataFrame
         Table with columns [key, 'census_prop'] from Census or other
         reference source.
@@ -85,15 +107,31 @@ def representation_table(
         - sample_prop
         - census_prop
         - representation_ratio = sample_prop / census_prop
+
+    Notes
+    -----
+    - A representation_ratio of 1.0 means perfect agreement between the
+      sample and the reference.
+    - Values > 1.0 indicate over-representation in the sample.
+    - Values < 1.0 indicate under-representation in the sample.
     """
+    # Merge the two tables so that the same categories (rows) line up.
+    # how="outer" ensures that categories that appear in only one table
+    # still appear in the result (with NaN for the missing side).
     merged = sample_tab.merge(
         census_tab,
         on=key,
         how="outer",
         validate="one_to_one",
     )
+
+    # Rename the sample proportion column for clarity.
     merged = merged.rename(columns={"proportion": "sample_prop"})
+
+    # Compute the representation ratio; if census_prop is missing or zero,
+    # the result will be NaN or inf.
     merged["representation_ratio"] = merged["sample_prop"] / merged["census_prop"]
+
     return merged
 
 
@@ -116,17 +154,37 @@ def plot_representation(
         Name of the column that contains category labels (for example, 'sex').
     title : str
         Title of the plot.
+
+    Returns
+    -------
+    None
+        The function creates and shows a matplotlib figure.
     """
+    # Work on a copy so that the original data frame is not modified.
     df = df.copy().sort_values("representation_ratio")
 
     plt.figure(figsize=(6, 4))
+
+    # Convert category labels to string so that unusual types (e.g. integers,
+    # categories) are handled safely on the x-axis.
     plt.bar(df[category_col].astype(str), df["representation_ratio"])
+
+    # Add a reference line at 1.0 (perfect representation).
     plt.axhline(1.0, linestyle="--")
+
     plt.ylabel("Representation ratio (sample / reference)")
     plt.title(title)
+
+    # Rotate x-axis labels to avoid overlap if there are many categories.
     plt.xticks(rotation=45, ha="right")
+
     plt.tight_layout()
     plt.show()
+
+
+# ---------------------------------------------------------------------
+# 2. Sampling and simulation helpers
+# ---------------------------------------------------------------------
 
 
 def draw_sample_mean_bmi(
@@ -204,7 +262,7 @@ def simulate_sampling_distribution(
     - The distribution of these means approximates the *sampling
       distribution* of the mean BMI for studies of size n.
     """
-    # Preallocate an array to store the mean from each simulated sample.
+    # Pre-allocate an array to store the mean from each simulated sample.
     means = np.empty(n_sim)
 
     # Repeat the sampling process n_sim times.
@@ -212,6 +270,7 @@ def simulate_sampling_distribution(
         means[i] = draw_sample_mean_bmi(data, n, rng)
 
     return means
+
 
 def compare_two_sources(
     ref: pd.DataFrame,
@@ -243,8 +302,8 @@ def compare_two_sources(
     -------
     pandas.DataFrame
         A table indexed by category with four columns:
-        - '<ref_label>_count' : counts in the reference dataset
-        - '<ref_label>_prop'  : proportions in the reference dataset
+        - '<ref_label>_count'  : counts in the reference dataset
+        - '<ref_label>_prop'   : proportions in the reference dataset
         - '<study_label>_count': counts in the study dataset
         - '<study_label>_prop' : proportions in the study dataset
 
@@ -284,9 +343,18 @@ def compare_two_sources(
 
     return merged
 
-import pandas as pd
 
-def make_table1(data, group, continuous, categorical):
+# ---------------------------------------------------------------------
+# 3. 'Table 1' helper
+# ---------------------------------------------------------------------
+
+
+def make_table1(
+    data: pd.DataFrame,
+    group: str,
+    continuous: list[str],
+    categorical: list[str],
+) -> pd.DataFrame:
     """
     Create a simple 'Table 1' of baseline characteristics by group.
 
@@ -295,7 +363,7 @@ def make_table1(data, group, continuous, categorical):
     data : pandas.DataFrame
         The dataset containing all variables.
     group : str
-        Name of the grouping variable (e.g. 'sex', 'treatment').
+        Name of the grouping variable (for example, 'sex', 'treatment').
         Each level of this variable will become a column in the table.
     continuous : list of str
         List of variable names to summarise as continuous variables.
@@ -313,48 +381,47 @@ def make_table1(data, group, continuous, categorical):
         - columns are groups (levels of the `group` variable),
         - cells are formatted strings ready to display in a notebook.
     """
-
     # Find all observed (non-missing) group levels, e.g. 'M' and 'F' for sex.
     # These will become the columns of the final table.
     groups = data[group].dropna().unique()
 
     # Dictionary to hold one column (summary) per group.
     # Keys: group levels; values: dict of {variable_name: formatted_string}.
-    table = {}
+    table: dict[str, dict[str, str]] = {}
 
-    # Loop over each group level (e.g. 'M', 'F').
+    # Loop over each group level (for example 'M', 'F').
     for g in groups:
-        # Subset the dataframe to the current group only.
+        # Subset the data frame to the current group only.
         df_g = data[data[group] == g]
 
         # Temporary dictionary to store all summaries for this group.
-        col_dict = {}
+        col_dict: dict[str, str] = {}
 
-        # 1) Summarise continuous variables as mean ± SD
+        # 1) Summarise continuous variables as mean ± SD.
         for v in continuous:
-            # Only proceed if the variable actually exists in the dataframe.
+            # Only proceed if the variable actually exists in the data frame.
             if v in data.columns:
-                # Compute mean and standard deviation for this group,
-                # ignoring missing values by default.
+                # Compute mean and standard deviation for this group.
+                # By default, pandas ignores missing values (NaN).
                 m = df_g[v].mean()
                 s = df_g[v].std()
 
                 # Format as "mean ± SD" with one decimal place.
                 col_dict[v] = f"{m:.1f} ± {s:.1f}"
 
-        # 2) Summarise categorical variables as counts and percentages
+        # 2) Summarise categorical variables as counts and percentages.
         for v in categorical:
-            # Only proceed if the variable exists in the dataframe.
+            # Only proceed if the variable exists in the data frame.
             if v in data.columns:
                 # Count how often each category occurs in this group.
                 # `normalize=False` returns absolute counts (not proportions).
                 vc = df_g[v].value_counts(normalize=False)
 
-                # Total number of participants in this group
+                # Total number of participants in this group.
                 total = len(df_g)
 
                 # Build a string such as:
-                # "never: 500 (40.0%); former: 600 (48.0%); current: 150 (12.0%)"
+                # "never: 500 (40.0%); former: 600 (48.0%); current: 150 (12.0%)".
                 col_dict[v] = "; ".join(
                     [
                         f"{cat}: {count} ({count / total * 100:.1f}%)"
@@ -365,14 +432,35 @@ def make_table1(data, group, continuous, categorical):
         # Store the summary for this group as one column in the table.
         table[g] = col_dict
 
-    # Convert the dictionary-of-dicts to a DataFrame:
+    # Convert the dictionary-of-dictionaries to a DataFrame:
     # - outer keys (groups) → columns
-    # - inner keys (variable names) → rows
+    # - inner keys (variable names) → rows.
     return pd.DataFrame(table)
 
-def log_transform(x: pd.Series, constant: float = 0.0) -> pd.Series:
-    """Apply a log transformation with optional constant.
 
+# ---------------------------------------------------------------------
+# 4. Simple transformations and plots
+# ---------------------------------------------------------------------
+
+
+def log_transform(x: pd.Series, constant: float = 0.0) -> pd.Series:
+    """
+    Apply a log transformation with optional constant.
+
+    Parameters
+    ----------
+    x : pd.Series
+        Variable to be transformed.
+    constant : float, default 0.0
+        Constant to be added before taking the logarithm.
+
+    Returns
+    -------
+    pd.Series
+        Log-transformed values.
+
+    Notes
+    -----
     We add a small constant if the variable can take the value 0, because
     log(0) is undefined. The constant changes the scale slightly but keeps
     the ordering of values.
@@ -416,7 +504,6 @@ def plot_hist_pair(
         The function creates a matplotlib figure and displays it. It does not
         return any object.
     """
-
     # ------------------------------------------------------------------
     # 1. Remove missing values
     # ------------------------------------------------------------------
@@ -448,7 +535,7 @@ def plot_hist_pair(
     # ------------------------------------------------------------------
     plt.subplot(1, 2, 2)          # Second subplot: position 2
     t.hist(bins=30)
-    plt.xlabel(transformed_label) # Label the x-axis with the transformed variable
+    plt.xlabel(transformed_label)  # Label the x-axis with the transformed variable
     plt.ylabel("Number of participants")
     plt.title("Transformed scale")
 
@@ -459,17 +546,54 @@ def plot_hist_pair(
     plt.tight_layout()
     plt.show()
 
-def z_score(x: pd.Series) -> pd.Series:
-    """Return the z-score of a variable.
 
+def z_score(x: pd.Series) -> pd.Series:
+    """
+    Return the z-score of a variable.
+
+    Parameters
+    ----------
+    x : pd.Series
+        Variable to standardise.
+
+    Returns
+    -------
+    pd.Series
+        Standardised variable with mean 0 and standard deviation 1.
+
+    Notes
+    -----
     The function subtracts the mean and divides by the standard deviation.
     """
     return (x - x.mean()) / x.std()
 
+
+# ---------------------------------------------------------------------
+# 5. Package helper
+# ---------------------------------------------------------------------
+
+
 def ensure_lifelines():
-    """Import lifelines, installing it first if necessary."""
+    """
+    Import the 'lifelines' package, installing it first if necessary.
+
+    This helper is mainly intended for teaching notebooks, where students
+    may run the code in different environments (for example, Google Colab
+    or a local Jupyter installation).
+
+    Returns
+    -------
+    module
+        The imported lifelines module.
+
+    Behaviour
+    ---------
+    - If lifelines is already installed, it is imported and returned.
+    - If lifelines is not installed, the function attempts to install it
+      using `pip` and then imports it.
+    """
     try:
-        import lifelines  # noqa: F401  (imported for its side-effect)
+        import lifelines  # noqa: F401  (imported for its side effect)
     except ImportError:
         print("The 'lifelines' package is not installed. Installing it now...")
         # Use the current Python interpreter to run 'pip install lifelines'.
@@ -477,5 +601,95 @@ def ensure_lifelines():
         subprocess.check_call([sys.executable, "-m", "pip", "install", "lifelines"])
         print("Installation complete. Importing 'lifelines'...")
         import lifelines  # noqa: F401
-    # Return the module so that it can be used below if needed.
+
+    # Return the module so that it can be used by the caller.
     return lifelines
+
+def summarise_logit_coef(model, var_name, label=None, prefix=None):
+    """
+    Create a small summary for one coefficient from a fitted logistic regression model.
+
+    This helper is intended for use with statsmodels Logit results. It extracts:
+
+    - The log-odds coefficient (beta).
+    - The 95 % confidence interval for beta.
+    - The p-value.
+    - The odds ratio (OR = exp(beta)).
+    - The 95 % confidence interval for the odds ratio.
+
+    Parameters
+    ----------
+    model : statsmodels.discrete.discrete_model.BinaryResults
+        Fitted logistic regression model (for example, from smf.logit(...).fit()).
+    var_name : str
+        Name of the coefficient / parameter in model.params (for example, "high_red").
+    label : str, optional
+        Human-readable label for this coefficient (for example, "Crude model").
+        If None, var_name is used.
+    prefix : str, optional
+        Optional prefix to add to the returned index keys (for example, "crude_").
+        This can be useful when combining summaries from several models.
+
+    Returns
+    -------
+    pandas.Series
+        A one-dimensional object with the following fields:
+
+        - "label"          : label for this coefficient / model.
+        - "var_name"       : name of the coefficient in the model.
+        - "beta"           : log-odds coefficient.
+        - "ci_lower"       : lower 95 % confidence limit for beta.
+        - "ci_upper"       : upper 95 % confidence limit for beta.
+        - "p_value"        : p-value for the coefficient.
+        - "OR"             : odds ratio = exp(beta).
+        - "OR_ci_lower"    : lower 95 % confidence limit for the odds ratio.
+        - "OR_ci_upper"    : upper 95 % confidence limit for the odds ratio.
+
+    Notes
+    -----
+    This function does not print anything. It is designed so that several
+    Series objects can be combined into a DataFrame, for example:
+
+        rows = []
+        rows.append(summarise_logit_coef(m_crude, "high_red", label="Crude"))
+        rows.append(summarise_logit_coef(m_adj, "high_red", label="Adjusted"))
+        summary = pd.DataFrame(rows)
+
+    """
+
+    if label is None:
+        label = var_name
+
+    # Extract coefficient, confidence interval and p-value from the model
+    beta = float(model.params[var_name])
+    ci_lo, ci_hi = model.conf_int().loc[var_name]
+    p_val = float(model.pvalues[var_name])
+
+    # Convert to odds ratio scale
+    OR = float(np.exp(beta))
+    OR_lo = float(np.exp(ci_lo))
+    OR_hi = float(np.exp(ci_hi))
+
+    data = {
+        "label": label,
+        "var_name": var_name,
+        "beta": beta,
+        "ci_lower": float(ci_lo),
+        "ci_upper": float(ci_hi),
+        "p_value": p_val,
+        "OR": OR,
+        "OR_ci_lower": OR_lo,
+        "OR_ci_upper": OR_hi,
+    }
+
+    # Optionally add a prefix to each key (except label and var_name)
+    if prefix:
+        prefixed = {}
+        for key, value in data.items():
+            if key in ("label", "var_name"):
+                prefixed[key] = value
+            else:
+                prefixed[f"{prefix}{key}"] = value
+        data = prefixed
+
+    return pd.Series(data)

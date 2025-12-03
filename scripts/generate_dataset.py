@@ -143,7 +143,7 @@ energy_kcal = np.exp(rng.normal(np.log(1900), 0.25, N)) * pa_mult * sex_mult
 # -----------------------
 imd_inv = 6 - IMD  # 1..5 -> 5..1 deprivation score
 fv_base    = 330 - 25*imd_inv + 20*(SES == "ABC1")
-red_base   = 70 + 12*imd_inv - 8*(SES == "ABC1")
+red_base   = 70 + 12*imd_inv - 30*(SES == "ABC1")
 ssb_base   = 150 + 60*imd_inv - 20*(SES == "ABC1")
 fibre_base = 18 + 0.018*fv_base
 salt_base  = 6.3 + 0.55*imd_inv - 0.2*(SES == "ABC1")
@@ -204,7 +204,7 @@ urNa = np.clip(urNa, 10, 250)
 # SBP: quadratic in age + salt + BMI + smoking - high PA
 SBP = (95 + 0.7*age + 0.03*((age-60)**2)
        - 1.5*(PA=="high").astype(float)
-       + 0.8*SALT + 0.5*BMI + 4*(smoking=="current").astype(float)
+       + 1.5*SALT + 0.5*BMI + 4*(smoking=="current").astype(float)
        + rng.normal(0,10,N))
 SBP = np.clip(SBP, 80, 220)
 
@@ -231,8 +231,8 @@ lin_cvd = (
     + 0.25*male
     + 0.080*imd_term
     + 0.050*ses_low
-    + 0.005*SALT
-    + 0.004*SBP
+    + 0.002*SALT
+    + 0.018*SBP
     - 0.0005*FV
     + 0.015*alc_j
     + 0.35*fhx_cvd
@@ -248,10 +248,10 @@ lin_ca = (
     0.045*age
     + 0.015*BMI
     + 0.55*(smoking == "current").astype(float)
-    + 0.08*ses_low
+    + 0.15*ses_low
     + 0.05*male
     + 0.35*fhx_cancer
-    + 0.0010*red_excess                         # +0.10 per +100 g/d above 50
+    + 0.0025*red_excess * ses_low                        # +0.10 per +100 g/d above 50
 )
 b0_ca = calibrate_intercept(lin_ca, follow_up_years, target=0.10)
 logh_ca = b0_ca + lin_ca
