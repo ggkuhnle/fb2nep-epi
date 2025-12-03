@@ -28,6 +28,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
+import math
+
 
 # ---------------------------------------------------------------------
 # 1. Simple tables and representation
@@ -750,6 +752,266 @@ def stan_summary_table(fit, param_order=None, ci=0.95):
     })
 
     # Reorder if a parameter order is provided
+    if param_order is not None:
+        tbl = tbl.loc[param_order]
+
+    return tbl
+
+def ensure_cmdstanpy():
+    """
+    Import the 'cmdstanpy' package, installing it first if necessary.
+
+    This helper is intended for teaching notebooks, where students may run
+    the code in different environments (for example, Google Colab or a local
+    Jupyter installation).
+
+    Returns
+    -------
+    module
+        The imported cmdstanpy module.
+
+    Behaviour
+    ---------
+    - If cmdstanpy is already installed, it is imported and returned.
+    - If cmdstanpy is not installed, the function attempts to install it
+      using `pip` and then imports it.
+    """
+    import subprocess
+    import sys
+
+    try:
+        import cmdstanpy  # noqa: F401
+    except ImportError:
+        print("The 'cmdstanpy' package is not installed. Installing it now...")
+        subprocess.check_call(
+            [sys.executable, "-m", "pip", "install", "cmdstanpy"]
+        )
+        print("Installation complete. Importing 'cmdstanpy'...")
+        import cmdstanpy  # noqa: F401
+
+    return cmdstanpy
+
+def ensure_cmdstan():
+    """
+    Ensure that CmdStan (the Stan command line interface) is installed
+    and available for CmdStanPy.
+
+    This helper uses CmdStanPy's own installation utilities. It is safe to
+    call repeatedly: if CmdStan is already installed, the existing
+    installation is reused.
+
+    Returns
+    -------
+    str
+        The filesystem path to the CmdStan installation.
+
+    Behaviour
+    ---------
+    - If CmdStan is already installed, its path is returned.
+    - If CmdStan is not installed, the function calls `install_cmdstan()`
+      from CmdStanPy, waits for the installation to complete, and then
+      returns the new path.
+
+    Notes
+    -----
+    - The initial installation of CmdStan may take several minutes, as the
+      Stan library and example models are compiled.
+    - A suitable C++ toolchain must be available on the system; on macOS,
+      this typically requires Xcode command line tools.
+    """
+    cmdstanpy = ensure_cmdstanpy()
+    from cmdstanpy import cmdstan_path, install_cmdstan
+
+    try:
+        path = cmdstan_path()
+        print(f"CmdStan already installed at: {path}")
+    except ValueError:
+        print("CmdStan is not installed. Installing CmdStan via CmdStanPy...")
+        install_cmdstan()
+        path = cmdstan_path()
+        print(f"CmdStan installation complete. Path: {path}")
+
+    return path
+
+
+def or_from_linear_combination(
+    coeff_names,
+    weights,
+    params,
+    cov,
+    alpha: float = 0.05,
+):
+    """
+    Compute an odds ratio (and CI) for a linear combination of regression
+    coefficients from a statsmodels model.
+
+    This is useful when you have interaction terms and want, for example,
+    group-specific effects:
+
+        logit(P(Y=1)) = β0 + β1*highPA + β2*C(SES)[T.C2DE] + β3*highPA:C(SES)[T.C2DE]
+
+    The effect of highPA in the C2DE group is then β1 + β3, which we can compute
+    with this helper.
+
+    Parameters
+    ----------
+    coeff_names : list of str
+        Names of the coefficients involved in the linear combination, exactly
+        as they appear in `model.params.index`. Example:
+        ["highPA", "highPA:C(SES_class)[T.C2DE]"].
+    weights : list of float
+        Weights for the linear combination (same length as coeff_names).
+        Example:
+        [1.0, 1.0]  →  β = β_highPA + β_interaction
+        [1.0]       →  β = β_highPA (no interaction).
+    params : pandas.Series
+        `model.params` from a fitted statsmodels model.
+    cov : pandas.DataFrame
+        `model.cov_params()` (variance–covariance matrix).
+    alpha : float, optional
+        Significance level for the confidence interval (default 0.05 → 95 % CI).
+
+    Returns
+    -------
+    beta : float
+        Linear combination of the coefficients (on the log-odds scale).
+    ci_lower : float
+        Lower bound of the confidence interval for beta.
+    ci_upper : float
+        Upper bound of the confidence interval for beta.
+    p_value : float
+        Two-sided p-value for H0: beta = 0.
+    OR : float
+        Odds ratio corresponding to exp(beta).
+    OR_ci_lower : float
+        Lower bound of the confidence interval for the odds ratio.
+    OR_ci_upper : float
+        Upper bound of the confidence interval for the odds ratio.
+
+    Notes
+    -----
+    - We use the normal approximation (Wald test), which is standard in
+      introductory regression teaching.
+    - The function is generic and can also be used for linear regression
+      (in that case, the "OR" is simply exp(beta), which may or may not be
+      meaningful depending on the context).
+    """
+    if len(coeff_names) != len(weights):
+        raise ValueError(
+            "coeff_names and weights must have the same length "
+            f"(got {len(coeff_names)} and {len(weights)})."
+        )
+
+    # Extract the relevant coefficients in a fixed order
+    beta_vec = np.array([params[name] for name in coeff_names], dtype=float)
+    w = np.array(weights, dtype=float)
+
+    # Linear combination β = w' * β_vec
+    beta = float(np.dot(w, beta_vec))
+
+    # Subset the covariance matrix to the relevant coefficients
+    cov_sub = cov.loc[coeff_names, coeff_names].values
+
+    # Variance of the linear combination: Var(w'β) = w' Σ w
+    var = float(w @ cov_sub @ w)
+    se = math.sqrt(var) if var >= 0 else float("nan")
+
+    # Wald z-statistic and normal-approximation p-value
+    if se > 0 and math.isfinite(beta):
+        z = beta / se
+        # two-sided p-value using the standard normal CDF
+        # Φ(z) = 0.5 * erfc(-z / √2)
+        p_value = 2 * 0.5 * math.erfc(abs(z) / math.sqrt(2))
+    else:
+        z = float("nan")
+        p_value = float("nan")
+
+    # Confidence interval on the log-odds scale
+    z_crit = 1.96  # fixed 95 % CI for teaching (ignore alpha for simplicity)
+    ci_lower = beta - z_crit * se if math.isfinite(se) else float("nan")
+    ci_upper = beta + z_crit * se if math.isfinite(se) else float("nan")
+
+    # Transform to odds ratio scale
+    OR = math.exp(beta) if math.isfinite(beta) else float("nan")
+    OR_ci_lower = math.exp(ci_lower) if math.isfinite(ci_lower) else float("nan")
+    OR_ci_upper = math.exp(ci_upper) if math.isfinite(ci_upper) else float("nan")
+
+    return beta, ci_lower, ci_upper, p_value, OR, OR_ci_lower, OR_ci_upper
+
+
+def stan_summary_table(fit, param_order=None, ci: float = 0.95):
+    """
+    Create a tidy summary table for a CmdStanPy MCMC fit.
+
+    Parameters
+    ----------
+    fit : cmdstanpy.CmdStanMCMC
+        The fitted Stan model returned by CmdStanPy.
+    param_order : list of str, optional
+        If provided, parameters will appear in this order.
+    ci : float, default 0.95
+        Width of the posterior credible interval.
+
+    Returns
+    -------
+    pandas.DataFrame
+        Table with columns:
+        - 'mean'
+        - 'sd'
+        - 'lower'
+        - 'upper'
+    """
+    import pandas as pd
+
+    summ = fit.summary()
+
+    # Mean column (CmdStanPy uses 'Mean')
+    if "Mean" not in summ.columns:
+        raise KeyError("Could not find 'Mean' column in CmdStanPy summary().")
+    mean_col = "Mean"
+
+    # Standard deviation column: 'StdDev' in current CmdStanPy
+    if "StdDev" in summ.columns:
+        sd_col = "StdDev"
+    elif "SD" in summ.columns:
+        sd_col = "SD"
+    else:
+        raise KeyError("Could not find a standard deviation column ('StdDev' or 'SD') in CmdStanPy summary().")
+
+    # Identify all percentage columns, e.g. '5%', '95%' or '2.5%', '97.5%'
+    pct_cols = [c for c in summ.columns if c.endswith("%")]
+    if not pct_cols:
+        raise KeyError("No percentile columns (ending in '%') found in CmdStanPy summary().")
+
+    # Desired lower and upper percentiles for the credible interval
+    low_pct_target = (1.0 - ci) / 2.0 * 100.0   # e.g. 2.5 for ci=0.95
+    high_pct_target = (1.0 + ci) / 2.0 * 100.0  # e.g. 97.5 for ci=0.95
+
+    # Map existing percentile columns to numeric values
+    pct_values = []
+    for c in pct_cols:
+        try:
+            v = float(c.rstrip("%"))
+            pct_values.append((c, v))
+        except ValueError:
+            # Skip any odd columns that do not parse as floats
+            continue
+
+    if not pct_values:
+        raise KeyError("Percentile columns in CmdStanPy summary() could not be parsed as numbers.")
+
+    # Choose the columns whose percentages are closest to the desired targets
+    low_col = min(pct_values, key=lambda cv: abs(cv[1] - low_pct_target))[0]
+    high_col = min(pct_values, key=lambda cv: abs(cv[1] - high_pct_target))[0]
+
+    # Build the core summary table
+    tbl = pd.DataFrame({
+        "mean":  summ[mean_col],
+        "sd":    summ[sd_col],
+        "lower": summ[low_col],
+        "upper": summ[high_col],
+    })
+
     if param_order is not None:
         tbl = tbl.loc[param_order]
 
