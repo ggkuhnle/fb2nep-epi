@@ -13,6 +13,8 @@ Currently provides:
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import sys
+import subprocess
 
 
 
@@ -463,3 +465,17 @@ def z_score(x: pd.Series) -> pd.Series:
     The function subtracts the mean and divides by the standard deviation.
     """
     return (x - x.mean()) / x.std()
+
+def ensure_lifelines():
+    """Import lifelines, installing it first if necessary."""
+    try:
+        import lifelines  # noqa: F401  (imported for its side-effect)
+    except ImportError:
+        print("The 'lifelines' package is not installed. Installing it now...")
+        # Use the current Python interpreter to run 'pip install lifelines'.
+        # This is more robust than assuming a particular 'pip' command.
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "lifelines"])
+        print("Installation complete. Importing 'lifelines'...")
+        import lifelines  # noqa: F401
+    # Return the module so that it can be used below if needed.
+    return lifelines
