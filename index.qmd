@@ -14,7 +14,7 @@ You may also download the notebooks and run them locally in Jupyter.
 
 ---
 
-### 01 · Introduction to Jupyter and Google Colab
+### Introduction to Jupyter and Google Colab
 
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/01_introduction_colab_jupyter.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 01 in Colab">
@@ -22,7 +22,7 @@ You may also download the notebooks and run them locally in Jupyter.
 
 ---
 
-### 02 · Data collection and cleaning
+### Data collection and cleaning
 
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/02_data_collection_cleaning.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 02 in Colab">
@@ -30,7 +30,7 @@ You may also download the notebooks and run them locally in Jupyter.
 
 ---
 
-### 03 · Representativeness and sampling
+### Representativeness and sampling
 
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/03_representative.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 03 in Colab">
@@ -38,7 +38,7 @@ You may also download the notebooks and run them locally in Jupyter.
 
 ---
 
-### 04 · Data exploration and “Table 1”
+### Data exploration and “Table 1”
 
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/04_data_exploration.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 04 in Colab">
@@ -46,7 +46,7 @@ You may also download the notebooks and run them locally in Jupyter.
 
 ---
 
-### 05 · Data transformation
+### Data transformation
 
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/05_data_transformation.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 05 in Colab">
@@ -54,7 +54,7 @@ You may also download the notebooks and run them locally in Jupyter.
 
 ---
 
-### 06 · Regression and modelling (Part 1)
+### Regression and modelling (Part 1)
 
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/06_regression_modelling_01.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 06 in Colab">
@@ -62,7 +62,7 @@ You may also download the notebooks and run them locally in Jupyter.
 
 ---
 
-### 07 · Regression and modelling (Part 2)
+### Regression and modelling (Part 2)
 
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/07_regression_modelling_02.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 07 in Colab">
@@ -70,7 +70,7 @@ You may also download the notebooks and run them locally in Jupyter.
 
 ---
 
-### 08 · Missing data and sensitivity analysis
+### Missing data and sensitivity analysis
 
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/08_missing_data_and_sensitivity.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 08 in Colab">
