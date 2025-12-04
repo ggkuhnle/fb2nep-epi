@@ -1,0 +1,100 @@
+---
+title: FB2NEP — Assessments
+format:
+  html:
+    toc: false
+---
+
+## Overview
+
+Assessment for **FB2NEP: Nutritional Epidemiology and Public Health** is by **coursework only**.
+
+- **Single coursework assignment**
+- Weighting: **100 % of the module mark**
+- Format: **Word document or PDF** (uploaded via Blackboard)
+- Length guideline: **1,800–2,200 words** (excluding tables, figures, references)
+
+Details of the assignment and marking criteria are provided below and on the Blackboard module page.
+
+---
+
+## Coursework assignment
+
+### Title
+
+**Sugar-sweetened beverages, obesity, and cardiovascular risk: a synthetic cohort analysis**
+
+### Components
+
+The assignment consists of two interlinked parts:
+
+1. **Part A – Concepts and causal reasoning**
+   - Short knowledge questions.
+   - Drawing and explaining a directed acyclic graph (DAG).
+   - Interpretation of results from a published epidemiological study.
+
+2. **Part B – Guided data analysis (using a personal synthetic dataset)**
+   - Generation of an individual dataset in Google Colab (per–student random seed).
+   - Construction of a baseline characteristics table (“Table 1”).
+   - Exploration of distributions and consideration of transformations.
+   - Fitting and interpreting a regression model relating SSB intake, obesity, and CVD risk.
+   - Linking model specification to the DAG from Part A.
+   - Optional bonus: exploration of interaction or non–linear effects.
+
+You will complete the analysis in a **Google Colab notebook** and transfer selected tables and figures into your Word document, where you provide your written answers.
+
+---
+
+## Access to the assignment notebook (Part B)
+
+The Colab notebook for Part B is available via the module resources:
+
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/FB2NEP_Assignment.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open FB2NEP Assignment Notebook in Colab">
+</a>
+
+> The exact path and filename may be updated; if the link above does not work, please use the link provided on Blackboard.
+
+---
+
+## Submission instructions
+
+- Submit a **single file** (Word or PDF) via the Blackboard assignment link.
+- Include:
+  - Your answers to all questions in **Part A** and **Part B**.
+  - Any tables and figures copied from the Colab notebook that support your answers.
+- Ensure that the file clearly shows your **student ID** on the first page.
+- Do not include your name in the file.
+
+Late submission penalties follow the standard University regulations.
+
+---
+
+## Use of software and AI tools
+
+You may use:
+
+- The provided **Google Colab notebook** for data analysis.
+- Standard software (for example Word, Excel) to format tables and figures.
+
+You may consult generative AI tools for **clarification of concepts only**.  
+The following are **not permitted**:
+
+- Asking AI tools to generate whole answers.
+- Uploading your personal dataset or Colab outputs to AI tools.
+- Submitting AI–generated text as your own work.
+
+The dataset and outputs are **unique to each student**, and copying from AI tools or other students is easily detectable.
+
+---
+
+## Academic integrity
+
+You are expected to follow the University’s regulations on academic integrity and plagiarism.
+
+- All written work must be **your own**.
+- Where you refer to published literature, provide appropriate references.
+- Collaborative discussion of general concepts is allowed, but the final analysis, interpretation, and wording must be individual.
+
+Suspected breaches will be dealt with under the University’s academic misconduct procedures.
+
