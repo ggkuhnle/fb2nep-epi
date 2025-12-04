@@ -15,6 +15,16 @@ You may also download the notebooks and run them locally in Jupyter.
 
 ---
 
+## How-To and sandbox (optional, but recommended)
+
+If you have not used Python or Google Colab before, start with the **How-To & Sandbox** materials.  
+They show you how to open notebooks, run code safely, and try things out without breaking anything.
+
+- [FB2NEP — How-To & Sandbox (Colab/Jupyter)](howto_sandbox/)
+
+
+---
+
 ### 01 - Introduction to Jupyter and Google Colab
 
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/01_introduction_colab_jupyter.ipynb" target="_blank">
