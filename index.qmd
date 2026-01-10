@@ -87,6 +87,22 @@ They show you how to open notebooks, run code safely, and try things out without
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 08 in Colab">
 </a>
 
+---
+
+### 11 - QALY and DALY
+
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/11_qaly.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 08 in Colab">
+</a>
+
+### 16 - Policy simulation
+
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/16_policy_simulation.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 08 in Colab">
+</a>
+
+
+
 ## Assessment
 
 Please find assessment details [here](assessment/index.qmd)
