@@ -49,7 +49,7 @@ They show you how to open notebooks, run code safely, and try things out without
 
 ---
 
-### 04 - Data exploration and “Table 1”
+### 04 - Data exploration and "Table 1"
 
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/04_data_exploration.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 04 in Colab">
@@ -89,19 +89,61 @@ They show you how to open notebooks, run code safely, and try things out without
 
 ---
 
-### 11 - QALY and DALY
+## Public Health Nutrition: Policy and Evaluation
 
-<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/11_qaly.ipynb" target="_blank">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 08 in Colab">
+The following workbooks focus on quantitative methods for evaluating public health nutrition policies.
+
+---
+
+### 12 - DALYs and QALYs
+
+Quantifying population health burden using Disability-Adjusted Life Years and Quality-Adjusted Life Years. Includes an interactive exercise where you set your own disability weights and compare to GBD values.
+
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/12_qaly.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 12 in Colab">
 </a>
 
-### 16 - Policy simulation
+---
 
-<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/26_policy_simulation.ipynb" target="_blank">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 08 in Colab">
+### 13 - Health inequalities
+
+Measuring the social gradient in health using the Slope Index of Inequality (SII), Relative Index of Inequality (RII), and concentration curves. Applied to dietary intake and nutrition-related outcomes.
+
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/13_health_inequalities.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 13 in Colab">
 </a>
 
+---
 
+### 14 - Case study: Salt reduction (with objective measures)
+
+Evaluating the UK salt reduction programme using 24-hour urinary sodium — a model example of policy evaluation with an objective biomarker. Includes health impact modelling and sensitivity analysis.
+
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/14_salt_reduction.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 14 in Colab">
+</a>
+
+---
+
+### 15 - Case study: Sugar reduction (without objective measures)
+
+Evaluating the Soft Drinks Industry Levy (SDIL) without a biomarker — exploring the evidence hierarchy from product reformulation to health outcomes. Addresses the counterfactual problem in policy evaluation.
+
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/15_sugar_reduction.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 15 in Colab">
+</a>
+
+---
+
+### 16 - Policy simulation and resource allocation
+
+Interactive budget allocation game: distribute £50M across public health nutrition interventions. Explore trade-offs between efficiency and equity, the impact of diminishing returns, and uncertainty in cost-effectiveness estimates.
+
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/16_policy_simulation.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 16 in Colab">
+</a>
+
+---
 
 ## Assessment
 
