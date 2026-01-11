@@ -13,10 +13,14 @@ Author: University of Reading, Nutrition and Food Science
 
 import numpy as np
 import pandas as pd
+from pathlib import Path
 
 # =============================================================================
 # LIFE TABLES AND REFERENCE DATA
 # =============================================================================
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+GBD_DW_PATH = REPO_ROOT / "data" / "gbd_dw.xls"
 
 # GBD 2019 Reference Life Table (abridged)
 LIFE_TABLE = pd.DataFrame({
@@ -25,36 +29,52 @@ LIFE_TABLE = pd.DataFrame({
                         39.7, 35.0, 30.4, 25.9, 21.6, 17.5, 13.7, 10.3, 7.4, 5.0]
 })
 
-# GBD 2019 Disability Weights for selected conditions
-GBD_DISABILITY_WEIGHTS = pd.DataFrame({
-    'condition': [
-        'Mild anaemia',
-        'Moderate anaemia',
-        'Severe anaemia',
-        'Moderate hearing loss',
-        'Moderate depression',
-        'Severe low back pain',
-        'Blindness',
-        'Moderate heart failure',
-        'Severe dementia',
-        'Untreated spinal cord injury (below neck)',
-        'Terminal cancer with severe pain',
-        'Type 2 diabetes without complications',
-        'Type 2 diabetes with diabetic foot',
-        'Obesity (class III, BMI >= 40)',
-        'Iron deficiency'
-    ],
-    'disability_weight': [
-        0.004, 0.052, 0.149, 0.027, 0.145, 0.325, 0.187, 0.072, 0.449,
-        0.589, 0.569, 0.015, 0.133, 0.086, 0.004
-    ],
-    'category': [
-        'Nutritional deficiency', 'Nutritional deficiency', 'Nutritional deficiency',
-        'Sensory', 'Mental health', 'Musculoskeletal', 'Sensory', 'Cardiovascular',
-        'Neurological', 'Injury', 'Cancer', 'Metabolic', 'Metabolic', 'Metabolic',
-        'Nutritional deficiency'
-    ]
-})
+
+
+if not GBD_DW_PATH.exists():
+    raise FileNotFoundError(
+        f"GBD disability weight file not found at {GBD_DW_PATH}"
+    )
+
+# Load spreadsheet
+_gbd_raw = pd.read_excel(GBD_DW_PATH)
+
+required_columns = {
+    "sequela_name",
+    "healthstate_name",
+    "healthstate_description",
+    "mean",
+    "lower",
+    "upper",
+}
+missing = required_columns - set(_gbd_raw.columns)
+if missing:
+    raise ValueError(f"GBD disability weight file is missing columns: {missing}")
+
+# Build a lean lookup table: health state name -> mean disability weight
+GBD_DISABILITY_WEIGHTS = (
+    _gbd_raw
+    .rename(columns={"healthstate_name": "condition", "mean": "disability_weight"})
+    .loc[:, ["condition", "disability_weight"]]
+    .dropna()
+    .copy()
+)
+
+GBD_DISABILITY_WEIGHTS["disability_weight"] = GBD_DISABILITY_WEIGHTS["disability_weight"].astype(float)
+
+# Collapse duplicates (some health states appear more than once in the raw file)
+GBD_DISABILITY_WEIGHTS = (
+    GBD_DISABILITY_WEIGHTS
+    .groupby("condition", as_index=False)["disability_weight"]
+    .mean()
+)
+
+# Optional: sort by severity for display
+GBD_DISABILITY_WEIGHTS = (
+    GBD_DISABILITY_WEIGHTS
+    .sort_values("disability_weight", ascending=False)
+    .reset_index(drop=True)
+)
 
 
 # =============================================================================
