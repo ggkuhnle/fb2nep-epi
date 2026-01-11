@@ -20,7 +20,7 @@ from pathlib import Path
 # =============================================================================
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-GBD_DW_PATH = REPO_ROOT / "data" / "gbd_dw.xls"
+GBD_DW_PATH = REPO_ROOT / "data" / "gbd_dw.xlsx"
 
 # GBD 2019 Reference Life Table (abridged)
 LIFE_TABLE = pd.DataFrame({
@@ -40,13 +40,10 @@ if not GBD_DW_PATH.exists():
 _gbd_raw = pd.read_excel(GBD_DW_PATH)
 
 required_columns = {
-    "sequela_name",
-    "healthstate_name",
-    "healthstate_description",
-    "mean",
-    "lower",
-    "upper",
+    "condition",
+    "disability_weight"
 }
+
 missing = required_columns - set(_gbd_raw.columns)
 if missing:
     raise ValueError(f"GBD disability weight file is missing columns: {missing}")
@@ -54,7 +51,6 @@ if missing:
 # Build a lean lookup table: health state name -> mean disability weight
 GBD_DISABILITY_WEIGHTS = (
     _gbd_raw
-    .rename(columns={"healthstate_name": "condition", "mean": "disability_weight"})
     .loc[:, ["condition", "disability_weight"]]
     .dropna()
     .copy()
