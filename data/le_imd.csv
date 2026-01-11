@@ -1,24 +1,11 @@
-"Table 1: Life expectancy, healthy life expectancy and proportion of life expectancy lived in ""good"" health at birth by sex and IMD decile, England, 2020 to 2022"
-
-
-IMD decile,"Males 
-Life expectancy","Males 
-Healthy life expectancy","Males 
-Proportion (%) of life expectancy in ""good"" health","Females 
-Life expectancy","Females 
-Healthy life expectancy","Females 
-Proportion (%) of life expectancy in ""good"" health"
-1 (most deprived),72.58,51.13,70.45,77.66,50.54,65.08
+IMD_decile,LE_male,HLE_male,Prop_good_male,LE_female,HLE_female,Prop_good_female
+1,72.58,51.13,70.45,77.66,50.54,65.08
 2,74.92,55.64,74.26,79.58,55.01,69.13
 3,76.56,58.79,76.78,81.01,59.28,73.18
 4,77.94,60.09,77.09,82.09,61.26,74.62
-5,79.09,62.61,79.15,83.00,63.05,75.97
-6,80.06,64.20,80.19,83.65,64.38,76.97
+5,79.09,62.61,79.15,83,63.05,75.97
+6,80.06,64.2,80.19,83.65,64.38,76.97
 7,80.64,65.17,80.81,84.17,66.37,78.86
 8,81.36,66.77,82.08,84.63,68.01,80.36
-9,81.93,68.26,83.32,85.18,68.70,80.65
-10 (least deprived),82.98,70.09,84.47,86.08,70.16,81.51
-
-Source: ,Healthy life expectancy by national area deprivation from the Office for National Statistics
-Notes
-1,Figures are based on Index of Multiple Deprivation (IMD) 2019. Decile 1 represents the most deprived 10% of small areas in England; decile 10 represents the least deprived 10%.
+9,81.93,68.26,83.32,85.18,68.7,80.65
+10,82.98,70.09,84.47,86.08,70.16,81.51
