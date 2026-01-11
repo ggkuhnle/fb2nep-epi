@@ -1665,3 +1665,31 @@ def evaluate_intervention_evidence(intervention_name, has_biomarker=True,
         'strengths': strengths,
         'limitations': limitations
     }
+
+def fit_sii_rii(group: pd.DataFrame) -> dict:
+    """
+    Fit:
+    - SII via weighted linear regression of obesity_prev on ridit
+    - RII via weighted linear regression of log(obesity_prev) on ridit
+
+    Weighting uses population_share (derived from weighted bases).
+    """
+    x = group["ridit"].to_numpy()
+    w = group["population_share"].to_numpy()
+
+    y = group["obesity_prev"].to_numpy()
+    sii_slope, sii_intercept = np.polyfit(x, y, 1, w=w)
+
+    # Log model for RII (guard against zeros)
+    y_log = np.log(y)
+    rii_slope, rii_intercept = np.polyfit(x, y_log, 1, w=w)
+    rii = float(np.exp(rii_slope))
+
+    return {
+        "sii": float(sii_slope),
+        "sii_intercept": float(sii_intercept),
+        "rii": rii,
+        "rii_slope": float(rii_slope),
+        "rii_intercept": float(rii_intercept),
+        "data": group.copy()
+    }

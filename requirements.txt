@@ -5,3 +5,4 @@ seaborn>=0.13,<0.14
 statsmodels>=0.14,<0.15
 networkx>=3.3,<3.4
 ipywidgets
+openpyxl
