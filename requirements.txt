@@ -6,3 +6,4 @@ statsmodels>=0.14,<0.15
 networkx>=3.3,<3.4
 ipywidgets
 openpyxl
+jinja2
