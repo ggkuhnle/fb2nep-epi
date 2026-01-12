@@ -13,6 +13,10 @@ Author: University of Reading, Nutrition and Food Science
 
 import numpy as np
 import pandas as pd
+from pathlib import Path
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+DW_PATH = REPO_ROOT / "data" / "dw.csv"
 
 # =============================================================================
 # LIFE TABLES AND REFERENCE DATA
@@ -26,35 +30,14 @@ LIFE_TABLE = pd.DataFrame({
 })
 
 # GBD 2019 Disability Weights for selected conditions
-GBD_DISABILITY_WEIGHTS = pd.DataFrame({
-    'condition': [
-        'Mild anaemia',
-        'Moderate anaemia',
-        'Severe anaemia',
-        'Moderate hearing loss',
-        'Moderate depression',
-        'Severe low back pain',
-        'Blindness',
-        'Moderate heart failure',
-        'Severe dementia',
-        'Untreated spinal cord injury (below neck)',
-        'Terminal cancer with severe pain',
-        'Type 2 diabetes without complications',
-        'Type 2 diabetes with diabetic foot',
-        'Obesity (class III, BMI >= 40)',
-        'Iron deficiency'
-    ],
-    'disability_weight': [
-        0.004, 0.052, 0.149, 0.027, 0.145, 0.325, 0.187, 0.072, 0.449,
-        0.589, 0.569, 0.015, 0.133, 0.086, 0.004
-    ],
-    'category': [
-        'Nutritional deficiency', 'Nutritional deficiency', 'Nutritional deficiency',
-        'Sensory', 'Mental health', 'Musculoskeletal', 'Sensory', 'Cardiovascular',
-        'Neurological', 'Injury', 'Cancer', 'Metabolic', 'Metabolic', 'Metabolic',
-        'Nutritional deficiency'
-    ]
-})
+
+if not DW_PATH.exists():
+    raise FileNotFoundError(
+        f"GBD disability weight file not found at {DW_PATH}"
+    )
+
+GBD_DISABILITY_WEIGHTS = pd.read_csv(DW_PATH)
+
 
 def get_dw(condition_name: str) -> float:
     """

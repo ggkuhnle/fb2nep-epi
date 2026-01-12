@@ -1,0 +1,27 @@
+condition,disability_weight,category
+Anaemia (mild),0.004,Nutritional deficiency
+Anaemia (moderate),0.052,Nutritional deficiency
+Aneamia (severe),0.149,Nutritional deficiency
+Hearing loss (moderate),0.027,Sensory
+Depression (moderate),0.396,Mental health
+Back pain (severe),0.325,Musculoskeletal
+Blindness,0.187,Sensory
+Heart failure (moderate),0.072,Cardiovascular
+Dementia (severe),0.449,Neurological
+"Spinal cord injury (below neck, untreated)",0.589,Injury
+"Cancer (terminal, with severe pain)",0.569,Cancer
+Type 2 diabetes (without complications),0.015,Metabolic
+Type 2 diabetes (with diabetic foot),0.133,Metabolic
+"Obesity (class III, BMI >= 40)",0.086,Metabolic
+Iron deficiency,0.004,Nutritional deficiency
+Diarrhoea (moderate),0.188,Gastrointestinal
+Herpes zoster,0.058,Infectious disease
+Myocardial infarction (acute),0.432,Cardiovascular
+Crohn's disease,0.231,Gastrointestinal
+Migraine,0.441,Neurological
+Headache (tension),0.037,Neurological
+Anxiety (moderate),0.133,Mental health
+ADHD,0.045,Mental health
+Autism,0.262,Mental health
+Iodine deficiency (goitre),0.199,Nutritional deficiency
+Ischaemic Heart Disease,0.072,Cardiovascular
