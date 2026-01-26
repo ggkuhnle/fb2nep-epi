@@ -1,0 +1,101 @@
+# Assessment 1 – Data analysis and epidemiological interpretation
+
+## Objective
+
+> This assessment evaluates your understanding of core concepts in nutritional epidemiology and your ability to apply epidemiological reasoning to data analysis. Using a synthetic dataset designed to investigate associations between sugar-sweetened beverage (SSB) intake, obesity, and cardiovascular disease (CVD) risk, you will demonstrate skills in exposure assessment, causal reasoning, statistical interpretation, and clear scientific communication.
+
+### Background
+
+You are working as a junior researcher analysing observational data from a population-based study investigating associations between sugar-sweetened beverage (SSB) intake, obesity, and cardiovascular disease (CVD) risk.
+
+Before any statistical analysis is conducted, the research team must make a number of substantive epidemiological decisions: how SSB intake should be estimated, what types of bias and censoring might arise, which variables plausibly confound the relationship of interest, and how causal relationships should be conceptualised.
+
+**Section A** of this assessment reflects this early analytical phase. You should answer the questions as if you were planning or reviewing a real-world epidemiological analysis, drawing on standard principles from nutritional epidemiology rather than on the specifics of the teaching dataset.
+
+**Section B** then represents the analytical phase, in which these ideas are explored using a realistic synthetic dataset provided for teaching purposes. The dataset is designed to mimic the structure and challenges of real observational nutrition data, while allowing each student to work with an individual dataset.
+
+Across both sections, the emphasis is on epidemiological reasoning and interpretation, not on finding a single “correct” numerical answer.
+
+## Use of artificial intelligence
+
+The use of artificial intelligence tools (including generative AI for text, code, figures, or interpretation) is **strictly prohibited** in this assessment.
+
+## What you must submit
+
+-   A single document containing:
+
+    -   Section A short-answer responses and DAG
+    -   Section B written answers and interpretations
+    -   Tables and figures copied from the notebook where appropriate
+
+The Jupyter notebook itself must **not** be submitted.
+
+------------------------------------------------------------------------
+
+## Section A – Conceptual epidemiology (25%)
+
+Answer each question in **no more than 100 words** unless stated otherwise.
+
+1.  What is the most appropriate method to estimate SSB intake in a population study, and why?
+2.  Explain one type of censoring that can occur in epidemiological studies.
+3.  Draw a directed acyclic graph (DAG) illustrating how SSB intake could affect CVD risk.
+4.  Identify **one** confounder in this relationship and explain your choice using causal reasoning.
+
+------------------------------------------------------------------------
+
+## Section B – Data analysis and interpretation (75%)
+
+### Background
+
+You will use the provided assignment notebook to generate and analyse a **personal synthetic dataset** investigating SSB intake, obesity, and CVD risk.
+
+**Important:**
+
+-   The dataset is generated dynamically using your student ID.
+-   Dataset generation is not reproducible across separate sessions unless completed in one continuous run.
+-   You must therefore generate and analyse the dataset **in a single session**.
+
+### Assignment notebook
+
+[Link to assessment notebook](assessment_1b.ipynb.ipynb)
+
+### Questions
+
+The questions below correspond exactly to those embedded in the notebook.
+
+-   **B1:** Create a Table 1 comparing obese and non-obese participants and provide a short epidemiological commentary.
+-   **B2:** Describe the distributions of key variables and justify any transformations or categorisations.
+-   **B3:** Fit and interpret a regression model relating SSB intake, obesity, and CVD risk.
+-   **B4:** Use your DAG to justify the adjustment strategy and identify any variables that should not be adjusted for.
+
+Optional bonus marks are available as described in the notebook.
+
+------------------------------------------------------------------------
+
+## Marking rubric and assessment criteria
+
+### Section A – Conceptual epidemiology
+
+Marks are awarded for correctness, clarity, and epidemiological reasoning.
+
+-   Appropriate and well-justified exposure assessment method
+-   Correct explanation of censoring
+-   Plausible and logically structured DAG
+-   Correct confounder selection and justification
+-   Clear and concise written communication
+
+### Section B – Data analysis and interpretation
+
+Marks are awarded for interpretation and reasoning, not for programming skill.
+
+-   **Table 1:** Correct construction and meaningful comparison of groups
+-   **Distributions:** Accurate description and justified transformation decisions
+-   **Regression:** Correct interpretation of effect estimates, uncertainty, and confounding
+-   **Causal reasoning:** Appropriate use of DAGs to guide adjustment
+
+### Mark descriptors
+
+-   **70–100 (Excellent):** Clear, correct, and insightful epidemiological reasoning throughout.
+-   **60–69 (Good):** Sound understanding with minor omissions or imprecision.
+-   **50–59 (Adequate):** Basic understanding demonstrated but limited depth.
+-   **\<50 (Poor):** Major misunderstandings or missing elements.
