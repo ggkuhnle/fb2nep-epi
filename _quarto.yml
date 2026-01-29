@@ -16,7 +16,7 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: assessment/FB2NEP_Assessment_Brief.md
+      - href: assessment/index.qmd
         text: Assessment 
 
   sidebar:
@@ -27,9 +27,9 @@ website:
       - section: "Notebooks"
         contents:
           - notebooks/*.ipynb
-      - section: "Slides (PDF)"
+      - section: "Sandbox"
         contents:
-          - slides/*.pdf
+          - howto_sandbox/index.qmd
 
   page-footer:
     left: "© University of Reading 2025 · Licensed <a href='https://creativecommons.org/licenses/by/4.0/'>CC BY 4.0</a>"
