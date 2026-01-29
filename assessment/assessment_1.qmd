@@ -57,7 +57,7 @@ You will use the provided assignment notebook to generate and analyse a **person
 
 ### Assignment notebook
 
-[Link to assessment notebook](assessment_1b.ipynb.ipynb)
+[Link to assessment notebook](assessment_1b.ipynb)
 
 ### Questions
 

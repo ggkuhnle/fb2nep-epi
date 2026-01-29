@@ -8,9 +8,6 @@ website:
   site-url: https://ggkuhnle.github.io/fb2nep-epi/
   repo-url: https://github.com/ggkuhnle/fb2nep-epi
   repo-actions: [issue, source]
-  include-in-header:
-    - text: |
-        <img src="https://kuhnle.co.uk/weather/pixel.png" style="display:none" alt="">
 
   navbar:
     left:
@@ -34,6 +31,14 @@ website:
   page-footer:
     left: "© University of Reading 2025 · Licensed <a href='https://creativecommons.org/licenses/by/4.0/'>CC BY 4.0</a>"
     right: "Built with Quarto"
+
+include-in-header:
+  - text: |
+      <img src="https://kuhnle.co.uk/pixel.png"
+           width="1"
+           height="1"
+           style="display:none"
+           alt="">
 
 format:
   html:
