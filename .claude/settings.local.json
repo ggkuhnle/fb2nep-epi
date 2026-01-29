@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.reading.ac.uk)",
+      "Bash(tree:*)",
+      "Bash(du:*)",
+      "Bash(wc:*)",
+      "Bash(python:*)"
+    ]
+  }
+}

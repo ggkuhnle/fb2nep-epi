@@ -8,6 +8,9 @@ website:
   site-url: https://ggkuhnle.github.io/fb2nep-epi/
   repo-url: https://github.com/ggkuhnle/fb2nep-epi
   repo-actions: [issue, source]
+  include-in-header:
+    - text: |
+        <img src="https://kuhnle.co.uk/weather/pixel.png" style="display:none" alt="">
 
   navbar:
     left:
@@ -23,7 +26,6 @@ website:
       - index.qmd
       - section: "Notebooks"
         contents:
-          - notebooks/index.qmd
           - notebooks/*.ipynb
       - section: "Slides (PDF)"
         contents:
