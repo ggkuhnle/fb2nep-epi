@@ -23,124 +23,126 @@ They show you how to open notebooks, run code safely, and try things out without
 - [FB2NEP — How-To & Sandbox (Colab/Jupyter)](howto_sandbox/)
 
 
+## Part 1 - Nutritional Epidemiology
+
 ---
 
-### 01 - Introduction to Jupyter and Google Colab
+### 1.03 - Introduction to Jupyter and Google Colab
 
-<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/01_introduction_colab_jupyter.ipynb" target="_blank">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 01 in Colab">
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.03_introduction_colab_jupyter.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 1.03 in Colab">
 </a>
 
 ---
 
-### 02 - Data collection and cleaning
+### 1.04 - Data collection and cleaning
 
-<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/02_data_collection_cleaning.ipynb" target="_blank">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 02 in Colab">
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.04_data_collection_cleaning.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 1.04 in Colab">
 </a>
 
 ---
 
-### 03 - Representativeness and sampling
+### 1.05 - Representativeness and sampling
 
-<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/03_representative.ipynb" target="_blank">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 03 in Colab">
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.05_representative.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 1.05 in Colab">
 </a>
 
 ---
 
-### 04 - Data exploration and "Table 1"
+### 1.06 - Data exploration and "Table 1"
 
-<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/04_data_exploration.ipynb" target="_blank">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 04 in Colab">
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.06_data_exploration.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 1.06 in Colab">
 </a>
 
 ---
 
-### 05 - Data transformation
+### 1.07 - Data transformation
 
-<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/05_data_transformation.ipynb" target="_blank">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 05 in Colab">
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.07_data_transformation.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 1.07 in Colab">
 </a>
 
 ---
 
-### 06 - Regression and modelling (Part 1)
+### 1.08 - Regression and modelling (Part 1)
 
-<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/06_regression_modelling_01.ipynb" target="_blank">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 06 in Colab">
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.08_regression_modelling_01.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 1.08 in Colab">
 </a>
 
 ---
 
-### 07 - Regression and modelling (Part 2)
+### 1.09 - Regression and modelling (Part 2)
 
-<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/07_regression_modelling_02.ipynb" target="_blank">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 07 in Colab">
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.09_regression_modelling_02.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 1.09 in Colab">
 </a>
 
 ---
 
-### 08 - Missing data and sensitivity analysis
+### 1.10 - Missing data and sensitivity analysis
 
-<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/08_missing_data_and_sensitivity.ipynb" target="_blank">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 08 in Colab">
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.10_missing_data_and_sensitivity.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 1.10 in Colab">
 </a>
 
 ---
 
-## Public Health Nutrition: Policy and Evaluation
+## Part 2 - Public Health Nutrition: Policy and Evaluation
 
 The following workbooks focus on quantitative methods for evaluating public health nutrition policies.
 
 ---
 
-### 12 - DALYs and QALYs
+### 2.02 - DALYs and QALYs
 
 Quantifying population health burden using Disability-Adjusted Life Years and Quality-Adjusted Life Years. Includes an interactive exercise where you set your own disability weights and compare to GBD values.
 
-<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/12_qaly.ipynb" target="_blank">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 12 in Colab">
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/2.02_qaly.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 2.02 in Colab">
 </a>
 
 ---
 
-### 13 - Health inequalities
+### 2.03 - Health inequalities
 
 Measuring the social gradient in health using the Slope Index of Inequality (SII), Relative Index of Inequality (RII), and concentration curves. Applied to dietary intake and nutrition-related outcomes.
 
-<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/13_health_inequalities.ipynb" target="_blank">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 13 in Colab">
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/2.03_health_inequalities.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 2.03 in Colab">
 </a>
 
 ---
 
-### 14 - Case study: Salt reduction (with objective measures)
+### 2.04 - Case study: Salt reduction (with objective measures)
 
 Evaluating the UK salt reduction programme using 24-hour urinary sodium — a model example of policy evaluation with an objective biomarker. Includes health impact modelling and sensitivity analysis.
 
-<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/14_salt_reduction.ipynb" target="_blank">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 14 in Colab">
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/2.04_salt_reduction.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 2.04 in Colab">
 </a>
 
 ---
 
-### 15 - Case study: Sugar reduction (without objective measures)
+### 2.05 - Case study: Sugar reduction (without objective measures)
 
 Evaluating the Soft Drinks Industry Levy (SDIL) without a biomarker — exploring the evidence hierarchy from product reformulation to health outcomes. Addresses the counterfactual problem in policy evaluation.
 
-<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/15_sugar_reduction.ipynb" target="_blank">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 15 in Colab">
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/2.05_sugar_reduction.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 2.05 in Colab">
 </a>
 
 ---
 
-### 16 - Policy simulation and resource allocation
+### 2.06 - Policy simulation and resource allocation
 
 Interactive budget allocation game: distribute £50M across public health nutrition interventions. Explore trade-offs between efficiency and equity, the impact of diminishing returns, and uncertainty in cost-effectiveness estimates.
 
-<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/16_policy_simulation.ipynb" target="_blank">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 16 in Colab">
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/2.06_policy_simulation.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 2.06 in Colab">
 </a>
 
 ---
