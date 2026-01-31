@@ -10,6 +10,9 @@ __pycache__/
 /data/synthetic/*.parquet
 /data/private
 
+# Lectures
+lectures
+
 
 # OS/editor
 .DS_Store
