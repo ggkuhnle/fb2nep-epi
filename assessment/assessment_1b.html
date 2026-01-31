@@ -1,0 +1,2665 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>FB2NEP Assignment Notebook – Personal Dataset and Analysis – FB2NEP Nutritional Epidemiology</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+</head><body class="nav-sidebar floating nav-fixed"><img src="https://kuhnle.co.uk/pixel.png" width="1" height="1" style="display:none" alt="">
+
+
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">FB2NEP Nutritional Epidemiology</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../assessment/index.html"> 
+<span class="menu-text">Assessment</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">FB2NEP Assignment Notebook – Personal Dataset and Analysis</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FB2NEP — Nutritional Epidemiology</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Notebooks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">notebooks/*.ipynb</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Sandbox</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../howto_sandbox/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FB2NEP — How‑To &amp; Sandbox (Colab/Jupyter)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#reminder-assignment-structure" id="toc-reminder-assignment-structure" class="nav-link active" data-scroll-target="#reminder-assignment-structure"><span class="header-section-number">0.1</span> Reminder – Assignment structure</a></li>
+  <li><a href="#variable-definitions-and-coding" id="toc-variable-definitions-and-coding" class="nav-link" data-scroll-target="#variable-definitions-and-coding"><span class="header-section-number">0.2</span> Variable definitions and coding</a></li>
+  <li><a href="#step-1-set-up-python-libraries" id="toc-step-1-set-up-python-libraries" class="nav-link" data-scroll-target="#step-1-set-up-python-libraries"><span class="header-section-number">0.3</span> Step 1 – Set up Python libraries</a></li>
+  <li><a href="#step-2-submission-date-set-by-the-module-convenor" id="toc-step-2-submission-date-set-by-the-module-convenor" class="nav-link" data-scroll-target="#step-2-submission-date-set-by-the-module-convenor"><span class="header-section-number">0.4</span> Step 2 – Submission date (set by the module convenor)</a></li>
+  <li><a href="#step-3-your-population-name-write-this-down" id="toc-step-3-your-population-name-write-this-down" class="nav-link" data-scroll-target="#step-3-your-population-name-write-this-down"><span class="header-section-number">0.5</span> Step 3 – Your population name (write this down)</a></li>
+  <li><a href="#step-4-generate-your-dataset" id="toc-step-4-generate-your-dataset" class="nav-link" data-scroll-target="#step-4-generate-your-dataset"><span class="header-section-number">0.6</span> Step 4 – Generate your dataset</a></li>
+  <li><a href="#part-b1-table-1-and-commentary" id="toc-part-b1-table-1-and-commentary" class="nav-link" data-scroll-target="#part-b1-table-1-and-commentary"><span class="header-section-number">1</span> Part B1 – Table 1 and commentary</a>
+  <ul class="collapse">
+  <li><a href="#question-b1-to-answer-in-word" id="toc-question-b1-to-answer-in-word" class="nav-link" data-scroll-target="#question-b1-to-answer-in-word"><span class="header-section-number">1.0.1</span> Question B1 (to answer in Word)</a></li>
+  </ul></li>
+  <li><a href="#part-b2-distributions-and-transformations" id="toc-part-b2-distributions-and-transformations" class="nav-link" data-scroll-target="#part-b2-distributions-and-transformations"><span class="header-section-number">2</span> Part B2 – Distributions and transformations</a>
+  <ul class="collapse">
+  <li><a href="#question-b2-to-answer-in-word" id="toc-question-b2-to-answer-in-word" class="nav-link" data-scroll-target="#question-b2-to-answer-in-word"><span class="header-section-number">2.0.1</span> Question B2 (to answer in Word)</a></li>
+  </ul></li>
+  <li><a href="#part-b3-regression-model-and-interpretation" id="toc-part-b3-regression-model-and-interpretation" class="nav-link" data-scroll-target="#part-b3-regression-model-and-interpretation"><span class="header-section-number">3</span> Part B3 – Regression model and interpretation</a>
+  <ul class="collapse">
+  <li><a href="#question-b3" id="toc-question-b3" class="nav-link" data-scroll-target="#question-b3"><span class="header-section-number">3.0.1</span> Question B3</a></li>
+  </ul></li>
+  <li><a href="#part-b4-dag-informed-adjustment-strategy" id="toc-part-b4-dag-informed-adjustment-strategy" class="nav-link" data-scroll-target="#part-b4-dag-informed-adjustment-strategy"><span class="header-section-number">4</span> Part B4 – DAG-informed adjustment strategy</a>
+  <ul class="collapse">
+  <li><a href="#question-b4" id="toc-question-b4" class="nav-link" data-scroll-target="#question-b4"><span class="header-section-number">4.0.1</span> Question B4</a></li>
+  </ul></li>
+  <li><a href="#optional-bonus-exploring-robustness-of-findings-5-marks" id="toc-optional-bonus-exploring-robustness-of-findings-5-marks" class="nav-link" data-scroll-target="#optional-bonus-exploring-robustness-of-findings-5-marks"><span class="header-section-number">5</span> Optional bonus – Exploring robustness of findings (+5 marks)</a>
+  <ul class="collapse">
+  <li><a href="#bonus-option-a-stratified-analysis" id="toc-bonus-option-a-stratified-analysis" class="nav-link" data-scroll-target="#bonus-option-a-stratified-analysis"><span class="header-section-number">5.1</span> Bonus option A – Stratified analysis</a>
+  <ul class="collapse">
+  <li><a href="#bonus-question" id="toc-bonus-question" class="nav-link" data-scroll-target="#bonus-question"><span class="header-section-number">5.1.1</span> Bonus question</a></li>
+  </ul></li>
+  <li><a href="#bonus-option-b-variable-transformation" id="toc-bonus-option-b-variable-transformation" class="nav-link" data-scroll-target="#bonus-option-b-variable-transformation"><span class="header-section-number">5.2</span> Bonus option B – Variable transformation</a>
+  <ul class="collapse">
+  <li><a href="#bonus-question-1" id="toc-bonus-question-1" class="nav-link" data-scroll-target="#bonus-question-1"><span class="header-section-number">5.2.1</span> Bonus question</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#end-of-notebook" id="toc-end-of-notebook" class="nav-link" data-scroll-target="#end-of-notebook"><span class="header-section-number">6</span> End of notebook</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/ggkuhnle/fb2nep-epi/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ggkuhnle/fb2nep-epi/blob/main/assessment/assessment_1b.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">FB2NEP Assignment Notebook – Personal Dataset and Analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This notebook supports <strong>Part B</strong> of the FB2NEP coursework assignment:</p>
+<ul>
+<li>It generates a <strong>personal synthetic dataset</strong> for you, without requiring any manual input.</li>
+<li>It guides you through:
+<ul>
+<li>Creating a baseline characteristics table (“Table 1”).</li>
+<li>Exploring distributions and considering transformations.</li>
+<li>Fitting a regression model relating sugar-sweetened beverage (SSB) intake, obesity and CVD risk.</li>
+<li>Obtaining output that you can copy into your Word document.</li>
+</ul></li>
+</ul>
+<p>You do <strong>not</strong> need to understand Python code to complete this notebook. In most cases, you only need to:</p>
+<ol type="1">
+<li>Record the automatically generated <strong>Population name</strong>.</li>
+<li>Run the code cells in order (top to bottom).</li>
+<li>Copy selected tables and figures into your Word document.</li>
+<li>Answer the questions in your own words in the Word document.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Important:</strong> You may see warnings (often in yellow). These are usually harmless for this assignment. If you see a long red error message, re-run the previous cell. If the problem persists, ask for help.</p>
+</blockquote>
+<section id="reminder-assignment-structure" class="level2" data-number="0.1">
+<h2 data-number="0.1" class="anchored" data-anchor-id="reminder-assignment-structure"><span class="header-section-number">0.1</span> Reminder – Assignment structure</h2>
+<p>The full coursework consists of:</p>
+<ul>
+<li><strong>Part A (in Word only):</strong>
+<ul>
+<li>Short knowledge questions.</li>
+<li>Drawing and explaining a DAG.</li>
+<li>Interpreting published results.</li>
+</ul></li>
+<li><strong>Part B (this notebook + Word):</strong>
+<ul>
+<li><strong>B1:</strong> Table 1 and commentary.</li>
+<li><strong>B2:</strong> Distributions and transformations.</li>
+<li><strong>B3:</strong> Regression model and interpretation.</li>
+<li><strong>B4:</strong> DAG-informed adjustment strategy.</li>
+<li>Optional bonus.</li>
+</ul></li>
+</ul>
+<p>This notebook is designed to support <strong>Part B</strong>. You will need to copy results and figures from here into your Word document and write your interpretations there.</p>
+</section>
+<section id="variable-definitions-and-coding" class="level2" data-number="0.2">
+<h2 data-number="0.2" class="anchored" data-anchor-id="variable-definitions-and-coding"><span class="header-section-number">0.2</span> Variable definitions and coding</h2>
+<p>The dataset used in this assignment is <strong>synthetic</strong>, but its structure, distributions, and relationships are designed to resemble those commonly encountered in observational nutritional epidemiology.</p>
+<p>You should treat the variables below <strong>as if they originated from a real population study</strong> and interpret them accordingly.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 33%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+<th>Coding / Units</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>id</code></td>
+<td>Unique participant identifier</td>
+<td>Integer</td>
+</tr>
+<tr class="even">
+<td><code>age</code></td>
+<td>Age at baseline</td>
+<td>Years (continuous)</td>
+</tr>
+<tr class="odd">
+<td><code>sex</code></td>
+<td>Biological sex</td>
+<td><code>"Female"</code>, <code>"Male"</code></td>
+</tr>
+<tr class="even">
+<td><code>ses</code></td>
+<td>Socioeconomic status</td>
+<td><code>"low"</code>, <code>"middle"</code>, <code>"high"</code></td>
+</tr>
+<tr class="odd">
+<td><code>smoking</code></td>
+<td>Smoking status</td>
+<td><code>"never"</code>, <code>"former"</code>, <code>"current"</code></td>
+</tr>
+<tr class="even">
+<td><code>pa</code></td>
+<td>Physical activity level</td>
+<td><code>"low"</code>, <code>"moderate"</code>, <code>"high"</code></td>
+</tr>
+<tr class="odd">
+<td><code>ssb</code></td>
+<td>Sugar-sweetened beverage intake</td>
+<td>Servings per day (continuous)</td>
+</tr>
+<tr class="even">
+<td><code>bmi</code></td>
+<td>Body mass index</td>
+<td>kg/m² (continuous)</td>
+</tr>
+<tr class="odd">
+<td><code>obese</code></td>
+<td>Obesity indicator</td>
+<td><code>0</code> = BMI &lt; 30 kg/m², <code>1</code> = BMI ≥ 30 kg/m²</td>
+</tr>
+<tr class="even">
+<td><code>cvd_risk</code></td>
+<td>Composite cardiovascular disease risk score</td>
+<td>Continuous (higher = higher risk)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Important notes</strong></p>
+<ul>
+<li><code>ssb</code> represents habitual intake and should be interpreted as an average daily exposure.</li>
+<li><code>cvd_risk</code> is a continuous score derived from multiple risk factors; it is <strong>not</strong> a probability or a clinical diagnosis.</li>
+<li>Relationships between variables reflect plausible causal structures but do not represent real individuals.</li>
+</ul>
+</section>
+<section id="step-1-set-up-python-libraries" class="level2" data-number="0.3">
+<h2 data-number="0.3" class="anchored" data-anchor-id="step-1-set-up-python-libraries"><span class="header-section-number">0.3</span> Step 1 – Set up Python libraries</h2>
+<p>Run the cell below once. It loads the Python libraries that this notebook uses.</p>
+<div id="imports_code" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Import required Python libraries</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># You do not need to change anything in this cell.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Simply run it once. If you see warnings, that is usually fine.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Make plots appear inside the notebook</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># For nicer table display (if supported)</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max_columns"</span>, <span class="dv">50</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.precision"</span>, <span class="dv">3</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Libraries imported successfully."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Libraries imported successfully.</code></pre>
+</div>
+</div>
+</section>
+<section id="step-2-submission-date-set-by-the-module-convenor" class="level2" data-number="0.4">
+<h2 data-number="0.4" class="anchored" data-anchor-id="step-2-submission-date-set-by-the-module-convenor"><span class="header-section-number">0.4</span> Step 2 – Submission date (set by the module convenor)</h2>
+<p>This notebook releases the <strong>final dataset</strong> only within the last <strong>two weeks</strong> before the submission deadline.</p>
+<ul>
+<li>Before that point, the notebook runs in <strong>preview mode</strong> and intentionally introduces artefacts so that results are not reliable.</li>
+<li>From the release date onwards, the notebook generates a <strong>final, stable dataset</strong>.</li>
+</ul>
+<p>You do not need to change anything in this section unless you are the module convenor.</p>
+<div id="309779bb" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Submission date (set by the module convenor)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># INSTRUCTION (convenor only):</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># - Set submission_date as YYYY-MM-DD.</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># - The final dataset will be available from (submission_date - 14 days).</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> date, datetime, timedelta</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>submission_date <span class="op">=</span> <span class="st">"2026-03-01"</span>  <span class="co"># &lt;-- CONVENOR: EDIT THIS DATE (YYYY-MM-DD)</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Parse and compute release date (14 days before submission)</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>_submission_dt <span class="op">=</span> datetime.strptime(submission_date, <span class="st">"%Y-%m-</span><span class="sc">%d</span><span class="st">"</span>).date()</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>release_date <span class="op">=</span> _submission_dt <span class="op">-</span> timedelta(days<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>today <span class="op">=</span> date.today()</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>days_until_submission <span class="op">=</span> (_submission_dt <span class="op">-</span> today).days</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>days_until_release <span class="op">=</span> (release_date <span class="op">-</span> today).days</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Submission date:  </span><span class="sc">{</span>_submission_dt<span class="sc">.</span>isoformat()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Release date:     </span><span class="sc">{</span>release_date<span class="sc">.</span>isoformat()<span class="sc">}</span><span class="ss"> (final dataset available from this date)"</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Today:            </span><span class="sc">{</span>today<span class="sc">.</span>isoformat()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> today <span class="op">&lt;</span> release_date:</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">DATA STATUS: PREVIEW MODE (results intentionally perturbed; do not rely on them)."</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">DATA STATUS: FINAL MODE (dataset is stable and can be used for your submission)."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Submission date:  2026-03-01
+Release date:     2026-02-15 (final dataset available from this date)
+Today:            2026-01-30
+
+DATA STATUS: PREVIEW MODE (results intentionally perturbed; do not rely on them).</code></pre>
+</div>
+</div>
+</section>
+<section id="step-3-your-population-name-write-this-down" class="level2" data-number="0.5">
+<h2 data-number="0.5" class="anchored" data-anchor-id="step-3-your-population-name-write-this-down"><span class="header-section-number">0.5</span> Step 3 – Your population name (write this down)</h2>
+<p>To ensure that each student receives a different dataset without requiring any manual input, the notebook generates a short <strong>population name</strong> (a random word pair).</p>
+<ul>
+<li>This population name will be shown in <strong>Table 1</strong> as <strong>Population name</strong>.</li>
+<li>You must <strong>write it down</strong> and include it in your submitted Word document.</li>
+<li>The population name uniquely determines your dataset.</li>
+</ul>
+<p>The population name is designed to be easy to record and later verify.</p>
+<div id="9f1634a1" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a population name and derive a dataset seed</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># You do not need to change anything in this cell.</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># IMPORTANT: write down the population name shown below.</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> secrets</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> hashlib</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># A small word list to generate a readable "population name"</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>_adjectives <span class="op">=</span> [</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"amber"</span>, <span class="st">"brisk"</span>, <span class="st">"calm"</span>, <span class="st">"cobalt"</span>, <span class="st">"dapper"</span>, <span class="st">"frosty"</span>, <span class="st">"gentle"</span>, <span class="st">"honey"</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ivory"</span>, <span class="st">"jolly"</span>, <span class="st">"keen"</span>, <span class="st">"lunar"</span>, <span class="st">"mellow"</span>, <span class="st">"navy"</span>, <span class="st">"olive"</span>, <span class="st">"plucky"</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"quiet"</span>, <span class="st">"rustic"</span>, <span class="st">"silver"</span>, <span class="st">"tidy"</span>, <span class="st">"urban"</span>, <span class="st">"vivid"</span>, <span class="st">"witty"</span>, <span class="st">"zesty"</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>_nouns <span class="op">=</span> [</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"badger"</span>, <span class="st">"beacon"</span>, <span class="st">"cedar"</span>, <span class="st">"comet"</span>, <span class="st">"dolphin"</span>, <span class="st">"ember"</span>, <span class="st">"falcon"</span>, <span class="st">"garden"</span>,</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"harbour"</span>, <span class="st">"island"</span>, <span class="st">"jigsaw"</span>, <span class="st">"lantern"</span>, <span class="st">"meadow"</span>, <span class="st">"otter"</span>, <span class="st">"piano"</span>, <span class="st">"quartz"</span>,</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"river"</span>, <span class="st">"saffron"</span>, <span class="st">"thistle"</span>, <span class="st">"tulip"</span>, <span class="st">"valley"</span>, <span class="st">"walnut"</span>, <span class="st">"yonder"</span>, <span class="st">"zephyr"</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Build an entropy string from multiple sources (time, process, OS randomness)</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>_entropy <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>time<span class="sc">.</span>time_ns()<span class="sc">}</span><span class="ss">|</span><span class="sc">{</span>os<span class="sc">.</span>getpid()<span class="sc">}</span><span class="ss">|</span><span class="sc">{</span>secrets<span class="sc">.</span>token_hex(<span class="dv">16</span>)<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>_digest <span class="op">=</span> hashlib.sha256(_entropy.encode(<span class="st">"utf-8"</span>)).digest()</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>adj <span class="op">=</span> _adjectives[_digest[<span class="dv">0</span>] <span class="op">%</span> <span class="bu">len</span>(_adjectives)]</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>noun <span class="op">=</span> _nouns[_digest[<span class="dv">1</span>] <span class="op">%</span> <span class="bu">len</span>(_nouns)]</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>population_name <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>adj<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>noun<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Derive a stable integer seed from the population name.</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co"># This allows the convenor to reproduce the dataset later by re-entering the population name.</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>_salt <span class="op">=</span> <span class="st">"FB2NEP_assessment1_v1"</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>_seed_bytes <span class="op">=</span> hashlib.sha256((population_name <span class="op">+</span> <span class="st">"|"</span> <span class="op">+</span> _salt).encode(<span class="st">"utf-8"</span>)).digest()</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>seed_int <span class="op">=</span> <span class="bu">int</span>.from_bytes(_seed_bytes[:<span class="dv">8</span>], <span class="st">"big"</span>)</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"POPULATION NAME (record this):"</span>, population_name)</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Derived seed (internal):      "</span>, seed_int)</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Determine whether we should provide the final dataset or a perturbed preview dataset.</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="co"># - Before release_date: preview mode (intentionally perturbed; changes between runs).</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="co"># - From release_date onwards: final mode (stable for a given population name).</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> today <span class="op">&lt;</span> release_date:</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    dataset_mode <span class="op">=</span> <span class="st">"PREVIEW"</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Make the preview dataset change between runs by injecting additional time-based entropy.</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>    _preview_bytes <span class="op">=</span> hashlib.sha256((population_name <span class="op">+</span> <span class="bu">str</span>(time.time_ns())).encode(<span class="st">"utf-8"</span>)).digest()</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    effective_seed <span class="op">=</span> <span class="bu">int</span>.from_bytes(_preview_bytes[:<span class="dv">8</span>], <span class="st">"big"</span>)</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    dataset_mode <span class="op">=</span> <span class="st">"FINAL"</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>    effective_seed <span class="op">=</span> seed_int</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dataset mode:                 "</span>, dataset_mode)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>POPULATION NAME (record this): cobalt-walnut
+Derived seed (internal):       2759777107657430458
+Dataset mode:                  PREVIEW</code></pre>
+</div>
+</div>
+</section>
+<section id="step-4-generate-your-dataset" class="level2" data-number="0.6">
+<h2 data-number="0.6" class="anchored" data-anchor-id="step-4-generate-your-dataset"><span class="header-section-number">0.6</span> Step 4 – Generate your dataset</h2>
+<p>The cell below will generate your dataset and store it in a pandas DataFrame called <code>df</code>. It will also save a CSV file named:</p>
+<p><code>my_fb2nep_assignment_data.csv</code></p>
+<p><strong>Important:</strong></p>
+<ul>
+<li>The dataset is determined by your <strong>Population name</strong>.</li>
+<li>In the final two weeks before the submission deadline, the notebook runs in <strong>FINAL mode</strong> and the dataset is stable for a given population name.</li>
+<li>Before that point, the notebook runs in <strong>PREVIEW mode</strong> and intentionally introduces artefacts, so results are not reliable and may change between runs.</li>
+</ul>
+<p>You must include your <strong>Population name</strong> in your submitted Word document.</p>
+<div id="datagen_code" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the dataset for this assessment</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(effective_seed)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of participants in the synthetic cohort</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">2000</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Study ID (1, 2, 3, ...)</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>study_id <span class="op">=</span> np.arange(<span class="dv">1</span>, n <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Age: roughly 30–80 years, with a mean around 55</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> rng.normal(loc<span class="op">=</span><span class="dv">55</span>, scale<span class="op">=</span><span class="dv">12</span>, size<span class="op">=</span>n)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> np.clip(age, <span class="dv">30</span>, <span class="dv">85</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Sex: approximately 50 % female, 50 % male</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>sex <span class="op">=</span> rng.choice([<span class="st">"Female"</span>, <span class="st">"Male"</span>], size<span class="op">=</span>n, p<span class="op">=</span>[<span class="fl">0.52</span>, <span class="fl">0.48</span>])</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Socioeconomic status (ses): low, middle, high</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>ses <span class="op">=</span> rng.choice([<span class="st">"low"</span>, <span class="st">"middle"</span>, <span class="st">"high"</span>], size<span class="op">=</span>n, p<span class="op">=</span>[<span class="fl">0.30</span>, <span class="fl">0.45</span>, <span class="fl">0.25</span>])</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Smoking status: never, former, current</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>smoking <span class="op">=</span> rng.choice([<span class="st">"never"</span>, <span class="st">"former"</span>, <span class="st">"current"</span>], size<span class="op">=</span>n, p<span class="op">=</span>[<span class="fl">0.50</span>, <span class="fl">0.30</span>, <span class="fl">0.20</span>])</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Physical activity (pa): low, moderate, high</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>pa <span class="op">=</span> rng.choice([<span class="st">"low"</span>, <span class="st">"moderate"</span>, <span class="st">"high"</span>], size<span class="op">=</span>n, p<span class="op">=</span>[<span class="fl">0.35</span>, <span class="fl">0.45</span>, <span class="fl">0.20</span>])</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Base SSB intake (servings per day): positively skewed</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>ssb_base <span class="op">=</span> rng.gamma(shape<span class="op">=</span><span class="fl">1.5</span>, scale<span class="op">=</span><span class="fl">0.7</span>, size<span class="op">=</span>n)</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="co"># SES effect: higher intake in low SES, lower in high SES</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>ses_effect <span class="op">=</span> np.where(ses <span class="op">==</span> <span class="st">"low"</span>, <span class="fl">0.6</span>, np.where(ses <span class="op">==</span> <span class="st">"middle"</span>, <span class="fl">0.2</span>, <span class="op">-</span><span class="fl">0.3</span>))</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Age effect: slightly lower SSB with increasing age</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>age_effect <span class="op">=</span> <span class="op">-</span>(age <span class="op">-</span> <span class="dv">55</span>) <span class="op">*</span> <span class="fl">0.01</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Sex effect: assume slightly higher SSB in males</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>sex_effect <span class="op">=</span> np.where(sex <span class="op">==</span> <span class="st">"Male"</span>, <span class="fl">0.2</span>, <span class="fl">0.0</span>)</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>ssb <span class="op">=</span> ssb_base <span class="op">+</span> ses_effect <span class="op">+</span> age_effect <span class="op">+</span> sex_effect</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>ssb <span class="op">=</span> np.clip(ssb, <span class="dv">0</span>, <span class="va">None</span>)  <span class="co"># SSB cannot be negative</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="co"># BMI: mean around 27, increased by higher SSB and lower physical activity</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>bmi_base <span class="op">=</span> rng.normal(loc<span class="op">=</span><span class="dv">27</span>, scale<span class="op">=</span><span class="fl">4.5</span>, size<span class="op">=</span>n)</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Effect of SSB on BMI (small positive)</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>bmi_ssb_effect <span class="op">=</span> ssb <span class="op">*</span> <span class="fl">0.6</span></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Effect of physical activity on BMI</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>pa_effect <span class="op">=</span> np.where(pa <span class="op">==</span> <span class="st">"low"</span>, <span class="fl">1.5</span>, np.where(pa <span class="op">==</span> <span class="st">"moderate"</span>, <span class="fl">0.0</span>, <span class="op">-</span><span class="fl">1.0</span>))</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>bmi <span class="op">=</span> bmi_base <span class="op">+</span> bmi_ssb_effect <span class="op">+</span> pa_effect</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>bmi <span class="op">=</span> np.clip(bmi, <span class="dv">16</span>, <span class="dv">55</span>)</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Obesity indicator (binary): BMI &gt;= 30</span></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>obese <span class="op">=</span> (bmi <span class="op">&gt;=</span> <span class="dv">30</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a><span class="co"># CVD risk score: linear predictor + noise, then mapped to 0–100 range</span></span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>lp <span class="op">=</span> (</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">5.0</span></span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> <span class="fl">0.08</span> <span class="op">*</span> (age <span class="op">-</span> <span class="dv">55</span>)                      <span class="co"># age effect</span></span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> <span class="fl">0.06</span> <span class="op">*</span> (bmi <span class="op">-</span> <span class="dv">27</span>)                      <span class="co"># BMI effect</span></span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> <span class="fl">0.10</span> <span class="op">*</span> ssb                              <span class="co"># SSB effect</span></span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> np.where(sex <span class="op">==</span> <span class="st">"Male"</span>, <span class="fl">0.8</span>, <span class="fl">0.0</span>)      <span class="co"># male sex</span></span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> np.where(smoking <span class="op">==</span> <span class="st">"former"</span>, <span class="fl">0.7</span>, <span class="fl">0.0</span>)</span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> np.where(smoking <span class="op">==</span> <span class="st">"current"</span>, <span class="fl">1.5</span>, <span class="fl">0.0</span>)</span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> np.where(ses <span class="op">==</span> <span class="st">"low"</span>, <span class="fl">0.7</span>, <span class="fl">0.0</span>)</span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> np.where(ses <span class="op">==</span> <span class="st">"high"</span>, <span class="op">-</span><span class="fl">0.4</span>, <span class="fl">0.0</span>)</span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>lp_noisy <span class="op">=</span> lp <span class="op">+</span> rng.normal(loc<span class="op">=</span><span class="fl">0.0</span>, scale<span class="op">=</span><span class="fl">0.8</span>, size<span class="op">=</span>n)</span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>cvd_risk <span class="op">=</span> <span class="dv">100</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>lp_noisy))</span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------------------</span></span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview mode: intentionally introduce artefacts</span></span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a><span class="co"># This is used BEFORE the final dataset release date.</span></span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a><span class="co"># Results are not reliable and may change between runs.</span></span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------------------</span></span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> dataset_mode <span class="op">==</span> <span class="st">"PREVIEW"</span>:</span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Flip sex labels (systematic misclassification)</span></span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>    sex <span class="op">=</span> np.where(sex <span class="op">==</span> <span class="st">"Male"</span>, <span class="st">"Female"</span>, <span class="st">"Male"</span>)</span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Re-label smoking categories (artefactual distortion)</span></span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>    smoking <span class="op">=</span> rng.choice([<span class="st">"never"</span>, <span class="st">"former"</span>, <span class="st">"current"</span>], size<span class="op">=</span>n, p<span class="op">=</span>[<span class="fl">0.40</span>, <span class="fl">0.35</span>, <span class="fl">0.25</span>])</span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add additional noise to the outcome</span></span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>    cvd_risk <span class="op">=</span> np.clip(cvd_risk <span class="op">+</span> rng.normal(loc<span class="op">=</span><span class="fl">0.0</span>, scale<span class="op">=</span><span class="fl">7.0</span>, size<span class="op">=</span>n), <span class="dv">0</span>, <span class="dv">100</span>)</span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a><span class="co"># Assemble the DataFrame</span></span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a>    <span class="st">"id"</span>: study_id,</span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a>    <span class="st">"age"</span>: age,</span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sex"</span>: sex,</span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ses"</span>: ses,</span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a>    <span class="st">"smoking"</span>: smoking,</span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pa"</span>: pa,</span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ssb"</span>: ssb,</span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a>    <span class="st">"bmi"</span>: bmi,</span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>    <span class="st">"obese"</span>: obese,</span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cvd_risk"</span>: cvd_risk,</span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a><span class="co"># Store identifiers (useful for your write-up and for verification)</span></span>
+<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"population_name"</span>] <span class="op">=</span> population_name</span>
+<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"dataset_mode"</span>] <span class="op">=</span> dataset_mode</span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"First 5 rows of your dataset:"</span>)</span>
+<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a>display(df.head())</span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a><span class="co"># Save to CSV</span></span>
+<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a>csv_filename <span class="op">=</span> <span class="st">"my_fb2nep_assignment_data.csv"</span></span>
+<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a>df.to_csv(csv_filename, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Dataset saved to: </span><span class="sc">{</span>csv_filename<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> dataset_mode <span class="op">==</span> <span class="st">"PREVIEW"</span>:</span>
+<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">NOTE: You are in PREVIEW mode. Results are intentionally perturbed and may change between runs."</span>)</span>
+<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"The FINAL dataset will be available from: </span><span class="sc">{</span>release_date<span class="sc">.</span>isoformat()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">You are in FINAL mode. This dataset is stable for your population name and can be used for your submission."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>First 5 rows of your dataset:</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">sex</th>
+<th data-quarto-table-cell-role="th">ses</th>
+<th data-quarto-table-cell-role="th">smoking</th>
+<th data-quarto-table-cell-role="th">pa</th>
+<th data-quarto-table-cell-role="th">ssb</th>
+<th data-quarto-table-cell-role="th">bmi</th>
+<th data-quarto-table-cell-role="th">obese</th>
+<th data-quarto-table-cell-role="th">cvd_risk</th>
+<th data-quarto-table-cell-role="th">population_name</th>
+<th data-quarto-table-cell-role="th">dataset_mode</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1</td>
+<td>49.583</td>
+<td>Male</td>
+<td>middle</td>
+<td>never</td>
+<td>low</td>
+<td>2.902</td>
+<td>30.647</td>
+<td>1</td>
+<td>8.473</td>
+<td>cobalt-walnut</td>
+<td>PREVIEW</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2</td>
+<td>32.694</td>
+<td>Male</td>
+<td>low</td>
+<td>current</td>
+<td>moderate</td>
+<td>2.929</td>
+<td>28.754</td>
+<td>0</td>
+<td>6.682</td>
+<td>cobalt-walnut</td>
+<td>PREVIEW</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>3</td>
+<td>61.995</td>
+<td>Male</td>
+<td>high</td>
+<td>never</td>
+<td>moderate</td>
+<td>0.385</td>
+<td>24.780</td>
+<td>0</td>
+<td>7.998</td>
+<td>cobalt-walnut</td>
+<td>PREVIEW</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>4</td>
+<td>69.033</td>
+<td>Female</td>
+<td>low</td>
+<td>never</td>
+<td>moderate</td>
+<td>2.381</td>
+<td>24.050</td>
+<td>0</td>
+<td>28.155</td>
+<td>cobalt-walnut</td>
+<td>PREVIEW</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>5</td>
+<td>67.318</td>
+<td>Male</td>
+<td>high</td>
+<td>never</td>
+<td>low</td>
+<td>0.295</td>
+<td>34.808</td>
+<td>1</td>
+<td>4.607</td>
+<td>cobalt-walnut</td>
+<td>PREVIEW</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Dataset saved to: my_fb2nep_assignment_data.csv
+
+NOTE: You are in PREVIEW mode. Results are intentionally perturbed and may change between runs.
+The FINAL dataset will be available from: 2026-02-15</code></pre>
+</div>
+</div>
+</section>
+<section id="part-b1-table-1-and-commentary" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Part B1 – Table 1 and commentary</h1>
+<p>In this section you will:</p>
+<ol type="1">
+<li>Create a baseline characteristics table (“Table 1”), comparing <strong>obese</strong> and <strong>non-obese</strong> participants.</li>
+<li>Copy the table into your Word document.</li>
+<li>Write a brief commentary in your Word document (approximately 150 words).</li>
+</ol>
+<section id="question-b1-to-answer-in-word" class="level3" data-number="1.0.1">
+<h3 data-number="1.0.1" class="anchored" data-anchor-id="question-b1-to-answer-in-word"><span class="header-section-number">1.0.1</span> Question B1 (to answer in Word)</h3>
+<p><strong>Important:</strong> Your Table 1 includes a line called <strong>Population name</strong>. You must copy this into your Word document and also write the population name somewhere in your text.</p>
+<p><strong>B1.</strong> Using the table produced below:</p>
+<ul>
+<li>Comment on the main characteristics of obese vs non-obese participants (age, sex, SES, smoking, SSB intake, CVD risk).</li>
+<li>Highlight any substantial differences that might be epidemiologically relevant.</li>
+<li>Note any anomalies or possible data quality issues you observe.</li>
+</ul>
+<p>You do <strong>not</strong> write the answer here; instead, you copy the table into Word and write your commentary there.</p>
+<div id="B1_code" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Part B1 – Create a "Table 1" by obesity status</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Aim:</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># - produce a clean table that can be copied into Word</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># - keep values short (mean ± SD; n (%))</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># - show the Population name and Dataset mode clearly</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _mean_sd(x: pd.Series) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> pd.to_numeric(x, errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span>x<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss"> ± </span><span class="sc">{</span>x<span class="sc">.</span>std(ddof<span class="op">=</span><span class="dv">1</span>)<span class="sc">:.1f}</span><span class="ss">"</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _n_pct(count: <span class="bu">int</span>, total: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    pct <span class="op">=</span> <span class="dv">100</span> <span class="op">*</span> count <span class="op">/</span> total <span class="cf">if</span> total <span class="cf">else</span> <span class="fl">0.0</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span>count<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>pct<span class="sc">:.1f}</span><span class="ss">%)"</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_table1_word_friendly(</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    data: pd.DataFrame,</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    group_var: <span class="bu">str</span>,</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    continuous_vars: <span class="bu">list</span>[<span class="bu">str</span>],</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    categorical_vars: <span class="bu">list</span>[<span class="bu">str</span>],</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    group_labels: <span class="bu">dict</span> <span class="op">|</span> <span class="va">None</span> <span class="op">=</span> <span class="va">None</span>,</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> pd.DataFrame:</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Create a Word-friendly Table 1.</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="co">    Output structure:</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co">    - Rows: variables (and levels for categorical variables)</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co">    - Columns: each group (e.g., obese=0 vs obese=1)</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="co">    Notes:</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="co">    - Continuous variables are shown as mean ± SD.</span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="co">    - Categorical variables are expanded into one row per level (n (%)).</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> data.copy()</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Determine groups and labels</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>    groups <span class="op">=</span> <span class="bu">sorted</span>(df[group_var].dropna().unique().tolist())</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> group_labels <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>        group_labels <span class="op">=</span> {g: <span class="bu">str</span>(g) <span class="cf">for</span> g <span class="kw">in</span> groups}</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Prepare output rows</span></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>    rows <span class="op">=</span> []</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Continuous variables</span></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> var <span class="kw">in</span> continuous_vars:</span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> var <span class="kw">not</span> <span class="kw">in</span> df.columns:</span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>        row <span class="op">=</span> {</span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Variable"</span>: var,</span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Level"</span>: <span class="st">""</span>,</span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> g <span class="kw">in</span> groups:</span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a>            s <span class="op">=</span> df.loc[df[group_var] <span class="op">==</span> g, var]</span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a>            row[group_labels[g]] <span class="op">=</span> _mean_sd(s)</span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a>        rows.append(row)</span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Categorical variables (one row per category)</span></span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> var <span class="kw">in</span> categorical_vars:</span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> var <span class="kw">not</span> <span class="kw">in</span> df.columns:</span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> level <span class="kw">in</span> <span class="bu">sorted</span>(df[var].dropna().unique().tolist()):</span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>            row <span class="op">=</span> {</span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Variable"</span>: var,</span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Level"</span>: <span class="bu">str</span>(level),</span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> g <span class="kw">in</span> groups:</span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>                sub <span class="op">=</span> df.loc[df[group_var] <span class="op">==</span> g, var]</span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a>                total <span class="op">=</span> sub.notna().<span class="bu">sum</span>()</span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>                count <span class="op">=</span> (sub <span class="op">==</span> level).<span class="bu">sum</span>()</span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a>                row[group_labels[g]] <span class="op">=</span> _n_pct(<span class="bu">int</span>(count), <span class="bu">int</span>(total))</span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a>            rows.append(row)</span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> pd.DataFrame(rows)</span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Make the table a bit nicer for display</span></span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> out[[<span class="st">"Variable"</span>, <span class="st">"Level"</span>] <span class="op">+</span> [group_labels[g] <span class="cf">for</span> g <span class="kw">in</span> groups]]</span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> out</span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a><span class="co"># Define friendly group labels for obesity status</span></span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a>group_labels <span class="op">=</span> {</span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>: <span class="st">"Not obese (BMI &lt; 30)"</span>,</span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>: <span class="st">"Obese (BMI ≥ 30)"</span>,</span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a>continuous_vars <span class="op">=</span> [<span class="st">"age"</span>, <span class="st">"bmi"</span>, <span class="st">"ssb"</span>, <span class="st">"cvd_risk"</span>]</span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a>categorical_vars <span class="op">=</span> [<span class="st">"sex"</span>, <span class="st">"ses"</span>, <span class="st">"smoking"</span>, <span class="st">"pa"</span>]</span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Population name: </span><span class="sc">{</span>population_name<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Dataset mode: </span><span class="sc">{</span>dataset_mode<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a>table1 <span class="op">=</span> make_table1_word_friendly(</span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a>    df,</span>
+<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a>    group_var<span class="op">=</span><span class="st">"obese"</span>,</span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a>    continuous_vars<span class="op">=</span>continuous_vars,</span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a>    categorical_vars<span class="op">=</span>categorical_vars,</span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a>    group_labels<span class="op">=</span>group_labels,</span>
+<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Table 1 – Baseline characteristics by obesity status"</span>)</span>
+<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a>display(table1)</span>
+<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a><span class="co"># Save a copy in a format that can be opened in Excel / Word</span></span>
+<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a>table1_filename <span class="op">=</span> <span class="st">"table1_baseline_by_obesity.csv"</span></span>
+<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a>table1.to_csv(table1_filename, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Saved Table 1 to: </span><span class="sc">{</span>table1_filename<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a><span class="co"># Optional: a tab-separated version that can be copy-pasted into Word</span></span>
+<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Copy-paste version (tab-separated):</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(table1.to_csv(sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, index<span class="op">=</span><span class="va">False</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Population name: cobalt-walnut
+Dataset mode: PREVIEW
+
+Table 1 – Baseline characteristics by obesity status</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Variable</th>
+<th data-quarto-table-cell-role="th">Level</th>
+<th data-quarto-table-cell-role="th">Not obese (BMI &lt; 30)</th>
+<th data-quarto-table-cell-role="th">Obese (BMI ≥ 30)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>age</td>
+<td></td>
+<td>54.8 ± 11.9</td>
+<td>55.1 ± 11.8</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>bmi</td>
+<td></td>
+<td>25.4 ± 3.1</td>
+<td>33.3 ± 2.5</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>ssb</td>
+<td></td>
+<td>1.3 ± 0.9</td>
+<td>1.5 ± 1.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>cvd_risk</td>
+<td></td>
+<td>6.2 ± 8.5</td>
+<td>8.5 ± 11.4</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>sex</td>
+<td>Female</td>
+<td>641 (49.0%)</td>
+<td>354 (51.1%)</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>sex</td>
+<td>Male</td>
+<td>666 (51.0%)</td>
+<td>339 (48.9%)</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>ses</td>
+<td>high</td>
+<td>359 (27.5%)</td>
+<td>145 (20.9%)</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>ses</td>
+<td>low</td>
+<td>364 (27.9%)</td>
+<td>221 (31.9%)</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>ses</td>
+<td>middle</td>
+<td>584 (44.7%)</td>
+<td>327 (47.2%)</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>smoking</td>
+<td>current</td>
+<td>325 (24.9%)</td>
+<td>170 (24.5%)</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>smoking</td>
+<td>former</td>
+<td>461 (35.3%)</td>
+<td>240 (34.6%)</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>smoking</td>
+<td>never</td>
+<td>521 (39.9%)</td>
+<td>283 (40.8%)</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>pa</td>
+<td>high</td>
+<td>309 (23.6%)</td>
+<td>104 (15.0%)</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>pa</td>
+<td>low</td>
+<td>378 (28.9%)</td>
+<td>284 (41.0%)</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>pa</td>
+<td>moderate</td>
+<td>620 (47.4%)</td>
+<td>305 (44.0%)</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Saved Table 1 to: table1_baseline_by_obesity.csv
+
+Copy-paste version (tab-separated):
+
+Variable    Level   Not obese (BMI &lt; 30)    Obese (BMI ≥ 30)
+age     54.8 ± 11.9 55.1 ± 11.8
+bmi     25.4 ± 3.1  33.3 ± 2.5
+ssb     1.3 ± 0.9   1.5 ± 1.0
+cvd_risk        6.2 ± 8.5   8.5 ± 11.4
+sex Female  641 (49.0%) 354 (51.1%)
+sex Male    666 (51.0%) 339 (48.9%)
+ses high    359 (27.5%) 145 (20.9%)
+ses low 364 (27.9%) 221 (31.9%)
+ses middle  584 (44.7%) 327 (47.2%)
+smoking current 325 (24.9%) 170 (24.5%)
+smoking former  461 (35.3%) 240 (34.6%)
+smoking never   521 (39.9%) 283 (40.8%)
+pa  high    309 (23.6%) 104 (15.0%)
+pa  low 378 (28.9%) 284 (41.0%)
+pa  moderate    620 (47.4%) 305 (44.0%)
+</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="part-b2-distributions-and-transformations" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Part B2 – Distributions and transformations</h1>
+<p>In this section you will:</p>
+<ul>
+<li>Inspect the distributions of three key variables:
+<ul>
+<li><code>ssb</code> (SSB intake, servings per day)</li>
+<li><code>bmi</code> (kg/m²)</li>
+<li><code>cvd_risk</code> (CVD risk score)</li>
+</ul></li>
+<li>Consider whether any of these variables might require transformation (for example log-transformation or categorisation) before being used in a regression model.</li>
+</ul>
+<section id="question-b2-to-answer-in-word" class="level3" data-number="2.0.1">
+<h3 data-number="2.0.1" class="anchored" data-anchor-id="question-b2-to-answer-in-word"><span class="header-section-number">2.0.1</span> Question B2 (to answer in Word)</h3>
+<p><strong>B2.</strong> Based on the histograms and boxplots:</p>
+<ul>
+<li>Describe the distribution of each variable (for example symmetric, skewed, presence of outliers).</li>
+<li>State whether you would consider any transformation or categorisation for each variable and explain why.</li>
+</ul>
+<p>Write your answer in approximately 150 words in your Word document.</p>
+<blockquote class="blockquote">
+<p>You may copy one or two plots into your Word document as illustration if you wish (this is optional but may help your explanation).</p>
+</blockquote>
+<div id="B2_code" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot distributions: histograms and boxplots</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>vars_to_plot <span class="op">=</span> [<span class="st">"ssb"</span>, <span class="st">"bmi"</span>, <span class="st">"cvd_risk"</span>]</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> vars_to_plot:</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> var <span class="kw">not</span> <span class="kw">in</span> df.columns:</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    fig.suptitle(<span class="ss">f"Distribution of </span><span class="sc">{</span>var<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    ax.hist(df[var].dropna(), bins<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(var)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="st">"Histogram"</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Review the plots above, then answer Question B2."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="assessment_1b_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="assessment_1b_files/figure-html/cell-7-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="assessment_1b_files/figure-html/cell-7-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Review the plots above, then answer Question B2.</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="part-b3-regression-model-and-interpretation" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Part B3 – Regression model and interpretation</h1>
+<p>In this section you will fit a regression model that relates CVD risk to SSB intake, obesity and other covariates.</p>
+<p>We will use a <strong>linear regression model</strong> with <code>cvd_risk</code> as the continuous outcome and the following predictors:</p>
+<ul>
+<li><code>ssb</code> (continuous SSB intake)</li>
+<li><code>obese</code> (0/1)</li>
+<li><code>age</code> (years)</li>
+<li><code>sex</code> (categorical)</li>
+<li><code>ses</code> (categorical)</li>
+<li><code>smoking</code> (categorical)</li>
+</ul>
+<section id="question-b3" class="level3" data-number="3.0.1">
+<h3 data-number="3.0.1" class="anchored" data-anchor-id="question-b3"><span class="header-section-number">3.0.1</span> Question B3</h3>
+<p><strong>B3.</strong> Using the regression output:</p>
+<ul>
+<li>Interpret the estimated effect of <strong>SSB intake</strong> on CVD risk (direction, magnitude, and uncertainty).</li>
+<li>Interpret the effect of <strong>obesity</strong> on CVD risk.</li>
+<li>Comment on the effects of age and sex.</li>
+<li>Discuss briefly whether SES and smoking appear to confound the relationship between SSB intake and CVD risk.</li>
+</ul>
+<p>Write your answer in approximately 250–350 words in your Word document.</p>
+<blockquote class="blockquote">
+<p>You should copy the regression table produced below into your document to support your interpretation.</p>
+</blockquote>
+<div id="B3_regression_code" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a linear regression model for cvd_risk</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the model formula</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># C() tells statsmodels to treat the variable as categorical.</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>formula <span class="op">=</span> <span class="st">"cvd_risk ~ ssb + obese + age + C(sex) + C(ses) + C(smoking)"</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> smf.ols(formula<span class="op">=</span>formula, data<span class="op">=</span>df).fit()</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Linear regression model fitted. Summary:"</span>)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>display(model.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear regression model fitted. Summary:</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>OLS Regression Results</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Dep. Variable:</td>
+<td>cvd_risk</td>
+<td data-quarto-table-cell-role="th">R-squared:</td>
+<td>0.206</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Model:</td>
+<td>OLS</td>
+<td data-quarto-table-cell-role="th">Adj. R-squared:</td>
+<td>0.203</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Method:</td>
+<td>Least Squares</td>
+<td data-quarto-table-cell-role="th">F-statistic:</td>
+<td>64.76</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Date:</td>
+<td>Fri, 30 Jan 2026</td>
+<td data-quarto-table-cell-role="th">Prob (F-statistic):</td>
+<td>1.52e-94</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Time:</td>
+<td>21:38:16</td>
+<td data-quarto-table-cell-role="th">Log-Likelihood:</td>
+<td>-7143.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">No. Observations:</td>
+<td>2000</td>
+<td data-quarto-table-cell-role="th">AIC:</td>
+<td>1.430e+04</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Df Residuals:</td>
+<td>1991</td>
+<td data-quarto-table-cell-role="th">BIC:</td>
+<td>1.435e+04</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Df Model:</td>
+<td>8</td>
+<td data-quarto-table-cell-role="th"></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Covariance Type:</td>
+<td>nonrobust</td>
+<td data-quarto-table-cell-role="th"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd">
+<td></td>
+<td data-quarto-table-cell-role="th">coef</td>
+<td data-quarto-table-cell-role="th">std err</td>
+<td data-quarto-table-cell-role="th">t</td>
+<td data-quarto-table-cell-role="th">P&gt;|t|</td>
+<td data-quarto-table-cell-role="th">[0.025</td>
+<td data-quarto-table-cell-role="th">0.975]</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Intercept</td>
+<td>-10.5358</td>
+<td>1.089</td>
+<td>-9.676</td>
+<td>0.000</td>
+<td>-12.671</td>
+<td>-8.400</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">C(sex)[T.Male]</td>
+<td>-3.1184</td>
+<td>0.388</td>
+<td>-8.035</td>
+<td>0.000</td>
+<td>-3.880</td>
+<td>-2.357</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">C(ses)[T.low]</td>
+<td>4.3322</td>
+<td>0.569</td>
+<td>7.617</td>
+<td>0.000</td>
+<td>3.217</td>
+<td>5.448</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">C(ses)[T.middle]</td>
+<td>0.9962</td>
+<td>0.499</td>
+<td>1.995</td>
+<td>0.046</td>
+<td>0.017</td>
+<td>1.976</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">C(smoking)[T.former]</td>
+<td>0.1419</td>
+<td>0.507</td>
+<td>0.280</td>
+<td>0.780</td>
+<td>-0.853</td>
+<td>1.137</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">C(smoking)[T.never]</td>
+<td>0.2367</td>
+<td>0.494</td>
+<td>0.479</td>
+<td>0.632</td>
+<td>-0.732</td>
+<td>1.205</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">ssb</td>
+<td>0.1317</td>
+<td>0.230</td>
+<td>0.573</td>
+<td>0.567</td>
+<td>-0.319</td>
+<td>0.583</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">obese</td>
+<td>1.8725</td>
+<td>0.409</td>
+<td>4.582</td>
+<td>0.000</td>
+<td>1.071</td>
+<td>2.674</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">age</td>
+<td>0.2993</td>
+<td>0.016</td>
+<td>18.162</td>
+<td>0.000</td>
+<td>0.267</td>
+<td>0.332</td>
+</tr>
+</tbody>
+</table>
+
+
+<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Omnibus:</td>
+<td>808.222</td>
+<td data-quarto-table-cell-role="th">Durbin-Watson:</td>
+<td>2.058</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Prob(Omnibus):</td>
+<td>0.000</td>
+<td data-quarto-table-cell-role="th">Jarque-Bera (JB):</td>
+<td>4301.916</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Skew:</td>
+<td>1.846</td>
+<td data-quarto-table-cell-role="th">Prob(JB):</td>
+<td>0.00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Kurtosis:</td>
+<td>9.164</td>
+<td data-quarto-table-cell-role="th">Cond. No.</td>
+<td>326.</td>
+</tr>
+</tbody>
+</table>
+<br><br>Notes:<br>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</div>
+</div>
+<div id="B3_table_code" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a concise regression table (estimates, CI, p-values)</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> model.params</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>conf <span class="op">=</span> model.conf_int()</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>pvals <span class="op">=</span> model.pvalues</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>reg_table <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"beta"</span>: params,</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ci_lower"</span>: conf[<span class="dv">0</span>],</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ci_upper"</span>: conf[<span class="dv">1</span>],</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"p_value"</span>: pvals,</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Concise regression table:"</span>)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>display(reg_table)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Now answer Question B3, using this table and the full summary above."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Concise regression table:</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">beta</th>
+<th data-quarto-table-cell-role="th">ci_lower</th>
+<th data-quarto-table-cell-role="th">ci_upper</th>
+<th data-quarto-table-cell-role="th">p_value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Intercept</td>
+<td>-10.536</td>
+<td>-12.671</td>
+<td>-8.400</td>
+<td>1.136e-21</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">C(sex)[T.Male]</td>
+<td>-3.118</td>
+<td>-3.880</td>
+<td>-2.357</td>
+<td>1.588e-15</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">C(ses)[T.low]</td>
+<td>4.332</td>
+<td>3.217</td>
+<td>5.448</td>
+<td>3.995e-14</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">C(ses)[T.middle]</td>
+<td>0.996</td>
+<td>0.017</td>
+<td>1.976</td>
+<td>4.620e-02</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">C(smoking)[T.former]</td>
+<td>0.142</td>
+<td>-0.853</td>
+<td>1.137</td>
+<td>7.797e-01</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">C(smoking)[T.never]</td>
+<td>0.237</td>
+<td>-0.732</td>
+<td>1.205</td>
+<td>6.317e-01</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">ssb</td>
+<td>0.132</td>
+<td>-0.319</td>
+<td>0.583</td>
+<td>5.669e-01</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">obese</td>
+<td>1.872</td>
+<td>1.071</td>
+<td>2.674</td>
+<td>4.893e-06</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">age</td>
+<td>0.299</td>
+<td>0.267</td>
+<td>0.332</td>
+<td>2.502e-68</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Now answer Question B3, using this table and the full summary above.</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="part-b4-dag-informed-adjustment-strategy" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Part B4 – DAG-informed adjustment strategy</h1>
+<p>This part links your <strong>causal diagram (DAG)</strong> from Part A with your regression model from Part B.</p>
+<p>You do <strong>not</strong> need to run any new code here: the question is conceptual.</p>
+<section id="question-b4" class="level3" data-number="4.0.1">
+<h3 data-number="4.0.1" class="anchored" data-anchor-id="question-b4"><span class="header-section-number">4.0.1</span> Question B4</h3>
+<p><strong>B4.</strong> Using the DAG you drew in Part A for the relationship between SSB intake and CVD:</p>
+<ul>
+<li>State whether the regression model you fitted in Part B3 includes all the variables you consider necessary to control for confounding.</li>
+<li>Identify one variable that you think <strong>should not</strong> be adjusted for (for example, because it is a collider or a mediator) and explain why, based on your DAG.</li>
+</ul>
+<p>Write your answer in approximately 150 words.</p>
+<blockquote class="blockquote">
+<p>You do not need to modify the code cells here. Use your DAG and regression results to reason about appropriate adjustment.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="optional-bonus-exploring-robustness-of-findings-5-marks" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Optional bonus – Exploring robustness of findings (+5 marks)</h1>
+<p>This optional bonus allows you to explore whether your main findings are robust to alternative, <strong>epidemiologically motivated</strong> analytical choices.</p>
+<p>You may choose <strong>one</strong> of the options below.</p>
+<p>The emphasis is on <strong>reasoning and interpretation</strong>, not technical complexity.</p>
+<section id="bonus-option-a-stratified-analysis" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="bonus-option-a-stratified-analysis"><span class="header-section-number">5.1</span> Bonus option A – Stratified analysis</h2>
+<p>Repeat your analysis of the association between SSB intake and CVD risk <strong>separately within strata</strong> of a key variable (for example obesity status or sex).</p>
+<p>For example, you might: - Fit separate models for obese and non-obese participants, or - Compare mean CVD risk across levels of SSB within strata.</p>
+<section id="bonus-question" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="bonus-question"><span class="header-section-number">5.1.1</span> Bonus question</h3>
+<ul>
+<li>Describe how the association between SSB intake and CVD risk compares across strata.</li>
+<li>Comment on whether stratification changes your interpretation of the main findings.</li>
+<li>Explain briefly why stratification can be useful in epidemiological analysis.</li>
+</ul>
+<p>Maximum length: 150 words.</p>
+<div id="62cad7ea" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Stratified analysis</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Stratification means analysing the association of interest</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># separately within subgroups (strata) of the population.</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># In this example, we stratify by obesity status.</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co"># You could just as easily stratify by sex by changing ONE line</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co"># (see comment below).</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop over the strata we want to analyse</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Here:</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">#   status = 0  -&gt; not obese</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="co">#   status = 1  -&gt; obese</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> status, label <span class="kw">in</span> [(<span class="dv">0</span>, <span class="st">"Not obese"</span>), (<span class="dv">1</span>, <span class="st">"Obese"</span>)]:</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create a subset of the data for this stratum</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># To stratify by sex instead, you would replace this line with:</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   df_sub = df[df["sex"] == "Female"]</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># or:</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   df_sub = df[df["sex"] == "Male"]</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>    df_sub <span class="op">=</span> df[df[<span class="st">"obese"</span>] <span class="op">==</span> status]</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fit the regression model within this stratum</span></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    model_strat <span class="op">=</span> smf.ols(</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>        <span class="st">"cvd_risk ~ ssb + age + C(sex) + C(ses) + C(smoking)"</span>,</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>        data<span class="op">=</span>df_sub</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>    ).fit()</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Print and display the model summary</span></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Stratified model: </span><span class="sc">{</span>label<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>    display(model_strat.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Stratified model: Not obese</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>OLS Regression Results</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Dep. Variable:</td>
+<td>cvd_risk</td>
+<td data-quarto-table-cell-role="th">R-squared:</td>
+<td>0.168</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Model:</td>
+<td>OLS</td>
+<td data-quarto-table-cell-role="th">Adj. R-squared:</td>
+<td>0.164</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Method:</td>
+<td>Least Squares</td>
+<td data-quarto-table-cell-role="th">F-statistic:</td>
+<td>37.47</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Date:</td>
+<td>Fri, 30 Jan 2026</td>
+<td data-quarto-table-cell-role="th">Prob (F-statistic):</td>
+<td>5.08e-48</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Time:</td>
+<td>21:38:16</td>
+<td data-quarto-table-cell-role="th">Log-Likelihood:</td>
+<td>-4527.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">No. Observations:</td>
+<td>1307</td>
+<td data-quarto-table-cell-role="th">AIC:</td>
+<td>9070.</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Df Residuals:</td>
+<td>1299</td>
+<td data-quarto-table-cell-role="th">BIC:</td>
+<td>9111.</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Df Model:</td>
+<td>7</td>
+<td data-quarto-table-cell-role="th"></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Covariance Type:</td>
+<td>nonrobust</td>
+<td data-quarto-table-cell-role="th"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd">
+<td></td>
+<td data-quarto-table-cell-role="th">coef</td>
+<td data-quarto-table-cell-role="th">std err</td>
+<td data-quarto-table-cell-role="th">t</td>
+<td data-quarto-table-cell-role="th">P&gt;|t|</td>
+<td data-quarto-table-cell-role="th">[0.025</td>
+<td data-quarto-table-cell-role="th">0.975]</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Intercept</td>
+<td>-7.8056</td>
+<td>1.210</td>
+<td>-6.450</td>
+<td>0.000</td>
+<td>-10.180</td>
+<td>-5.432</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">C(sex)[T.Male]</td>
+<td>-2.5110</td>
+<td>0.432</td>
+<td>-5.809</td>
+<td>0.000</td>
+<td>-3.359</td>
+<td>-1.663</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">C(ses)[T.low]</td>
+<td>3.7458</td>
+<td>0.643</td>
+<td>5.822</td>
+<td>0.000</td>
+<td>2.484</td>
+<td>5.008</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">C(ses)[T.middle]</td>
+<td>1.2568</td>
+<td>0.545</td>
+<td>2.307</td>
+<td>0.021</td>
+<td>0.188</td>
+<td>2.326</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">C(smoking)[T.former]</td>
+<td>0.5416</td>
+<td>0.563</td>
+<td>0.962</td>
+<td>0.336</td>
+<td>-0.563</td>
+<td>1.646</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">C(smoking)[T.never]</td>
+<td>0.6254</td>
+<td>0.549</td>
+<td>1.138</td>
+<td>0.255</td>
+<td>-0.452</td>
+<td>1.703</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">ssb</td>
+<td>-0.1207</td>
+<td>0.277</td>
+<td>-0.436</td>
+<td>0.663</td>
+<td>-0.664</td>
+<td>0.423</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">age</td>
+<td>0.2452</td>
+<td>0.018</td>
+<td>13.333</td>
+<td>0.000</td>
+<td>0.209</td>
+<td>0.281</td>
+</tr>
+</tbody>
+</table>
+
+
+<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Omnibus:</td>
+<td>571.852</td>
+<td data-quarto-table-cell-role="th">Durbin-Watson:</td>
+<td>2.068</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Prob(Omnibus):</td>
+<td>0.000</td>
+<td data-quarto-table-cell-role="th">Jarque-Bera (JB):</td>
+<td>3553.625</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Skew:</td>
+<td>1.936</td>
+<td data-quarto-table-cell-role="th">Prob(JB):</td>
+<td>0.00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Kurtosis:</td>
+<td>10.090</td>
+<td data-quarto-table-cell-role="th">Cond. No.</td>
+<td>325.</td>
+</tr>
+</tbody>
+</table>
+<br><br>Notes:<br>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Stratified model: Obese</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>OLS Regression Results</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Dep. Variable:</td>
+<td>cvd_risk</td>
+<td data-quarto-table-cell-role="th">R-squared:</td>
+<td>0.254</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Model:</td>
+<td>OLS</td>
+<td data-quarto-table-cell-role="th">Adj. R-squared:</td>
+<td>0.246</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Method:</td>
+<td>Least Squares</td>
+<td data-quarto-table-cell-role="th">F-statistic:</td>
+<td>33.28</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Date:</td>
+<td>Fri, 30 Jan 2026</td>
+<td data-quarto-table-cell-role="th">Prob (F-statistic):</td>
+<td>6.32e-40</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Time:</td>
+<td>21:38:16</td>
+<td data-quarto-table-cell-role="th">Log-Likelihood:</td>
+<td>-2570.5</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">No. Observations:</td>
+<td>693</td>
+<td data-quarto-table-cell-role="th">AIC:</td>
+<td>5157.</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Df Residuals:</td>
+<td>685</td>
+<td data-quarto-table-cell-role="th">BIC:</td>
+<td>5193.</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Df Model:</td>
+<td>7</td>
+<td data-quarto-table-cell-role="th"></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Covariance Type:</td>
+<td>nonrobust</td>
+<td data-quarto-table-cell-role="th"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd">
+<td></td>
+<td data-quarto-table-cell-role="th">coef</td>
+<td data-quarto-table-cell-role="th">std err</td>
+<td data-quarto-table-cell-role="th">t</td>
+<td data-quarto-table-cell-role="th">P&gt;|t|</td>
+<td data-quarto-table-cell-role="th">[0.025</td>
+<td data-quarto-table-cell-role="th">0.975]</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Intercept</td>
+<td>-13.5429</td>
+<td>2.145</td>
+<td>-6.314</td>
+<td>0.000</td>
+<td>-17.754</td>
+<td>-9.332</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">C(sex)[T.Male]</td>
+<td>-4.3177</td>
+<td>0.762</td>
+<td>-5.669</td>
+<td>0.000</td>
+<td>-5.813</td>
+<td>-2.822</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">C(ses)[T.low]</td>
+<td>5.4913</td>
+<td>1.117</td>
+<td>4.916</td>
+<td>0.000</td>
+<td>3.298</td>
+<td>7.685</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">C(ses)[T.middle]</td>
+<td>0.5848</td>
+<td>1.027</td>
+<td>0.570</td>
+<td>0.569</td>
+<td>-1.431</td>
+<td>2.601</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">C(smoking)[T.former]</td>
+<td>-0.4153</td>
+<td>1.001</td>
+<td>-0.415</td>
+<td>0.678</td>
+<td>-2.380</td>
+<td>1.550</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">C(smoking)[T.never]</td>
+<td>-0.3565</td>
+<td>0.970</td>
+<td>-0.368</td>
+<td>0.713</td>
+<td>-2.261</td>
+<td>1.548</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">ssb</td>
+<td>0.5130</td>
+<td>0.400</td>
+<td>1.281</td>
+<td>0.201</td>
+<td>-0.273</td>
+<td>1.299</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">age</td>
+<td>0.3927</td>
+<td>0.032</td>
+<td>12.194</td>
+<td>0.000</td>
+<td>0.329</td>
+<td>0.456</td>
+</tr>
+</tbody>
+</table>
+
+
+<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Omnibus:</td>
+<td>220.680</td>
+<td data-quarto-table-cell-role="th">Durbin-Watson:</td>
+<td>2.010</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Prob(Omnibus):</td>
+<td>0.000</td>
+<td data-quarto-table-cell-role="th">Jarque-Bera (JB):</td>
+<td>710.138</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Skew:</td>
+<td>1.524</td>
+<td data-quarto-table-cell-role="th">Prob(JB):</td>
+<td>6.24e-155</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Kurtosis:</td>
+<td>6.911</td>
+<td data-quarto-table-cell-role="th">Cond. No.</td>
+<td>332.</td>
+</tr>
+</tbody>
+</table>
+<br><br>Notes:<br>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</div>
+</div>
+</section>
+</section>
+<section id="bonus-option-b-variable-transformation" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="bonus-option-b-variable-transformation"><span class="header-section-number">5.2</span> Bonus option B – Variable transformation</h2>
+<p>Apply a simple transformation to one key variable (for example SSB intake) and repeat the analysis.</p>
+<p>For example, you might: - Log-transform SSB intake, or - Categorise SSB intake into low / medium / high consumption groups.</p>
+<section id="bonus-question-1" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="bonus-question-1"><span class="header-section-number">5.2.1</span> Bonus question</h3>
+<ul>
+<li>Explain why you chose this transformation.</li>
+<li>Describe how the results compare with the main analysis.</li>
+<li>Comment on whether the transformation improves interpretability or model fit.</li>
+</ul>
+<p>Maximum length: 150 words.</p>
+<div id="5b1e8cf0" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: log-transform SSB (adding a small constant)</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"log_ssb"</span>] <span class="op">=</span> np.log(df[<span class="st">"ssb"</span>] <span class="op">+</span> <span class="fl">0.1</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>model_log <span class="op">=</span> smf.ols(</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cvd_risk ~ log_ssb + obese + age + C(sex) + C(ses) + C(smoking)"</span>,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>df</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>).fit()</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>display(model_log.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>OLS Regression Results</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Dep. Variable:</td>
+<td>cvd_risk</td>
+<td data-quarto-table-cell-role="th">R-squared:</td>
+<td>0.206</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Model:</td>
+<td>OLS</td>
+<td data-quarto-table-cell-role="th">Adj. R-squared:</td>
+<td>0.203</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Method:</td>
+<td>Least Squares</td>
+<td data-quarto-table-cell-role="th">F-statistic:</td>
+<td>64.70</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Date:</td>
+<td>Fri, 30 Jan 2026</td>
+<td data-quarto-table-cell-role="th">Prob (F-statistic):</td>
+<td>1.79e-94</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Time:</td>
+<td>21:38:16</td>
+<td data-quarto-table-cell-role="th">Log-Likelihood:</td>
+<td>-7143.2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">No. Observations:</td>
+<td>2000</td>
+<td data-quarto-table-cell-role="th">AIC:</td>
+<td>1.430e+04</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Df Residuals:</td>
+<td>1991</td>
+<td data-quarto-table-cell-role="th">BIC:</td>
+<td>1.435e+04</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Df Model:</td>
+<td>8</td>
+<td data-quarto-table-cell-role="th"></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Covariance Type:</td>
+<td>nonrobust</td>
+<td data-quarto-table-cell-role="th"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd">
+<td></td>
+<td data-quarto-table-cell-role="th">coef</td>
+<td data-quarto-table-cell-role="th">std err</td>
+<td data-quarto-table-cell-role="th">t</td>
+<td data-quarto-table-cell-role="th">P&gt;|t|</td>
+<td data-quarto-table-cell-role="th">[0.025</td>
+<td data-quarto-table-cell-role="th">0.975]</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Intercept</td>
+<td>-10.3437</td>
+<td>1.037</td>
+<td>-9.977</td>
+<td>0.000</td>
+<td>-12.377</td>
+<td>-8.310</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">C(sex)[T.Male]</td>
+<td>-3.1386</td>
+<td>0.390</td>
+<td>-8.047</td>
+<td>0.000</td>
+<td>-3.903</td>
+<td>-2.374</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">C(ses)[T.low]</td>
+<td>4.4529</td>
+<td>0.608</td>
+<td>7.318</td>
+<td>0.000</td>
+<td>3.260</td>
+<td>5.646</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">C(ses)[T.middle]</td>
+<td>1.0725</td>
+<td>0.531</td>
+<td>2.020</td>
+<td>0.043</td>
+<td>0.031</td>
+<td>2.114</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">C(smoking)[T.former]</td>
+<td>0.1463</td>
+<td>0.508</td>
+<td>0.288</td>
+<td>0.773</td>
+<td>-0.849</td>
+<td>1.142</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">C(smoking)[T.never]</td>
+<td>0.2372</td>
+<td>0.494</td>
+<td>0.480</td>
+<td>0.631</td>
+<td>-0.731</td>
+<td>1.206</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">log_ssb</td>
+<td>0.0035</td>
+<td>0.293</td>
+<td>0.012</td>
+<td>0.990</td>
+<td>-0.571</td>
+<td>0.578</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">obese</td>
+<td>1.8956</td>
+<td>0.408</td>
+<td>4.642</td>
+<td>0.000</td>
+<td>1.095</td>
+<td>2.696</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">age</td>
+<td>0.2978</td>
+<td>0.017</td>
+<td>17.915</td>
+<td>0.000</td>
+<td>0.265</td>
+<td>0.330</td>
+</tr>
+</tbody>
+</table>
+
+
+<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Omnibus:</td>
+<td>810.053</td>
+<td data-quarto-table-cell-role="th">Durbin-Watson:</td>
+<td>2.057</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Prob(Omnibus):</td>
+<td>0.000</td>
+<td data-quarto-table-cell-role="th">Jarque-Bera (JB):</td>
+<td>4326.150</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Skew:</td>
+<td>1.849</td>
+<td data-quarto-table-cell-role="th">Prob(JB):</td>
+<td>0.00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Kurtosis:</td>
+<td>9.183</td>
+<td data-quarto-table-cell-role="th">Cond. No.</td>
+<td>316.</td>
+</tr>
+</tbody>
+</table>
+<br><br>Notes:<br>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="end-of-notebook" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> End of notebook</h1>
+<p>You have now completed all the code required for <strong>Part B</strong> of the assignment.</p>
+<p>Please ensure that your <strong>document</strong> includes:</p>
+<ul>
+<li>Table 1 from Part B1 and your commentary.</li>
+<li>A discussion of the distributions and any transformations (Part B2).</li>
+<li>Regression results and your interpretation (Part B3).</li>
+<li>A DAG-informed adjustment discussion (Part B4).</li>
+<li>Bonus analysis and interpretation (if attempted).</li>
+</ul>
+<p>Remember that the emphasis of the marking is on your <strong>epidemiological reasoning and interpretation</strong>, not on Python code.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/ggkuhnle\.github\.io\/fb2nep-epi\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© University of Reading 2025 · Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ggkuhnle/fb2nep-epi/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ggkuhnle/fb2nep-epi/blob/main/assessment/assessment_1b.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with Quarto</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

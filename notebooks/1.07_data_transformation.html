@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>1.07 – Data Transformation and Preparation for Modelling – FB2NEP Nutritional Epidemiology</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+</head><body class="nav-sidebar floating nav-fixed"><img src="https://kuhnle.co.uk/pixel.png" width="1" height="1" style="display:none" alt="">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">FB2NEP Nutritional Epidemiology</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../assessment/index.html"> 
+<span class="menu-text">Assessment</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">1.07 – Data Transformation and Preparation for Modelling</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FB2NEP — Nutritional Epidemiology</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Notebooks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">notebooks/*.ipynb</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Sandbox</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../howto_sandbox/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FB2NEP — How‑To &amp; Sandbox (Colab/Jupyter)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#background-theory-with-simple-examples" id="toc-background-theory-with-simple-examples" class="nav-link active" data-scroll-target="#background-theory-with-simple-examples"><span class="header-section-number">1</span> Background theory with simple examples</a>
+  <ul class="collapse">
+  <li><a href="#background-1-what-is-a-normal-distribution" id="toc-background-1-what-is-a-normal-distribution" class="nav-link" data-scroll-target="#background-1-what-is-a-normal-distribution"><span class="header-section-number">1.1</span> Background 1 – What is a normal distribution?</a></li>
+  <li><a href="#background-2-what-are-residuals" id="toc-background-2-what-are-residuals" class="nav-link" data-scroll-target="#background-2-what-are-residuals"><span class="header-section-number">1.2</span> Background 2 – What are residuals?</a></li>
+  <li><a href="#background-3-heteroskedasticity-changing-variance" id="toc-background-3-heteroskedasticity-changing-variance" class="nav-link" data-scroll-target="#background-3-heteroskedasticity-changing-variance"><span class="header-section-number">1.3</span> Background 3 – Heteroskedasticity (changing variance)</a></li>
+  <li><a href="#background-4-how-to-decide-whether-to-transform" id="toc-background-4-how-to-decide-whether-to-transform" class="nav-link" data-scroll-target="#background-4-how-to-decide-whether-to-transform"><span class="header-section-number">1.4</span> Background 4 – How to decide whether to transform</a></li>
+  </ul></li>
+  <li><a href="#initial-inspection-of-the-fb2nep-data" id="toc-initial-inspection-of-the-fb2nep-data" class="nav-link" data-scroll-target="#initial-inspection-of-the-fb2nep-data"><span class="header-section-number">2</span> 1. Initial inspection of the FB2NEP data</a></li>
+  <li><a href="#log-transformation-nutrition-data-and-log-normality" id="toc-log-transformation-nutrition-data-and-log-normality" class="nav-link" data-scroll-target="#log-transformation-nutrition-data-and-log-normality"><span class="header-section-number">3</span> 2. Log transformation – nutrition data and log-normality</a>
+  <ul class="collapse">
+  <li><a href="#exercise-log-transformation" id="toc-exercise-log-transformation" class="nav-link" data-scroll-target="#exercise-log-transformation"><span class="header-section-number">3.1</span> Exercise – log transformation</a></li>
+  </ul></li>
+  <li><a href="#standardisation-z-scores-making-variables-comparable" id="toc-standardisation-z-scores-making-variables-comparable" class="nav-link" data-scroll-target="#standardisation-z-scores-making-variables-comparable"><span class="header-section-number">4</span> 3. Standardisation (z-scores) – making variables comparable</a>
+  <ul class="collapse">
+  <li><a href="#exercise-interpretation-of-z-scores" id="toc-exercise-interpretation-of-z-scores" class="nav-link" data-scroll-target="#exercise-interpretation-of-z-scores"><span class="header-section-number">4.1</span> Exercise – interpretation of z-scores</a></li>
+  </ul></li>
+  <li><a href="#boxcox-transformations-a-flexible-family" id="toc-boxcox-transformations-a-flexible-family" class="nav-link" data-scroll-target="#boxcox-transformations-a-flexible-family"><span class="header-section-number">5</span> 4. Box–Cox transformations – a flexible family</a>
+  <ul class="collapse">
+  <li><a href="#exercise-log-versus-boxcox" id="toc-exercise-log-versus-boxcox" class="nav-link" data-scroll-target="#exercise-log-versus-boxcox"><span class="header-section-number">5.1</span> Exercise – log versus Box–Cox</a></li>
+  </ul></li>
+  <li><a href="#categorisation-and-quantiles-useful-but-risky" id="toc-categorisation-and-quantiles-useful-but-risky" class="nav-link" data-scroll-target="#categorisation-and-quantiles-useful-but-risky"><span class="header-section-number">6</span> 5. Categorisation and quantiles – useful but risky</a>
+  <ul class="collapse">
+  <li><a href="#exercise-categories-and-extreme-quantiles" id="toc-exercise-categories-and-extreme-quantiles" class="nav-link" data-scroll-target="#exercise-categories-and-extreme-quantiles"><span class="header-section-number">6.1</span> Exercise – categories and extreme quantiles</a></li>
+  </ul></li>
+  <li><a href="#special-case-truncation-of-analytical-values" id="toc-special-case-truncation-of-analytical-values" class="nav-link" data-scroll-target="#special-case-truncation-of-analytical-values"><span class="header-section-number">7</span> 6. Special case – truncation of analytical values</a>
+  <ul class="collapse">
+  <li><a href="#exercise-thinking-about-truncation" id="toc-exercise-thinking-about-truncation" class="nav-link" data-scroll-target="#exercise-thinking-about-truncation"><span class="header-section-number">7.1</span> Exercise – thinking about truncation</a></li>
+  </ul></li>
+  <li><a href="#summary-interpretation-and-practical-rules" id="toc-summary-interpretation-and-practical-rules" class="nav-link" data-scroll-target="#summary-interpretation-and-practical-rules"><span class="header-section-number">8</span> 7. Summary, interpretation and practical rules</a>
+  <ul class="collapse">
+  <li><a href="#practical-rules-summary" id="toc-practical-rules-summary" class="nav-link" data-scroll-target="#practical-rules-summary"><span class="header-section-number">8.1</span> Practical rules (summary)</a></li>
+  <li><a href="#summary-table-transformations-and-their-properties" id="toc-summary-table-transformations-and-their-properties" class="nav-link" data-scroll-target="#summary-table-transformations-and-their-properties"><span class="header-section-number">8.2</span> Summary table – transformations and their properties</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/ggkuhnle/fb2nep-epi/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.07_data_transformation.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">1.07 – Data Transformation and Preparation for Modelling</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Version 0.0.7</p>
+<p>In this workbook we explore how to prepare variables for statistical modelling.</p>
+<p>We consider:</p>
+<ul>
+<li>Why we sometimes transform variables before modelling.</li>
+<li>Log transformation, Box–Cox transformation and z-scoring.</li>
+<li>Visual comparison of original and transformed variables.</li>
+<li>Categorisation, quantiles and information loss.</li>
+<li>Truncation of analytical values (for example, LOD / LLOQ / ULOQ).</li>
+</ul>
+<p>The focus is on understanding <strong>why</strong> transformations are used in epidemiological analyses, and how they affect model assumptions and interpretation.</p>
+<p>We begin with some background theory, using small simulated examples to illustrate:</p>
+<ul>
+<li>What a normal distribution looks like.</li>
+<li>Residuals and their distribution.</li>
+<li>Heteroskedasticity (changing variance with the level of a predictor).</li>
+<li>How one might decide whether to transform a variable or not.</li>
+</ul>
+<p>We then work with the FB2NEP synthetic cohort to apply these ideas in practice.</p>
+<p>Run the first code cell to set up the repository and load the data.</p>
+<div id="bootstrap_fb2nep_7" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># FB2NEP bootstrap cell (works both locally and in Colab)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># What this cell does:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># - Ensures that we are inside the fb2nep-epi repository.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># - In Colab: clones the repository from GitHub if necessary.</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># - Loads and runs scripts/bootstrap.py.</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># - Makes the main dataset available as the variable `df`.</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Important:</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># - You may see messages printed below (for example from pip</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#   or from the bootstrap script). This is expected.</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># - You may also see WARNINGS (often in yellow). In most cases</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#   these are harmless and can be ignored for this module.</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># - The main thing to watch for is a red error traceback</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#   (for example FileNotFoundError, ModuleNotFoundError).</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#   If that happens, please re-run this cell first. If the</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">#   error persists, ask for help.</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pathlib</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> importlib.util</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------------------</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Configuration: repository location and URL</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------------------</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># REPO_URL: address of the GitHub repository.</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co"># REPO_DIR: folder name that will be created when cloning.</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>REPO_URL <span class="op">=</span> <span class="st">"https://github.com/ggkuhnle/fb2nep-epi.git"</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>REPO_DIR <span class="op">=</span> <span class="st">"fb2nep-epi"</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------------------</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Ensure we are inside the fb2nep-epi repository</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------------------</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># In local Jupyter, you may already be inside the repository,</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="co"># for example in fb2nep-epi/notebooks.</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co"># In Colab, the default working directory is /content, so</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co"># we need to clone the repository into /content/fb2nep-epi</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co"># and then change into that folder.</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>cwd <span class="op">=</span> pathlib.Path.cwd()</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Case A: we are already in the repository (scripts/bootstrap.py exists here)</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (cwd <span class="op">/</span> <span class="st">"scripts"</span> <span class="op">/</span> <span class="st">"bootstrap.py"</span>).is_file():</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    repo_root <span class="op">=</span> cwd</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Case B: we are outside the repository (for example in Colab)</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    repo_root <span class="op">=</span> cwd <span class="op">/</span> REPO_DIR</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Clone the repository if it is not present yet</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> repo_root.is_dir():</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Cloning repository from </span><span class="sc">{</span>REPO_URL<span class="sc">}</span><span class="ss"> into </span><span class="sc">{</span>repo_root<span class="sc">}</span><span class="ss"> ..."</span>)</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>        subprocess.run([<span class="st">"git"</span>, <span class="st">"clone"</span>, REPO_URL, <span class="bu">str</span>(repo_root)], check<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Using existing repository at </span><span class="sc">{</span>repo_root<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Change the working directory to the repository root</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    os.chdir(repo_root)</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    repo_root <span class="op">=</span> pathlib.Path.cwd()</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Repository root set to: </span><span class="sc">{</span>repo_root<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------------------</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Load scripts/bootstrap.py as a module and call init()</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------------------</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="co"># The shared bootstrap script contains all logic to:</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="co"># - Ensure that required Python packages are installed.</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="co"># - Ensure that the synthetic dataset exists (and generate it</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="co">#   if needed).</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="co"># - Load the dataset into a pandas DataFrame.</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="co"># We load the script as a normal Python module (fb2nep_bootstrap)</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="co"># and then call its init() function.</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>bootstrap_path <span class="op">=</span> repo_root <span class="op">/</span> <span class="st">"scripts"</span> <span class="op">/</span> <span class="st">"bootstrap.py"</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> bootstrap_path.is_file():</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Could not find </span><span class="sc">{</span>bootstrap_path<span class="sc">}</span><span class="ss">. "</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Please check that the fb2nep-epi repository structure is intact."</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a module specification from the file</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>spec <span class="op">=</span> importlib.util.spec_from_file_location(<span class="st">"fb2nep_bootstrap"</span>, bootstrap_path)</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>bootstrap <span class="op">=</span> importlib.util.module_from_spec(spec)</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>sys.modules[<span class="st">"fb2nep_bootstrap"</span>] <span class="op">=</span> bootstrap</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="co"># Execute the bootstrap script in the context of this module</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>spec.loader.exec_module(bootstrap)</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="co"># The init() function is defined in scripts/bootstrap.py.</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="co"># It returns:</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="co"># - df   : the main synthetic cohort as a pandas DataFrame.</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="co"># - CTX  : a small context object with paths, flags and settings.</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>df, CTX <span class="op">=</span> bootstrap.init()</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="co"># Optionally expose a few additional useful variables from the</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="co"># bootstrap module (if they exist). These are not essential for</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="co"># most analyses, but can be helpful for advanced use.</span></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> [<span class="st">"CSV_REL"</span>, <span class="st">"REPO_NAME"</span>, <span class="st">"REPO_URL"</span>, <span class="st">"IN_COLAB"</span>]:</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">hasattr</span>(bootstrap, name):</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>        <span class="bu">globals</span>()[name] <span class="op">=</span> <span class="bu">getattr</span>(bootstrap, name)</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Bootstrap completed successfully."</span>)</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The main dataset is available as the variable `df`."</span>)</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The context object is available as `CTX`."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="background-theory-with-simple-examples" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="background-theory-with-simple-examples"><span class="header-section-number">1</span> Background theory with simple examples</h2>
+<p>Before using the FB2NEP dataset, we illustrate a few key ideas with small simulated examples:</p>
+<ul>
+<li>What a <strong>normal distribution</strong> looks like.</li>
+<li>What <strong>residuals</strong> are and why we care about their distribution.</li>
+<li>What <strong>heteroskedasticity</strong> looks like in a residual plot.</li>
+<li>How one might decide whether a transformation is needed.</li>
+</ul>
+<p>These examples are deliberately simple and are not based on real nutritional data.</p>
+<p>We first import the Python packages required for this workbook:</p>
+<ul>
+<li><code>numpy</code> and <code>pandas</code> for data handling.</li>
+<li><code>matplotlib</code> for visualisation.</li>
+<li><code>scipy.stats</code> for skewness and Box–Cox transformation.</li>
+</ul>
+<div id="imports" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># For reproducible simulated examples</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">11088</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="background-1-what-is-a-normal-distribution" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="background-1-what-is-a-normal-distribution"><span class="header-section-number">1.1</span> Background 1 – What is a normal distribution?</h3>
+<p>Many statistical methods assume that some quantity is approximately <strong>normally distributed</strong>. The normal distribution is the familiar “bell-shaped” curve:</p>
+<ul>
+<li>Most values lie near the mean.</li>
+<li>Values become less frequent as we move further away from the mean.</li>
+<li>The distribution is symmetric around the mean.</li>
+</ul>
+<p>We now simulate 10,000 values from a normal distribution with mean 0 and standard deviation 1 and plot a histogram.</p>
+<div id="normal_example_code" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate data from a standard normal distribution</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mean = 0, standard deviation = 1</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>x_norm <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="fl">0.0</span>, scale<span class="op">=</span><span class="fl">1.0</span>, size<span class="op">=</span><span class="dv">10_000</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.hist(x_norm, bins<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Value"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Simulated standard normal distribution"</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Mean:"</span>, x_norm.mean())</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Standard deviation:"</span>, x_norm.std())</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Skewness:"</span>, stats.skew(x_norm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="background-2-what-are-residuals" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="background-2-what-are-residuals"><span class="header-section-number">1.2</span> Background 2 – What are residuals?</h3>
+<p>We start by looking at how well a simple linear model reproduces the data:</p>
+<ul>
+<li>The <strong>fitted value</strong> is the model’s prediction for each observation.</li>
+<li>Plotting <strong>observed vs fitted</strong> shows whether the model captures the <em>average</em> pattern.</li>
+</ul>
+<p>We then look at <strong>residuals</strong> (observed − fitted):</p>
+<ul>
+<li>Residuals show what is left after the model has explained as much variation as it can.</li>
+<li>Their distribution (for example, symmetry, spread) is what many methods make assumptions about.</li>
+</ul>
+<div id="residuals_example_code" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 1: residuals approximately normal</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We simulate x from a normal distribution and y from a linear relation</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plus normal (Gaussian) error.</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">500</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="fl">0.0</span>, scale<span class="op">=</span><span class="fl">1.0</span>, size<span class="op">=</span>n)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>epsilon1 <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="fl">0.0</span>, scale<span class="op">=</span><span class="fl">1.0</span>, size<span class="op">=</span>n)  <span class="co"># normal residuals</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>y1 <span class="op">=</span> <span class="fl">2.0</span> <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> x1 <span class="op">+</span> epsilon1</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a straight line y1 ~ x1 using numpy.polyfit</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>slope1, intercept1 <span class="op">=</span> np.polyfit(x1, y1, <span class="dv">1</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>fitted1 <span class="op">=</span> intercept1 <span class="op">+</span> slope1 <span class="op">*</span> x1</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>residuals1 <span class="op">=</span> y1 <span class="op">-</span> fitted1</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 2: residuals clearly non-normal</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># We use the same x, but generate skewed error terms (for example,</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># from an exponential distribution).</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>epsilon2 <span class="op">=</span> np.random.exponential(scale<span class="op">=</span><span class="fl">1.0</span>, size<span class="op">=</span>n)  <span class="co"># skewed residuals</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>y2 <span class="op">=</span> <span class="fl">2.0</span> <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> x1 <span class="op">+</span> epsilon2</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>slope2, intercept2 <span class="op">=</span> np.polyfit(x1, y2, <span class="dv">1</span>)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>fitted2 <span class="op">=</span> intercept2 <span class="op">+</span> slope2 <span class="op">*</span> x1</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>residuals2 <span class="op">=</span> y2 <span class="op">-</span> fitted2</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot observed vs fitted values for the two examples</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_identity_line(ax, x, y):</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Add a y = x reference line over the range of fitted/observed values."""</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    lo <span class="op">=</span> <span class="bu">min</span>(x.<span class="bu">min</span>(), y.<span class="bu">min</span>())</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    hi <span class="op">=</span> <span class="bu">max</span>(x.<span class="bu">max</span>(), y.<span class="bu">max</span>())</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    ax.plot([lo, hi], [lo, hi], color<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 1: approximately normal residuals</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].scatter(fitted1, y1, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>add_identity_line(axes[<span class="dv">0</span>], fitted1, y1)</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Observed vs fitted – normal errors"</span>)</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">"Fitted value"</span>)</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">"Observed value"</span>)</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 2: skewed residuals</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].scatter(fitted2, y2, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>add_identity_line(axes[<span class="dv">1</span>], fitted2, y2)</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"Observed vs fitted – skewed errors"</span>)</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">"Fitted value"</span>)</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">"Observed value"</span>)</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In both panels, the points lie roughly along the 45° line, so the <em>average</em> relation is captured well by the straight line model. The difference between the two examples will become clearer when we examine the residuals.</p>
+<div id="7f1ec082" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histograms of residuals for both cases</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].hist(residuals1, bins<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Residuals – approximately normal"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">"Residual"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].hist(residuals2, bins<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"Residuals – clearly skewed"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">"Residual"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Example 1 residual skewness:"</span>, stats.skew(residuals1))</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Example 2 residual skewness:"</span>, stats.skew(residuals2))</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Residuals vs fitted values</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].scatter(fitted1, residuals1, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].axhline(<span class="fl">0.0</span>, color<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Residuals vs fitted – normal errors"</span>)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">"Fitted value"</span>)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">"Residual"</span>)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].scatter(fitted2, residuals2, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].axhline(<span class="fl">0.0</span>, color<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"Residuals vs fitted – skewed errors"</span>)</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">"Fitted value"</span>)</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">"Residual"</span>)</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Exercise – residuals and assumptions</strong></p>
+<ul>
+<li>Which example looks closer to the ideal of symmetric, roughly constant residuals?</li>
+<li>In which example would you be more confident about using methods that assume normally distributed residuals with constant variance?</li>
+</ul>
+</section>
+<section id="background-3-heteroskedasticity-changing-variance" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="background-3-heteroskedasticity-changing-variance"><span class="header-section-number">1.3</span> Background 3 – Heteroskedasticity (changing variance)</h3>
+<p>In many real data sets, the <strong>spread</strong> of residuals is not constant across the range of fitted values. If the residuals fan out as the predicted value increases, this is called <strong>heteroskedasticity</strong>.</p>
+<p>We now simulate a simple example where the variance of the error term increases with the level of x and show a residual plot.</p>
+<div id="hetero_example_code" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate heteroskedastic data</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------------------------</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We let the standard deviation of the error term increase with |x|.</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>x_h <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, n)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>sigma_h <span class="op">=</span> <span class="fl">0.5</span> <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> np.<span class="bu">abs</span>(x_h)  <span class="co"># larger variance for large |x|</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>epsilon_h <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="fl">0.0</span>, scale<span class="op">=</span>sigma_h)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>y_h <span class="op">=</span> <span class="fl">1.0</span> <span class="op">+</span> <span class="fl">2.0</span> <span class="op">*</span> x_h <span class="op">+</span> epsilon_h</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>slope_h, intercept_h <span class="op">=</span> np.polyfit(x_h, y_h, <span class="dv">1</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>fitted_h <span class="op">=</span> intercept_h <span class="op">+</span> slope_h <span class="op">*</span> x_h</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>residuals_h <span class="op">=</span> y_h <span class="op">-</span> fitted_h</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>plt.scatter(fitted_h, residuals_h, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="fl">0.0</span>, color<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Fitted value"</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Residual"</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Heteroskedasticity: residuals fan out with fitted value"</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="background-4-how-to-decide-whether-to-transform" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="background-4-how-to-decide-whether-to-transform"><span class="header-section-number">1.4</span> Background 4 – How to decide whether to transform</h3>
+<p>In practice there is no automatic rule for when to transform a variable. Analysts usually combine:</p>
+<ul>
+<li><strong>Exploratory plots of the variable itself</strong> (histograms, density plots) to see skewness.</li>
+<li><strong>Residual plots</strong> from a model fitted on the original scale.</li>
+<li><strong>Subject-matter knowledge</strong>, for example whether multiplicative (percentage) effects are plausible.</li>
+</ul>
+<p>Some practical guidelines:</p>
+<ul>
+<li>If residuals are approximately symmetric and the variance is roughly constant across fitted values, a transformation is often unnecessary.</li>
+<li>If the predictor is strongly right-skewed and residuals are clearly non-normal or heteroskedastic, a log or Box–Cox transformation can help.</li>
+<li>If predictors are on very different scales and you mainly care about comparing effect sizes, z-scoring can be useful.</li>
+<li>Transformations should also respect interpretability: a modest gain in “niceness” of residual plots may not justify a scale that is hard to explain.</li>
+</ul>
+</section>
+</section>
+<section id="initial-inspection-of-the-fb2nep-data" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="initial-inspection-of-the-fb2nep-data"><span class="header-section-number">2</span> 1. Initial inspection of the FB2NEP data</h2>
+<p>We now return to the FB2NEP synthetic cohort. Before transforming variables, we:</p>
+<ul>
+<li>Check that the variables of interest exist.</li>
+<li>Obtain a first impression of their ranges and types.</li>
+</ul>
+<p>In this workbook we will mainly use:</p>
+<ul>
+<li><code>red_meat_g_d</code> (or <code>energy_kcal</code> as fallback) as an example of a skewed exposure.</li>
+<li><code>BMI</code> (kg/m²) and <code>SBP</code> (systolic blood pressure, mmHg) as common continuous variables.</li>
+</ul>
+<div id="inspect_data" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the first rows (participants) of the dataset</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>display(df.head())</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Show data types of a subset of variables that we will use later.</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>cols_of_interest <span class="op">=</span> [</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    c <span class="cf">for</span> c <span class="kw">in</span> [<span class="st">"red_meat_g_d"</span>, <span class="st">"energy_kcal"</span>, <span class="st">"BMI"</span>, <span class="st">"SBP"</span>] <span class="cf">if</span> c <span class="kw">in</span> df.columns</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Columns of interest:"</span>, cols_of_interest)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>display(df[cols_of_interest].dtypes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="log-transformation-nutrition-data-and-log-normality" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="log-transformation-nutrition-data-and-log-normality"><span class="header-section-number">3</span> 2. Log transformation – nutrition data and log-normality</h2>
+<p>Many dietary and biomarker variables are <strong>right-skewed</strong>: most participants have low or moderate values, with a long tail of high values. In nutrition, it is often more plausible to think in terms of <strong>proportional</strong> changes (for example, doubling intake) than in terms of fixed absolute changes.</p>
+<p>If a variable is approximately <strong>log-normal</strong> (that is, its logarithm is roughly normal), then:</p>
+<ul>
+<li>The variable itself is right-skewed.</li>
+<li>The log-transformed variable is closer to a normal distribution.</li>
+<li>Effects can often be interpreted in terms of percentage or fold-changes.</li>
+</ul>
+<p>We now inspect the distribution of a skewed dietary variable and apply a log transformation.</p>
+<div id="log_skewness_plot" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose a variable that is likely to be right-skewed.</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>var <span class="op">=</span> <span class="st">"red_meat_g_d"</span> <span class="cf">if</span> <span class="st">"red_meat_g_d"</span> <span class="kw">in</span> df.columns <span class="cf">else</span> <span class="st">"energy_kcal"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Using variable: </span><span class="sc">{</span>var<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop missing values for plotting and computing skewness.</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> df[var].dropna()</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>x.hist(bins<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(var)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Number of participants"</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"Distribution of </span><span class="sc">{</span>var<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of non-missing values:"</span>, x.shape[<span class="dv">0</span>])</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Mean:"</span>, x.mean())</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Median:"</span>, x.median())</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Skewness:"</span>, stats.skew(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Like most dietary data, meat intake is skewed - other variables are often even more skewed.</p>
+<p>What happens if we log-transform it?</p>
+<div id="log_transform" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scripts.helpers_tables <span class="im">import</span> log_transform, plot_hist_pair</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Use a small constant to avoid problems if there are zeros.</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>log_const <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>log_var_name <span class="op">=</span> <span class="st">"log_"</span> <span class="op">+</span> var</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>df[log_var_name] <span class="op">=</span> log_transform(df[var], constant<span class="op">=</span>log_const)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Created column: </span><span class="sc">{</span>log_var_name<span class="sc">}</span><span class="ss"> (log-transformed </span><span class="sc">{</span>var<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare skewness before and after log transformation.</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>x_log <span class="op">=</span> df[log_var_name].dropna()</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Skewness (original):"</span>, stats.skew(x))</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Skewness (log-transformed):"</span>, stats.skew(x_log))</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>plot_hist_pair(</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    original<span class="op">=</span>df[var],</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    transformed<span class="op">=</span>df[log_var_name],</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    original_label<span class="op">=</span>var,</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    transformed_label<span class="op">=</span><span class="ss">f"log(</span><span class="sc">{</span>var<span class="sc">}</span><span class="ss"> + </span><span class="sc">{</span>log_const<span class="sc">}</span><span class="ss">)"</span>,</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="exercise-log-transformation" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="exercise-log-transformation"><span class="header-section-number">3.1</span> Exercise – log transformation</h3>
+<ul>
+<li>Compare the histograms and skewness values before and after log transformation.</li>
+<li>Does the log-transformed variable look more symmetric?</li>
+<li>If you were to regress SBP on this exposure, would you consider using the log scale rather than the original scale? Why or why not?</li>
+</ul>
+</section>
+</section>
+<section id="standardisation-z-scores-making-variables-comparable" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="standardisation-z-scores-making-variables-comparable"><span class="header-section-number">4</span> 3. Standardisation (z-scores) – making variables comparable</h2>
+<p>Variables such as BMI and SBP are measured on different scales and in different units. When several such variables are included in a model, it can be useful to standardise them so that:</p>
+<ul>
+<li>The mean is 0.</li>
+<li>The standard deviation is 1.</li>
+</ul>
+<p>These standardised values are called <strong>z-scores</strong>. They are defined as:</p>
+<p><span class="math display">\[ z_i = \frac{x_i - \bar{x}}{s_x} \]</span></p>
+<p>where <span class="math inline">\(\bar{x}\)</span> is the sample mean and <span class="math inline">\(s_x\)</span> is the sample standard deviation.</p>
+<p>In psychology and some areas of epidemiology it is common to report effects per 1 standard deviation increase, because this makes effect sizes comparable across different variables.</p>
+<div id="zscore_code" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scripts.helpers_tables <span class="im">import</span> z_score</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> v <span class="kw">in</span> [<span class="st">"BMI"</span>, <span class="st">"SBP"</span>]:</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> v <span class="kw">in</span> df.columns:</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        z_name <span class="op">=</span> <span class="st">"z_"</span> <span class="op">+</span> v</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        df[z_name] <span class="op">=</span> z_score(df[v])</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Summary of z-scored </span><span class="sc">{</span>v<span class="sc">}</span><span class="ss"> (stored in </span><span class="sc">{</span>z_name<span class="sc">}</span><span class="ss">):"</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(df[z_name].describe())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="zscore_plot" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualisation: compare the distributions of BMI and z-scored BMI.</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"BMI"</span> <span class="kw">in</span> df.columns:</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"BMI"</span>].dropna().hist(bins<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"BMI (kg/m²)"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"Number of participants"</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"BMI (original scale)"</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"z_BMI"</span>].dropna().hist(bins<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"z-BMI"</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"Number of participants"</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"BMI (z-score)"</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="exercise-interpretation-of-z-scores" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="exercise-interpretation-of-z-scores"><span class="header-section-number">4.1</span> Exercise – interpretation of z-scores</h3>
+<ul>
+<li>Check the summary output for <code>z_BMI</code> and <code>z_SBP</code>.
+<ul>
+<li>Are the means close to 0 and the standard deviations close to 1?</li>
+</ul></li>
+<li>Imagine a regression model where the coefficient for <code>z_BMI</code> is 2.5 mmHg.
+<ul>
+<li>How would you describe this effect in words (per 1 standard deviation increase in BMI)?</li>
+<li>How does this compare to a model where BMI is used in kg/m² without standardisation?</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="boxcox-transformations-a-flexible-family" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="boxcox-transformations-a-flexible-family"><span class="header-section-number">5</span> 4. Box–Cox transformations – a flexible family</h2>
+<p>The log transformation is a special case of a more general family of power transformations called <strong>Box–Cox transformations</strong>. Box–Cox chooses an exponent (lambda, <span class="math inline">\(\lambda\)</span>) that aims to make the distribution more symmetric.</p>
+<p>For a variable <span class="math inline">\(x\)</span> that is strictly positive, the Box–Cox transformation is defined as</p>
+<p><span class="math display">\[
+x^{(\lambda)} =
+\begin{cases}
+\dfrac{x^{\lambda} - 1}{\lambda}, &amp; \text{if } \lambda \neq 0, \\[6pt]
+\log(x), &amp; \text{if } \lambda = 0.
+\end{cases}
+\]</span></p>
+<p>Key points:</p>
+<ul>
+<li>For <span class="math inline">\(\lambda = 1\)</span>, the Box–Cox transform is essentially the original scale.</li>
+<li>For <span class="math inline">\(\lambda = 0\)</span>, the transform corresponds to a log transform.</li>
+<li>The method requires <span class="math inline">\(x &gt; 0\)</span>. In practice, one often adds a small constant (for example, <span class="math inline">\(x^{*} = x + c\)</span>) if some observations are zero or very small.</li>
+</ul>
+<p>We now apply a Box–Cox transformation to the same skewed dietary variable and compare its distribution with the original and log-transformed versions.</p>
+<div id="boxcox_transform" class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Box–Cox transformation requires strictly positive values.</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We therefore shift the data if necessary.</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>x_bc <span class="op">=</span> df[var].dropna()</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>min_x <span class="op">=</span> x_bc.<span class="bu">min</span>()</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>shift <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> min_x <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add a small positive amount so that the minimum becomes slightly &gt; 0.</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    shift <span class="op">=</span> <span class="op">-</span>min_x <span class="op">+</span> <span class="fl">1e-6</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>x_bc_shifted <span class="op">=</span> x_bc <span class="op">+</span> shift</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply Box–Cox. stats.boxcox returns transformed data and the estimated lambda.</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>x_bc_transformed, lambda_bc <span class="op">=</span> stats.boxcox(x_bc_shifted)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Store Box–Cox transformed values in the DataFrame, aligned with the original index.</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>boxcox_var_name <span class="op">=</span> <span class="st">"boxcox_"</span> <span class="op">+</span> var</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>df[boxcox_var_name] <span class="op">=</span> np.nan</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>df.loc[x_bc.index, boxcox_var_name] <span class="op">=</span> x_bc_transformed</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Created column: </span><span class="sc">{</span>boxcox_var_name<span class="sc">}</span><span class="ss"> (Box–Cox transformed </span><span class="sc">{</span>var<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Box–Cox lambda (λ): </span><span class="sc">{</span>lambda_bc<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Shift applied before Box–Cox: </span><span class="sc">{</span>shift<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare skewness for original, log and Box–Cox transformed data.</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>x_boxcox <span class="op">=</span> df[boxcox_var_name].dropna()</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Skewness (original):"</span>, stats.skew(x))</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Skewness (log):"</span>, stats.skew(x_log))</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Skewness (Box–Cox):"</span>, stats.skew(x_boxcox))</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>plot_hist_pair(</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    original<span class="op">=</span>df[var],</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    transformed<span class="op">=</span>df[boxcox_var_name],</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    original_label<span class="op">=</span>var,</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    transformed_label<span class="op">=</span><span class="ss">f"Box–Cox(</span><span class="sc">{</span>var<span class="sc">}</span><span class="ss">)"</span>,</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="exercise-log-versus-boxcox" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="exercise-log-versus-boxcox"><span class="header-section-number">5.1</span> Exercise – log versus Box–Cox</h3>
+<ul>
+<li>Compare the histograms and skewness values for the original, log-transformed and Box–Cox transformed variables.</li>
+<li>Which transformation appears to give the most symmetric distribution?</li>
+<li>Which transformation would you prefer to use in a model, and why? Consider both distributional properties and interpretability.</li>
+</ul>
+</section>
+</section>
+<section id="categorisation-and-quantiles-useful-but-risky" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="categorisation-and-quantiles-useful-but-risky"><span class="header-section-number">6</span> 5. Categorisation and quantiles – useful but risky</h2>
+<p>Epidemiological papers often categorise continuous variables, for example:</p>
+<ul>
+<li>Clinical categories (for example, normal weight, overweight, obesity based on BMI).</li>
+<li>Quantiles such as tertiles, quartiles or quintiles of intake.</li>
+</ul>
+<p>While categorisation can simplify presentation, it comes with several problems:</p>
+<ul>
+<li><strong>Information loss:</strong> individuals with very different values may end up in the same category.</li>
+<li><strong>Arbitrary cut-points:</strong> results can change if cut-points are moved slightly.</li>
+<li><strong>Reduced power:</strong> categorisation usually reduces statistical power.</li>
+</ul>
+<p>Quantiles are particularly important in nutrition:</p>
+<ul>
+<li>They are often used to describe the distribution (for example, median and interquartile range).</li>
+<li>They are also used to form exposure groups (for example, quintiles of intake).</li>
+</ul>
+<p>However, the <strong>extreme quantiles</strong> (lowest and highest) can cover quite wide ranges of the underlying variable, especially when the distribution is skewed. We explore this using BMI and BMI quantiles.</p>
+<div id="categorisation_code" class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> {<span class="st">"BMI"</span>, <span class="st">"SBP"</span>}.issubset(df.columns):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create BMI quintiles using pandas.qcut.</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># qcut creates categories with (approximately) equal numbers of observations.</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"BMI_quintile"</span>] <span class="op">=</span> pd.qcut(df[<span class="st">"BMI"</span>], <span class="dv">5</span>, labels<span class="op">=</span>[<span class="st">"Q1"</span>, <span class="st">"Q2"</span>, <span class="st">"Q3"</span>, <span class="st">"Q4"</span>, <span class="st">"Q5"</span>])</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"BMI quintiles (cut-points and ranges):"</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        df.groupby(<span class="st">"BMI_quintile"</span>)[<span class="st">"BMI"</span>].describe()[[<span class="st">"min"</span>, <span class="st">"25%"</span>, <span class="st">"50%"</span>, <span class="st">"75%"</span>, <span class="st">"max"</span>]]</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Scatter plot of SBP vs continuous BMI.</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    plt.scatter(df[<span class="st">"BMI"</span>], df[<span class="st">"SBP"</span>], alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"BMI (kg/m²)"</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"SBP (mmHg)"</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"SBP vs continuous BMI"</span>)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Boxplot of SBP by BMI quintile.</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    df.boxplot(column<span class="op">=</span><span class="st">"SBP"</span>, by<span class="op">=</span><span class="st">"BMI_quintile"</span>)</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"BMI quintile"</span>)</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"SBP (mmHg)"</span>)</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"SBP by BMI quintile"</span>)</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    plt.suptitle(<span class="st">""</span>)  <span class="co"># Remove the default super-title.</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compare mean SBP between quintiles.</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Mean SBP by BMI quintile:"</span>)</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(df.groupby(<span class="st">"BMI_quintile"</span>)[<span class="st">"SBP"</span>].mean())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="exercise-categories-and-extreme-quantiles" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="exercise-categories-and-extreme-quantiles"><span class="header-section-number">6.1</span> Exercise – categories and extreme quantiles</h3>
+<ol type="1">
+<li>Compare the scatter plot of SBP vs continuous BMI with the boxplot of SBP by BMI quintiles.
+<ul>
+<li>What information is visible in the scatter plot but lost when using quintiles?</li>
+<li>How much variation in SBP exists <strong>within</strong> each quintile?</li>
+</ul></li>
+<li>Look at the ranges of BMI within each quintile.
+<ul>
+<li>Are the lowest and highest values in Q1 and Q5 quite far apart?</li>
+<li>How might this affect interpretation of “lowest” vs “highest” quintile?</li>
+</ul></li>
+<li>In which situations might categorisation still be useful or necessary (for example, clinical decision thresholds)?</li>
+</ol>
+</section>
+</section>
+<section id="special-case-truncation-of-analytical-values" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="special-case-truncation-of-analytical-values"><span class="header-section-number">7</span> 6. Special case – truncation of analytical values</h2>
+<p>Laboratory measurements often have a <strong>limit of detection (LOD)</strong>, a <strong>lower limit of quantification (LLOQ)</strong> and sometimes an <strong>upper limit of quantification (ULOQ)</strong>. Values below or above these limits are <strong>truncated</strong> by the measurement process.</p>
+<p>Common strategies for handling values below LOD or LLOQ include:</p>
+<ul>
+<li>Treating them as missing and analysing only values above the limit.</li>
+<li>Replacing them with a constant (for example, LOD/2 or LOD/√2).</li>
+<li>Using the measured values as reported (if the instrument provides them), but recognising that they are less reliable.</li>
+</ul>
+<p>We now simulate a small biomarker with a LOD and show how different approaches affect the distribution, particularly when applying a log transformation.</p>
+<div id="truncation_example_code" class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate a right-skewed biomarker (for example, a log-normal-like distribution)</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>bio_raw <span class="op">=</span> np.random.lognormal(mean<span class="op">=</span><span class="fl">1.0</span>, sigma<span class="op">=</span><span class="fl">0.7</span>, size<span class="op">=</span><span class="dv">2000</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Assume a limit of detection (LOD)</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>LOD <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Assumed LOD:"</span>, LOD)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create three versions:</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 1) Values below LOD treated as missing (NaN).</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 2) Values below LOD replaced by LOD/2.</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 3) Original measured values (no truncation), for comparison.</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>bio_measured <span class="op">=</span> bio_raw.copy()</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>bio_na <span class="op">=</span> bio_raw.copy()</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>bio_const <span class="op">=</span> bio_raw.copy()</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>bio_na[bio_na <span class="op">&lt;</span> LOD] <span class="op">=</span> np.nan</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>bio_const[bio_const <span class="op">&lt;</span> LOD] <span class="op">=</span> LOD <span class="op">/</span> <span class="fl">2.0</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Proportion of values below LOD:"</span>, np.mean(bio_raw <span class="op">&lt;</span> LOD))</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot histograms for the three approaches on the original scale</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">4</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].hist(bio_measured, bins<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].axvline(LOD, color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Measured values (no truncation)"</span>)</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">"Biomarker"</span>)</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].hist(bio_na[<span class="op">~</span>np.isnan(bio_na)], bins<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].axvline(LOD, color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"Values &lt; LOD as missing"</span>)</span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">"Biomarker"</span>)</span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].hist(bio_const, bins<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].axvline(LOD, color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_title(<span class="st">"Values &lt; LOD replaced by LOD/2"</span>)</span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_xlabel(<span class="st">"Biomarker"</span>)</span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Now apply a log transform (using a small constant to allow zeros if they appear)</span></span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>eps <span class="op">=</span> <span class="fl">1e-6</span></span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a>log_measured <span class="op">=</span> np.log(bio_measured <span class="op">+</span> eps)</span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>log_na <span class="op">=</span> np.log(bio_na <span class="op">+</span> eps)</span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>log_const <span class="op">=</span> np.log(bio_const <span class="op">+</span> eps)</span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">4</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].hist(log_measured, bins<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"log(measured)"</span>)</span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">"log(biomarker)"</span>)</span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].hist(log_na[<span class="op">~</span>np.isnan(log_na)], bins<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"log(values ≥ LOD)"</span>)</span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">"log(biomarker)"</span>)</span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].hist(log_const, bins<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_title(<span class="st">"log(values with LOD/2)"</span>)</span>
+<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_xlabel(<span class="st">"log(biomarker)"</span>)</span>
+<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="exercise-thinking-about-truncation" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="exercise-thinking-about-truncation"><span class="header-section-number">7.1</span> Exercise – thinking about truncation</h3>
+<ul>
+<li>Compare the three original-scale histograms.
+<ul>
+<li>How does treating values below LOD as missing change the shape of the distribution?</li>
+<li>How does replacing values below LOD by a constant (LOD/2) change it?</li>
+</ul></li>
+<li>Compare the three log-scale histograms.
+<ul>
+<li>Does constant substitution create an artificial spike in the distribution?</li>
+<li>How might this affect model fitting and interpretation?</li>
+</ul></li>
+<li>In a real analysis, which approach would you choose, and what sensitivity analyses might you consider?</li>
+</ul>
+</section>
+</section>
+<section id="summary-interpretation-and-practical-rules" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="summary-interpretation-and-practical-rules"><span class="header-section-number">8</span> 7. Summary, interpretation and practical rules</h2>
+<p>When transformed variables are used in models, regression coefficients change their meaning:</p>
+<ul>
+<li><strong>Log-transformed exposure (for example, log(intake))</strong>
+<ul>
+<li>A one-unit increase in log(intake) corresponds to a multiplicative change in the original intake.</li>
+<li>Effects are often interpreted per <em>k</em>-fold increase (for example, per doubling), which can be obtained by rescaling the log variable.</li>
+</ul></li>
+<li><strong>Box–Cox transformed exposure</strong>
+<ul>
+<li>Coefficients are expressed in a transformed scale that is not directly intuitive.</li>
+<li>Interpretation often focuses on comparing predicted outcomes at specific, back-transformed values rather than on a generic “one-unit change”.</li>
+</ul></li>
+<li><strong>z-scored variables (standardisation)</strong>
+<ul>
+<li>Effects are per 1 standard deviation increase in the original variable.</li>
+<li>This facilitates comparison of effect sizes between variables but may be less intuitive for clinical audiences.</li>
+</ul></li>
+<li><strong>Categorised variables (for example, quantiles)</strong>
+<ul>
+<li>Coefficients compare categories (for example, highest vs lowest quintile) and are easy to describe.</li>
+<li>However, they conceal variability within categories and depend on arbitrary cut-points.</li>
+</ul></li>
+</ul>
+<p>For reporting, it is often helpful to:</p>
+<ul>
+<li>Present results both on the transformed scale (for modelling) and back-transformed or re-expressed in the original units (for interpretation).</li>
+<li>Clearly state which transformation was used, and, where relevant, which constants or parameters (for example, () in Box–Cox, constants for LOD imputation) were applied.</li>
+</ul>
+<section id="practical-rules-summary" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="practical-rules-summary"><span class="header-section-number">8.1</span> Practical rules (summary)</h3>
+<ul>
+<li>Use <strong>plots of the variable and residuals</strong> to guide decisions; do not rely solely on formal normality tests.</li>
+<li>Consider a <strong>log transform</strong> for strongly right-skewed positive variables, especially where proportional changes are meaningful.</li>
+<li>Use <strong>z-scores</strong> when comparing effect sizes across variables on different scales.</li>
+<li>Use <strong>Box–Cox</strong> when a simple log transform is clearly inadequate and interpretability can be handled via back-transformation.</li>
+<li>Use <strong>categorisation</strong> sparingly; when it is required (for example, clinical thresholds), be explicit about cut-points and acknowledge information loss.</li>
+<li>For <strong>truncated analytical values</strong>, state clearly how values below LOD / LLOQ were handled and consider sensitivity analyses with alternative approaches.</li>
+</ul>
+</section>
+<section id="summary-table-transformations-and-their-properties" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="summary-table-transformations-and-their-properties"><span class="header-section-number">8.2</span> Summary table – transformations and their properties</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 7%">
+<col style="width: 4%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 20%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Approach</th>
+<th>Type</th>
+<th>Reversible?</th>
+<th>Typical purpose</th>
+<th>Advantages</th>
+<th>Limitations / cautions</th>
+<th>Interpretation of 1-unit change</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Log(x + c)</td>
+<td>Monotonic transform</td>
+<td>Yes</td>
+<td>Reduce right-skewness; stabilise variance</td>
+<td>Simple; widely understood; often matches biology</td>
+<td>Requires x + c &gt; 0; choice of c affects tail</td>
+<td>Multiplicative change in original x</td>
+</tr>
+<tr class="even">
+<td>Box–Cox(x; λ)</td>
+<td>Power transform</td>
+<td>Yes</td>
+<td>Reduce skewness; approximate normality</td>
+<td>Flexible; λ estimated from data</td>
+<td>Less intuitive; sensitive to outliers and truncation</td>
+<td>Model-based; often via back-transforms</td>
+</tr>
+<tr class="odd">
+<td>z-score = (x − mean)/sd</td>
+<td>Linear transform</td>
+<td>Yes</td>
+<td>Standardise scale; compare effect sizes</td>
+<td>Mean 0, sd 1; easy comparison across variables</td>
+<td>Depends on sample distribution; less intuitive clinically</td>
+<td>Change per 1 sd in original x</td>
+</tr>
+<tr class="even">
+<td>Categorisation (quantiles)</td>
+<td>Non-linear, discrete</td>
+<td>No</td>
+<td>Simplify presentation; threshold-based decisions</td>
+<td>Easy to present and explain; suits decision rules</td>
+<td>Information loss; arbitrary cut-points; reduced power</td>
+<td>Category contrasts (e.g.&nbsp;highest vs lowest)</td>
+</tr>
+<tr class="odd">
+<td>Truncation + constant imput.</td>
+<td>Ad hoc modification</td>
+<td>Partly</td>
+<td>Handle values &lt; LOD / LLOQ</td>
+<td>Simple; preserves sample size</td>
+<td>Artificial spikes; may bias low range</td>
+<td>Depends on imputation rule</td>
+</tr>
+<tr class="even">
+<td>Use measured values (LOD-flag)</td>
+<td>Measurement choice</td>
+<td>Yes</td>
+<td>Retain numeric range from instrument</td>
+<td>Avoids artificial truncation</td>
+<td>Low-range uncertainty; method-specific behaviour</td>
+<td>As for raw scale; note increased uncertainty</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/ggkuhnle\.github\.io\/fb2nep-epi\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© University of Reading 2025 · Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ggkuhnle/fb2nep-epi/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.07_data_transformation.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with Quarto</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
