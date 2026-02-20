@@ -9,7 +9,10 @@ format:
 ## Practical workbooks
 
 This page links to the **FB2NEP practical workbooks**.  
-Each badge opens the notebook in **Google Colab in a new browser tab**.
+Each notebook can be opened in two ways — choose whichever works best for you:
+
+- **Google Colab** — requires a Google account, but offers a reliable environment with easy file saving to Google Drive.
+- **Binder** — no account required; opens directly in your browser. May take a minute to start up.
 
 You may also download the notebooks and run them locally in Jupyter.
 
@@ -32,6 +35,9 @@ They show you how to open notebooks, run code safely, and try things out without
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.03_introduction_colab_jupyter.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 1.03 in Colab">
 </a>
+<a href="https://mybinder.org/v2/gh/ggkuhnle/fb2nep-epi/main?filepath=notebooks/1.03_introduction_colab_jupyter.ipynb" target="_blank">
+  <img src="https://mybinder.org/badge_logo.svg" alt="Open in Binder (no login required)">
+</a>
 
 ---
 
@@ -39,6 +45,9 @@ They show you how to open notebooks, run code safely, and try things out without
 
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.04_data_collection_cleaning.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 1.04 in Colab">
+</a>
+<a href="https://mybinder.org/v2/gh/ggkuhnle/fb2nep-epi/main?filepath=notebooks/1.04_data_collection_cleaning.ipynb" target="_blank">
+  <img src="https://mybinder.org/badge_logo.svg" alt="Open in Binder (no login required)">
 </a>
 
 ---
@@ -48,6 +57,9 @@ They show you how to open notebooks, run code safely, and try things out without
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.05_representative.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 1.05 in Colab">
 </a>
+<a href="https://mybinder.org/v2/gh/ggkuhnle/fb2nep-epi/main?filepath=notebooks/1.05_representative.ipynb" target="_blank">
+  <img src="https://mybinder.org/badge_logo.svg" alt="Open in Binder (no login required)">
+</a>
 
 ---
 
@@ -55,6 +67,9 @@ They show you how to open notebooks, run code safely, and try things out without
 
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.06_data_exploration.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 1.06 in Colab">
+</a>
+<a href="https://mybinder.org/v2/gh/ggkuhnle/fb2nep-epi/main?filepath=notebooks/1.06_data_exploration.ipynb" target="_blank">
+  <img src="https://mybinder.org/badge_logo.svg" alt="Open in Binder (no login required)">
 </a>
 
 ---
@@ -64,6 +79,9 @@ They show you how to open notebooks, run code safely, and try things out without
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.07_data_transformation.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 1.07 in Colab">
 </a>
+<a href="https://mybinder.org/v2/gh/ggkuhnle/fb2nep-epi/main?filepath=notebooks/1.07_data_transformation.ipynb" target="_blank">
+  <img src="https://mybinder.org/badge_logo.svg" alt="Open in Binder (no login required)">
+</a>
 
 ---
 
@@ -71,6 +89,9 @@ They show you how to open notebooks, run code safely, and try things out without
 
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.08_regression_modelling_01.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 1.08 in Colab">
+</a>
+<a href="https://mybinder.org/v2/gh/ggkuhnle/fb2nep-epi/main?filepath=notebooks/1.08_regression_modelling_01.ipynb" target="_blank">
+  <img src="https://mybinder.org/badge_logo.svg" alt="Open in Binder (no login required)">
 </a>
 
 ---
@@ -80,6 +101,9 @@ They show you how to open notebooks, run code safely, and try things out without
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.09_regression_modelling_02.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 1.09 in Colab">
 </a>
+<a href="https://mybinder.org/v2/gh/ggkuhnle/fb2nep-epi/main?filepath=notebooks/1.09_regression_modelling_02.ipynb" target="_blank">
+  <img src="https://mybinder.org/badge_logo.svg" alt="Open in Binder (no login required)">
+</a>
 
 ---
 
@@ -87,6 +111,9 @@ They show you how to open notebooks, run code safely, and try things out without
 
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.10_missing_data_and_sensitivity.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 1.10 in Colab">
+</a>
+<a href="https://mybinder.org/v2/gh/ggkuhnle/fb2nep-epi/main?filepath=notebooks/1.10_missing_data_and_sensitivity.ipynb" target="_blank">
+  <img src="https://mybinder.org/badge_logo.svg" alt="Open in Binder (no login required)">
 </a>
 
 ---
@@ -104,6 +131,9 @@ Quantifying population health burden using Disability-Adjusted Life Years and Qu
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/2.02_qaly.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 2.02 in Colab">
 </a>
+<a href="https://mybinder.org/v2/gh/ggkuhnle/fb2nep-epi/main?filepath=notebooks/2.02_qaly.ipynb" target="_blank">
+  <img src="https://mybinder.org/badge_logo.svg" alt="Open in Binder (no login required)">
+</a>
 
 ---
 
@@ -113,6 +143,9 @@ Measuring the social gradient in health using the Slope Index of Inequality (SII
 
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/2.03_health_inequalities.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 2.03 in Colab">
+</a>
+<a href="https://mybinder.org/v2/gh/ggkuhnle/fb2nep-epi/main?filepath=notebooks/2.03_health_inequalities.ipynb" target="_blank">
+  <img src="https://mybinder.org/badge_logo.svg" alt="Open in Binder (no login required)">
 </a>
 
 ---
@@ -124,6 +157,9 @@ Evaluating the UK salt reduction programme using 24-hour urinary sodium — a mo
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/2.04_salt_reduction.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 2.04 in Colab">
 </a>
+<a href="https://mybinder.org/v2/gh/ggkuhnle/fb2nep-epi/main?filepath=notebooks/2.04_salt_reduction.ipynb" target="_blank">
+  <img src="https://mybinder.org/badge_logo.svg" alt="Open in Binder (no login required)">
+</a>
 
 ---
 
@@ -134,6 +170,9 @@ Evaluating the Soft Drinks Industry Levy (SDIL) without a biomarker — explorin
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/2.05_sugar_reduction.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 2.05 in Colab">
 </a>
+<a href="https://mybinder.org/v2/gh/ggkuhnle/fb2nep-epi/main?filepath=notebooks/2.05_sugar_reduction.ipynb" target="_blank">
+  <img src="https://mybinder.org/badge_logo.svg" alt="Open in Binder (no login required)">
+</a>
 
 ---
 
@@ -143,6 +182,9 @@ Interactive budget allocation game: distribute £50M across public health nutrit
 
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/2.06_policy_simulation.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 2.06 in Colab">
+</a>
+<a href="https://mybinder.org/v2/gh/ggkuhnle/fb2nep-epi/main?filepath=notebooks/2.06_policy_simulation.ipynb" target="_blank">
+  <img src="https://mybinder.org/badge_logo.svg" alt="Open in Binder (no login required)">
 </a>
 
 ---
