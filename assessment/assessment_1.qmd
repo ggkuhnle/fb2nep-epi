@@ -59,6 +59,13 @@ You will use the provided assignment notebook to generate and analyse a **person
 
 [Link to assessment notebook](assessment_1b.ipynb)
 
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/assessment_1b.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab">
+</a>
+<a href="https://mybinder.org/v2/gh/ggkuhnle/fb2nep-epi/main?filepath=notebooks/assessment_1b.ipynb" target="_blank">
+  <img src="https://mybinder.org/badge_logo.svg" alt="Open in Binder (no login required)">
+</a>
+
 ### Questions
 
 The questions below correspond exactly to those embedded in the notebook.
