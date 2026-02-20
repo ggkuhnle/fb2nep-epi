@@ -20,10 +20,10 @@ date-format: "D MMMM YYYY"
 **Open the notebooks directly in Colab:**
 
 - **Introduction Notebook**  
-  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/howto_sandbox/Introduction-Notebook.ipynb) · [View on GitHub](https://github.com/ggkuhnle/fb2nep-epi/blob/main/howto_sandbox/Introduction-Notebook.ipynb)
+  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/howto_sandbox/Introduction-Notebook.ipynb) [![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ggkuhnle/fb2nep-epi/main?filepath=howto_sandbox/Introduction-Notebook.ipynb) · [View on GitHub](https://github.com/ggkuhnle/fb2nep-epi/blob/main/howto_sandbox/Introduction-Notebook.ipynb)
 
 - **Playground (Sandbox)**  
-  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/howto_sandbox/Playground.ipynb) · [View on GitHub](https://github.com/ggkuhnle/fb2nep-epi/blob/main/howto_sandbox/Playground.ipynb)
+  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/howto_sandbox/Playground.ipynb) [![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ggkuhnle/fb2nep-epi/main?filepath=howto_sandbox/Playground.ipynb) · [View on GitHub](https://github.com/ggkuhnle/fb2nep-epi/blob/main/howto_sandbox/Playground.ipynb)
 
 **Printable cheat‑sheet:**  
 - [python‑cheatsheet.md](python-cheatsheet.md) (open “Raw”, then save/print)
@@ -73,7 +73,7 @@ Replace the `owner/repo` part with your fork’s **repo slug**:
 
 ## How to open a notebook in Colab (step‑by‑step)
 
-> What is **Colab**? Colab is a hosted Jupyter Notebook service that requires no setup to use and provides free access to computing resources, including GPUs and TPUs. Colab is especially well suited to machine learning, data science, and education.
+> What is **Colab**? Colab is a hosted Jupyter Notebook service that requires no setup to use and provides free access to computing resources, including GPUs and TPUs. Colab is especially well suited to machine learning, data science, and education. **Requires a Google account.**
 
 > Right-clicking will open **Colab** in a new browser window.
 
@@ -94,6 +94,27 @@ Replace the `owner/repo` part with your fork’s **repo slug**:
 
 ---
 
+
+## How to open a notebook in Binder (step‑by‑step)
+
+> What is **Binder**? Binder turns a GitHub repository into a live, interactive Jupyter environment running in your browser. **No account or login required** — just click and go.
+
+> Note: Binder may take **1–2 minutes** to start the first time, as it builds the environment. Your work is not saved between sessions — download your notebook if you want to keep it.
+
+1. Click an **Open in Binder** badge above. A new tab will open and Binder will begin building the environment.
+2. Wait for the progress bar to complete. You will see log messages scrolling — this is normal.
+3. Once loaded, the notebook will open automatically in Jupyter.
+4. To **run a cell**, click it and press **Shift + Enter**, or use the ▶ button in the toolbar.
+5. To **run all cells**, go to **Cell → Run All** in the menu.
+6. To **save your work**, go to **File → Download as → Notebook (.ipynb)** before closing. Binder sessions are temporary and do not persist.
+
+### Useful Binder notes
+- **Session timeout:** Binder sessions close after ~10 minutes of inactivity. Save your work regularly.
+- **No GPU needed** for these notebooks — the default Binder environment is fine.
+- **Slow start?** This is normal on first launch. Once running, the notebook behaves identically to any other Jupyter environment.
+
+---
+
 ## Working locally in Jupyter (optional)
 If you prefer local execution:
 1. Install **Anaconda** or **Miniconda**, then open **Jupyter Lab**.  
@@ -104,15 +125,16 @@ If you prefer local execution:
 
 ## Troubleshooting
 
-- **ModuleNotFoundError** (e.g. `statsmodels`): run the cell that starts with `!pip install ...`, then **Runtime → Restart runtime**, and re‑run the code.  
+- **ModuleNotFoundError** (e.g. `statsmodels`): in Colab, run the cell that starts with `!pip install ...`, then **Runtime → Restart runtime**, and re‑run the code. In Binder, all packages are pre-installed — if a module is missing, try **Kernel → Restart**.  
 - **Kernel crashed / out of memory**: restart the runtime. Don’t open huge datasets in this sandbox.  
-- **Long‑running cells**: click the stop icon (■) next to the cell number, or **Runtime → Interrupt execution**.
+- **Long‑running cells**: click the stop icon (■) next to the cell number, or **Runtime → Interrupt execution** (Colab) / **Kernel → Interrupt** (Binder).
+- **Binder won't load**: try refreshing the page. If it continues to fail, use Colab as a fallback.
 
 ---
 
 ## What you will learn here
 
-- How to run Python cells safely in the cloud (Colab).  
+- How to run Python cells safely in the cloud (Colab or Binder).  
 - How to make small edits and immediately see their effect.  
 - How to generate simple synthetic data and make basic plots & analyses you’ll reuse in FB2NEP.
 
