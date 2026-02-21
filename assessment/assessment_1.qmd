@@ -59,10 +59,10 @@ You will use the provided assignment notebook to generate and analyse a **person
 
 [Link to assessment notebook](assessment_1b.ipynb)
 
-<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/assessment_1b.ipynb" target="_blank">
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/assessment/assessment_1b.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab">
 </a>
-<a href="https://mybinder.org/v2/gh/ggkuhnle/fb2nep-epi/main?filepath=notebooks/assessment_1b.ipynb" target="_blank">
+<a href="https://mybinder.org/v2/gh/ggkuhnle/fb2nep-epi/main?filepath=assessment/assessment_1b.ipynb" target="_blank">
   <img src="https://mybinder.org/badge_logo.svg" alt="Open in Binder (no login required)">
 </a>
 
@@ -100,9 +100,3 @@ Marks are awarded for interpretation and reasoning, not for programming skill.
 -   **Regression:** Correct interpretation of effect estimates, uncertainty, and confounding
 -   **Causal reasoning:** Appropriate use of DAGs to guide adjustment
 
-### Mark descriptors
-
--   **70–100 (Excellent):** Clear, correct, and insightful epidemiological reasoning throughout.
--   **60–69 (Good):** Sound understanding with minor omissions or imprecision.
--   **50–59 (Adequate):** Basic understanding demonstrated but limited depth.
--   **\<50 (Poor):** Major misunderstandings or missing elements.
