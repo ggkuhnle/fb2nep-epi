@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>1.03 – Introduction to Colab and Jupyter – FB2NEP Nutritional Epidemiology</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+</head><body class="nav-sidebar floating nav-fixed"><img src="https://kuhnle.co.uk/pixel.png" width="1" height="1" style="display:none" alt="">
+
+
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">FB2NEP Nutritional Epidemiology</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../assessment/index.html"> 
+<span class="menu-text">Assessment</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">1.03 – Introduction to Colab and Jupyter</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FB2NEP — Nutritional Epidemiology</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Notebooks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">notebooks/*.ipynb</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Sandbox</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../howto_sandbox/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FB2NEP — How‑To &amp; Sandbox (Colab/Jupyter)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#where-are-the-notebooks-and-how-do-i-open-them-in-colab" id="toc-where-are-the-notebooks-and-how-do-i-open-them-in-colab" class="nav-link active" data-scroll-target="#where-are-the-notebooks-and-how-do-i-open-them-in-colab"><span class="header-section-number">1</span> 1. Where are the notebooks and how do I open them in Colab?</a></li>
+  <li><a href="#notebook-basics-cells-and-markdown" id="toc-notebook-basics-cells-and-markdown" class="nav-link" data-scroll-target="#notebook-basics-cells-and-markdown"><span class="header-section-number">2</span> 2. Notebook basics: cells and Markdown</a>
+  <ul class="collapse">
+  <li><a href="#first-code-cell-a-simple-message" id="toc-first-code-cell-a-simple-message" class="nav-link" data-scroll-target="#first-code-cell-a-simple-message"><span class="header-section-number">2.1</span> 2.1 First code cell: a simple message</a></li>
+  </ul></li>
+  <li><a href="#a-very-brief-introduction-to-python" id="toc-a-very-brief-introduction-to-python" class="nav-link" data-scroll-target="#a-very-brief-introduction-to-python"><span class="header-section-number">3</span> 3. A very brief introduction to Python</a>
+  <ul class="collapse">
+  <li><a href="#core-python-data-structures-lists-sets-dictionaries" id="toc-core-python-data-structures-lists-sets-dictionaries" class="nav-link" data-scroll-target="#core-python-data-structures-lists-sets-dictionaries"><span class="header-section-number">3.1</span> 3.1 Core Python data structures (lists, sets, dictionaries)</a></li>
+  <li><a href="#what-is-a-python-programme" id="toc-what-is-a-python-programme" class="nav-link" data-scroll-target="#what-is-a-python-programme"><span class="header-section-number">3.2</span> 3.2 What is a Python programme?</a></li>
+  <li><a href="#conditions-and-loops-basic-structure" id="toc-conditions-and-loops-basic-structure" class="nav-link" data-scroll-target="#conditions-and-loops-basic-structure"><span class="header-section-number">3.3</span> 3.3 Conditions and loops (basic structure)</a></li>
+  <li><a href="#libraries-and-how-to-use-them" id="toc-libraries-and-how-to-use-them" class="nav-link" data-scroll-target="#libraries-and-how-to-use-them"><span class="header-section-number">3.4</span> 3.4 Libraries and how to use them</a></li>
+  <li><a href="#objects-attributes-and-methods-very-briefly" id="toc-objects-attributes-and-methods-very-briefly" class="nav-link" data-scroll-target="#objects-attributes-and-methods-very-briefly"><span class="header-section-number">3.5</span> 3.5 Objects, attributes, and methods (very briefly)</a></li>
+  </ul></li>
+  <li><a href="#hippo-dietary-survey-loading-a-small-dataset" id="toc-hippo-dietary-survey-loading-a-small-dataset" class="nav-link" data-scroll-target="#hippo-dietary-survey-loading-a-small-dataset"><span class="header-section-number">4</span> 4. Hippo dietary survey: loading a small dataset</a>
+  <ul class="collapse">
+  <li><a href="#loading-the-hippo-dataset-from-csv" id="toc-loading-the-hippo-dataset-from-csv" class="nav-link" data-scroll-target="#loading-the-hippo-dataset-from-csv"><span class="header-section-number">4.1</span> 4.1 Loading the hippo dataset from CSV</a></li>
+  <li><a href="#inspecting-the-data-and-variables" id="toc-inspecting-the-data-and-variables" class="nav-link" data-scroll-target="#inspecting-the-data-and-variables"><span class="header-section-number">4.2</span> 4.2 Inspecting the data and variables</a></li>
+  <li><a href="#using-methods-to-summarise-the-hippo-data" id="toc-using-methods-to-summarise-the-hippo-data" class="nav-link" data-scroll-target="#using-methods-to-summarise-the-hippo-data"><span class="header-section-number">4.3</span> 4.3 Using methods to summarise the hippo data</a></li>
+  <li><a href="#plotting-the-hippo-data" id="toc-plotting-the-hippo-data" class="nav-link" data-scroll-target="#plotting-the-hippo-data"><span class="header-section-number">4.4</span> 4.4 Plotting the hippo data</a></li>
+  </ul></li>
+  <li><a href="#reproducibility-and-open-science-principles" id="toc-reproducibility-and-open-science-principles" class="nav-link" data-scroll-target="#reproducibility-and-open-science-principles"><span class="header-section-number">5</span> 5. Reproducibility and open-science principles</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap"><span class="header-section-number">6</span> 6. Recap</a></li>
+  <li><a href="#appendix-running-notebooks-locally" id="toc-appendix-running-notebooks-locally" class="nav-link" data-scroll-target="#appendix-running-notebooks-locally"><span class="header-section-number">7</span> Appendix: running notebooks locally</a></li>
+  <li><a href="#appendix-what-the-setup-bootstrap-cell-does" id="toc-appendix-what-the-setup-bootstrap-cell-does" class="nav-link" data-scroll-target="#appendix-what-the-setup-bootstrap-cell-does"><span class="header-section-number">8</span> Appendix: What the setup / bootstrap cell does</a>
+  <ul class="collapse">
+  <li><a href="#the-setup-cell-in-the-notebook" id="toc-the-setup-cell-in-the-notebook" class="nav-link" data-scroll-target="#the-setup-cell-in-the-notebook"><span class="header-section-number">8.1</span> 1. The setup cell in the notebook</a></li>
+  <li><a href="#goals-of-scriptsbootstrap.py" id="toc-goals-of-scriptsbootstrap.py" class="nav-link" data-scroll-target="#goals-of-scriptsbootstrap.py"><span class="header-section-number">8.2</span> 2. Goals of <code>scripts/bootstrap.py</code></a></li>
+  <li><a href="#details-of-the-main-functions" id="toc-details-of-the-main-functions" class="nav-link" data-scroll-target="#details-of-the-main-functions"><span class="header-section-number">8.3</span> 3. Details of the main functions</a></li>
+  <li><a href="#the-init-function" id="toc-the-init-function" class="nav-link" data-scroll-target="#the-init-function"><span class="header-section-number">8.4</span> 4. The <code>init()</code> function</a></li>
+  <li><a href="#why-this-is-hidden-at-the-top" id="toc-why-this-is-hidden-at-the-top" class="nav-link" data-scroll-target="#why-this-is-hidden-at-the-top"><span class="header-section-number">8.5</span> 5. Why this is hidden at the top</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/ggkuhnle/fb2nep-epi/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.03_introduction_colab_jupyter.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">1.03 – Introduction to Colab and Jupyter</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>FB2NEP – Nutritional Epidemiology and Public Health</p>
+<p>In the epidemiology component of FB2NEP, we will use <strong>Jupyter notebooks</strong> (in particular <strong>Google Colab</strong>) as a practical environment to:</p>
+<ul>
+<li>run small examples,</li>
+<li>inspect and summarise datasets,</li>
+<li>produce simple plots,</li>
+<li>and introduce core ideas of reproducible and transparent analysis.</li>
+</ul>
+<p>The purpose of this notebook is to give you a first overview of:</p>
+<ol type="1">
+<li>How the teaching notebooks are stored in GitHub and opened in <strong>Google Colab</strong>.</li>
+<li>How to run and edit notebook cells.</li>
+<li>A brief introduction to <strong>Python</strong> and basic programme structure.</li>
+<li>How to import and use core libraries: <strong>NumPy</strong>, <strong>pandas</strong>, and <strong>Matplotlib</strong>.</li>
+<li>How to load and explore a small <strong>hippo dietary survey</strong> dataset.</li>
+<li>Why notebooks are helpful for <strong>reproducibility and open science</strong>.</li>
+</ol>
+<p>You do not need prior programming experience. The examples are small, explained line by line, and you will use them mainly as tools to understand epidemiological ideas.</p>
+<blockquote class="blockquote">
+<p><strong>Setup cell</strong></p>
+<p>Please run the cell below. It prepares the environment in Colab.<br>
+You may see messages or warnings (for example <em>“not authored by Google”</em>).<br>
+These are normal and can be ignored.<br>
+If Colab asks, choose <strong>“Run anyway”</strong>.</p>
+<p>If you are interested in the details, you can find an explanation at the very end of this notebook.</p>
+</blockquote>
+<div id="8990d60a" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># FB2NEP bootstrap cell (works both locally and in Colab)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># What this cell does:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># - Ensures that we are inside the fb2nep-epi repository.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># - In Colab: clones the repository from GitHub if necessary.</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># - Loads and runs scripts/bootstrap.py.</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># - Makes the main dataset available as the variable `df`.</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Important:</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># - You may see messages printed below (for example from pip</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#   or from the bootstrap script). This is expected.</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># - You may also see WARNINGS (often in yellow). In most cases</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#   these are harmless and can be ignored for this module.</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># - The main thing to watch for is a red error traceback</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#   (for example FileNotFoundError, ModuleNotFoundError).</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#   If that happens, please re-run this cell first. If the</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">#   error persists, ask for help.</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pathlib</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> importlib.util</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------------------</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Configuration: repository location and URL</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------------------</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># REPO_URL: address of the GitHub repository.</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co"># REPO_DIR: folder name that will be created when cloning.</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>REPO_URL <span class="op">=</span> <span class="st">"https://github.com/ggkuhnle/fb2nep-epi.git"</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>REPO_DIR <span class="op">=</span> <span class="st">"fb2nep-epi"</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------------------</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Ensure we are inside the fb2nep-epi repository</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------------------</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># In local Jupyter, you may already be inside the repository,</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="co"># for example in fb2nep-epi/notebooks.</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co"># In Colab, the default working directory is /content, so</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co"># we need to clone the repository into /content/fb2nep-epi</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co"># and then change into that folder.</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>cwd <span class="op">=</span> pathlib.Path.cwd()</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Case A: we are already in the repository (scripts/bootstrap.py exists here)</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (cwd <span class="op">/</span> <span class="st">"scripts"</span> <span class="op">/</span> <span class="st">"bootstrap.py"</span>).is_file():</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    repo_root <span class="op">=</span> cwd</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Case B: we are outside the repository (for example in Colab)</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    repo_root <span class="op">=</span> cwd <span class="op">/</span> REPO_DIR</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Clone the repository if it is not present yet</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> repo_root.is_dir():</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Cloning repository from </span><span class="sc">{</span>REPO_URL<span class="sc">}</span><span class="ss"> into </span><span class="sc">{</span>repo_root<span class="sc">}</span><span class="ss"> ..."</span>)</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>        subprocess.run([<span class="st">"git"</span>, <span class="st">"clone"</span>, REPO_URL, <span class="bu">str</span>(repo_root)], check<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Using existing repository at </span><span class="sc">{</span>repo_root<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Change the working directory to the repository root</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    os.chdir(repo_root)</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    repo_root <span class="op">=</span> pathlib.Path.cwd()</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Repository root set to: </span><span class="sc">{</span>repo_root<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------------------</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Load scripts/bootstrap.py as a module and call init()</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------------------</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="co"># The shared bootstrap script contains all logic to:</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="co"># - Ensure that required Python packages are installed.</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="co"># - Ensure that the synthetic dataset exists (and generate it</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="co">#   if needed).</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="co"># - Load the dataset into a pandas DataFrame.</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="co"># We load the script as a normal Python module (fb2nep_bootstrap)</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="co"># and then call its init() function.</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>bootstrap_path <span class="op">=</span> repo_root <span class="op">/</span> <span class="st">"scripts"</span> <span class="op">/</span> <span class="st">"bootstrap.py"</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> bootstrap_path.is_file():</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Could not find </span><span class="sc">{</span>bootstrap_path<span class="sc">}</span><span class="ss">. "</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Please check that the fb2nep-epi repository structure is intact."</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a module specification from the file</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>spec <span class="op">=</span> importlib.util.spec_from_file_location(<span class="st">"fb2nep_bootstrap"</span>, bootstrap_path)</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>bootstrap <span class="op">=</span> importlib.util.module_from_spec(spec)</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>sys.modules[<span class="st">"fb2nep_bootstrap"</span>] <span class="op">=</span> bootstrap</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="co"># Execute the bootstrap script in the context of this module</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>spec.loader.exec_module(bootstrap)</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="co"># The init() function is defined in scripts/bootstrap.py.</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="co"># It returns:</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="co"># - df   : the main synthetic cohort as a pandas DataFrame.</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="co"># - CTX  : a small context object with paths, flags and settings.</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>df, CTX <span class="op">=</span> bootstrap.init()</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="co"># Optionally expose a few additional useful variables from the</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="co"># bootstrap module (if they exist). These are not essential for</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="co"># most analyses, but can be helpful for advanced use.</span></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> [<span class="st">"CSV_REL"</span>, <span class="st">"REPO_NAME"</span>, <span class="st">"REPO_URL"</span>, <span class="st">"IN_COLAB"</span>]:</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">hasattr</span>(bootstrap, name):</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>        <span class="bu">globals</span>()[name] <span class="op">=</span> <span class="bu">getattr</span>(bootstrap, name)</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Bootstrap completed successfully."</span>)</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The main dataset is available as the variable `df`."</span>)</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The context object is available as `CTX`."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="where-are-the-notebooks-and-how-do-i-open-them-in-colab" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="where-are-the-notebooks-and-how-do-i-open-them-in-colab"><span class="header-section-number">1</span> 1. Where are the notebooks and how do I open them in Colab?</h2>
+<p>All teaching notebooks for FB2NEP live in a <strong>read-only GitHub repository</strong>:</p>
+<ul>
+<li>GitHub repository:<br>
+https://github.com/ggkuhnle/fb2nep-epi</li>
+<li>Published site (easier browsing):<br>
+https://ggkuhnle.github.io/fb2nep-epi/</li>
+</ul>
+<p>You will usually access notebooks via the <strong>published site</strong>. For each notebook there is a link or badge labelled something like <strong>“Open in Colab”</strong>.</p>
+<p>Typical workflow during the module:</p>
+<ol type="1">
+<li><p>Go to the published site and navigate to the notebook for the week.</p></li>
+<li><p>Click the <strong>“Open in Colab”</strong> link or badge.</p></li>
+<li><p>Colab will open the notebook in your browser.</p></li>
+<li><p>At the top of the notebook Colab may display a warning such as: &gt; This notebook was not authored by Google.</p>
+<p>This is a standard message. In the context of this module it simply means that the notebook comes from the course repository, not from Google. You can safely choose <strong>“Run anyway”</strong> for FB2NEP notebooks.</p></li>
+<li><p>Once the notebook is open in Colab, use <strong>File → Save a copy in Drive</strong> to create <strong>your own copy</strong>. All your edits will then be stored in your Google Drive.</p></li>
+</ol>
+<p>The original notebooks in GitHub remain unchanged. You cannot accidentally damage them. You work in your own copy.</p>
+</section>
+<section id="notebook-basics-cells-and-markdown" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="notebook-basics-cells-and-markdown"><span class="header-section-number">2</span> 2. Notebook basics: cells and Markdown</h2>
+<p>A notebook consists of <strong>cells</strong> arranged from top to bottom.</p>
+<ul>
+<li><strong>Code cells</strong> contain Python code and produce outputs such as numbers, tables, or plots.</li>
+<li><strong>Text cells</strong> (Markdown cells) contain formatted text for headings, lists, and explanations.</li>
+</ul>
+<p>To run a code cell: 1. Click inside the cell. 2. Press <strong>Shift + Enter</strong> (or click the small play button on the left in Colab).</p>
+<p>The output will appear directly below the cell.</p>
+<p><strong>Markdown</strong> is a light-weight mark-up language that controls basic formatting (headings, lists, bold, italics). In this module you only need a very small subset, and you can look it up when needed. A concise reference is available at:</p>
+<ul>
+<li>https://www.markdownguide.org/basic-syntax/</li>
+</ul>
+<p>In the rest of this notebook we will focus on code cells and data handling.</p>
+<section id="first-code-cell-a-simple-message" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="first-code-cell-a-simple-message"><span class="header-section-number">2.1</span> 2.1 First code cell: a simple message</h3>
+<p>Run the cell below. It prints a short message and demonstrates the basic <strong>code → output</strong> pattern.</p>
+<p>When you run a cell in <strong>Colab</strong> you may see one or both of the following:</p>
+<ul>
+<li><p>A yellow bar at the top saying something like<br>
+<em>“This notebook was not authored by Google”</em> with a button <strong>Run anyway</strong>.<br>
+For FB2NEP notebooks this is expected: the code comes from the module GitHub repository, not from Google. Choose <strong>Run anyway</strong> to continue.</p></li>
+<li><p>Extra text in the output area such as<br>
+<em>“Connecting to kernel…”</em> or <em>“Setting up notebook environment”</em>.<br>
+These are system messages from Colab, not errors. As long as the expected output (a short printed message) appears under the cell, the code has run successfully.</p></li>
+</ul>
+<div id="hello-fb2nep" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run this cell (Shift + Enter)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello, FB2NEP"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="try-it" class="level4" data-number="2.1.1">
+<h4 data-number="2.1.1" class="anchored" data-anchor-id="try-it"><span class="header-section-number">2.1.1</span> Try it</h4>
+<ul>
+<li>Change the text inside the quotation marks and run the cell again.</li>
+<li>Add a second line, for example:</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Run the cell again and observe that both lines of output appear under the cell.</p>
+</section>
+</section>
+</section>
+<section id="a-very-brief-introduction-to-python" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="a-very-brief-introduction-to-python"><span class="header-section-number">3</span> 3. A very brief introduction to Python</h2>
+<p>This section introduces three ideas that are useful throughout FB2NEP:</p>
+<ol type="1">
+<li>What a <strong>Python programme</strong> is and why <strong>indentation</strong> matters.</li>
+<li>What <strong>libraries</strong> are and how to use them.</li>
+<li>Very basic <strong>programme structure</strong>: a condition (<code>if</code>) and a loop (<code>for</code>).</li>
+</ol>
+<section id="core-python-data-structures-lists-sets-dictionaries" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="core-python-data-structures-lists-sets-dictionaries"><span class="header-section-number">3.1</span> 3.1 Core Python data structures (lists, sets, dictionaries)</h3>
+<p>Before we look at programmes and libraries, it is useful to know the basic data structures that appear throughout the notebooks. These are the building blocks for more advanced tools such as pandas.</p>
+<p>We will mainly use:</p>
+<ul>
+<li><p><strong>List</strong><br>
+An ordered collection of items. Lists can contain duplicates and can be changed.<br>
+Example: a list of hippo names:<br>
+<code>["Helga", "Bruno", "Ama"]</code></p></li>
+<li><p><strong>Set</strong><br>
+An unordered collection of <strong>unique</strong> items. Sets automatically remove duplicates.<br>
+Example: the unique habitats in a list:<br>
+<code>{"River", "Lake", "Zoo"}</code></p></li>
+<li><p><strong>Dictionary</strong> (<code>dict</code>)<br>
+A collection of key–value pairs. Each key maps to a value.<br>
+Example: information about one hippo:<br>
+<code>{"name": "Helga", "age_years": 5, "habitat": "River"}</code></p></li>
+</ul>
+<p>These are standard Python structures. In practice we often start from <strong>lists</strong> and <strong>dictionaries</strong>, and then build a pandas <strong>DataFrame</strong> from them.</p>
+<div id="442a31fe" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lists: ordered collections of items.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A list of hippo names.</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>hippo_names <span class="op">=</span> [<span class="st">"Helga"</span>, <span class="st">"Bruno"</span>, <span class="st">"Ama"</span>, <span class="st">"Jessica"</span>]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># A list of ages, in the same order.</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>hippo_ages <span class="op">=</span> [<span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">9</span>, <span class="dv">15</span>]</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Names:"</span>, hippo_names)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Ages: "</span>, hippo_ages)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Type of hippo_names:"</span>, <span class="bu">type</span>(hippo_names))</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Accessing elements by position (indexing starts at 0).</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">First hippo:"</span>, hippo_names[<span class="dv">0</span>])</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Age of first hippo:"</span>, hippo_ages[<span class="dv">0</span>])</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding a new hippo to the list.</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>hippo_names.append(<span class="st">"Fiona"</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>hippo_ages.append(<span class="dv">3</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">After appending a new hippo:"</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Names:"</span>, hippo_names)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Ages: "</span>, hippo_ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="1ff26c8b" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sets: collections of unique items.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppose we have a list of habitats with duplicates.</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>habitats_list <span class="op">=</span> [<span class="st">"River"</span>, <span class="st">"River"</span>, <span class="st">"Lake"</span>, <span class="st">"Zoo"</span>, <span class="st">"Lake"</span>, <span class="st">"River"</span>]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Habitats list:"</span>, habitats_list)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to a set to obtain only unique habitats.</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>habitats_set <span class="op">=</span> <span class="bu">set</span>(habitats_list)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Unique habitats (set):"</span>, habitats_set)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Type of habitats_set:"</span>, <span class="bu">type</span>(habitats_set))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="67f0cbad" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dictionaries: key–value pairs.</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Information about one hippo.</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>hippo_info <span class="op">=</span> {</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"name"</span>: <span class="st">"Helga"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"age_years"</span>: <span class="dv">5</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"habitat"</span>: <span class="st">"River"</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hippo info dictionary:"</span>, hippo_info)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Type:"</span>, <span class="bu">type</span>(hippo_info))</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Access values by key.</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Hippo name:"</span>, hippo_info[<span class="st">"name"</span>])</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hippo age:"</span>, hippo_info[<span class="st">"age_years"</span>])</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hippo habitat:"</span>, hippo_info[<span class="st">"habitat"</span>])</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># A dictionary is also useful for look-up tables.</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># For example, baseline grass intake (kg/day) by habitat.</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>baseline_grass <span class="op">=</span> {</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"River"</span>: <span class="fl">55.0</span>,</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Lake"</span>: <span class="fl">45.0</span>,</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Zoo"</span>: <span class="fl">50.0</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Baseline grass intake for river hippos:"</span>,</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>      baseline_grass[<span class="st">"River"</span>], <span class="st">"kg per day"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Later in this notebook we will use these basic structures to build a pandas <strong>DataFrame</strong>, for example by combining:</p>
+<ul>
+<li>a list of <code>hippo_id</code> values,</li>
+<li>a list of <code>name</code> values,</li>
+<li>and a dictionary that maps column names to those lists.</li>
+</ul>
+<p>This will give us a table that is easier to analyse and plot.</p>
+</section>
+<section id="what-is-a-python-programme" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="what-is-a-python-programme"><span class="header-section-number">3.2</span> 3.2 What is a Python programme?</h3>
+<p>A Python programme is a sequence of <strong>statements</strong> that will be executed from top to bottom. In a notebook the programme is effectively the combination of all code cells that you run.</p>
+<p>Important points:</p>
+<ul>
+<li>Python uses the <strong>line order</strong>: earlier lines usually run before later lines.</li>
+<li>Python uses <strong>indentation</strong> (spaces at the beginning of a line) to define structure. Indentation is not cosmetic formatting; it is part of the language.</li>
+<li>Lines starting with <code>#</code> are <strong>comments</strong> and are ignored by Python. They are for humans.</li>
+</ul>
+<p>The small example below shows indentation and comments.</p>
+<div id="indent-example" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A tiny example that uses indentation and a comment.</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>hippo_age <span class="op">=</span> <span class="dv">12</span>  <span class="co"># age in years</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> hippo_age <span class="op">&gt;=</span> <span class="dv">10</span>:</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># This line is indented and belongs to the 'if' block.</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"This is an older hippo."</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># This line belongs to the 'else' block.</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"This is a younger hippo."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="conditions-and-loops-basic-structure" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="conditions-and-loops-basic-structure"><span class="header-section-number">3.3</span> 3.3 Conditions and loops (basic structure)</h3>
+<p>The two most common control structures are:</p>
+<ul>
+<li><strong>Condition</strong>: <code>if condition: ... else: ...</code> to choose between two branches.</li>
+<li><strong>Loop</strong>: <code>for item in collection: ...</code> to repeat an action for each element of a sequence.</li>
+</ul>
+<p>The following example uses a <code>for</code> loop to look at several hippo ages.</p>
+<div id="loop-example" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: loop over a list of hippo ages.</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>hippo_ages <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">12</span>]</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> age <span class="kw">in</span> hippo_ages:</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">10</span>:</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Age"</span>, age, <span class="st">"→ older hippo"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Age"</span>, age, <span class="st">"→ younger hippo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="libraries-and-how-to-use-them" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="libraries-and-how-to-use-them"><span class="header-section-number">3.4</span> 3.4 Libraries and how to use them</h3>
+<p>The Python standard library is small. Most data analysis tools live in <strong>libraries</strong> that you import when you need them.</p>
+<p>In FB2NEP we will mainly use three libraries:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 43%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Library</th>
+<th>Typical import</th>
+<th>Main purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NumPy</td>
+<td><code>import numpy as np</code></td>
+<td>Fast numerical operations and random numbers</td>
+</tr>
+<tr class="even">
+<td>pandas</td>
+<td><code>import pandas as pd</code></td>
+<td>Reading, cleaning, and summarising tabular data</td>
+</tr>
+<tr class="odd">
+<td>Matplotlib</td>
+<td><code>import matplotlib.pyplot as plt</code></td>
+<td>Creating plots</td>
+</tr>
+</tbody>
+</table>
+<p>We will now import these libraries. In Colab they are already installed.</p>
+<div id="install-libs" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only run this cell if Colab reports that a library is missing.</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># In the teaching environment this step is usually not necessary.</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install numpy pandas matplotlib <span class="op">--</span>quiet</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="import-libs" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the core libraries used in this module.</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print versions (useful for reproducibility and debugging).</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys, matplotlib</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Python:"</span>, sys.version.split()[<span class="dv">0</span>])</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"NumPy:"</span>, np.__version__)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"pandas:"</span>, pd.__version__)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Matplotlib:"</span>, matplotlib.__version__)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="objects-attributes-and-methods-very-briefly" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="objects-attributes-and-methods-very-briefly"><span class="header-section-number">3.5</span> 3.5 Objects, attributes, and methods (very briefly)</h3>
+<p>Libraries such as pandas and Matplotlib are built around <strong>objects</strong>. Examples include:</p>
+<ul>
+<li>a pandas <strong>DataFrame</strong> (a table),</li>
+<li>a pandas <strong>Series</strong> (a single column),</li>
+<li>a Matplotlib <strong>Figure</strong> (a plot canvas).</li>
+</ul>
+<p>Objects usually provide:</p>
+<ul>
+<li><strong>attributes</strong> (properties that you access with a dot, for example <code>hippos.shape</code>),</li>
+<li><strong>methods</strong> (functions that belong to the object, for example <code>hippos.mean()</code> or <code>hippos.describe()</code>).</li>
+</ul>
+<p>You will see this in practice when we work with the hippo dietary survey.</p>
+</section>
+</section>
+<section id="hippo-dietary-survey-loading-a-small-dataset" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="hippo-dietary-survey-loading-a-small-dataset"><span class="header-section-number">4</span> 4. Hippo dietary survey: loading a small dataset</h2>
+<p>For this module we will use a small <strong>hippo dietary survey</strong> as a toy example. In the teaching repository it is stored as a CSV file at:</p>
+<ul>
+<li><code>data/hippo_diet_survey.csv</code></li>
+</ul>
+<p>Each row represents one hippo. Columns include for example:</p>
+<ul>
+<li><code>hippo_id</code> – unique identifier,<br>
+</li>
+<li><code>name</code> – hippo name,<br>
+</li>
+<li><code>age_years</code> – age in years,<br>
+</li>
+<li><code>habitat</code> – for example <code>River</code>, <code>Lake</code>, <code>Zoo</code>,<br>
+</li>
+<li><code>fruit_portions</code> – fruit portions per day,<br>
+</li>
+<li><code>veg_portions</code> – vegetable portions per day,<br>
+</li>
+<li><code>grass_kg</code> – kilograms of grass consumed per day.</li>
+</ul>
+<p>This is a typical situation in applied work: <strong>someone has prepared a dataset</strong>, and your task is to load it, inspect it, and analyse it.</p>
+<p>In this section we will use the hippo survey to illustrate:</p>
+<ul>
+<li>loading data from CSV,<br>
+</li>
+<li>basic inspection (rows, columns, types),<br>
+</li>
+<li>looking at individual variables,<br>
+</li>
+<li>using object methods such as <code>.mean()</code> and <code>.groupby()</code>,<br>
+</li>
+<li>creating a simple plot.</li>
+</ul>
+<section id="loading-the-hippo-dataset-from-csv" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="loading-the-hippo-dataset-from-csv"><span class="header-section-number">4.1</span> 4.1 Loading the hippo dataset from CSV</h3>
+<p>In a typical workflow the data file already exists and you only need to <strong>read</strong> it. The code below reads <code>data/hippo_diet_survey.csv</code> into a pandas <strong>DataFrame</strong> called <code>hippos</code> and shows the first few rows.</p>
+<div id="6af7812a" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the hippo dietary survey from the CSV file.</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This assumes you are running the notebook from the root of the repository,</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># with the data file present in the "data" subfolder.</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>hippo_path <span class="op">=</span> <span class="st">"data/hippo_diet_survey.csv"</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> os.path.exists(hippo_path):</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Could not find </span><span class="sc">{</span>hippo_path<span class="sc">}</span><span class="ss">. "</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Please check that you are running this notebook in the FB2NEP repository "</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">"and that the data file is present."</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>hippos <span class="op">=</span> pd.read_csv(hippo_path)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>hippos.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="inspecting-the-data-and-variables" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="inspecting-the-data-and-variables"><span class="header-section-number">4.2</span> 4.2 Inspecting the data and variables</h3>
+<p>The <code>hippos</code> object is a pandas <strong>DataFrame</strong>. It has attributes and methods that help you to understand the structure of the data.</p>
+<p>Commonly used methods and attributes include:</p>
+<ul>
+<li><code>hippos.shape</code> – attribute with number of rows and columns.</li>
+<li><code>hippos.columns</code> – attribute with column names.</li>
+<li><code>hippos.info()</code> – method with data types and missing values.</li>
+<li><code>hippos.describe()</code> – method with summary statistics for numeric columns.</li>
+</ul>
+<p>Run the cell below and examine the output carefully.</p>
+<div id="hippo-info" class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the structure of the hippo dataset.</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Shape (rows, columns):"</span>, hippos.shape)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Column names:"</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(hippos.columns.tolist())</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Basic information:"</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>hippos.info()</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Summary statistics for numeric columns:"</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>hippos.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="using-methods-to-summarise-the-hippo-data" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="using-methods-to-summarise-the-hippo-data"><span class="header-section-number">4.3</span> 4.3 Using methods to summarise the hippo data</h3>
+<p>Many operations are available as <strong>methods</strong>. For example:</p>
+<ul>
+<li><code>hippos["fruit_portions"].mean()</code> computes the mean of the <code>fruit_portions</code> column.</li>
+<li><code>hippos.groupby("habitat")["grass_kg"].mean()</code> computes the mean grass intake per habitat.</li>
+</ul>
+<p>These methods are part of the <strong>object-oriented</strong> design of pandas: the DataFrame and Series objects provide the relevant functionality via the dot notation.</p>
+<div id="hippo-summary" class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean fruit portions per day (all hippos).</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>mean_fruit <span class="op">=</span> hippos[<span class="st">"fruit_portions"</span>].mean()</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean fruit portions per day (all hippos): </span><span class="sc">{</span>mean_fruit<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean grass intake per habitat.</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>mean_grass_by_habitat <span class="op">=</span> hippos.groupby(<span class="st">"habitat"</span>)[<span class="st">"grass_kg"</span>].mean()</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Mean grass intake (kg per day) by habitat:"</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mean_grass_by_habitat)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Example of a simple condition on the DataFrame: hippos older than 10 years.</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>older_hippos <span class="op">=</span> hippos[hippos[<span class="st">"age_years"</span>] <span class="op">&gt;</span> <span class="dv">10</span>]</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Number of hippos older than 10 years:"</span>, <span class="bu">len</span>(older_hippos))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="plotting-the-hippo-data" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="plotting-the-hippo-data"><span class="header-section-number">4.4</span> 4.4 Plotting the hippo data</h3>
+<p>We can now create a simple plot using <strong>Matplotlib</strong>. A common pattern is:</p>
+<ol type="1">
+<li>Prepare a summary table in pandas.</li>
+<li>Pass the summary values to Matplotlib.</li>
+</ol>
+<p>Below we create a bar chart of <strong>mean grass intake by habitat</strong>.</p>
+<div id="hippo-plot" class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare the summary again (for clarity).</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>mean_grass_by_habitat <span class="op">=</span> hippos.groupby(<span class="st">"habitat"</span>)[<span class="st">"grass_kg"</span>].mean()</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a bar chart.</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>plt.bar(mean_grass_by_habitat.index, mean_grass_by_habitat.values)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Habitat"</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Mean grass intake (kg per day)"</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Hippo grass intake by habitat"</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="try-it-1" class="level4" data-number="4.4.1">
+<h4 data-number="4.4.1" class="anchored" data-anchor-id="try-it-1"><span class="header-section-number">4.4.1</span> Try it</h4>
+<p>Using the <code>hippos</code> DataFrame:</p>
+<ol type="1">
+<li>Compute the mean fruit portions per habitat using <code>groupby</code> and <code>mean</code>.</li>
+<li>Create a bar chart for mean fruit portions by habitat.</li>
+<li>Change the title and axis labels of the plot so that they describe your new chart.</li>
+</ol>
+<p>Optional: - Check for missing values using <code>hippos.isna().sum()</code>. - Select only hippos from one habitat, for example river hippos:<br>
+<code>river_hippos = hippos[hippos["habitat"] == "River"]</code>.</p>
+</section>
+</section>
+</section>
+<section id="reproducibility-and-open-science-principles" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="reproducibility-and-open-science-principles"><span class="header-section-number">5</span> 5. Reproducibility and open-science principles</h2>
+<p>One key reason to use notebooks and version-controlled repositories (GitHub) in nutritional epidemiology is <strong>reproducibility</strong>.</p>
+<p>In a reproducible analysis:</p>
+<ul>
+<li>The path from data to results is visible.</li>
+<li>Another researcher (or your future self) can rerun the analysis and obtain the same numbers and plots.</li>
+<li>Important choices (for example exclusion criteria, variable definitions) are documented in text near the code.</li>
+</ul>
+<p>Notebooks help with this because they combine:</p>
+<ul>
+<li>code (what you did),</li>
+<li>outputs (what you obtained),</li>
+<li>and explanations (why you did it).</li>
+</ul>
+<p>The teaching notebooks for FB2NEP are stored in a <strong>Git repository</strong> on GitHub. Git records the history of changes over time. In later parts of your degree you may use Git directly for your own projects.</p>
+<p>For now, a few simple good practices are sufficient:</p>
+<ul>
+<li>Keep notebooks and data in a consistent folder structure.</li>
+<li>Use clear, descriptive variable names in code.</li>
+<li>Record decisions in short Markdown notes.</li>
+<li>Fix a random seed (<code>np.random.seed(...)</code>) when you use random numbers, so that results are repeatable.</li>
+<li>When possible, use open formats such as CSV for data and share both data (if appropriate) and analysis code.</li>
+</ul>
+<div id="seed-demo" class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Small demonstration of a fixed random seed.</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Run this cell several times and check that the numbers stay the same.</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">11088</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span><span class="dv">1</span>, size<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Random values:"</span>, values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="recap" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="recap"><span class="header-section-number">6</span> 6. Recap</h2>
+<p>In this introductory notebook you have:</p>
+<ul>
+<li>seen how the FB2NEP notebooks live in a GitHub repository and are opened in <strong>Google Colab</strong>,</li>
+<li>run and edited simple Python code cells,</li>
+<li>learned that indentation and line order matter for Python programmes,</li>
+<li>imported and briefly used the core libraries <strong>NumPy</strong>, <strong>pandas</strong>, and <strong>Matplotlib</strong>,</li>
+<li>created and loaded a small <strong>hippo dietary survey</strong> dataset from a CSV file,</li>
+<li>inspected the dataset with methods such as <code>.head()</code>, <code>.info()</code>, <code>.describe()</code>,</li>
+<li>used methods such as <code>.mean()</code> and <code>.groupby()</code> to summarise variables,</li>
+<li>produced a simple bar chart from summarised data,</li>
+<li>and discussed how notebooks and Git support <strong>reproducible and transparent</strong> analyses.</li>
+</ul>
+<p>These elements will recur throughout the FB2NEP epidemiology materials. The aim is that the tools become familiar so that you can concentrate on the underlying nutritional and epidemiological questions.</p>
+<hr>
+</section>
+<section id="appendix-running-notebooks-locally" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="appendix-running-notebooks-locally"><span class="header-section-number">7</span> Appendix: running notebooks locally</h2>
+<p>If you prefer, you can also run the notebooks on your own computer instead of Colab. This requires a local installation of Python and Jupyter.</p>
+<p>Two common approaches are:</p>
+<ol type="1">
+<li><p><strong>Conda / Miniconda</strong> (recommended for beginners):</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> fb2nep python=3.11 <span class="at">-y</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate fb2nep</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install jupyterlab numpy pandas matplotlib <span class="at">-y</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> lab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong><code>venv</code> and <code>pip</code></strong>:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv fb2nep</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># macOS / Linux</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> fb2nep/bin/activate</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows (PowerShell)</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="ex">fb2nep\\Scripts\\activate</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install jupyterlab numpy pandas matplotlib</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> lab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+<p>Key concepts:</p>
+<ul>
+<li><strong>Environment</strong>: an isolated Python installation with its own set of packages.</li>
+<li><strong>Kernel</strong>: the Python process that executes the code of a notebook.</li>
+<li><strong>Working directory</strong>: the folder from which the notebook reads and writes files.</li>
+</ul>
+</section>
+<section id="appendix-what-the-setup-bootstrap-cell-does" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="appendix-what-the-setup-bootstrap-cell-does"><span class="header-section-number">8</span> Appendix: What the setup / bootstrap cell does</h2>
+<p>At the top of this notebook you were asked to run a <strong>setup (bootstrap) cell</strong> and to ignore the details for now.<br>
+This appendix explains what that cell and the underlying <code>scripts/bootstrap.py</code> file actually do.</p>
+<section id="the-setup-cell-in-the-notebook" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="the-setup-cell-in-the-notebook"><span class="header-section-number">8.1</span> 1. The setup cell in the notebook</h3>
+<p>The notebook code you saw looked roughly like this:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> runpy</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pathlib</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>REPO_URL <span class="op">=</span> <span class="st">"https://github.com/ggkuhnle/fb2nep-epi.git"</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>REPO_NAME <span class="op">=</span> <span class="st">"fb2nep-epi"</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. If we are in Colab and scripts/bootstrap.py is not present,</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">#    clone the repository and change into it.</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"google.colab"</span> <span class="kw">in</span> sys.modules <span class="kw">and</span> <span class="kw">not</span> pathlib.Path(<span class="st">"scripts/bootstrap.py"</span>).exists():</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    root <span class="op">=</span> pathlib.Path(<span class="st">"/content"</span>)</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    repo_dir <span class="op">=</span> root <span class="op">/</span> REPO_NAME</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> repo_dir.exists():</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Cloning </span><span class="sc">{</span>REPO_URL<span class="sc">}</span><span class="ss"> …"</span>)</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>        subprocess.run([<span class="st">"git"</span>, <span class="st">"clone"</span>, REPO_URL], check<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    os.chdir(repo_dir)</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Changed working directory to:"</span>, os.getcwd())</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Now try to locate and run scripts/bootstrap.py</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> [<span class="st">"scripts/bootstrap.py"</span>, <span class="st">"../scripts/bootstrap.py"</span>, <span class="st">"../../scripts/bootstrap.py"</span>]:</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pathlib.Path(p).exists():</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Bootstrapping via: </span><span class="sc">{</span>p<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>        runpy.run_path(p)</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"⚠️ scripts/bootstrap.py not found – "</span></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>          <span class="st">"please check that the FB2NEP repository is available."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This does two main things:</p>
+<ol type="1">
+<li><p><strong>If running in Google Colab and the repository is not present</strong>, it clones the <code>fb2nep-epi</code> repository from GitHub into <code>/content/fb2nep-epi</code> and changes the working directory to that folder.</p></li>
+<li><p>It then searches the current directory (and parents) for <code>scripts/bootstrap.py</code> and <strong>runs it</strong> as soon as it is found.</p></li>
+</ol>
+<hr>
+</section>
+<section id="goals-of-scriptsbootstrap.py" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="goals-of-scriptsbootstrap.py"><span class="header-section-number">8.2</span> 2. Goals of <code>scripts/bootstrap.py</code></h3>
+<p><code>bootstrap.py</code> is designed to solve three practical problems:</p>
+<ol type="1">
+<li><p><strong>Finding the repository root</strong><br>
+In Colab the working directory is often <code>/content</code>.<br>
+The script ensures the notebook ends up in the FB2NEP repository (the folder containing <code>scripts/</code> and <code>notebooks/</code>).</p></li>
+<li><p><strong>Ensuring that required Python packages are available</strong><br>
+It checks whether libraries like <code>numpy</code>, <code>pandas</code>, <code>matplotlib</code>, and <code>statsmodels</code> can be imported.</p>
+<ul>
+<li>In <strong>Colab</strong>, if they are missing, it installs them.<br>
+</li>
+<li>On a <strong>local machine</strong>, it prints a warning rather than installing anything automatically.</li>
+</ul></li>
+<li><p><strong>Ensuring that the main teaching dataset exists</strong><br>
+It checks whether the primary synthetic FB2NEP dataset (e.g.&nbsp;<code>data/synthetic/fb2nep.csv</code>) is present.</p>
+<ul>
+<li>If missing, it runs the generator script (e.g.&nbsp;<code>scripts/generate_dataset.py</code>).<br>
+</li>
+<li>In Colab it can also prompt for manual upload.</li>
+</ul></li>
+</ol>
+<p>These steps are handled by the helper functions <code>ensure_repo_root</code>, <code>ensure_deps</code>, and <code>ensure_data</code>.</p>
+<hr>
+</section>
+<section id="details-of-the-main-functions" class="level3" data-number="8.3">
+<h3 data-number="8.3" class="anchored" data-anchor-id="details-of-the-main-functions"><span class="header-section-number">8.3</span> 3. Details of the main functions</h3>
+<p><strong>(a) <code>ensure_repo_root()</code></strong></p>
+<ul>
+<li>Looks for a directory that contains both <code>scripts/</code> and <code>notebooks/</code>.<br>
+</li>
+<li>Moves up one directory if the notebook was opened from within <code>notebooks/</code>.<br>
+</li>
+<li>In Colab, clones the repository if it is not present.</li>
+</ul>
+<hr>
+<p><strong>(b) <code>ensure_deps()</code></strong></p>
+<ul>
+<li>Attempts to import <code>numpy</code>, <code>pandas</code>, <code>matplotlib</code>, and <code>statsmodels</code>.<br>
+</li>
+<li>In Colab, installs missing dependencies.<br>
+</li>
+<li>Locally, prints a warning but does not modify the environment.</li>
+</ul>
+<hr>
+<p><strong>(c) <code>ensure_data(csv_rel, gen_script)</code></strong></p>
+<ul>
+<li>Checks whether the dataset exists.<br>
+</li>
+<li>Attempts to generate it via the relevant script if necessary.<br>
+</li>
+<li>In Colab, as a final fallback, requests manual upload.</li>
+</ul>
+<hr>
+</section>
+<section id="the-init-function" class="level3" data-number="8.4">
+<h3 data-number="8.4" class="anchored" data-anchor-id="the-init-function"><span class="header-section-number">8.4</span> 4. The <code>init()</code> function</h3>
+<p>The <code>init()</code> function in <code>bootstrap.py</code>:</p>
+<ol type="1">
+<li>Calls the helper functions (<code>ensure_repo_root</code>, <code>ensure_deps</code>, <code>ensure_data</code>).<br>
+</li>
+<li>Loads the primary dataset into a DataFrame <code>df</code>.<br>
+</li>
+<li>Creates a small context object <code>ctx</code>.<br>
+</li>
+<li>Injects helper variables (<code>df</code>, <code>CTX</code>, <code>CSV_REL</code>, <code>REPO_ROOT</code>, <code>IN_COLAB</code>) into the notebook environment.</li>
+</ol>
+<p>Example use:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scripts.bootstrap <span class="im">import</span> init</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>df, ctx <span class="op">=</span> init()</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="why-this-is-hidden-at-the-top" class="level3" data-number="8.5">
+<h3 data-number="8.5" class="anchored" data-anchor-id="why-this-is-hidden-at-the-top"><span class="header-section-number">8.5</span> 5. Why this is hidden at the top</h3>
+<p>The purpose of the setup cell is to ensure that:</p>
+<ul>
+<li>the notebook runs in the correct <strong>repository directory</strong>,<br>
+</li>
+<li>required Python libraries are available,<br>
+</li>
+<li>required datasets <strong>exist and can be loaded</strong>.</li>
+</ul>
+<p>Once this is done, the rest of the notebook can focus on <strong>epidemiology and analysis</strong>, not technical setup.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/ggkuhnle\.github\.io\/fb2nep-epi\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© University of Reading 2025 · Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ggkuhnle/fb2nep-epi/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.03_introduction_colab_jupyter.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with Quarto</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

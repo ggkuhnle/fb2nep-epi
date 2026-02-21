@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>1.10 – Missing Data and Sensitivity Analysis – FB2NEP Nutritional Epidemiology</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+</head><body class="nav-sidebar floating nav-fixed"><img src="https://kuhnle.co.uk/pixel.png" width="1" height="1" style="display:none" alt="">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">FB2NEP Nutritional Epidemiology</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../assessment/index.html"> 
+<span class="menu-text">Assessment</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">1.10 – Missing Data and Sensitivity Analysis</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FB2NEP — Nutritional Epidemiology</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Notebooks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">notebooks/*.ipynb</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Sandbox</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../howto_sandbox/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FB2NEP — How‑To &amp; Sandbox (Colab/Jupyter)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#background-what-do-we-mean-by-missing-data" id="toc-background-what-do-we-mean-by-missing-data" class="nav-link active" data-scroll-target="#background-what-do-we-mean-by-missing-data"><span class="header-section-number">1</span> Background: what do we mean by “missing data”?</a>
+  <ul class="collapse">
+  <li><a href="#a-what-can-be-missing" id="toc-a-what-can-be-missing" class="nav-link" data-scroll-target="#a-what-can-be-missing"><span class="header-section-number">1.1</span> (a) What can be missing?</a></li>
+  <li><a href="#b-different-types-of-missing-entries" id="toc-b-different-types-of-missing-entries" class="nav-link" data-scroll-target="#b-different-types-of-missing-entries"><span class="header-section-number">1.2</span> (b) Different types of missing entries</a></li>
+  <li><a href="#c-what-does-missing-mean-in-the-dataset" id="toc-c-what-does-missing-mean-in-the-dataset" class="nav-link" data-scroll-target="#c-what-does-missing-mean-in-the-dataset"><span class="header-section-number">1.3</span> (c) What does “missing” mean in the dataset?</a></li>
+  </ul></li>
+  <li><a href="#missingness-overview" id="toc-missingness-overview" class="nav-link" data-scroll-target="#missingness-overview"><span class="header-section-number">2</span> 1. Missingness overview</a>
+  <ul class="collapse">
+  <li><a href="#conceptual-mechanisms-of-missingness" id="toc-conceptual-mechanisms-of-missingness" class="nav-link" data-scroll-target="#conceptual-mechanisms-of-missingness"><span class="header-section-number">2.1</span> 1.1 Conceptual mechanisms of missingness</a></li>
+  </ul></li>
+  <li><a href="#complete-case-versus-single-imputation" id="toc-complete-case-versus-single-imputation" class="nav-link" data-scroll-target="#complete-case-versus-single-imputation"><span class="header-section-number">3</span> 2. Complete-case versus single imputation</a></li>
+  <li><a href="#multiple-imputation-with-mice-simplified" id="toc-multiple-imputation-with-mice-simplified" class="nav-link" data-scroll-target="#multiple-imputation-with-mice-simplified"><span class="header-section-number">4</span> 3. Multiple imputation with MICE (simplified)</a></li>
+  <li><a href="#simple-sensitivity-analyses" id="toc-simple-sensitivity-analyses" class="nav-link" data-scroll-target="#simple-sensitivity-analyses"><span class="header-section-number">5</span> 4. Simple sensitivity analyses</a>
+  <ul class="collapse">
+  <li><a href="#restricting-the-bmi-range" id="toc-restricting-the-bmi-range" class="nav-link" data-scroll-target="#restricting-the-bmi-range"><span class="header-section-number">5.1</span> 4.1 Restricting the BMI range</a></li>
+  <li><a href="#sensitivity-to-adjustment-set-model-specification" id="toc-sensitivity-to-adjustment-set-model-specification" class="nav-link" data-scroll-target="#sensitivity-to-adjustment-set-model-specification"><span class="header-section-number">5.2</span> 4.3 Sensitivity to adjustment set (model specification)</a></li>
+  </ul></li>
+  <li><a href="#bayesian-approaches" id="toc-bayesian-approaches" class="nav-link" data-scroll-target="#bayesian-approaches"><span class="header-section-number">6</span> 5. Bayesian approaches</a></li>
+  <li><a href="#practical-mini-assignment" id="toc-practical-mini-assignment" class="nav-link" data-scroll-target="#practical-mini-assignment"><span class="header-section-number">7</span> 6. Practical mini-assignment</a>
+  <ul class="collapse">
+  <li><a href="#task" id="toc-task" class="nav-link" data-scroll-target="#task"><span class="header-section-number">7.1</span> Task</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/ggkuhnle/fb2nep-epi/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.10_missing_data_and_sensitivity.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">1.10 – Missing Data and Sensitivity Analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Version 0.0.1</p>
+<p>In all real epidemiological datasets, some information is missing. In this workbook we focus more systematically on:</p>
+<ul>
+<li>What “missing data” mean in practice.</li>
+<li>Patterns of missingness in the FB2NEP cohort.</li>
+<li>Complete-case versus imputation-based analyses.</li>
+<li>Simple sensitivity analyses to assess robustness.</li>
+<li>A brief introduction to Bayesian thinking about missing data.</li>
+</ul>
+<p>We work with a simple regression example using the synthetic FB2NEP cohort.</p>
+<p>Run the first two code cells to set up the repository and load the data.</p>
+<div id="wb8_bootstrap" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># FB2NEP bootstrap cell (works both locally and in Colab)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># What this cell does:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># - Ensures that we are inside the fb2nep-epi repository.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># - In Colab: clones the repository from GitHub if necessary.</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># - Loads and runs scripts/bootstrap.py.</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># - Makes the main dataset available as the variable `df`.</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Important:</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># - You may see messages printed below (for example from pip</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#   or from the bootstrap script). This is expected.</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># - You may also see WARNINGS (often in yellow). In most cases</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#   these are harmless and can be ignored for this module.</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># - The main thing to watch for is a red error traceback</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#   (for example FileNotFoundError, ModuleNotFoundError).</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#   If that happens, please re-run this cell first. If the</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">#   error persists, ask for help.</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pathlib</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> importlib.util</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------------------</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Configuration: repository location and URL</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------------------</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># REPO_URL: address of the GitHub repository.</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co"># REPO_DIR: folder name that will be created when cloning.</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>REPO_URL <span class="op">=</span> <span class="st">"https://github.com/ggkuhnle/fb2nep-epi.git"</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>REPO_DIR <span class="op">=</span> <span class="st">"fb2nep-epi"</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------------------</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Ensure we are inside the fb2nep-epi repository</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------------------</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># In local Jupyter, you may already be inside the repository,</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="co"># for example in fb2nep-epi/notebooks.</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co"># In Colab, the default working directory is /content, so</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co"># we need to clone the repository into /content/fb2nep-epi</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co"># and then change into that folder.</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>cwd <span class="op">=</span> pathlib.Path.cwd()</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Case A: we are already in the repository (scripts/bootstrap.py exists here)</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (cwd <span class="op">/</span> <span class="st">"scripts"</span> <span class="op">/</span> <span class="st">"bootstrap.py"</span>).is_file():</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    repo_root <span class="op">=</span> cwd</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Case B: we are outside the repository (for example in Colab)</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    repo_root <span class="op">=</span> cwd <span class="op">/</span> REPO_DIR</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Clone the repository if it is not present yet</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> repo_root.is_dir():</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Cloning repository from </span><span class="sc">{</span>REPO_URL<span class="sc">}</span><span class="ss"> into </span><span class="sc">{</span>repo_root<span class="sc">}</span><span class="ss"> ..."</span>)</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>        subprocess.run([<span class="st">"git"</span>, <span class="st">"clone"</span>, REPO_URL, <span class="bu">str</span>(repo_root)], check<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Using existing repository at </span><span class="sc">{</span>repo_root<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Change the working directory to the repository root</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    os.chdir(repo_root)</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    repo_root <span class="op">=</span> pathlib.Path.cwd()</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Repository root set to: </span><span class="sc">{</span>repo_root<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------------------</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Load scripts/bootstrap.py as a module and call init()</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------------------</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="co"># The shared bootstrap script contains all logic to:</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="co"># - Ensure that required Python packages are installed.</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="co"># - Ensure that the synthetic dataset exists (and generate it</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="co">#   if needed).</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="co"># - Load the dataset into a pandas DataFrame.</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="co"># We load the script as a normal Python module (fb2nep_bootstrap)</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="co"># and then call its init() function.</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>bootstrap_path <span class="op">=</span> repo_root <span class="op">/</span> <span class="st">"scripts"</span> <span class="op">/</span> <span class="st">"bootstrap.py"</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> bootstrap_path.is_file():</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Could not find </span><span class="sc">{</span>bootstrap_path<span class="sc">}</span><span class="ss">. "</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Please check that the fb2nep-epi repository structure is intact."</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a module specification from the file</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>spec <span class="op">=</span> importlib.util.spec_from_file_location(<span class="st">"fb2nep_bootstrap"</span>, bootstrap_path)</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>bootstrap <span class="op">=</span> importlib.util.module_from_spec(spec)</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>sys.modules[<span class="st">"fb2nep_bootstrap"</span>] <span class="op">=</span> bootstrap</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="co"># Execute the bootstrap script in the context of this module</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>spec.loader.exec_module(bootstrap)</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="co"># The init() function is defined in scripts/bootstrap.py.</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="co"># It returns:</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="co"># - df   : the main synthetic cohort as a pandas DataFrame.</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="co"># - CTX  : a small context object with paths, flags and settings.</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>df, CTX <span class="op">=</span> bootstrap.init()</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="co"># Optionally expose a few additional useful variables from the</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="co"># bootstrap module (if they exist). These are not essential for</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="co"># most analyses, but can be helpful for advanced use.</span></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> [<span class="st">"CSV_REL"</span>, <span class="st">"REPO_NAME"</span>, <span class="st">"REPO_URL"</span>, <span class="st">"IN_COLAB"</span>]:</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">hasattr</span>(bootstrap, name):</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>        <span class="bu">globals</span>()[name] <span class="op">=</span> <span class="bu">getattr</span>(bootstrap, name)</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Bootstrap completed successfully."</span>)</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The main dataset is available as the variable `df`."</span>)</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The context object is available as `CTX`."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="wb8_imports" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports used throughout this workbook</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># - numpy, pandas: general data handling</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># - matplotlib: simple visualisations</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># - statsmodels: regression and multiple imputation (MICE)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.imputation.mice <span class="im">import</span> MICEData, MICE</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scripts.helpers_tables <span class="im">import</span> ensure_cmdstan</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>cmdstan_root <span class="op">=</span> ensure_cmdstan()</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cmdstanpy <span class="im">import</span> CmdStanModel</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Using CmdStan from:"</span>, cmdstan_root)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="wb8_head" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quick inspection of the main dataset</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This is just to remind ourselves of the structure of the FB2NEP cohort.</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="background-what-do-we-mean-by-missing-data" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="background-what-do-we-mean-by-missing-data"><span class="header-section-number">1</span> Background: what do we mean by “missing data”?</h2>
+<p>Before inspecting missingness in the FB2NEP dataset, we first clarify what <em>missing</em> means in an epidemiological context.</p>
+<section id="a-what-can-be-missing" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="a-what-can-be-missing"><span class="header-section-number">1.1</span> (a) What can be missing?</h3>
+<p>Information can be missing at several levels:</p>
+<ul>
+<li><p><strong>Whole participants</strong><br>
+These individuals never appear in the analysis dataset (not recruited, withdrew immediately, or provided no usable data).</p></li>
+<li><p><strong>Entire visits or time points</strong><br>
+A participant attends baseline but not follow-up; in longitudinal data this appears as absent rows or missing whole sets of variables.</p></li>
+<li><p><strong>Individual variables (items)</strong><br>
+A single measurement is absent:</p>
+<ul>
+<li>SBP not taken or not recorded.<br>
+</li>
+<li>Height or weight missing.<br>
+</li>
+<li>A questionnaire item skipped.</li>
+</ul></li>
+</ul>
+<p>In this workbook we mainly deal with <strong>item-level missingness</strong> in outcome, exposure, and covariates within a regression model.</p>
+</section>
+<section id="b-different-types-of-missing-entries" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="b-different-types-of-missing-entries"><span class="header-section-number">1.2</span> (b) Different types of missing entries</h3>
+<p>Not all missing values have the same meaning:</p>
+<ul>
+<li><p><strong>Item non-response</strong><br>
+A measurement <em>should</em> exist, but is not observed.</p></li>
+<li><p><strong>Unit non-response</strong><br>
+A whole clinic visit or questionnaire is missing.</p></li>
+<li><p><strong>Structurally missing (“not applicable”)</strong><br>
+These entries are <em>supposed</em> to be missing. Examples:</p>
+<ul>
+<li><code>menopausal_status</code> in men.<br>
+</li>
+<li><code>CVD_date</code> for participants without a CVD event.</li>
+</ul></li>
+</ul>
+<p>Structural missingness is not imputed because it is determined by the logic of the variable.</p>
+</section>
+<section id="c-what-does-missing-mean-in-the-dataset" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="c-what-does-missing-mean-in-the-dataset"><span class="header-section-number">1.3</span> (c) What does “missing” mean in the dataset?</h3>
+<p>In the FB2NEP dataset, missing values appear as <code>NaN</code> in pandas.</p>
+<p>This means:</p>
+<ul>
+<li>The participant <strong>exists</strong> in the cohort.<br>
+</li>
+<li>But the dataset contains <strong>no recorded value</strong> for that variable.</li>
+</ul>
+<p>It does <strong>not</strong> mean:</p>
+<ul>
+<li>zero,<br>
+</li>
+<li>“no disease”,<br>
+</li>
+<li>“never”,<br>
+</li>
+<li>or any other substantive category.</li>
+</ul>
+<p>Example:</p>
+<ul>
+<li><code>SBP = 0</code> mmHg would be physiologically impossible and signals an error.<br>
+</li>
+<li><code>SBP = NaN</code> means the measurement was not collected or not available.</li>
+</ul>
+<p>Missingness therefore concerns the <strong>measurement</strong>, not the person. A missing BMI does not mean the participant lacks body mass; it means the dataset lacks the recorded value.</p>
+<p>In the rest of this workbook, we focus on:</p>
+<ul>
+<li>How much item-level missingness there is in our chosen variables.<br>
+</li>
+<li>How different ways of handling these missing values (complete-case analysis, single imputation, multiple imputation) can influence our regression results.</li>
+</ul>
+</section>
+</section>
+<section id="missingness-overview" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="missingness-overview"><span class="header-section-number">2</span> 1. Missingness overview</h2>
+<p>We now turn to the concrete pattern of missing data in the FB2NEP cohort.</p>
+<p>In this workbook we focus on a simple blood pressure model:</p>
+<ul>
+<li>Outcome: <code>SBP</code> (systolic blood pressure).</li>
+<li>Main exposure: <code>BMI</code> (body mass index).</li>
+<li>Covariates: <code>age</code>, <code>sex</code>, <code>smoking_status</code>, <code>SES_class</code>.</li>
+</ul>
+<p>We begin by calculating the proportion of missing values in each of these variables.</p>
+<div id="wb8_missing_props" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select variables of interest for this workbook.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We keep the code robust by checking that each variable actually exists in df.</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>vars_of_interest <span class="op">=</span> [v <span class="cf">for</span> v <span class="kw">in</span> [<span class="st">"SBP"</span>, <span class="st">"BMI"</span>, <span class="st">"age"</span>, <span class="st">"sex"</span>, <span class="st">"smoking_status"</span>, <span class="st">"SES_class"</span>] <span class="cf">if</span> v <span class="kw">in</span> df.columns]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>df_an <span class="op">=</span> df[vars_of_interest].copy()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure that categorical variables are coded as categories.</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"sex"</span> <span class="kw">in</span> df_an.columns:</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    df_an[<span class="st">"sex"</span>] <span class="op">=</span> df_an[<span class="st">"sex"</span>].astype(<span class="st">"category"</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"smoking_status"</span> <span class="kw">in</span> df_an.columns:</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    df_an[<span class="st">"smoking_status"</span>] <span class="op">=</span> df_an[<span class="st">"smoking_status"</span>].astype(<span class="st">"category"</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"SES_class"</span> <span class="kw">in</span> df_an.columns:</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    df_an[<span class="st">"SES_class"</span>] <span class="op">=</span> df_an[<span class="st">"SES_class"</span>].astype(<span class="st">"category"</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Proportion of missing values for each variable.</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>missing_props <span class="op">=</span> df_an.isna().mean()</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>missing_props</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The table above shows the <strong>fraction</strong> of missing values for each variable.</p>
+<ul>
+<li>A value of <code>0.05</code> means that 5% of observations for that variable are missing.</li>
+<li>The amount of missing data can differ markedly between variables.</li>
+</ul>
+<p>To visualise this pattern we can draw a simple bar chart.</p>
+<div id="wb8_missing_barplot" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar plot of missingness for the selected variables.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>missing_props.sort_values(ascending<span class="op">=</span><span class="va">False</span>).plot(kind<span class="op">=</span><span class="st">"bar"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Proportion missing"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Proportion of missing values by variable"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="conceptual-mechanisms-of-missingness" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="conceptual-mechanisms-of-missingness"><span class="header-section-number">2.1</span> 1.1 Conceptual mechanisms of missingness</h3>
+<p>The statistical properties of any missing-data method depend on <strong>how</strong> data are missing. Three standard mechanisms are:</p>
+<ul>
+<li><p><strong>MCAR – Missing Completely At Random</strong><br>
+The probability that a value is missing does not depend on any observed or unobserved variable. For example, a blood sample is lost due to a laboratory freezer failure that affects samples randomly.</p></li>
+<li><p><strong>MAR – Missing At Random</strong><br>
+The probability that a value is missing may depend on <strong>observed</strong> variables, but not on the value of the missing variable itself, after conditioning on the observed data. For example, BMI may be more likely to be missing among older participants, but conditional on age and sex, missingness is unrelated to the true BMI value.</p></li>
+<li><p><strong>MNAR – Missing Not At Random</strong><br>
+The probability that a value is missing still depends on the <em>unobserved</em> value, even after conditioning on observed covariates. For example, participants with very high BMI may be particularly reluctant to be weighed, even after adjusting for age, sex and smoking.</p></li>
+</ul>
+<p>In practice we rarely know the true mechanism. A key message is: therefore:</p>
+<blockquote class="blockquote">
+<p>We can rarely “fix” missing data, but we can <strong>make our assumptions explicit</strong> and <strong>explore sensitivity</strong> of results to these assumptions.</p>
+</blockquote>
+</section>
+</section>
+<section id="complete-case-versus-single-imputation" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="complete-case-versus-single-imputation"><span class="header-section-number">3</span> 2. Complete-case versus single imputation</h2>
+<p>We now fit a simple linear regression model with systolic blood pressure (SBP) as the outcome and BMI as the main exposure, adjusted for age and available covariates.</p>
+<p>We compare two strategies:</p>
+<ol type="1">
+<li><strong>Complete-case analysis</strong>: use only participants with no missing values in any of the model variables. This is easy but can lead to loss of power and biased estimates, unless data are MCAR (or satisfy a slightly weaker condition).</li>
+<li><strong>Single imputation</strong>: fill in missing values with a single “best guess” (mean or mode) and analyse the resulting dataset as if it were complete. This preserves sample size but underestimates uncertainty.</li>
+</ol>
+<p>We start with the complete-case analysis.</p>
+<div id="wb8_cc_model" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2.1 Complete-case analysis</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We drop any row that has at least one missing value in the variables</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># we intend to use in the model.</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>df_cc <span class="op">=</span> df_an.dropna()</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Number of complete cases: </span><span class="sc">{</span><span class="bu">len</span>(df_cc)<span class="sc">}</span><span class="ss"> out of </span><span class="sc">{</span><span class="bu">len</span>(df_an)<span class="sc">}</span><span class="ss"> participants"</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct the regression formula step by step.</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>formula <span class="op">=</span> <span class="st">"SBP ~ BMI + age"</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"sex"</span> <span class="kw">in</span> df_cc.columns:</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    formula <span class="op">+=</span> <span class="st">" + C(sex)"</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"smoking_status"</span> <span class="kw">in</span> df_cc.columns:</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    formula <span class="op">+=</span> <span class="st">" + C(smoking_status)"</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"SES_class"</span> <span class="kw">in</span> df_cc.columns:</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    formula <span class="op">+=</span> <span class="st">" + C(SES_class)"</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Model formula:"</span>, formula)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the ordinary least squares (OLS) model using statsmodels.</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>model_cc <span class="op">=</span> smf.ols(formula, data<span class="op">=</span>df_cc).fit()</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a compact summary table with estimates and 95% confidence intervals.</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>cc_summary <span class="op">=</span> model_cc.summary2().tables[<span class="dv">1</span>][[<span class="st">"Coef."</span>, <span class="st">"Std.Err."</span>, <span class="st">"[0.025"</span>, <span class="st">"0.975]"</span>]]</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>cc_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="wb8_single_impute" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2.2 Single imputation (mean/mode)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># For illustration, we perform a very simple single imputation:</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># - For numeric variables, replace missing values with the mean.</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># - For categorical variables, replace missing values with the most frequent category.</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># This method is *not* recommended for serious analyses, but it is useful to</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># demonstrate how different handling of missing data can influence estimates.</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>df_si <span class="op">=</span> df_an.copy()</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> df_si.columns:</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> df_si[col].dtype.kind <span class="kw">in</span> <span class="st">"biufc"</span>:  <span class="co"># numeric types</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        df_si[col] <span class="op">=</span> df_si[col].fillna(df_si[col].mean())</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:  <span class="co"># categorical or object types</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        df_si[col] <span class="op">=</span> df_si[col].fillna(df_si[col].mode().iloc[<span class="dv">0</span>])</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the same model to the single-imputed dataset.</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>model_si <span class="op">=</span> smf.ols(formula, data<span class="op">=</span>df_si).fit()</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>si_summary <span class="op">=</span> model_si.summary2().tables[<span class="dv">1</span>][[<span class="st">"Coef."</span>, <span class="st">"Std.Err."</span>, <span class="st">"[0.025"</span>, <span class="st">"0.975]"</span>]]</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare coefficients from complete-case and single-imputed analyses.</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>comparison_2 <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cc_coef"</span>: cc_summary[<span class="st">"Coef."</span>],</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"si_coef"</span>: si_summary[<span class="st">"Coef."</span>],</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cc_SE"</span>: cc_summary[<span class="st">"Std.Err."</span>],</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"si_SE"</span>: si_summary[<span class="st">"Std.Err."</span>]</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>comparison_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the table above, focus on the <strong>BMI</strong> coefficient and its standard error in the two approaches.</p>
+<ul>
+<li>Do the point estimates differ?<br>
+</li>
+<li>Are the confidence intervals similar or noticeably different?<br>
+</li>
+<li>How many observations were used in the complete-case analysis compared with the imputed analysis?</li>
+</ul>
+<p>Single imputation keeps the original sample size but fails to reflect the extra uncertainty caused by missing data, so standard errors are often too small.</p>
+</section>
+<section id="multiple-imputation-with-mice-simplified" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="multiple-imputation-with-mice-simplified"><span class="header-section-number">4</span> 3. Multiple imputation with MICE (simplified)</h2>
+<p>Multiple imputation aims to improve on single imputation by:</p>
+<ol type="1">
+<li>Drawing <strong>several</strong> plausible values for each missing observation, generating multiple imputed datasets.</li>
+<li>Fitting the analysis model in each dataset.</li>
+<li>Combining estimates and standard errors using <strong>Rubin’s rules</strong>.</li>
+</ol>
+<p>Conceptually, this is closer to the idea of uncertainty used elsewhere in statistics: we acknowledge that the missing values could have been different, and we propagate this uncertainty into the final estimates.</p>
+<p>Here we use a simple implementation of <strong>MICE (Multivariate Imputation by Chained Equations)</strong> from <code>statsmodels</code>. The details of the imputation models are beyond the scope of FB2NEP; we treat this as a black box and focus on the <em>idea</em> and the comparison of results.</p>
+<div id="wb8_mice_prep" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3.1 Prepare data for MICE</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># -------------------------</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># MICE in statsmodels expects a numeric design matrix. We therefore use</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># one-hot encoding (dummy variables) for categories.</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>df_mice <span class="op">=</span> pd.get_dummies(df_an, drop_first<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a MICEData object that stores the data and handles the chained equations.</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>mice_data <span class="op">=</span> MICEData(df_mice)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Outcome and predictors: here we use all available predictors for imputation</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># and analysis (this is not always ideal, but sufficient for illustration).</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>endog <span class="op">=</span> <span class="st">"SBP"</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>predictors <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> df_mice.columns <span class="cf">if</span> c <span class="op">!=</span> endog]</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>formula_mice <span class="op">=</span> endog <span class="op">+</span> <span class="st">" ~ "</span> <span class="op">+</span> <span class="st">" + "</span>.join(predictors)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"MICE model formula:"</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(formula_mice)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 3.2 Fit the MICE model with m=5 imputations.</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------------------</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># The MICE object performs imputations internally and then fits the regression</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co"># model repeatedly, combining estimates automatically.</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: first argument = formula, second = *class* with .from_formula (sm.OLS)</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>mice <span class="op">=</span> MICE(formula_mice, sm.OLS, mice_data)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>result_mice <span class="op">=</span> mice.fit(<span class="dv">5</span>)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="co"># The summary is long, but it shows pooled estimates and standard errors.</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>result_mice.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="wb8_mice_compare" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3.3 Extract and compare key coefficients across methods</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># -------------------------------------------------------</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We focus on the BMI effect. For the MICE model, BMI is numeric and should</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># appear among the exogenous (predictor) names.</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Get BMI coefficient and SE from the complete-case and single-impute models</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>bmi_cc_coef <span class="op">=</span> model_cc.params.get(<span class="st">"BMI"</span>, np.nan)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>bmi_cc_se   <span class="op">=</span> model_cc.bse.get(<span class="st">"BMI"</span>, np.nan)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>bmi_si_coef <span class="op">=</span> model_si.params.get(<span class="st">"BMI"</span>, np.nan)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>bmi_si_se   <span class="op">=</span> model_si.bse.get(<span class="st">"BMI"</span>, np.nan)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Raw BMI coefficients from the two frequentist models:"</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Complete-case BMI coef: </span><span class="sc">{</span>bmi_cc_coef<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Single-impute BMI coef: </span><span class="sc">{</span>bmi_si_coef<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Wrap the pooled MICE parameters and standard errors in a DataFrame</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>pooled <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">"coef"</span>: result_mice.params,</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"se"</span>: result_mice.bse,</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>result_mice.model.exog_names,</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"BMI"</span> <span class="kw">in</span> pooled.index:</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    bmi_mi_coef <span class="op">=</span> pooled.loc[<span class="st">"BMI"</span>, <span class="st">"coef"</span>]</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    bmi_mi_se   <span class="op">=</span> pooled.loc[<span class="st">"BMI"</span>, <span class="st">"se"</span>]</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    bmi_mi_coef <span class="op">=</span> np.nan</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    bmi_mi_se   <span class="op">=</span> np.nan</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Multiple-impute BMI coef: </span><span class="sc">{</span>bmi_mi_coef<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Assemble comparison table</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>summary_methods <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">"method"</span>:   [<span class="st">"complete_case"</span>, <span class="st">"single_impute"</span>, <span class="st">"multiple_impute"</span>],</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BMI_coef"</span>: [bmi_cc_coef,     bmi_si_coef,     bmi_mi_coef],</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BMI_SE"</span>:   [bmi_cc_se,       bmi_si_se,       bmi_mi_se],</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    <span class="st">"n_used"</span>:   [<span class="bu">len</span>(df_cc),      <span class="bu">len</span>(df_si),      <span class="bu">len</span>(df_an)],</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>summary_methods</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This table summarises the estimated BMI effect and its standard error under three strategies.</p>
+<ul>
+<li>Multiple imputation typically has <strong>smaller standard errors</strong> than complete-case analysis (because it uses more data) but <strong>larger standard errors</strong> than naive single imputation (because it acknowledges imputation uncertainty).</li>
+<li>In well-behaved situations, point estimates are often similar across methods, but they <strong>can</strong> differ, especially if missingness is related to key variables.</li>
+</ul>
+<p>Even a moderately sceptical hippo would insist that the assumptions behind each method are made clear in any report or dissertation.</p>
+</section>
+<section id="simple-sensitivity-analyses" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="simple-sensitivity-analyses"><span class="header-section-number">5</span> 4. Simple sensitivity analyses</h2>
+<p>No missing-data method is perfect, and the mechanism of missingness is usually not known with certainty. <strong>Sensitivity analyses</strong> explore how robust our conclusions are to alternative assumptions or modelling choices.</p>
+<p>Here we illustrate two simple strategies:</p>
+<ol type="1">
+<li>Restricting the analysis to a more “ordinary” BMI range.</li>
+<li>Applying a small <strong>delta adjustment</strong> to imputed values to mimic an MNAR scenario.</li>
+</ol>
+<section id="restricting-the-bmi-range" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="restricting-the-bmi-range"><span class="header-section-number">5.1</span> 4.1 Restricting the BMI range</h3>
+<p>Extreme values can sometimes drive results and may also be more prone to measurement error or missingness. As a basic sensitivity analysis, we refit the complete-case model <strong>excluding</strong> participants with BMI ≥ 40 kg/m² and compare results.</p>
+<div id="wb8_sens_restrict_code" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4.1 Restrict analysis to BMI &lt; 40 kg/m^2</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"BMI"</span> <span class="kw">in</span> df_cc.columns:</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    df_cc_restricted <span class="op">=</span> df_cc[df_cc[<span class="st">"BMI"</span>] <span class="op">&lt;</span> <span class="dv">40</span>]</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Complete cases in original model:   </span><span class="sc">{</span><span class="bu">len</span>(df_cc)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Complete cases with BMI &lt; 40:      </span><span class="sc">{</span><span class="bu">len</span>(df_cc_restricted)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    model_cc_rest <span class="op">=</span> smf.ols(formula, data<span class="op">=</span>df_cc_restricted).fit()</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    cc_rest_summary <span class="op">=</span> model_cc_rest.summary2().tables[<span class="dv">1</span>][[<span class="st">"Coef."</span>, <span class="st">"Std.Err."</span>, <span class="st">"[0.025"</span>, <span class="st">"0.975]"</span>]]</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    comp_rest <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">"original_coef"</span>: cc_summary[<span class="st">"Coef."</span>],</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">"restricted_coef"</span>: cc_rest_summary[<span class="st">"Coef."</span>],</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">"original_SE"</span>: cc_summary[<span class="st">"Std.Err."</span>],</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">"restricted_SE"</span>: cc_rest_summary[<span class="st">"Std.Err."</span>],</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    comp_rest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="sensitivity-to-adjustment-set-model-specification" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="sensitivity-to-adjustment-set-model-specification"><span class="header-section-number">5.2</span> 4.3 Sensitivity to adjustment set (model specification)</h3>
+<p>Sensitivity analyses are not limited to missing data. In epidemiology, it is good practice to ask how sensitive our main association is to <em>modelling choices</em>, in particular:</p>
+<ul>
+<li>Which covariates we adjust for (potential confounders).</li>
+<li>How we code exposures and covariates (continuous vs categories).</li>
+<li>Functional form (for example, linear vs quadratic).</li>
+</ul>
+<p>Here we consider the association between BMI and SBP and compare two regression models:</p>
+<ol type="1">
+<li><p>A <strong>minimally adjusted model</strong>:<br>
+<span class="math display">\[
+\text{SBP} = \beta_0 + \beta_1 \cdot \text{BMI} + \beta_2 \cdot \text{age} + \beta_3 \cdot \text{sex} + \varepsilon.
+\]</span></p></li>
+<li><p>A <strong>more fully adjusted model</strong> that also includes potential confounders:<br>
+<span class="math display">\[
+\text{SBP} = \beta_0 + \beta_1 \cdot \text{BMI} + \beta_2 \cdot \text{age}
++ \beta_3 \cdot \text{sex} + \beta_4 \cdot \text{smoking status}
++ \beta_5 \cdot \text{SES} + \beta_6 \cdot \text{physical activity} + \varepsilon.
+\]</span></p></li>
+</ol>
+<p>The aim is to see whether the estimated BMI effect (\(\beta_1\)) is stable or changes substantially when we change the adjustment set. Large changes might indicate strong confounding or model misspecification.</p>
+<div id="a9a1378a" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4.3 Sensitivity to adjustment set (model specification)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------------</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We use the complete-case dataset df_cc and compare:</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># - A minimally adjusted model: SBP ~ BMI + age + sex</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># - A more fully adjusted model: add smoking_status, SES_class, physical_activity (if present)</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure we are working with complete cases for all relevant variables.</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>covars_min <span class="op">=</span> [<span class="st">"age"</span>, <span class="st">"sex"</span>]</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>covars_full <span class="op">=</span> [<span class="st">"age"</span>, <span class="st">"sex"</span>, <span class="st">"smoking_status"</span>, <span class="st">"SES_class"</span>, <span class="st">"physical_activity"</span>]</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only variables that actually exist in the data.</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>covars_min <span class="op">=</span> [v <span class="cf">for</span> v <span class="kw">in</span> covars_min <span class="cf">if</span> v <span class="kw">in</span> df_cc.columns]</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>covars_full <span class="op">=</span> [v <span class="cf">for</span> v <span class="kw">in</span> covars_full <span class="cf">if</span> v <span class="kw">in</span> df_cc.columns]</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>vars_min <span class="op">=</span> [<span class="st">"SBP"</span>, <span class="st">"BMI"</span>] <span class="op">+</span> covars_min</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>vars_full <span class="op">=</span> [<span class="st">"SBP"</span>, <span class="st">"BMI"</span>] <span class="op">+</span> covars_full</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>df_cc_min <span class="op">=</span> df_cc[vars_min].dropna()</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>df_cc_full <span class="op">=</span> df_cc[vars_full].dropna()</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Minimally adjusted model:   </span><span class="sc">{</span><span class="bu">len</span>(df_cc_min)<span class="sc">}</span><span class="ss"> complete cases"</span>)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Fully adjusted model:       </span><span class="sc">{</span><span class="bu">len</span>(df_cc_full)<span class="sc">}</span><span class="ss"> complete cases"</span>)</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct formulas</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>formula_min <span class="op">=</span> <span class="st">"SBP ~ BMI"</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cov <span class="kw">in</span> covars_min:</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">str</span>(df_cc_min[cov].dtype) <span class="op">==</span> <span class="st">"category"</span>:</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>        formula_min <span class="op">+=</span> <span class="ss">f" + C(</span><span class="sc">{</span>cov<span class="sc">}</span><span class="ss">)"</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>        formula_min <span class="op">+=</span> <span class="ss">f" + </span><span class="sc">{</span>cov<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>formula_full <span class="op">=</span> <span class="st">"SBP ~ BMI"</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cov <span class="kw">in</span> covars_full:</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">str</span>(df_cc_full[cov].dtype) <span class="op">==</span> <span class="st">"category"</span>:</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>        formula_full <span class="op">+=</span> <span class="ss">f" + C(</span><span class="sc">{</span>cov<span class="sc">}</span><span class="ss">)"</span></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>        formula_full <span class="op">+=</span> <span class="ss">f" + </span><span class="sc">{</span>cov<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Minimal model formula:   "</span>, formula_min)</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Full model formula:      "</span>, formula_full)</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit both models</span></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>model_min <span class="op">=</span> smf.ols(formula_min, data<span class="op">=</span>df_cc_min).fit()</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>model_full <span class="op">=</span> smf.ols(formula_full, data<span class="op">=</span>df_cc_full).fit()</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract BMI coefficients and standard errors</span></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>bmi_min_coef <span class="op">=</span> model_min.params.get(<span class="st">"BMI"</span>, np.nan)</span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>bmi_min_se   <span class="op">=</span> model_min.bse.get(<span class="st">"BMI"</span>, np.nan)</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>bmi_full_coef <span class="op">=</span> model_full.params.get(<span class="st">"BMI"</span>, np.nan)</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>bmi_full_se   <span class="op">=</span> model_full.bse.get(<span class="st">"BMI"</span>, np.nan)</span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>sens_adjust <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>    <span class="st">"model"</span>: [<span class="st">"minimal"</span>, <span class="st">"full"</span>],</span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BMI_coef"</span>: [bmi_min_coef, bmi_full_coef],</span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BMI_SE"</span>: [bmi_min_se, bmi_full_se],</span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>    <span class="st">"n_used"</span>: [<span class="bu">len</span>(df_cc_min), <span class="bu">len</span>(df_cc_full)],</span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a>sens_adjust</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="bayesian-approaches" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="bayesian-approaches"><span class="header-section-number">6</span> 5. Bayesian approaches</h2>
+<p>Bayesian methods treat missing values as <strong>unknown parameters</strong> and estimate them jointly with all other parameters in the model.</p>
+<p>In a Bayesian missing-data model:</p>
+<ul>
+<li>We specify a <strong>likelihood</strong> for the observed data given parameters and missing values.</li>
+<li>We specify <strong>prior distributions</strong> for both the model parameters and the missing values.</li>
+<li>We use Markov Chain Monte Carlo (MCMC) or related algorithms to sample from the joint <strong>posterior distribution</strong>.</li>
+</ul>
+<p>The resulting posterior samples naturally incorporate uncertainty about missing values into uncertainty about regression coefficients. This is conceptually similar to multiple imputation, but the Bayesian approach integrates all uncertainty in a single framework and can make it easier to specify complex MNAR models.</p>
+<p>Implementing Bayesian missing-data models is beyond the scope of FB2NEP, but it is useful to be aware of them, particularly for more advanced research projects.</p>
+<div id="48c99c67" class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Bayesian regression with Stan (CmdStanPy)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------------------</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Model: SBP ~ BMI + age + sex</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># We use weakly informative priors and sample from the posterior using Stan,</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># accessed via CmdStanPy. This is an illustrative example that mirrors the</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># frequentist linear regression used earlier.</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co"># If you have put these helpers into a module, import them here, e.g.:</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># from helpers_bayes import ensure_cmdstan, stan_summary_table</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># For a standalone notebook, you can paste the helper definitions above this cell.</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>cmdstan_root <span class="op">=</span> ensure_cmdstan()</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cmdstanpy <span class="im">import</span> CmdStanModel</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Using CmdStan from:"</span>, cmdstan_root)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare a clean analysis dataset (complete cases for the relevant variables)</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>df_bayes <span class="op">=</span> df_an.dropna(subset<span class="op">=</span>[<span class="st">"SBP"</span>, <span class="st">"BMI"</span>, <span class="st">"age"</span>, <span class="st">"sex"</span>]).copy()</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>df_bayes[<span class="st">"sex_M"</span>] <span class="op">=</span> (df_bayes[<span class="st">"sex"</span>] <span class="op">==</span> <span class="st">"M"</span>).astype(<span class="bu">float</span>)  <span class="co"># float now</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>data_stan <span class="op">=</span> {</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"N"</span>: <span class="bu">len</span>(df_bayes),</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SBP"</span>: df_bayes[<span class="st">"SBP"</span>].to_numpy(),</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BMI"</span>: df_bayes[<span class="st">"BMI"</span>].to_numpy(),</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"age"</span>: df_bayes[<span class="st">"age"</span>].to_numpy(),</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sex_M"</span>: df_bayes[<span class="st">"sex_M"</span>].to_numpy(),</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"N for Bayesian model: </span><span class="sc">{</span>data_stan[<span class="st">'N'</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="42ac47ea" class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>stan_code <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="st">data {</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="st">  int&lt;lower=1&gt; N;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="st">  vector[N] SBP;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="st">  vector[N] BMI;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="st">  vector[N] age;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="st">  vector[N] sex_M;        // now a vector, not a scalar</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="st">parameters {</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="st">  real intercept;</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="st">  real beta_BMI;</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="st">  real beta_age;</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="st">  real beta_sex;</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="st">  real&lt;lower=0&gt; sigma;</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="st">model {</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="st">  // Weakly informative priors</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="st">  intercept ~ normal(120, 20);</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="st">  beta_BMI  ~ normal(0.5, 0.5);</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="st">  beta_age  ~ normal(0.6, 0.3);</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="st">  beta_sex  ~ normal(0, 2);</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="st">  sigma     ~ normal(15, 5);</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="st">  // Linear predictor</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="st">  SBP ~ normal(</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="st">    intercept</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="st">    + beta_BMI * BMI</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="st">    + beta_age * age</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="st">    + beta_sex * sex_M,</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="st">    sigma</span></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="st">  );</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"sbp_regression.stan"</span>, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    f.write(stan_code)</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>sbp_model <span class="op">=</span> CmdStanModel(stan_file<span class="op">=</span><span class="st">"sbp_regression.stan"</span>, force_compile<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="b9729319" class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fit <span class="op">=</span> sbp_model.sample(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>data_stan,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    seed<span class="op">=</span><span class="dv">11088</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    chains<span class="op">=</span><span class="dv">4</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    parallel_chains<span class="op">=</span><span class="dv">4</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    iter_warmup<span class="op">=</span><span class="dv">1000</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    iter_sampling<span class="op">=</span><span class="dv">2000</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    show_console<span class="op">=</span><span class="va">True</span>,   <span class="co"># keep on while debugging</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="5a7aa7b8" class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scripts.helpers_tables <span class="im">import</span> stan_summary_table</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>param_order <span class="op">=</span> [<span class="st">"intercept"</span>, <span class="st">"beta_BMI"</span>, <span class="st">"beta_age"</span>, <span class="st">"beta_sex"</span>, <span class="st">"sigma"</span>]</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>bayes_tbl <span class="op">=</span> stan_summary_table(fit, param_order<span class="op">=</span>param_order)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>bayes_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="d62aef81" class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Comparison of Bayesian (Stan) and Frequentist Estimates</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract BMI, age, sex coefficients from frequentist models</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>bmi_cc  <span class="op">=</span> model_cc.params.get(<span class="st">"BMI"</span>, np.nan)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>age_cc  <span class="op">=</span> model_cc.params.get(<span class="st">"age"</span>, np.nan)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>sex_cc  <span class="op">=</span> model_cc.params.get(<span class="st">"C(sex)[T.M]"</span>, np.nan)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co"># From MI results (already computed earlier)</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>bmi_mi  <span class="op">=</span> bmi_mi_coef</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>age_mi  <span class="op">=</span> np.nan   <span class="co"># replace if you computed MI for age</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>sex_mi  <span class="op">=</span> np.nan   <span class="co"># replace if you computed MI for sex</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co"># From Stan posterior means</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>bmi_stan <span class="op">=</span> bayes_tbl.loc[<span class="st">"beta_BMI"</span>, <span class="st">"mean"</span>]</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>age_stan <span class="op">=</span> bayes_tbl.loc[<span class="st">"beta_age"</span>, <span class="st">"mean"</span>]</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>sex_stan <span class="op">=</span> bayes_tbl.loc[<span class="st">"beta_sex"</span>, <span class="st">"mean"</span>]</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>comparison <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"method"</span>: [<span class="st">"OLS (complete-case)"</span>, <span class="st">"Multiple Imputation"</span>, <span class="st">"Bayesian (Stan)"</span>],</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BMI_coef"</span>: [bmi_cc, bmi_mi, bmi_stan],</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>comparison</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="practical-mini-assignment" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="practical-mini-assignment"><span class="header-section-number">7</span> 6. Practical mini-assignment</h2>
+<p>In this final section you will carry out a small, assignment-style analysis using the FB2NEP cohort.</p>
+<section id="task" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="task"><span class="header-section-number">7.1</span> Task</h3>
+<ol type="1">
+<li>Choose an <strong>outcome</strong> (for example, <code>SBP</code> or a biomarker).</li>
+<li>Choose a main <strong>exposure</strong> (for example, <code>BMI</code>, <code>salt_g_d</code>, or <code>physical_activity</code>).</li>
+<li>Choose at least <strong>two covariates</strong> (for example, <code>age</code>, <code>sex</code>, <code>SES_class</code>).</li>
+<li>Inspect and describe the pattern of missingness in your chosen variables.</li>
+<li>Fit three models:
+<ul>
+<li>Complete-case analysis.</li>
+<li>Single imputation (mean/mode or another reasonable rule).</li>
+<li>Multiple imputation using MICE.</li>
+</ul></li>
+<li>Perform <strong>one sensitivity analysis</strong>, for example:
+<ul>
+<li>Restrict the analysis to a more typical range of the exposure.</li>
+<li>Apply a small delta-based MNAR adjustment similar to Section 4.2.</li>
+</ul></li>
+<li>Write a short interpretation (approximately 150–200 words) answering:
+<ul>
+<li>How do the point estimates differ between methods?<br>
+</li>
+<li>How do the standard errors differ?<br>
+</li>
+<li>How sensitive are your conclusions to the chosen assumptions?</li>
+</ul></li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/ggkuhnle\.github\.io\/fb2nep-epi\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© University of Reading 2025 · Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ggkuhnle/fb2nep-epi/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.10_missing_data_and_sensitivity.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with Quarto</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

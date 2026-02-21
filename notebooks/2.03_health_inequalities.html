@@ -1,0 +1,1802 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2.03 – Health Inequalities: Measuring the Gradient – FB2NEP Nutritional Epidemiology</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+</head><body class="nav-sidebar floating nav-fixed"><img src="https://kuhnle.co.uk/pixel.png" width="1" height="1" style="display:none" alt="">
+
+
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">FB2NEP Nutritional Epidemiology</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../assessment/index.html"> 
+<span class="menu-text">Assessment</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">2.03 – Health Inequalities: Measuring the Gradient</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FB2NEP — Nutritional Epidemiology</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Notebooks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">notebooks/*.ipynb</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Sandbox</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../howto_sandbox/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FB2NEP — How‑To &amp; Sandbox (Colab/Jupyter)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction-why-measure-inequalities" id="toc-introduction-why-measure-inequalities" class="nav-link active" data-scroll-target="#introduction-why-measure-inequalities"><span class="header-section-number">1</span> 1. Introduction: Why Measure Inequalities?</a>
+  <ul class="collapse">
+  <li><a href="#the-marmot-curve" id="toc-the-marmot-curve" class="nav-link" data-scroll-target="#the-marmot-curve"><span class="header-section-number">1.1</span> The Marmot Curve</a></li>
+  </ul></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">2</span> 2. Setup</a></li>
+  <li><a href="#the-index-of-multiple-deprivation-imd" id="toc-the-index-of-multiple-deprivation-imd" class="nav-link" data-scroll-target="#the-index-of-multiple-deprivation-imd"><span class="header-section-number">3</span> 3. The Index of Multiple Deprivation (IMD)</a>
+  <ul class="collapse">
+  <li><a href="#what-is-the-imd" id="toc-what-is-the-imd" class="nav-link" data-scroll-target="#what-is-the-imd"><span class="header-section-number">3.1</span> What is the IMD?</a></li>
+  <li><a href="#the-seven-domains-of-deprivation" id="toc-the-seven-domains-of-deprivation" class="nav-link" data-scroll-target="#the-seven-domains-of-deprivation"><span class="header-section-number">3.2</span> The Seven Domains of Deprivation</a></li>
+  <li><a href="#important-notes" id="toc-important-notes" class="nav-link" data-scroll-target="#important-notes"><span class="header-section-number">3.3</span> Important Notes</a></li>
+  <li><a href="#exploring-imd-maps" id="toc-exploring-imd-maps" class="nav-link" data-scroll-target="#exploring-imd-maps"><span class="header-section-number">3.4</span> Exploring IMD Maps</a></li>
+  </ul></li>
+  <li><a href="#life-expectancy-vs-healthy-life-expectancy" id="toc-life-expectancy-vs-healthy-life-expectancy" class="nav-link" data-scroll-target="#life-expectancy-vs-healthy-life-expectancy"><span class="header-section-number">4</span> 4. Life Expectancy vs Healthy Life Expectancy</a>
+  <ul class="collapse">
+  <li><a href="#definitions" id="toc-definitions" class="nav-link" data-scroll-target="#definitions"><span class="header-section-number">4.1</span> Definitions</a></li>
+  <li><a href="#the-double-burden-of-deprivation" id="toc-the-double-burden-of-deprivation" class="nav-link" data-scroll-target="#the-double-burden-of-deprivation"><span class="header-section-number">4.2</span> The Double Burden of Deprivation</a></li>
+  </ul></li>
+  <li><a href="#measuring-inequality-sii-and-rii" id="toc-measuring-inequality-sii-and-rii" class="nav-link" data-scroll-target="#measuring-inequality-sii-and-rii"><span class="header-section-number">5</span> 5. Measuring Inequality: SII and RII</a></li>
+  <li><a href="#slope-index-of-inequality-sii" id="toc-slope-index-of-inequality-sii" class="nav-link" data-scroll-target="#slope-index-of-inequality-sii"><span class="header-section-number">6</span> Slope Index of Inequality (SII)</a>
+  <ul class="collapse">
+  <li><a href="#what-sii-measures" id="toc-what-sii-measures" class="nav-link" data-scroll-target="#what-sii-measures"><span class="header-section-number">6.1</span> What SII measures</a></li>
+  <li><a href="#why-theoretical-extremes" id="toc-why-theoretical-extremes" class="nav-link" data-scroll-target="#why-theoretical-extremes"><span class="header-section-number">6.2</span> Why “theoretical” extremes?</a></li>
+  </ul></li>
+  <li><a href="#from-categories-to-a-gradient-the-ridit-score" id="toc-from-categories-to-a-gradient-the-ridit-score" class="nav-link" data-scroll-target="#from-categories-to-a-gradient-the-ridit-score"><span class="header-section-number">7</span> From categories to a gradient: the ridit score</a>
+  <ul class="collapse">
+  <li><a href="#step-1-cumulative-population-position" id="toc-step-1-cumulative-population-position" class="nav-link" data-scroll-target="#step-1-cumulative-population-position"><span class="header-section-number">7.1</span> Step 1: cumulative population position</a></li>
+  <li><a href="#step-2-midpoint-ridit" id="toc-step-2-midpoint-ridit" class="nav-link" data-scroll-target="#step-2-midpoint-ridit"><span class="header-section-number">7.2</span> Step 2: midpoint (ridit)</a></li>
+  </ul></li>
+  <li><a href="#regression-formulation" id="toc-regression-formulation" class="nav-link" data-scroll-target="#regression-formulation"><span class="header-section-number">8</span> Regression formulation</a>
+  <ul class="collapse">
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation"><span class="header-section-number">8.1</span> Interpretation</a></li>
+  </ul></li>
+  <li><a href="#why-using-all-points-matters" id="toc-why-using-all-points-matters" class="nav-link" data-scroll-target="#why-using-all-points-matters"><span class="header-section-number">9</span> Why using all points matters</a>
+  <ul class="collapse">
+  <li><a href="#greater-stability" id="toc-greater-stability" class="nav-link" data-scroll-target="#greater-stability"><span class="header-section-number">9.1</span> 1. Greater stability</a></li>
+  <li><a href="#representativeness" id="toc-representativeness" class="nav-link" data-scroll-target="#representativeness"><span class="header-section-number">9.2</span> 2. Representativeness</a></li>
+  <li><a href="#population-weighting" id="toc-population-weighting" class="nav-link" data-scroll-target="#population-weighting"><span class="header-section-number">9.3</span> 3. Population weighting</a></li>
+  </ul></li>
+  <li><a href="#assumptions-behind-sii" id="toc-assumptions-behind-sii" class="nav-link" data-scroll-target="#assumptions-behind-sii"><span class="header-section-number">10</span> Assumptions behind SII</a></li>
+  <li><a href="#relative-index-of-inequality-rii" id="toc-relative-index-of-inequality-rii" class="nav-link" data-scroll-target="#relative-index-of-inequality-rii"><span class="header-section-number">11</span> Relative Index of Inequality (RII)</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">12</span> Summary</a></li>
+  <li><a href="#global-inequalities-within-country-versus-between-country-gradients" id="toc-global-inequalities-within-country-versus-between-country-gradients" class="nav-link" data-scroll-target="#global-inequalities-within-country-versus-between-country-gradients"><span class="header-section-number">13</span> 6. Global inequalities: within-country versus between-country gradients</a>
+  <ul class="collapse">
+  <li><a href="#the-preston-curve-income-and-health-across-countries" id="toc-the-preston-curve-income-and-health-across-countries" class="nav-link" data-scroll-target="#the-preston-curve-income-and-health-across-countries"><span class="header-section-number">13.1</span> The Preston curve: income and health across countries</a></li>
+  <li><a href="#income-inequality-and-health-moving-beyond-averages" id="toc-income-inequality-and-health-moving-beyond-averages" class="nav-link" data-scroll-target="#income-inequality-and-health-moving-beyond-averages"><span class="header-section-number">13.2</span> Income inequality and health: moving beyond averages</a></li>
+  </ul></li>
+  <li><a href="#discussion-questions" id="toc-discussion-questions" class="nav-link" data-scroll-target="#discussion-questions"><span class="header-section-number">14</span> 7. Discussion Questions</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">15</span> 8. Exercises</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1-explore-imd-in-your-area" id="toc-exercise-1-explore-imd-in-your-area" class="nav-link" data-scroll-target="#exercise-1-explore-imd-in-your-area"><span class="header-section-number">15.1</span> Exercise 1: Explore IMD in Your Area</a></li>
+  </ul></li>
+  <li><a href="#summary-1" id="toc-summary-1" class="nav-link" data-scroll-target="#summary-1"><span class="header-section-number">16</span> Summary</a></li>
+  <li><a href="#key-resources" id="toc-key-resources" class="nav-link" data-scroll-target="#key-resources"><span class="header-section-number">17</span> Key Resources</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">18</span> References</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/ggkuhnle/fb2nep-epi/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ggkuhnle/fb2nep-epi/blob/main/notebooks/2.03_health_inequalities.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">2.03 – Health Inequalities: Measuring the Gradient</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Learning Objectives:</strong> - Understand the Index of Multiple Deprivation (IMD) and how it is constructed - Distinguish between life expectancy and healthy life expectancy - Understand the distinction between absolute and relative measures of inequality - Calculate the Slope Index of Inequality (SII) and Relative Index of Inequality (RII) - Interpret concentration curves and concentration indices - Apply these measures to dietary intake and nutrition-related health outcomes</p>
+<hr>
+<section id="introduction-why-measure-inequalities" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction-why-measure-inequalities"><span class="header-section-number">1</span> 1. Introduction: Why Measure Inequalities?</h2>
+<p>Average population health can improve while inequalities widen. Consider:</p>
+<ul>
+<li>Life expectancy in England increased for all groups between 2001-2019</li>
+<li>But the gap between the most and least deprived areas <em>also</em> increased</li>
+</ul>
+<p>If we only track averages, we miss this divergence. Health inequality metrics help us:</p>
+<ol type="1">
+<li><strong>Describe</strong> the current distribution of health across social groups</li>
+<li><strong>Monitor</strong> whether policies are reducing or widening gaps</li>
+<li><strong>Target</strong> interventions toward those in greatest need</li>
+</ol>
+<section id="the-marmot-curve" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="the-marmot-curve"><span class="header-section-number">1.1</span> The Marmot Curve</h3>
+<p>Health follows a <strong>gradient</strong> — it’s not simply that the poorest are unhealthy. Each step up the socioeconomic ladder is associated with better health outcomes.</p>
+</section>
+</section>
+<section id="setup" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="setup"><span class="header-section-number">2</span> 2. Setup</h2>
+<div id="cell-4" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Bootstrap cell (works both locally and in Colab)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pathlib</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>REPO_URL <span class="op">=</span> <span class="st">"https://github.com/ggkuhnle/fb2nep-epi.git"</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>REPO_DIR <span class="op">=</span> <span class="st">"fb2nep-epi"</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>cwd <span class="op">=</span> pathlib.Path.cwd()</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (cwd <span class="op">/</span> <span class="st">"scripts"</span> <span class="op">/</span> <span class="st">"epi_utils.py"</span>).is_file():</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    repo_root <span class="op">=</span> cwd</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> (cwd.parent <span class="op">/</span> <span class="st">"scripts"</span> <span class="op">/</span> <span class="st">"epi_utils.py"</span>).is_file():</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    repo_root <span class="op">=</span> cwd.parent</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    repo_root <span class="op">=</span> cwd <span class="op">/</span> REPO_DIR</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> repo_root.is_dir():</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Cloning repository from </span><span class="sc">{</span>REPO_URL<span class="sc">}</span><span class="ss"> ..."</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        subprocess.run([<span class="st">"git"</span>, <span class="st">"clone"</span>, REPO_URL, <span class="bu">str</span>(repo_root)], check<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Using existing repository at </span><span class="sc">{</span>repo_root<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    os.chdir(repo_root)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    repo_root <span class="op">=</span> pathlib.Path.cwd()</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>scripts_dir <span class="op">=</span> repo_root <span class="op">/</span> <span class="st">"scripts"</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">str</span>(scripts_dir) <span class="kw">not</span> <span class="kw">in</span> sys.path:</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    sys.path.insert(<span class="dv">0</span>, <span class="bu">str</span>(scripts_dir))</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Repository root: </span><span class="sc">{</span>repo_root<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Bootstrap completed successfully."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-5" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipywidgets <span class="im">import</span> FloatSlider, VBox, Output</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ipywidgets <span class="im">as</span> widgets</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display, HTML</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openpyxl</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> epi_utils <span class="im">import</span> (</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    calculate_sii, calculate_rii, calculate_concentration_index,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    plot_concentration_curve, INEQUALITY_EXAMPLE_DATA, fit_sii_rii</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ————— Paths —————</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>DATA_DIR <span class="op">=</span> Path(<span class="st">"../data"</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>IMD_CSV <span class="op">=</span> DATA_DIR <span class="op">/</span> <span class="st">"IoD2019_ranks.csv"</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>LE_CSV  <span class="op">=</span> DATA_DIR <span class="op">/</span> <span class="st">"le_imd.csv"</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>hse_path <span class="op">=</span> DATA_DIR <span class="op">/</span> <span class="st">"HSE-2022-Overweight-and-obesity-tables.xlsx"</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>OWID_path <span class="op">=</span> DATA_DIR <span class="op">/</span> <span class="st">"le_gdp.csv"</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>gini_path <span class="op">=</span> DATA_DIR <span class="op">/</span> <span class="st">"gini.csv"</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'seaborn-v0_8-whitegrid'</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">6</span>]</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Libraries loaded successfully."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="the-index-of-multiple-deprivation-imd" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="the-index-of-multiple-deprivation-imd"><span class="header-section-number">3</span> 3. The Index of Multiple Deprivation (IMD)</h2>
+<section id="what-is-the-imd" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="what-is-the-imd"><span class="header-section-number">3.1</span> What is the IMD?</h3>
+<p>The <strong>Index of Multiple Deprivation (IMD)</strong> is the official measure of relative deprivation for small areas in England. It ranks every <strong>Lower Layer Super Output Area (LSOA)</strong> — approximately 32,844 areas, each containing around 1,500 people.</p>
+</section>
+<section id="the-seven-domains-of-deprivation" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="the-seven-domains-of-deprivation"><span class="header-section-number">3.2</span> The Seven Domains of Deprivation</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Domain</th>
+<th>Weight</th>
+<th>What it measures</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Income</strong></td>
+<td>22.5%</td>
+<td>Proportion of population on low income</td>
+</tr>
+<tr class="even">
+<td><strong>Employment</strong></td>
+<td>22.5%</td>
+<td>Proportion involuntarily excluded from work</td>
+</tr>
+<tr class="odd">
+<td><strong>Education</strong></td>
+<td>13.5%</td>
+<td>Lack of attainment and skills</td>
+</tr>
+<tr class="even">
+<td><strong>Health &amp; Disability</strong></td>
+<td>13.5%</td>
+<td>Premature death and impairment</td>
+</tr>
+<tr class="odd">
+<td><strong>Crime</strong></td>
+<td>9.3%</td>
+<td>Risk of victimisation</td>
+</tr>
+<tr class="even">
+<td><strong>Barriers to Housing</strong></td>
+<td>9.3%</td>
+<td>Physical and financial accessibility</td>
+</tr>
+<tr class="odd">
+<td><strong>Living Environment</strong></td>
+<td>9.3%</td>
+<td>Indoor and outdoor environment quality</td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../_assets/imd_domains.png" class="img-fluid figure-img"></p>
+<figcaption>IMD Domains</figcaption>
+</figure>
+</div>
+<p>(https://assets.publishing.service.gov.uk/media/5d8e26f6ed915d5570c6cc55/IoD2019_Statistical_Release.pdf)</p>
+</section>
+<section id="important-notes" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="important-notes"><span class="header-section-number">3.3</span> Important Notes</h3>
+<ol type="1">
+<li><strong>Relative, not absolute</strong>: IMD ranks areas relative to each other</li>
+<li><strong>Area-level, not individual</strong>: Not everyone in a deprived area is deprived (ecological fallacy)</li>
+<li><strong>England only</strong>: Scotland, Wales, and Northern Ireland have separate indices</li>
+</ol>
+<div id="cell-7" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># IMD domain weights visualisation</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>imd_domains <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Domain'</span>: [<span class="st">'Income'</span>, <span class="st">'Employment'</span>, <span class="st">'Education'</span>, <span class="st">'Health &amp; Disability'</span>, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>               <span class="st">'Crime'</span>, <span class="st">'Barriers to Housing'</span>, <span class="st">'Living Environment'</span>],</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Weight (%)'</span>: [<span class="fl">22.5</span>, <span class="fl">22.5</span>, <span class="fl">13.5</span>, <span class="fl">13.5</span>, <span class="fl">9.3</span>, <span class="fl">9.3</span>, <span class="fl">9.3</span>]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> plt.cm.Set3(np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">7</span>))</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>ax.pie(imd_domains[<span class="st">'Weight (%)'</span>], labels<span class="op">=</span>imd_domains[<span class="st">'Domain'</span>],</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>       autopct<span class="op">=</span><span class="st">'</span><span class="sc">%1.1f%%</span><span class="st">'</span>, colors<span class="op">=</span>colors, startangle<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Index of Multiple Deprivation: Domain Weights'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Note: Income and Employment together account for 45</span><span class="sc">% o</span><span class="st">f the overall IMD."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exploring-imd-maps" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="exploring-imd-maps"><span class="header-section-number">3.4</span> Exploring IMD Maps</h3>
+<p><strong>Key Resources:</strong></p>
+<ul>
+<li><a href="https://dclgapps.communities.gov.uk/imd/iod_index.html"><strong>ONS Interactive IMD Map</strong></a> — Explore deprivation by LSOA</li>
+<li><a href="https://data.cdrc.ac.uk/dataset/index-multiple-deprivation-imd"><strong>CDRC IMD Geodata Pack</strong></a> — Download IMD data</li>
+<li><a href="https://fingertips.phe.org.uk/"><strong>PHE Fingertips</strong></a> — Health outcomes by deprivation</li>
+</ul>
+<div id="cell-9" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display link to interactive IMD map</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>display(HTML(<span class="st">'''</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;div style="text-align: center; padding: 20px; background-color: #f5f5f5; border-radius: 10px;"&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;h3&gt;Index of Multiple Deprivation 2019 - England&lt;/h3&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;p&gt;&lt;a href="https://dclgapps.communities.gov.uk/imd/iod_index.html" target="_blank"&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="st">        Click here to explore the interactive IMD map →</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;/a&gt;&lt;/p&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;p style="font-size: 12px; color: #666;"&gt;Source: MHCLG (2019)&lt;/p&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;/div&gt;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-10" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ————— Load the full CSV —————</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(IMD_CSV)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ————— Extract LA-level summary —————</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Select only the columns we need</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>df_la <span class="op">=</span> (</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    df[[</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Local Authority District name (2019)"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Index of Multiple Deprivation (IMD) Rank (where 1 is most deprived)"</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Index of Multiple Deprivation (IMD) Score"</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    ]]</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    .dropna()</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Rename for convenience</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    .rename(columns<span class="op">=</span>{</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Local Authority District name (2019)"</span>: <span class="st">"Local Authority"</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Index of Multiple Deprivation (IMD) Rank (where 1 is most deprived)"</span>: <span class="st">"IMD Rank"</span>,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Index of Multiple Deprivation (IMD) Score"</span>: <span class="st">"IMD Score"</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    .drop_duplicates()</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sort so rank=1 is top</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    .sort_values(<span class="st">"IMD Rank"</span>)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    .reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Loaded IMD 2019 LA ranks:"</span>)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Most and least deprived local authorities</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>la_deprivation <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Local Authority'</span>: [<span class="st">'Blackpool'</span>, <span class="st">'Knowsley'</span>, <span class="st">'Hull'</span>, <span class="st">'Middlesbrough'</span>, <span class="st">'Liverpool'</span>,</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'Hart'</span>, <span class="st">'Wokingham'</span>, <span class="st">'Surrey Heath'</span>, <span class="st">'S. Cambridgeshire'</span>, <span class="st">'Elmbridge'</span>],</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Rank (of 317)'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">317</span>, <span class="dv">316</span>, <span class="dv">315</span>, <span class="dv">314</span>, <span class="dv">313</span>],</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Category'</span>: [<span class="st">'Most deprived'</span>] <span class="op">*</span> <span class="dv">5</span> <span class="op">+</span> [<span class="st">'Least deprived'</span>] <span class="op">*</span> <span class="dv">5</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Most and Least Deprived Local Authorities (IMD 2019)"</span>)</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">60</span>)</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>display(la_deprivation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Most local authorities cluster across the distribution; only a few lie at the extremes. So where are we?</p>
+<div id="cell-12" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_plot <span class="op">=</span> df_la.sort_values(<span class="st">"IMD Score"</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Boolean mask for Wokingham</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>is_wokingham <span class="op">=</span> df_plot[<span class="st">"Local Authority"</span>] <span class="op">==</span> <span class="st">"Wokingham"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Locate Wokingham</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>wk_idx <span class="op">=</span> df_plot.index[df_plot[<span class="st">"Local Authority"</span>] <span class="op">==</span> <span class="st">"Wokingham"</span>][<span class="dv">0</span>]</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>wk_score <span class="op">=</span> df_plot.loc[wk_idx, <span class="st">"IMD Score"</span>]</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># X positions (one per authority)</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="bu">len</span>(df_plot))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co"># All authorities (background)</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>plt.bar(</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    x,</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    df_plot[<span class="st">"IMD Score"</span>],</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.3</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Arrow pointing to Wokingham</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>plt.annotate(</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Wokingham"</span>,</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    xy<span class="op">=</span>(wk_idx, wk_score),</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    xytext<span class="op">=</span>(wk_idx, wk_score <span class="op">+</span> <span class="dv">10</span>),  <span class="co"># vertical offset</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    arrowprops<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        arrowstyle<span class="op">=</span><span class="st">"-&gt;"</span>,</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>        linewidth<span class="op">=</span><span class="fl">1.5</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    ha<span class="op">=</span><span class="st">"center"</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>plt.annotate(</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">""</span>,</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    xy<span class="op">=</span>(<span class="fl">0.95</span>, <span class="op">-</span><span class="fl">0.12</span>),</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    xytext<span class="op">=</span>(<span class="fl">0.05</span>, <span class="op">-</span><span class="fl">0.12</span>),</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    xycoords<span class="op">=</span><span class="st">"axes fraction"</span>,</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    textcoords<span class="op">=</span><span class="st">"axes fraction"</span>,</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>    arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">"-&gt;"</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>),</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="co"># End labels</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>plt.text(</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.02</span>, <span class="op">-</span><span class="fl">0.12</span>, <span class="st">"least deprived"</span>,</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>    transform<span class="op">=</span>plt.gca().transAxes,</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>    ha<span class="op">=</span><span class="st">"left"</span>, va<span class="op">=</span><span class="st">"center"</span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>plt.text(</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.98</span>, <span class="op">-</span><span class="fl">0.12</span>, <span class="st">"most deprived"</span>,</span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>    transform<span class="op">=</span>plt.gca().transAxes,</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>    ha<span class="op">=</span><span class="st">"right"</span>, va<span class="op">=</span><span class="st">"center"</span></span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Axis handling</span></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>plt.xticks([])  <span class="co"># remove unreadable labels</span></span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"IMD Score"</span>)</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Index of Multiple Deprivation (2019)</span><span class="ch">\n</span><span class="st">Wokingham highlighted"</span>)</span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="life-expectancy-vs-healthy-life-expectancy" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="life-expectancy-vs-healthy-life-expectancy"><span class="header-section-number">4</span> 4. Life Expectancy vs Healthy Life Expectancy</h2>
+<section id="definitions" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="definitions"><span class="header-section-number">4.1</span> Definitions</h3>
+<ul>
+<li><strong>Life expectancy (LE)</strong>: Average years a newborn would live if current mortality rates persist</li>
+<li><strong>Healthy life expectancy (HLE)</strong>: Average years expected in “good” or “very good” health</li>
+</ul>
+</section>
+<section id="the-double-burden-of-deprivation" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="the-double-burden-of-deprivation"><span class="header-section-number">4.2</span> The Double Burden of Deprivation</h3>
+<p>The gap between LE and HLE represents <strong>years lived in poor health</strong>. In deprived areas, people: 1. Die younger 2. Spend a larger proportion of their shorter lives in poor health</p>
+<div id="cell-14" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>le_hle_data <span class="op">=</span> pd.read_csv(LE_CSV)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort in the natural order (most deprived -&gt; least deprived)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>le_hle_data <span class="op">=</span> le_hle_data.sort_values(<span class="st">"IMD_decile"</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Life Expectancy and Healthy Life Expectancy by IMD Decile (England, 2020–2022)"</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>display(le_hle_data[[<span class="st">"IMD_decile"</span>, <span class="st">"LE_male"</span>, <span class="st">"HLE_male"</span>, <span class="st">"LE_female"</span>, <span class="st">"HLE_female"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The State Pension Age is 66 (rising to 67 by 2028). In the most deprived areas, men reach their HLE <strong>14.5 years BEFORE</strong> pension age.</p>
+<div id="cell-16" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pension_age <span class="op">=</span> <span class="dv">66</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># X positions</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="bu">len</span>(le_hle_data))</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>width <span class="op">=</span> <span class="fl">0.35</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Colour-blind safe palette (Okabe–Ito)</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>male_colour <span class="op">=</span> <span class="st">"#0072B2"</span>    <span class="co"># blue</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>female_colour <span class="op">=</span> <span class="st">"#E69F00"</span>  <span class="co"># orange</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Male bars ----</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>ax.bar(</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    x <span class="op">-</span> width<span class="op">/</span><span class="dv">2</span>,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    le_hle_data[<span class="st">"LE_male"</span>],</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    width,</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Male LE"</span>,</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>male_colour,</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.6</span>,</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    hatch<span class="op">=</span><span class="st">""</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>ax.bar(</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    x <span class="op">-</span> width<span class="op">/</span><span class="dv">2</span>,</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    le_hle_data[<span class="st">"HLE_male"</span>],</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    width,</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Male HLE"</span>,</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>male_colour,</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    hatch<span class="op">=</span><span class="st">"//"</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Female bars ----</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>ax.bar(</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    x <span class="op">+</span> width<span class="op">/</span><span class="dv">2</span>,</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    le_hle_data[<span class="st">"LE_female"</span>],</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    width,</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Female LE"</span>,</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>female_colour,</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.6</span>,</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    hatch<span class="op">=</span><span class="st">""</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>ax.bar(</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>    x <span class="op">+</span> width<span class="op">/</span><span class="dv">2</span>,</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>    le_hle_data[<span class="st">"HLE_female"</span>],</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>    width,</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Female HLE"</span>,</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>female_colour,</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>    hatch<span class="op">=</span><span class="st">"//"</span></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Axes and labels ----</span></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(x)</span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels([<span class="ss">f"D</span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> d <span class="kw">in</span> le_hle_data[<span class="st">"IMD_decile"</span>]])</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"IMD decile (D1 = most deprived)"</span>)</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Years"</span>)</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>ax.set_title(</span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Life expectancy (LE) and healthy life expectancy (HLE)</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>    <span class="st">"by IMD decile and sex, England (2020–2022)"</span></span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, <span class="dv">90</span>)</span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Pension age line ----</span></span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>ax.axhline(</span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>pension_age,</span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>    linestyle<span class="op">=</span><span class="st">"--"</span>,</span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>    linewidth<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="ss">f"State Pension Age (</span><span class="sc">{</span>pension_age<span class="sc">}</span><span class="ss">)"</span></span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Legend ----</span></span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>ax.legend(ncol<span class="op">=</span><span class="dv">2</span>, loc<span class="op">=</span><span class="st">"upper left"</span>)</span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="measuring-inequality-sii-and-rii" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="measuring-inequality-sii-and-rii"><span class="header-section-number">5</span> 5. Measuring Inequality: SII and RII</h2>
+<p>When comparing <strong>D1 vs D10</strong>, only two points on the deprivation gradient are used.<br>
+This is simple, but it discards information and is sensitive to noise at the extremes.</p>
+<p>The <strong>Slope Index of Inequality (SII)</strong> and <strong>Relative Index of Inequality (RII)</strong> were designed to do something more principled:</p>
+<ul>
+<li>use <strong>all groups</strong> (all deciles, quintiles, etc.)</li>
+<li>account for <strong>group population size</strong> (if groups are unequal)</li>
+<li>summarise the <strong>entire social gradient</strong> with a single number</li>
+<li>allow comparison across places and time</li>
+</ul>
+<p>They are widely used in health inequalities research for precisely these reasons.</p>
+</section>
+<section id="slope-index-of-inequality-sii" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="slope-index-of-inequality-sii"><span class="header-section-number">6</span> Slope Index of Inequality (SII)</h2>
+<section id="what-sii-measures" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="what-sii-measures"><span class="header-section-number">6.1</span> What SII measures</h3>
+<p><strong>SII is an absolute measure of inequality.</strong><br>
+It estimates the <strong>absolute difference</strong> in the outcome between the theoretical extremes of the deprivation distribution:</p>
+<blockquote class="blockquote">
+<p>predicted outcome at the least deprived end minus predicted outcome at the most deprived end</p>
+</blockquote>
+<p>If the outcome is <strong>healthy life expectancy (HLE)</strong>, SII is measured in <strong>years</strong>.</p>
+<p>Example interpretation:</p>
+<blockquote class="blockquote">
+<p>An SII of 18 years for HLE means that, across the deprivation gradient, the fitted difference between the least and most deprived ends is about 18 healthy years.</p>
+</blockquote>
+</section>
+<section id="why-theoretical-extremes" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="why-theoretical-extremes"><span class="header-section-number">6.2</span> Why “theoretical” extremes?</h3>
+<p>SII does not simply compare observed values in D1 and D10.<br>
+Instead, it models deprivation as a <strong>continuous gradient</strong> from 0 to 1 and estimates outcomes at those endpoints.</p>
+<p>This makes SII more stable than a simple top–bottom gap.</p>
+<hr>
+</section>
+</section>
+<section id="from-categories-to-a-gradient-the-ridit-score" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="from-categories-to-a-gradient-the-ridit-score"><span class="header-section-number">7</span> From categories to a gradient: the ridit score</h2>
+<p>Deprivation is observed in categories (deciles), but inequality is a <strong>gradient concept</strong>.</p>
+<section id="step-1-cumulative-population-position" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="step-1-cumulative-population-position"><span class="header-section-number">7.1</span> Step 1: cumulative population position</h3>
+<p>Assuming equal-sized deciles:</p>
+<ul>
+<li>Decile 1 spans ranks 0.0–0.1<br>
+</li>
+<li>Decile 2 spans 0.1–0.2<br>
+</li>
+<li>…<br>
+</li>
+<li>Decile 10 spans 0.9–1.0</li>
+</ul>
+</section>
+<section id="step-2-midpoint-ridit" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="step-2-midpoint-ridit"><span class="header-section-number">7.2</span> Step 2: midpoint (ridit)</h3>
+<p>Each group is assigned the midpoint of its interval:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Decile</th>
+<th>Ridit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>D1</td>
+<td>0.05</td>
+</tr>
+<tr class="even">
+<td>D2</td>
+<td>0.15</td>
+</tr>
+<tr class="odd">
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="even">
+<td>D10</td>
+<td>0.95</td>
+</tr>
+</tbody>
+</table>
+<p>These ridit values represent <strong>relative social position</strong> and become the x-values in the regression.</p>
+<p>If groups differ in population size, midpoints are computed from the cumulative population distribution instead. This is one reason SII is preferred over simple gaps.</p>
+<hr>
+</section>
+</section>
+<section id="regression-formulation" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="regression-formulation"><span class="header-section-number">8</span> Regression formulation</h2>
+<p>The outcome y (e.g.&nbsp;HLE) is regressed on the ridit r:</p>
+<p>y = α + βr</p>
+<ul>
+<li>r ∈ [0, 1]</li>
+<li>α: predicted outcome at the most deprived end</li>
+<li>α + β: predicted outcome at the least deprived end</li>
+</ul>
+<p>Therefore:</p>
+<p>SII = (α + β) − α = β</p>
+<p>In a linear model, <strong>SII is simply the slope</strong>, provided the rank variable runs from 0 to 1.</p>
+<section id="interpretation" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="interpretation"><span class="header-section-number">8.1</span> Interpretation</h3>
+<ul>
+<li><strong>Positive SII</strong>: outcome increases with decreasing deprivation (typical for favourable health outcomes)</li>
+<li><strong>Negative SII</strong>: outcome higher in more deprived groups</li>
+</ul>
+<p>Because SII is absolute, it uses the <strong>units of the outcome</strong>: - years (LE, HLE) - mmHg (blood pressure) - percentage points (prevalence)</p>
+<hr>
+</section>
+</section>
+<section id="why-using-all-points-matters" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="why-using-all-points-matters"><span class="header-section-number">9</span> Why using all points matters</h2>
+<p>Using all groups rather than only extremes provides:</p>
+<section id="greater-stability" class="level3" data-number="9.1">
+<h3 data-number="9.1" class="anchored" data-anchor-id="greater-stability"><span class="header-section-number">9.1</span> 1. Greater stability</h3>
+<p>Extreme groups can be noisy. A fitted gradient uses all observations.</p>
+</section>
+<section id="representativeness" class="level3" data-number="9.2">
+<h3 data-number="9.2" class="anchored" data-anchor-id="representativeness"><span class="header-section-number">9.2</span> 2. Representativeness</h3>
+<p>SII summarises the entire gradient, not just its endpoints.</p>
+</section>
+<section id="population-weighting" class="level3" data-number="9.3">
+<h3 data-number="9.3" class="anchored" data-anchor-id="population-weighting"><span class="header-section-number">9.3</span> 3. Population weighting</h3>
+<p>If group sizes differ, SII can reflect the distribution of people rather than categories.</p>
+<hr>
+</section>
+</section>
+<section id="assumptions-behind-sii" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="assumptions-behind-sii"><span class="header-section-number">10</span> Assumptions behind SII</h2>
+<ol type="1">
+<li><p><strong>Approximate linearity</strong><br>
+SII is a linear summary. If the gradient is curved, SII still exists but compresses that pattern into a single number.</p></li>
+<li><p><strong>Meaningful ordering</strong><br>
+Deprivation categories must be ordinal (IMD satisfies this).</p></li>
+<li><p><strong>Appropriate outcome model</strong></p>
+<ul>
+<li>Continuous outcomes: linear regression<br>
+</li>
+<li>Rates or proportions: suitable GLMs may be preferable</li>
+</ul></li>
+</ol>
+<p>SII answers:</p>
+<blockquote class="blockquote">
+<p>“What is the best linear summary of inequality across the social gradient?”</p>
+</blockquote>
+<div id="cell-19" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the table "as is" (HSE tables are not tidy spreadsheets)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>t6 <span class="op">=</span> pd.read_excel(hse_path, sheet_name<span class="op">=</span><span class="st">"Table 6"</span>, header<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Quintile labels are on row 3, columns 1..5 in this workbook</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>quintile_labels <span class="op">=</span> <span class="bu">list</span>(t6.iloc[<span class="dv">3</span>, <span class="dv">1</span>:<span class="dv">6</span>].values)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper: find a row by exact label in column 0</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _row_idx(label: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    matches <span class="op">=</span> t6.index[t6[<span class="dv">0</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.strip().eq(label)]</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(matches) <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Could not find row label: </span><span class="sc">{</span>label<span class="sc">!r}</span><span class="ss">"</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">int</span>(matches[<span class="dv">0</span>])</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Row indices for obesity prevalence (% Obese) for each sex</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>row_male_obese <span class="op">=</span> _row_idx(<span class="st">"% Obese"</span>)          <span class="co"># first occurrence is in the Men section</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>row_women <span class="op">=</span> _row_idx(<span class="st">"Women"</span>)                 <span class="co"># marker row; women section starts here</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>row_female_obese <span class="op">=</span> t6.index[(t6.index <span class="op">&gt;</span> row_women) <span class="op">&amp;</span> (t6[<span class="dv">0</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.strip().eq(<span class="st">"% Obese"</span>))][<span class="dv">0</span>]</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Row indices for weighted bases (Men and Women)</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>row_weighted_bases <span class="op">=</span> _row_idx(<span class="st">"Weighted bases"</span>)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>row_male_weight <span class="op">=</span> row_weighted_bases <span class="op">+</span> <span class="dv">1</span>      <span class="co"># Men</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>row_female_weight <span class="op">=</span> row_weighted_bases <span class="op">+</span> <span class="dv">2</span>    <span class="co"># Women</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract values (columns 1..5 correspond to quintiles)</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>male_prev_pct <span class="op">=</span> t6.iloc[row_male_obese, <span class="dv">1</span>:<span class="dv">6</span>].astype(<span class="bu">float</span>).values</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>female_prev_pct <span class="op">=</span> t6.iloc[row_female_obese, <span class="dv">1</span>:<span class="dv">6</span>].astype(<span class="bu">float</span>).values</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>male_weight <span class="op">=</span> t6.iloc[row_male_weight, <span class="dv">1</span>:<span class="dv">6</span>].astype(<span class="bu">float</span>).values</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>female_weight <span class="op">=</span> t6.iloc[row_female_weight, <span class="dv">1</span>:<span class="dv">6</span>].astype(<span class="bu">float</span>).values</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Build tidy dataframe (convert % to proportions)</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">"quintile_label"</span>: quintile_labels <span class="op">*</span> <span class="dv">2</span>,</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sex"</span>: [<span class="st">"Men"</span>] <span class="op">*</span> <span class="dv">5</span> <span class="op">+</span> [<span class="st">"Women"</span>] <span class="op">*</span> <span class="dv">5</span>,</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">"obesity_prev"</span>: np.concatenate([male_prev_pct, female_prev_pct]) <span class="op">/</span> <span class="fl">100.0</span>,</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">"weighted_base"</span>: np.concatenate([male_weight, female_weight]),</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Reorder so that ridit = 0 is MOST deprived and ridit = 1 is LEAST deprived.</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="co"># In this table the columns run Least -&gt; Most, so reverse within each sex.</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _reorder_most_to_least(group: pd.DataFrame) <span class="op">-&gt;</span> pd.DataFrame:</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group.iloc[::<span class="op">-</span><span class="dv">1</span>].reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.groupby(<span class="st">"sex"</span>, group_keys<span class="op">=</span><span class="va">False</span>).<span class="bu">apply</span>(_reorder_most_to_least)</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute population share within sex (weights sum to 1 within each sex)</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"population_share"</span>] <span class="op">=</span> df[<span class="st">"weighted_base"</span>] <span class="op">/</span> df.groupby(<span class="st">"sex"</span>)[<span class="st">"weighted_base"</span>].transform(<span class="st">"sum"</span>)</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute ridit using the cumulative population distribution (weighted)</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"cum_pop"</span>] <span class="op">=</span> df.groupby(<span class="st">"sex"</span>)[<span class="st">"population_share"</span>].cumsum()</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"cum_pop_lag"</span>] <span class="op">=</span> df.groupby(<span class="st">"sex"</span>)[<span class="st">"cum_pop"</span>].shift(<span class="dv">1</span>, fill_value<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ridit"</span>] <span class="op">=</span> (df[<span class="st">"cum_pop"</span>] <span class="op">+</span> df[<span class="st">"cum_pop_lag"</span>]) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate SII and RII for each sex and store in results dictionary</span></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {}</span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sex, group <span class="kw">in</span> df.groupby(<span class="st">"sex"</span>):</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># SII: linear regression of prevalence on ridit</span></span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>    sii_slope, sii_intercept, r_value, p_value, std_err <span class="op">=</span> stats.linregress(</span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>        group[<span class="st">"ridit"</span>], group[<span class="st">"obesity_prev"</span>]</span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>    <span class="co"># RII: regression on log(prevalence), then exponentiate to get ratio</span></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>    <span class="co"># RII = predicted prevalence at ridit=1 / predicted prevalence at ridit=0</span></span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>    log_prev <span class="op">=</span> np.log(group[<span class="st">"obesity_prev"</span>])</span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>    rii_slope, rii_intercept, _, _, _ <span class="op">=</span> stats.linregress(group[<span class="st">"ridit"</span>], log_prev)</span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>    <span class="co"># RII is the ratio of fitted values at ridit=1 vs ridit=0</span></span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>    <span class="co"># exp(intercept + slope*1) / exp(intercept + slope*0) = exp(slope)</span></span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>    rii <span class="op">=</span> np.exp(rii_slope)</span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>    results[sex] <span class="op">=</span> {</span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>        <span class="st">"data"</span>: group.copy(),</span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a>        <span class="st">"sii"</span>: sii_slope,</span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>        <span class="st">"sii_intercept"</span>: sii_intercept,</span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>        <span class="st">"rii"</span>: rii,</span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>        <span class="st">"rii_slope"</span>: rii_slope,</span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>        <span class="st">"rii_intercept"</span>: rii_intercept,</span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>        <span class="st">"r_squared"</span>: r_value <span class="op">**</span> <span class="dv">2</span>,</span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>        <span class="st">"p_value"</span>: p_value,</span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a>display(df)</span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">SII and RII calculated for each sex (see next cell for visualisation)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-20" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>x_line <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">200</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sex, res <span class="kw">in</span> results.items():</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    g <span class="op">=</span> res[<span class="st">"data"</span>]</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    ax.scatter(g[<span class="st">"ridit"</span>], g[<span class="st">"obesity_prev"</span>], s<span class="op">=</span><span class="dv">100</span>, label<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>sex<span class="sc">}</span><span class="ss"> (observed)"</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    ax.plot(x_line, res[<span class="st">"sii_intercept"</span>] <span class="op">+</span> res[<span class="st">"sii"</span>] <span class="op">*</span> x_line,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>            linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>sex<span class="sc">}</span><span class="ss"> fit (SII = </span><span class="sc">{</span>res[<span class="st">'sii'</span>]<span class="sc">:.3f}</span><span class="ss">)"</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _, row <span class="kw">in</span> g.iterrows():</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        ax.annotate(row[<span class="st">"quintile_label"</span>], (row[<span class="st">"ridit"</span>], row[<span class="st">"obesity_prev"</span>]),</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>                    textcoords<span class="op">=</span><span class="st">"offset points"</span>, xytext<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">10</span>), ha<span class="op">=</span><span class="st">"center"</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Ridit score (0 = most deprived, 1 = least deprived)"</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Obesity prevalence"</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Slope Index of Inequality (SII): adult obesity by deprivation (HSE 2022)"</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(plt.FuncFormatter(<span class="kw">lambda</span> y, _: <span class="ss">f"</span><span class="sc">{</span>y<span class="sc">:.0%}</span><span class="ss">"</span>))</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sex, res <span class="kw">in</span> results.items():</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>sex<span class="sc">}</span><span class="ss">: SII = </span><span class="sc">{</span>res[<span class="st">'sii'</span>]<span class="sc">:.3f}</span><span class="ss"> (absolute change in prevalence from most to least deprived)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="relative-index-of-inequality-rii" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="relative-index-of-inequality-rii"><span class="header-section-number">11</span> Relative Index of Inequality (RII)</h2>
+<p><strong>RII is the relative counterpart of SII.</strong><br>
+Instead of an absolute difference, it expresses inequality as a <strong>ratio</strong>.</p>
+<p>A common formulation:</p>
+<p>log(y) = α + βr</p>
+<p>Then:</p>
+<p>RII = exp(β)</p>
+<p>Interpretation: - RII = 1.25 → outcome is about <strong>25% higher</strong> at the least deprived end than at the most deprived end (in the fitted gradient)</p>
+<p>RII is often preferred for: - prevalence - rates - outcomes naturally interpreted multiplicatively</p>
+<div id="cell-22" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sex, res <span class="kw">in</span> results.items():</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    g <span class="op">=</span> res[<span class="st">"data"</span>]</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    ax.scatter(g[<span class="st">"ridit"</span>], g[<span class="st">"obesity_prev"</span>], s<span class="op">=</span><span class="dv">100</span>, label<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>sex<span class="sc">}</span><span class="ss"> (observed)"</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    ax.plot(x_line, np.exp(res[<span class="st">"rii_intercept"</span>] <span class="op">+</span> res[<span class="st">"rii_slope"</span>] <span class="op">*</span> x_line),</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>            linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>sex<span class="sc">}</span><span class="ss"> fit (RII = </span><span class="sc">{</span>res[<span class="st">'rii'</span>]<span class="sc">:.2f}</span><span class="ss">)"</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _, row <span class="kw">in</span> g.iterrows():</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>        ax.annotate(row[<span class="st">"quintile_label"</span>], (row[<span class="st">"ridit"</span>], row[<span class="st">"obesity_prev"</span>]),</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>                    textcoords<span class="op">=</span><span class="st">"offset points"</span>, xytext<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">10</span>), ha<span class="op">=</span><span class="st">"center"</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Ridit score (0 = most deprived, 1 = least deprived)"</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Obesity prevalence"</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Relative Index of Inequality (RII): adult obesity by deprivation (HSE 2022)"</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(plt.FuncFormatter(<span class="kw">lambda</span> y, _: <span class="ss">f"</span><span class="sc">{</span>y<span class="sc">:.0%}</span><span class="ss">"</span>))</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sex, res <span class="kw">in</span> results.items():</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>sex<span class="sc">}</span><span class="ss">: RII = </span><span class="sc">{</span>res[<span class="st">'rii'</span>]<span class="sc">:.2f}</span><span class="ss"> (ratio across the gradient, least vs most deprived in fitted model)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="summary" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="summary"><span class="header-section-number">12</span> Summary</h2>
+<blockquote class="blockquote">
+<p>We replace deprivation categories by their position in the cumulative population distribution (ridit). We then regress the outcome on this rank. The slope of that regression gives the SII: the predicted absolute difference between the least and most deprived ends of society, using all groups rather than only the extremes.</p>
+</blockquote>
+</section>
+<section id="global-inequalities-within-country-versus-between-country-gradients" class="level2" data-number="13">
+<h2 data-number="13" class="anchored" data-anchor-id="global-inequalities-within-country-versus-between-country-gradients"><span class="header-section-number">13</span> 6. Global inequalities: within-country versus between-country gradients</h2>
+<p>Health inequalities exist at multiple levels:</p>
+<ul>
+<li><strong>Within-country inequalities</strong> (the Marmot gradient): differences across deprivation groups within one country.</li>
+<li><strong>Between-country inequalities</strong> (global differences): differences in average outcomes between countries.</li>
+<li><strong>Cross-country comparisons at the same income level</strong>: the same household income can correspond to different health outcomes in different countries.</li>
+</ul>
+<p>The figure below illustrates a striking point: even at comparable (PPP-adjusted) household income, life expectancy differs substantially between England and the USA. This is not primarily an “income problem”; it reflects systems, environments, risks, and social policy.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../_assets/ft_le_income.png" class="img-fluid figure-img"></p>
+<figcaption>Life expectancy by net household income (England vs USA)</figcaption>
+</figure>
+</div>
+<p><em>Source: Financial Times analysis using US Small-area Life Expectancy Estimates Project, American Community Survey, and ONS small area income estimates (as stated in the figure).</em></p>
+<section id="the-preston-curve-income-and-health-across-countries" class="level3" data-number="13.1">
+<h3 data-number="13.1" class="anchored" data-anchor-id="the-preston-curve-income-and-health-across-countries"><span class="header-section-number">13.1</span> The Preston curve: income and health across countries</h3>
+<p>At the global level, health also follows a gradient — but it is <strong>non-linear</strong>.</p>
+<p>The <strong>Preston curve</strong> plots life expectancy against national income (usually GDP per capita adjusted for purchasing power). It shows three key features:</p>
+<ol type="1">
+<li><p><strong>Steep gains at low income</strong><br>
+Among poorer countries, small increases in income are associated with large improvements in life expectancy.</p></li>
+<li><p><strong>Diminishing returns at higher income</strong><br>
+Beyond a certain point, additional income is associated with much smaller gains in life expectancy.</p></li>
+<li><p><strong>More than income alone</strong><br>
+Countries with similar incomes can have markedly different life expectancies, reflecting differences in:</p>
+<ul>
+<li>health systems<br>
+</li>
+<li>education<br>
+</li>
+<li>public health infrastructure<br>
+</li>
+<li>social protection and inequality</li>
+</ul></li>
+</ol>
+<p>The Preston curve is the <strong>global analogue of the Marmot gradient</strong>: it emphasises that health improves stepwise with socioeconomic advantage, but not in a simple linear fashion.</p>
+<div id="cell-26" class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># OWID Preston curve dataset + simple Preston regression</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># (Run this cell once; the next two cells only plot.)</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>df_owid <span class="op">=</span> pd.read_csv(OWID_path)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>YEAR <span class="op">=</span> <span class="dv">2019</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>df_year <span class="op">=</span> df_owid[df_owid[<span class="st">"Year"</span>] <span class="op">==</span> YEAR].copy()</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only real countries (drop aggregates such as "World")</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>df_year <span class="op">=</span> df_year[df_year[<span class="st">"Code"</span>].notna()].copy()</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify relevant columns robustly</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>life_col <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> df_year.columns <span class="cf">if</span> <span class="st">"Life expectancy"</span> <span class="kw">in</span> c][<span class="dv">0</span>]</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>gdp_col  <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> df_year.columns <span class="cf">if</span> <span class="st">"GDP per capita"</span> <span class="kw">in</span> c][<span class="dv">0</span>]</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>df_year <span class="op">=</span> df_year[[<span class="st">"Entity"</span>, <span class="st">"Code"</span>, <span class="st">"Year"</span>, life_col, gdp_col]].dropna().copy()</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Countries to highlight (ISO3 -&gt; short label)</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>highlight_codes <span class="op">=</span> {</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GBR"</span>: <span class="st">"UK"</span>,</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"USA"</span>: <span class="st">"US"</span>,</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"KWT"</span>: <span class="st">"Kuwait"</span>,</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"UGA"</span>: <span class="st">"Uganda"</span>,</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"TUR"</span>: <span class="st">"Turkey"</span>,</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"JPN"</span>: <span class="st">"Japan"</span>,</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"HKG"</span>: <span class="st">"Hong Kong"</span>,</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CHN"</span>: <span class="st">"China"</span>,</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MYS"</span>: <span class="st">"Malaysia"</span>,</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"IND"</span>: <span class="st">"India"</span>,</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PAK"</span>: <span class="st">"Pakistan"</span>,</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">"FRA"</span>: <span class="st">"France"</span>,</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SVK"</span>: <span class="st">"Slovakia"</span>,</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit Preston regression: LE ~ log(GDP)</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>df_model <span class="op">=</span> df_year.copy()</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>df_model[<span class="st">"log_gdp"</span>] <span class="op">=</span> np.log(df_model[gdp_col])</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>exclude_codes <span class="op">=</span> [<span class="st">"PSE"</span>, <span class="st">"AFG"</span>, <span class="st">"SYR"</span>, <span class="st">"YEM"</span>, <span class="st">"SSD"</span>]  <span class="co"># Unreliable data</span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>df_model <span class="op">=</span> df_model[<span class="op">~</span>df_model[<span class="st">"Code"</span>].isin(exclude_codes)]</span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>slope, intercept, r_value, p_value, std_err <span class="op">=</span> stats.linregress(</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>    df_model[<span class="st">"log_gdp"</span>],</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>    df_model[life_col]</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>df_model[<span class="st">"le_pred"</span>]  <span class="op">=</span> intercept <span class="op">+</span> slope <span class="op">*</span> df_model[<span class="st">"log_gdp"</span>]</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>df_model[<span class="st">"le_resid"</span>] <span class="op">=</span> df_model[life_col] <span class="op">-</span> df_model[<span class="st">"le_pred"</span>]  <span class="co"># years</span></span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Model: LE = </span><span class="sc">{</span>intercept<span class="sc">:.2f}</span><span class="ss"> + </span><span class="sc">{</span>slope<span class="sc">:.2f}</span><span class="ss">·log(GDP)"</span>)</span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R² (LE ~ log(GDP)): </span><span class="sc">{</span>r_value<span class="op">**</span><span class="dv">2</span><span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-27" class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Preston curve plot (observed points + fitted line)</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>ax.scatter(df_model[gdp_col], df_model[life_col], alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Fitted line drawn across GDP range (avoid log(0))</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>x_gdp <span class="op">=</span> np.linspace(df_model[gdp_col].<span class="bu">min</span>(), df_model[gdp_col].<span class="bu">max</span>(), <span class="dv">300</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>y_fit <span class="op">=</span> intercept <span class="op">+</span> slope <span class="op">*</span> np.log(x_gdp)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>ax.plot(x_gdp, y_fit, linewidth<span class="op">=</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">"black"</span>, alpha<span class="op">=</span><span class="fl">0.8</span>, label<span class="op">=</span><span class="st">"Fit: LE ~ log(GDP)"</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"GDP per capita (PPP, international-$)"</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Life expectancy at birth (years)"</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"Preston curve: life expectancy versus national income (</span><span class="sc">{</span>YEAR<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Licence credit</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>fig.text(</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.01</span>, <span class="fl">0.01</span>,</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"OurWorldInData.org/life-expectancy | CC BY"</span>,</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    ha<span class="op">=</span><span class="st">"left"</span>, va<span class="op">=</span><span class="st">"bottom"</span>, fontsize<span class="op">=</span><span class="dv">9</span>, color<span class="op">=</span><span class="st">"grey"</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Highlight selected countries</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>df_hl <span class="op">=</span> df_model[df_model[<span class="st">"Code"</span>].isin(highlight_codes)].copy()</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>ax.scatter(</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    df_hl[gdp_col],</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    df_hl[life_col],</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    s<span class="op">=</span><span class="dv">80</span>,</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"crimson"</span>,</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    edgecolor<span class="op">=</span><span class="st">"black"</span>,</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    zorder<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _, row <span class="kw">in</span> df_hl.iterrows():</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    ax.annotate(</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>        highlight_codes[row[<span class="st">"Code"</span>]],</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>        (row[gdp_col], row[life_col]),</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>        xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>),</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>        textcoords<span class="op">=</span><span class="st">"offset points"</span>,</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span><span class="dv">9</span>,</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>        weight<span class="op">=</span><span class="st">"bold"</span>,</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">"crimson"</span>,</span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Interpretation: life expectancy rises rapidly at low incomes and then shows diminishing returns.</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Countries can sit above or below the fitted curve, suggesting factors beyond income."</span></span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-28" class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Residual plot: "same income, different health"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># (highlighted countries + global best/worst residuals)</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>n_extremes <span class="op">=</span> <span class="dv">3</span>  <span class="co"># top/bottom countries by residual</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>df_extreme_low  <span class="op">=</span> df_model.nsmallest(n_extremes, <span class="st">"le_resid"</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>df_extreme_high <span class="op">=</span> df_model.nlargest(n_extremes, <span class="st">"le_resid"</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>df_plot <span class="op">=</span> pd.concat([</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    df_model[df_model[<span class="st">"Code"</span>].isin(highlight_codes)],</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    df_extreme_low,</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    df_extreme_high</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>]).drop_duplicates(subset<span class="op">=</span><span class="st">"Code"</span>)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Labels: highlighted get short labels; extremes fall back to country name</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>df_plot[<span class="st">"label"</span>] <span class="op">=</span> df_plot[<span class="st">"Code"</span>].<span class="bu">map</span>(highlight_codes)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>df_plot[<span class="st">"label"</span>] <span class="op">=</span> df_plot[<span class="st">"label"</span>].fillna(df_plot[<span class="st">"Entity"</span>])</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>df_plot <span class="op">=</span> df_plot.sort_values(<span class="st">"le_resid"</span>)</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">6</span>))</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>ax.barh(df_plot[<span class="st">"label"</span>], df_plot[<span class="st">"le_resid"</span>], alpha<span class="op">=</span><span class="fl">0.85</span>)</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>ax.axvline(<span class="dv">0</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Residual life expectancy (years)</span><span class="ch">\n</span><span class="st">Observed minus predicted from Preston regression"</span>)</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">""</span>)</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"Same income, different health: deviations from Preston curve (</span><span class="sc">{</span>YEAR<span class="sc">}</span><span class="ss">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="income-inequality-and-health-moving-beyond-averages" class="level3" data-number="13.2">
+<h3 data-number="13.2" class="anchored" data-anchor-id="income-inequality-and-health-moving-beyond-averages"><span class="header-section-number">13.2</span> Income inequality and health: moving beyond averages</h3>
+<p>So far, we have compared <strong>average health outcomes</strong> between countries.<br>
+However, countries with similar average income can differ substantially in how that income is distributed.</p>
+<p>The <strong>Gini coefficient</strong> is a summary measure of income inequality: - 0 indicates perfect equality - 1 indicates maximal inequality (one person has all income)</p>
+<p>A long-standing question in public health is whether <strong>more unequal societies have worse health outcomes</strong>, even after accounting for average income.</p>
+<p>In the next example, we examine the relationship between: - national income inequality (Gini coefficient), and - life expectancy at birth</p>
+<p>This is a <strong>cross-country, ecological analysis</strong>. It is useful for description and hypothesis generation, but it cannot establish causality at the individual level.</p>
+<div id="cell-30" class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>YEAR <span class="op">=</span> <span class="dv">2019</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>df_gini <span class="op">=</span> pd.read_csv(gini_path)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>df_owid <span class="op">=</span> pd.read_csv(OWID_path)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>df_year <span class="op">=</span> df_owid[df_owid[<span class="st">"Year"</span>] <span class="op">==</span> YEAR].copy()</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>df_year <span class="op">=</span> df_year[df_year[<span class="st">"Code"</span>].notna()].copy()</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>life_col <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> df_year.columns <span class="cf">if</span> <span class="st">"Life expectancy"</span> <span class="kw">in</span> c][<span class="dv">0</span>]</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>df_health <span class="op">=</span> df_year[[<span class="st">"Code"</span>, <span class="st">"Entity"</span>, life_col]].rename(</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>{<span class="st">"Code"</span>: <span class="st">"iso3"</span>, <span class="st">"Entity"</span>: <span class="st">"country"</span>, life_col: <span class="st">"life_expectancy"</span>}</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>).dropna()</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 3) Merge and plot</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>df_merge <span class="op">=</span> df_gini.merge(df_health, on<span class="op">=</span><span class="st">"iso3"</span>, how<span class="op">=</span><span class="st">"inner"</span>)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>ax.scatter(df_merge[<span class="st">"gini"</span>], df_merge[<span class="st">"life_expectancy"</span>], alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Optional: simple linear fit (purely descriptive)</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>m, b <span class="op">=</span> np.polyfit(df_merge[<span class="st">"gini"</span>], df_merge[<span class="st">"life_expectancy"</span>], <span class="dv">1</span>)</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>x_line <span class="op">=</span> np.linspace(df_merge[<span class="st">"gini"</span>].<span class="bu">min</span>(), df_merge[<span class="st">"gini"</span>].<span class="bu">max</span>(), <span class="dv">200</span>)</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>ax.plot(x_line, m <span class="op">*</span> x_line <span class="op">+</span> b, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Gini coefficient (income inequality; higher = more unequal)"</span>)</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Life expectancy at birth (years)"</span>)</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"Income inequality (Gini) and life expectancy (</span><span class="sc">{</span>YEAR<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Add labels with small offsets (Gini plot) ----</span></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _, row <span class="kw">in</span> df_merge.iterrows():</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>    iso3 <span class="op">=</span> row[<span class="st">"iso3"</span>]</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> iso3 <span class="kw">not</span> <span class="kw">in</span> highlight_codes:</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>    ax.annotate(</span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>        highlight_codes[iso3],</span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>        (row[<span class="st">"gini"</span>], row[<span class="st">"life_expectancy"</span>]),</span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>        xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>),</span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>        textcoords<span class="op">=</span><span class="st">"offset points"</span>,</span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span><span class="dv">9</span>,</span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>        weight<span class="op">=</span><span class="st">"bold"</span>,</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">"crimson"</span>,</span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Important: this is an ecological, cross-country comparison.</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>    <span class="st">"It is useful for description and hypothesis generation, not causal inference."</span></span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Countries included: </span><span class="sc">{</span><span class="bu">len</span>(df_merge)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="discussion-questions" class="level2" data-number="14">
+<h2 data-number="14" class="anchored" data-anchor-id="discussion-questions"><span class="header-section-number">14</span> 7. Discussion Questions</h2>
+<ol type="1">
+<li><p><strong>IMD limitations</strong>: Why might the IMD be a poor measure of individual deprivation?</p></li>
+<li><p><strong>LE vs HLE</strong>: Why is the HLE gap larger than the LE gap? What does this imply for pension policy?</p></li>
+<li><p><strong>Proportionate universalism</strong>: How might you measure whether a dietary intervention follows this principle?</p></li>
+</ol>
+</section>
+<section id="exercises" class="level2" data-number="15">
+<h2 data-number="15" class="anchored" data-anchor-id="exercises"><span class="header-section-number">15</span> 8. Exercises</h2>
+<section id="exercise-1-explore-imd-in-your-area" class="level3" data-number="15.1">
+<h3 data-number="15.1" class="anchored" data-anchor-id="exercise-1-explore-imd-in-your-area"><span class="header-section-number">15.1</span> Exercise 1: Explore IMD in Your Area</h3>
+<ol type="1">
+<li>Go to the <a href="https://dclgapps.communities.gov.uk/imd/iod_index.html">ONS IMD Explorer</a></li>
+<li>Find your home area (or Reading)</li>
+<li>Note the IMD decile and domain scores</li>
+</ol>
+<div id="cell-33" class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Record your findings</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>my_area <span class="op">=</span> {</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Area name'</span>: <span class="st">''</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'IMD Decile'</span>: <span class="va">None</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Most deprived domain'</span>: <span class="st">''</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="summary-1" class="level2" data-number="16">
+<h2 data-number="16" class="anchored" data-anchor-id="summary-1"><span class="header-section-number">16</span> Summary</h2>
+<ul>
+<li><strong>IMD</strong> combines seven domains to rank areas by deprivation</li>
+<li><strong>Healthy life expectancy</strong> reveals larger inequality gaps than total LE</li>
+<li>The “double burden” means deprived populations live shorter lives AND more years in poor health</li>
+<li><strong>SII</strong> measures absolute inequality; <strong>RII</strong> expresses it relatively</li>
+</ul>
+</section>
+<section id="key-resources" class="level2" data-number="17">
+<h2 data-number="17" class="anchored" data-anchor-id="key-resources"><span class="header-section-number">17</span> Key Resources</h2>
+<ul>
+<li><a href="https://dclgapps.communities.gov.uk/imd/iod_index.html">ONS IMD Interactive Map</a></li>
+<li><a href="https://fingertips.phe.org.uk/">PHE Fingertips</a></li>
+<li><a href="https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/healthandlifeexpectancies">ONS Health State Life Expectancy</a></li>
+</ul>
+</section>
+<section id="references" class="level2" data-number="18">
+<h2 data-number="18" class="anchored" data-anchor-id="references"><span class="header-section-number">18</span> References</h2>
+<ul>
+<li>MHCLG (2019). English Indices of Deprivation.</li>
+<li>Marmot M (2010). Fair Society, Healthy Lives.</li>
+<li>Marmot M (2020). Health Equity in England: The Marmot Review 10 Years On.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/ggkuhnle\.github\.io\/fb2nep-epi\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© University of Reading 2025 · Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ggkuhnle/fb2nep-epi/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ggkuhnle/fb2nep-epi/blob/main/notebooks/2.03_health_inequalities.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with Quarto</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
