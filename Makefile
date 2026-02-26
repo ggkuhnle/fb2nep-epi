@@ -1,7 +1,7 @@
 PY=python3
 VENV=.venv
 
-.PHONY: venv deps data validate clean
+.PHONY: venv deps data hippo-data validate clean
 
 venv:
 	$(PY) -m venv $(VENV)
@@ -11,6 +11,9 @@ deps:
 
 data:
 	. $(VENV)/bin/activate && python scripts/generate_dataset.py
+
+hippo-data:
+	. $(VENV)/bin/activate && python scripts/generate_hippo_survey_data.py
 
 validate:
 	. $(VENV)/bin/activate && python scripts/validate_dataset.py
