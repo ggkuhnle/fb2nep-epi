@@ -9,6 +9,10 @@ Generate a synthetic but realistic cohort for FB2NEP (N≈25,000).
 - Covariates: SES (ABC1/C2DE), IMD, SBP, family history, menopausal status, biomarkers
 - Non-linear relations: BMI U-shape for CVD risk, alcohol J-shape, SBP quadratic in age, vitamin C saturation
 - Cancer risk includes red meat intake above 50 g/day (thresholded linear effect)
+- Sex differences: BMI (men higher mean/SD), smoking (men more current & former; older women less likely ever-smoked),
+  SES (women more C2DE at every IMD level), physical activity (men more high-intensity),
+  SBP (pre/peri-menopausal women lower by 2–5 mmHg)
+- Outcomes: former smoking and physical activity included as predictors in both CVD and cancer models
 
 Seed: 11088
 Output: data/synthetic/fb2nep.csv
@@ -91,9 +95,13 @@ age = trunc_normal(58, 10, 40, 90, N).round().astype(int)
 sex = choice(["F","M"], p=[0.52,0.48], size=N)
 IMD = choice([1,2,3,4,5], p=[0.22,0.24,0.22,0.18,0.14], size=N)
 
-# SES depends on IMD (more affluent with higher IMD)
-ses_probs = {1:0.35, 2:0.45, 3:0.55, 4:0.66, 5:0.75}  # P(ABC1)
-SES = np.array(["ABC1" if rng.random() < ses_probs[i] else "C2DE" for i in IMD], dtype=object)
+# SES depends on IMD and sex (women more likely C2DE at every deprivation level)
+ses_probs_M = {1: 0.38, 2: 0.49, 3: 0.59, 4: 0.70, 5: 0.79}  # P(ABC1) for men
+ses_probs_F = {1: 0.32, 2: 0.41, 3: 0.51, 4: 0.62, 5: 0.71}  # P(ABC1) for women
+SES = np.array([
+    "ABC1" if rng.random() < (ses_probs_M[i] if s == "M" else ses_probs_F[i]) else "C2DE"
+    for i, s in zip(IMD, sex)
+], dtype=object)
 
 # Menopausal status (F only; M=NA). Age-patterned with a little noise.
 menopausal_status = np.array(["NA"]*N, dtype=object)
@@ -103,24 +111,33 @@ flip = rng.random(N) < 0.05
 mstat_noisy = np.where(flip, choice(["pre","peri","post"], size=N), mstat)
 menopausal_status[isF] = mstat_noisy[isF]
 
-# Smoking (age-patterned; ~15% current overall)
+# Smoking: sex x age interaction
+#   Men:   ~22% current at 40, declining with age; older cohorts smoked more (lower p_never)
+#   Women: ~13% current at 40, declining with age; older cohorts much less likely to have ever smoked
 smk = []
-for a in age:
-    p_never = float(np.clip(0.45 + (40 - a)/200, 0.25, 0.65))
-    p_current = 0.15
-    p_former = 1 - p_never - p_current
-    smk.append(choice(["never","former","current"], p=[p_never, p_former, p_current]))
+for a, s in zip(age, sex):
+    if s == "M":
+        p_cur = float(np.clip(0.22 - 0.002 * (a - 40), 0.08, 0.22))
+        p_nev = float(np.clip(0.45 - 0.001 * (a - 40), 0.30, 0.45))
+    else:
+        p_cur = float(np.clip(0.13 - 0.0015 * (a - 40), 0.05, 0.13))
+        p_nev = float(np.clip(0.50 + 0.002  * (a - 40), 0.50, 0.70))
+    p_for = max(1.0 - p_nev - p_cur, 0.02)
+    tot = p_nev + p_for + p_cur
+    smk.append(choice(["never", "former", "current"],
+                      p=[p_nev/tot, p_for/tot, p_cur/tot]))
 smoking = np.array(smk, dtype=object)
 
-# Physical activity depends on IMD
-pa_map = {
-    1:[0.48,0.39,0.13],
-    2:[0.40,0.45,0.15],
-    3:[0.33,0.48,0.19],
-    4:[0.28,0.51,0.21],
-    5:[0.25,0.50,0.25],
+# Physical activity depends on IMD and sex (men more likely to report high-intensity activity)
+pa_probs = {
+    1: {"M": [0.40, 0.42, 0.18], "F": [0.54, 0.36, 0.10]},
+    2: {"M": [0.33, 0.47, 0.20], "F": [0.47, 0.42, 0.11]},
+    3: {"M": [0.26, 0.50, 0.24], "F": [0.40, 0.46, 0.14]},
+    4: {"M": [0.21, 0.52, 0.27], "F": [0.35, 0.49, 0.16]},
+    5: {"M": [0.18, 0.52, 0.30], "F": [0.32, 0.48, 0.20]},
 }
-PA = np.array([choice(["low","moderate","high"], p=pa_map[i]) for i in IMD], dtype=object)
+PA = np.array([choice(["low", "moderate", "high"], p=pa_probs[i][s])
+               for i, s in zip(IMD, sex)], dtype=object)
 
 # Family history (with slight age tilt)
 fhx_cvd    = (rng.random(N) < (0.20 + 0.002*(age-50)/10)).astype(int)
@@ -129,10 +146,13 @@ fhx_cancer = (rng.random(N) < (0.22 + 0.001*(age-50)/10)).astype(int)
 # -----------------------
 # 2) Anthropometry & energy
 # -----------------------
-base_bmi = trunc_normal(27.0, 4.5, 15, 55, N)
-age_z = (age - age.mean())/age.std()
+# BMI: sex-specific means (men higher on average; women wider spread reflecting higher obesity prevalence)
+bmi_mean = np.where(sex == "M", 28.5, 26.5)
+bmi_sd   = np.where(sex == "M", 4.5,  5.0)
+base_bmi = np.clip(rng.normal(bmi_mean, bmi_sd, N), 15, 55)
+age_z = (age - age.mean()) / age.std()
 smk_current = (smoking == "current").astype(float)
-BMI = base_bmi + 0.7*age_z + 0.9*smk_current
+BMI = np.clip(base_bmi + 0.7*age_z + 0.9*smk_current, 15, 55)
 
 pa_mult = np.array([{"low":0.92, "moderate":1.00, "high":1.10}[p] for p in PA])
 sex_mult = np.where(sex == "M", 1.06, 1.00)
@@ -206,7 +226,13 @@ SBP = (95 + 0.7*age + 0.03*((age-60)**2)
        - 1.5*(PA=="high").astype(float)
        + 1.5*SALT + 0.5*BMI + 4*(smoking=="current").astype(float)
        + rng.normal(0,10,N))
-SBP = np.clip(SBP, 80, 220)
+# Sex/menopausal adjustment: pre/peri-menopausal women have lower SBP; post-menopausal approaches male levels
+sbp_sex_adj = np.where(
+    (sex == "F") & (menopausal_status == "pre"),  -5.0,
+    np.where((sex == "F") & (menopausal_status == "peri"), -2.0,
+    np.where((sex == "F") & (menopausal_status == "post"),  1.5, 0.0))
+)
+SBP = np.clip(SBP + sbp_sex_adj, 80, 220)
 
 # -----------------------
 # 5) Baseline dates & follow-up
@@ -221,6 +247,8 @@ male     = (sex == "M").astype(float)
 ses_low  = (SES == "C2DE").astype(float)
 imd_term = (imd_inv - 3) / 2.0
 alc_j    = np.maximum(0, alcohol - 8) * 0.02  # penalty beyond ~8 units/wk
+smk_fmr  = (smoking == "former").astype(float)
+pa_cvd   = np.array([{"low": 0.20, "moderate": 0.0, "high": -0.15}[p] for p in PA])
 
 # CVD linear predictor (no intercept)
 lin_cvd = (
@@ -228,6 +256,8 @@ lin_cvd = (
     + 0.030*BMI
     + 0.008*((BMI - 23)**2)                     # U-shape
     + 0.70*(smoking == "current").astype(float)
+    + 0.30*smk_fmr                              # former smokers: intermediate risk
+    + pa_cvd                                    # low PA raises risk, high PA lowers it
     + 0.25*male
     + 0.080*imd_term
     + 0.050*ses_low
@@ -244,10 +274,13 @@ incident_cvd = (t_cvd <= follow_up_years).astype(int)
 
 # Cancer linear predictor (includes red meat >50 g/d)
 red_excess = np.maximum(0, RED - 50.0)
+pa_ca = np.array([{"low": 0.12, "moderate": 0.0, "high": -0.10}[p] for p in PA])
 lin_ca = (
     0.045*age
     + 0.015*BMI
     + 0.55*(smoking == "current").astype(float)
+    + 0.20*smk_fmr                                       # former smokers: residual cancer risk
+    + pa_ca                                              # physical inactivity raises cancer risk
     + 0.15*ses_low
     + 0.05*male
     + 0.35*fhx_cancer
