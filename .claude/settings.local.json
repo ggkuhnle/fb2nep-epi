@@ -8,7 +8,16 @@
       "Bash(python:*)",
       "Bash(ls:*)",
       "Bash(find:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(source venv/bin/activate && jupyter nbconvert --to notebook --execute notebooks/1.07_data_transformation.ipynb --output /tmp/test_1.07.ipynb --ExecutePreprocessor.timeout=300 2>&1 | tail -5)",
+      "Bash(source venv/bin/activate && jupyter kernelspec list && python -m ipykernel install --user --name python3 --display-name \"Python 3\" 2>&1 | tail -3)",
+      "Bash(source venv/bin/activate && jupyter nbconvert --to notebook --execute notebooks/1.07_data_transformation.ipynb --output /tmp/test_1.07.ipynb --ExecutePreprocessor.timeout=300 --ExecutePreprocessor.kernel_name=fb2nep_venv 2>&1 | tail -5)",
+      "Bash(source venv/bin/activate && python -m ipykernel install --user --name fb2nep_local --display-name \"Python \\(FB2NEP local\\)\" 2>&1 && jupyter nbconvert --to notebook --execute notebooks/1.07_data_transformation.ipynb --output /tmp/test_1.07.ipynb --ExecutePreprocessor.timeout=300 --ExecutePreprocessor.kernel_name=fb2nep_local 2>&1 | tail -5)",
+      "Bash(source venv/bin/activate && python -c \"import matplotlib; print\\('ok'\\)\" && which python)",
+      "Bash(venv/bin/python -c \"import matplotlib; print\\('ok'\\)\" && venv/bin/python -m ipykernel install --user --name fb2nep_local --display-name \"Python \\(FB2NEP local\\)\" 2>&1 | tail -1)",
+      "Bash(venv/bin/pip install:*)",
+      "Bash(venv/bin/jupyter nbconvert:*)",
+      "Bash(git rm:*)"
     ]
   }
 }

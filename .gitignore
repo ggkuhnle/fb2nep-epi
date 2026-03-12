@@ -27,3 +27,6 @@ _freeze/
 
 sbp_*
 *.stan.exe
+notebooks/fb2nep-epi/
+
+.claude
