@@ -7,3 +7,5 @@ networkx>=3.3,<3.4
 ipywidgets
 openpyxl
 jinja2
+numpyro>=0.15
+jax>=0.4
