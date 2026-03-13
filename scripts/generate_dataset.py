@@ -329,30 +329,38 @@ df = pd.DataFrame({
 })
 
 # -----------------------
-# 8) Missingness (MCAR + MAR + tiny MNAR)
+# 8) Missingness (MCAR + MAR + MNAR)
 # -----------------------
-# MCAR ~2.5% on selected vars
+# MCAR ~5% on selected vars (raised from 2.5% for clearer teaching illustration)
 mcar_cols = [
     "fruit_veg_g_d","red_meat_g_d","ssb_ml_d","fibre_g_d","salt_g_d",
-    "plasma_vitC_umol_L","urinary_sodium_mmol_L","alcohol_units_wk","SBP"
+    "plasma_vitC_umol_L","urinary_sodium_mmol_L","alcohol_units_wk","SBP",
+    "SES_class",
 ]
 for c in mcar_cols:
-    m = rng.random(N) < 0.025
+    m = rng.random(N) < 0.05
     df.loc[m, c] = np.nan
 
 # MAR by IMD (1–2) and age >=75
+# Rates raised so that total missingness on key teaching vars reaches ~10-15%
 for c in ["fruit_veg_g_d","fibre_g_d","plasma_vitC_umol_L"]:
-    m = (rng.random(N) < (0.03 + 0.015*((IMD <= 2).astype(float))))
+    m = (rng.random(N) < (0.05 + 0.03*((IMD <= 2).astype(float))))
     df.loc[m, c] = np.nan
 for c in ["urinary_sodium_mmol_L","salt_g_d","SBP"]:
-    m = (rng.random(N) < (0.03 + 0.02*((age >= 75).astype(float))))
+    m = (rng.random(N) < (0.05 + 0.04*((age >= 75).astype(float))))
     df.loc[m, c] = np.nan
 
-# Tiny MNAR
-m = (rng.random(N) < (0.01*(alcohol > 16)))
-df.loc[m, "alcohol_units_wk"] = np.nan
-m = (rng.random(N) < (0.005*(df["BMI"] > 35)))
+# MAR: smoking_status missing more often in low-SES participants
+m = (rng.random(N) < (0.03 + 0.05*((IMD >= 4).astype(float))))
+df.loc[m, "smoking_status"] = np.nan
+
+# MNAR: BMI more likely missing when BMI is high (reluctance to be weighed)
+m = (rng.random(N) < (0.05 + 0.08*((df["BMI"] > 35).astype(float))))
 df.loc[m, "BMI"] = np.nan
+
+# MNAR: alcohol under-reported at high intake
+m = (rng.random(N) < (0.02*(alcohol > 16)))
+df.loc[m, "alcohol_units_wk"] = np.nan
 
 # -----------------------
 # 9) Write to disk
