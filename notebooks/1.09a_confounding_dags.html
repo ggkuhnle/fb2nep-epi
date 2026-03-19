@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>1.09a – Confounding: Causal Diagrams and Worked Examples – FB2NEP Nutritional Epidemiology</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+</head><body class="nav-sidebar floating nav-fixed"><img src="https://kuhnle.co.uk/pixel.png" width="1" height="1" style="display:none" alt="">
+
+
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">FB2NEP Nutritional Epidemiology</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../assessment/index.html"> 
+<span class="menu-text">Assessment</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">1.09a – Confounding: Causal Diagrams and Worked Examples</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FB2NEP — Nutritional Epidemiology</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Notebooks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">notebooks/*.ipynb</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Sandbox</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../howto_sandbox/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FB2NEP — How‑To &amp; Sandbox (Colab/Jupyter)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#structure" id="toc-structure" class="nav-link active" data-scroll-target="#structure"><span class="header-section-number">1</span> Structure</a></li>
+  <li><a href="#how-to-read-a-dag" id="toc-how-to-read-a-dag" class="nav-link" data-scroll-target="#how-to-read-a-dag"><span class="header-section-number">2</span> How to read a DAG</a></li>
+  <li><a href="#example-1-age-confounds-physical-activity-cvd" id="toc-example-1-age-confounds-physical-activity-cvd" class="nav-link" data-scroll-target="#example-1-age-confounds-physical-activity-cvd"><span class="header-section-number">3</span> Example 1 — Age confounds Physical Activity → CVD</a></li>
+  <li><a href="#example-2-sex-confounds-supplement-use-bmi" id="toc-example-2-sex-confounds-supplement-use-bmi" class="nav-link" data-scroll-target="#example-2-sex-confounds-supplement-use-bmi"><span class="header-section-number">4</span> Example 2 — Sex confounds Supplement use → BMI</a></li>
+  <li><a href="#example-3-multiple-backdoor-paths-ses-diet-smoking-and-cvd" id="toc-example-3-multiple-backdoor-paths-ses-diet-smoking-and-cvd" class="nav-link" data-scroll-target="#example-3-multiple-backdoor-paths-ses-diet-smoking-and-cvd"><span class="header-section-number">5</span> Example 3 — Multiple backdoor paths: SES, diet, smoking, and CVD</a></li>
+  <li><a href="#example-4-positive-confounding-smoking-makes-coffee-look-dangerous" id="toc-example-4-positive-confounding-smoking-makes-coffee-look-dangerous" class="nav-link" data-scroll-target="#example-4-positive-confounding-smoking-makes-coffee-look-dangerous"><span class="header-section-number">6</span> Example 4 — Positive confounding: smoking makes coffee look dangerous</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">7</span> Summary</a>
+  <ul class="collapse">
+  <li><a href="#checklist-before-fitting-any-regression-model" id="toc-checklist-before-fitting-any-regression-model" class="nav-link" data-scroll-target="#checklist-before-fitting-any-regression-model"><span class="header-section-number">7.1</span> Checklist before fitting any regression model</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/ggkuhnle/fb2nep-epi/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.09a_confounding_dags.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">1.09a – Confounding: Causal Diagrams and Worked Examples</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Version 1.0.0</p>
+<p>This notebook is a hands-on companion to Workbook 1.09. Where 1.09 introduces the vocabulary of confounding, <strong>this notebook shows it in action</strong> — with proper DAGs and synthetic datasets where every parameter is known, so you can see exactly how much a crude estimate lies and why adjustment fixes it.</p>
+<section id="structure" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="structure"><span class="header-section-number">1</span> Structure</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Example</th>
+<th>Exposure</th>
+<th>Outcome</th>
+<th>Confounder(s)</th>
+<th>Bias direction</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Physical activity</td>
+<td>CVD</td>
+<td>Age</td>
+<td>Over-estimates protection</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Supplement use</td>
+<td>BMI</td>
+<td>Sex</td>
+<td>Spurious protection</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Diet quality</td>
+<td>CVD</td>
+<td>SES + smoking</td>
+<td>Two backdoor paths</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Coffee</td>
+<td>CVD</td>
+<td>Smoking</td>
+<td>Spurious <em>harm</em> (positive confounding)</td>
+</tr>
+</tbody>
+</table>
+<p>Each example follows three steps: <strong>DAG → Simulate → Compare estimates</strong>.</p>
+<div id="bootstrap" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># FB2NEP bootstrap cell (works locally and in Colab).</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os, sys, pathlib, subprocess, importlib.util</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>REPO_URL <span class="op">=</span> <span class="st">"https://github.com/ggkuhnle/fb2nep-epi.git"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>REPO_DIR <span class="op">=</span> <span class="st">"fb2nep-epi"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>cwd <span class="op">=</span> pathlib.Path.cwd()</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (cwd <span class="op">/</span> <span class="st">"scripts"</span> <span class="op">/</span> <span class="st">"bootstrap.py"</span>).is_file():</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    repo_root <span class="op">=</span> cwd</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    repo_root <span class="op">=</span> cwd <span class="op">/</span> REPO_DIR</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> repo_root.is_dir():</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Cloning </span><span class="sc">{</span>REPO_URL<span class="sc">}</span><span class="ss"> ..."</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        subprocess.run([<span class="st">"git"</span>, <span class="st">"clone"</span>, REPO_URL, <span class="bu">str</span>(repo_root)], check<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        subprocess.run([<span class="st">"git"</span>, <span class="st">"-C"</span>, <span class="bu">str</span>(repo_root), <span class="st">"pull"</span>], check<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    os.chdir(repo_root)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    repo_root <span class="op">=</span> pathlib.Path.cwd()</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Repository root: </span><span class="sc">{</span>repo_root<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>bootstrap_path <span class="op">=</span> repo_root <span class="op">/</span> <span class="st">"scripts"</span> <span class="op">/</span> <span class="st">"bootstrap.py"</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> bootstrap_path.is_file():</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(bootstrap_path)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>spec <span class="op">=</span> importlib.util.spec_from_file_location(<span class="st">"fb2nep_bootstrap"</span>, bootstrap_path)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>bootstrap <span class="op">=</span> importlib.util.module_from_spec(spec)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>sys.modules[<span class="st">"fb2nep_bootstrap"</span>] <span class="op">=</span> bootstrap</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>spec.loader.exec_module(bootstrap)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>df, CTX <span class="op">=</span> bootstrap.init()</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Bootstrap complete — df shape:"</span>, df.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="setup" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports and reusable plotting utilities for this workbook.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> mpatches</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> FancyBboxPatch</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> expit</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({<span class="st">"figure.dpi"</span>: <span class="dv">110</span>, <span class="st">"axes.spines.top"</span>: <span class="va">False</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"axes.spines.right"</span>: <span class="va">False</span>})</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Node colour palette ──────────────────────────────────────────────</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>_NODE <span class="op">=</span> {</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"exposure"</span>:   {<span class="st">"face"</span>: <span class="st">"#1565C0"</span>, <span class="st">"text"</span>: <span class="st">"white"</span>},</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"outcome"</span>:    {<span class="st">"face"</span>: <span class="st">"#B71C1C"</span>, <span class="st">"text"</span>: <span class="st">"white"</span>},</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"confounder"</span>: {<span class="st">"face"</span>: <span class="st">"#E65100"</span>, <span class="st">"text"</span>: <span class="st">"white"</span>},</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mediator"</span>:   {<span class="st">"face"</span>: <span class="st">"#2E7D32"</span>, <span class="st">"text"</span>: <span class="st">"white"</span>},</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"collider"</span>:   {<span class="st">"face"</span>: <span class="st">"#6A1B9A"</span>, <span class="st">"text"</span>: <span class="st">"white"</span>},</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> draw_dag(nodes, edges, title<span class="op">=</span><span class="va">None</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">5</span>)):</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">    Draw a directed acyclic graph with coloured nodes.</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co">    nodes : dict  {id: {"pos":(x,y), "type":str, "label":str}}</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co">    edges : list of dict  {"from":str, "to":str,</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co">                           optional: "label", "style", "rad", "label_dx", "label_dy"}</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>figsize)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(<span class="op">-</span><span class="fl">0.05</span>, <span class="fl">1.05</span>)<span class="op">;</span> ax.set_ylim(<span class="op">-</span><span class="fl">0.05</span>, <span class="fl">1.05</span>)<span class="op">;</span> ax.axis(<span class="st">"off"</span>)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> e <span class="kw">in</span> edges:</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>        x0, y0 <span class="op">=</span> nodes[e[<span class="st">"from"</span>]][<span class="st">"pos"</span>]</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>        x1, y1 <span class="op">=</span> nodes[e[<span class="st">"to"</span>]][<span class="st">"pos"</span>]</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        ls  <span class="op">=</span> <span class="st">"dashed"</span> <span class="cf">if</span> e.get(<span class="st">"style"</span>) <span class="op">==</span> <span class="st">"dashed"</span> <span class="cf">else</span> <span class="st">"solid"</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        col <span class="op">=</span> <span class="st">"#AAAAAA"</span> <span class="cf">if</span> ls <span class="op">==</span> <span class="st">"dashed"</span> <span class="cf">else</span> <span class="st">"#111111"</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        rad <span class="op">=</span> e.get(<span class="st">"rad"</span>, <span class="fl">0.0</span>)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        ax.annotate(<span class="st">""</span>, xy<span class="op">=</span>(x1, y1), xytext<span class="op">=</span>(x0, y0), zorder<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>                    arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">"-|&gt;"</span>, color<span class="op">=</span>col, lw<span class="op">=</span><span class="fl">2.2</span>,</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>                                   linestyle<span class="op">=</span>ls,</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>                                   connectionstyle<span class="op">=</span><span class="ss">f"arc3,rad=</span><span class="sc">{</span>rad<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>                                   shrinkA<span class="op">=</span><span class="dv">33</span>, shrinkB<span class="op">=</span><span class="dv">33</span>, mutation_scale<span class="op">=</span><span class="dv">20</span>))</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="st">"label"</span> <span class="kw">in</span> e:</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>            mx <span class="op">=</span> (x0<span class="op">+</span>x1)<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> e.get(<span class="st">"label_dx"</span>, <span class="fl">0.0</span>)</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>            my <span class="op">=</span> (y0<span class="op">+</span>y1)<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> e.get(<span class="st">"label_dy"</span>, <span class="fl">0.05</span>)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>            ax.text(mx, my, e[<span class="st">"label"</span>], ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"bottom"</span>,</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>                    fontsize<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span><span class="st">"#555555"</span>, style<span class="op">=</span><span class="st">"italic"</span>)</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> nid, n <span class="kw">in</span> nodes.items():</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>        x, y <span class="op">=</span> n[<span class="st">"pos"</span>]<span class="op">;</span> w, h <span class="op">=</span> <span class="fl">0.24</span>, <span class="fl">0.13</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>        fc <span class="op">=</span> _NODE[n.get(<span class="st">"type"</span>,<span class="st">"exposure"</span>)][<span class="st">"face"</span>]</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>        tc <span class="op">=</span> _NODE[n.get(<span class="st">"type"</span>,<span class="st">"exposure"</span>)][<span class="st">"text"</span>]</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>        ax.add_patch(FancyBboxPatch((x<span class="op">-</span>w<span class="op">/</span><span class="dv">2</span>, y<span class="op">-</span>h<span class="op">/</span><span class="dv">2</span>), w, h,</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>                                    boxstyle<span class="op">=</span><span class="st">"round,pad=0.015"</span>,</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>                                    facecolor<span class="op">=</span>fc, edgecolor<span class="op">=</span><span class="st">"white"</span>,</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>                                    linewidth<span class="op">=</span><span class="fl">2.5</span>, zorder<span class="op">=</span><span class="dv">3</span>))</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>        ax.text(x, y, n.get(<span class="st">"label"</span>, nid), ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>,</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>                color<span class="op">=</span>tc, fontsize<span class="op">=</span><span class="dv">10</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, zorder<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    handles <span class="op">=</span> [mpatches.Patch(facecolor<span class="op">=</span>v[<span class="st">"face"</span>], label<span class="op">=</span>k.capitalize(),</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>                               edgecolor<span class="op">=</span><span class="st">"white"</span>) <span class="cf">for</span> k, v <span class="kw">in</span> _NODE.items()]</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    ax.legend(handles<span class="op">=</span>handles, loc<span class="op">=</span><span class="st">"lower right"</span>, fontsize<span class="op">=</span><span class="dv">8</span>,</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>              framealpha<span class="op">=</span><span class="fl">0.85</span>, ncol<span class="op">=</span><span class="bu">len</span>(handles))</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> title:</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>        ax.set_title(title, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, pad<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()<span class="op">;</span> plt.show()</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> or_plot(estimates, title<span class="op">=</span><span class="st">""</span>, xlabel<span class="op">=</span><span class="st">"Odds Ratio"</span>, ref<span class="op">=</span><span class="fl">1.0</span>, per_unit<span class="op">=</span><span class="st">""</span>):</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="co">    Horizontal forest-style comparison plot.</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="co">    estimates: list of {"label", "est", "lo", "hi", "color"}</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(estimates)</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">0.85</span><span class="op">*</span>n <span class="op">+</span> <span class="fl">1.4</span>))</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>    xmax <span class="op">=</span> <span class="bu">max</span>(e[<span class="st">"hi"</span>] <span class="cf">for</span> e <span class="kw">in</span> estimates) <span class="op">*</span> <span class="fl">1.25</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, e <span class="kw">in</span> <span class="bu">enumerate</span>(estimates):</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>        ax.errorbar(e[<span class="st">"est"</span>], i,</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>                    xerr<span class="op">=</span>[[e[<span class="st">"est"</span>]<span class="op">-</span>e[<span class="st">"lo"</span>]], [e[<span class="st">"hi"</span>]<span class="op">-</span>e[<span class="st">"est"</span>]]],</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>                    fmt<span class="op">=</span><span class="st">"o"</span>, color<span class="op">=</span>e[<span class="st">"color"</span>], markersize<span class="op">=</span><span class="dv">11</span>,</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>                    capsize<span class="op">=</span><span class="dv">6</span>, lw<span class="op">=</span><span class="fl">2.2</span>, elinewidth<span class="op">=</span><span class="fl">2.2</span>)</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>        ax.text(e[<span class="st">"hi"</span>] <span class="op">+</span> <span class="fl">0.005</span><span class="op">*</span>xmax, i,</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>                <span class="ss">f'  </span><span class="sc">{</span>e[<span class="st">"est"</span>]<span class="sc">:.3f}</span><span class="ss">  (</span><span class="sc">{</span>e[<span class="st">"lo"</span>]<span class="sc">:.3f}</span><span class="ss">–</span><span class="sc">{</span>e[<span class="st">"hi"</span>]<span class="sc">:.3f}</span><span class="ss">)'</span>,</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>                va<span class="op">=</span><span class="st">"center"</span>, ha<span class="op">=</span><span class="st">"left"</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>    ax.axvline(ref, color<span class="op">=</span><span class="st">"#999999"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="fl">1.5</span>, zorder<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>    ax.set_yticks(<span class="bu">range</span>(n))</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>    ax.set_yticklabels([e[<span class="st">"label"</span>] <span class="cf">for</span> e <span class="kw">in</span> estimates], fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(xlabel <span class="op">+</span> (<span class="ss">f"  [</span><span class="sc">{</span>per_unit<span class="sc">}</span><span class="ss">]"</span> <span class="cf">if</span> per_unit <span class="cf">else</span> <span class="st">""</span>), fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(<span class="dv">0</span>, xmax)</span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>    ax.set_title(title, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>    ax.grid(axis<span class="op">=</span><span class="st">"x"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()<span class="op">;</span> plt.show()</span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_or(model, var, scale<span class="op">=</span><span class="fl">1.0</span>):</span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>    b  <span class="op">=</span> model.params[var] <span class="op">*</span> scale</span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>    ci <span class="op">=</span> model.conf_int().loc[var] <span class="op">*</span> scale</span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.exp(b), np.exp(ci.iloc[<span class="dv">0</span>]), np.exp(ci.iloc[<span class="dv">1</span>])</span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_beta(model, var):</span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>    b  <span class="op">=</span> model.params[var]</span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>    ci <span class="op">=</span> model.conf_int().loc[var]</span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> b, ci.iloc[<span class="dv">0</span>], ci.iloc[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="how-to-read-a-dag" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="how-to-read-a-dag"><span class="header-section-number">2</span> How to read a DAG</h2>
+<p>A <strong>directed acyclic graph</strong> (DAG) is a formal statement of causal assumptions. Each node is a variable; each arrow → is a direct causal effect.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Node colour</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>🔵 Blue</td>
+<td><strong>Exposure</strong> — the variable whose effect we want to estimate</td>
+</tr>
+<tr class="even">
+<td>🔴 Red</td>
+<td><strong>Outcome</strong></td>
+</tr>
+<tr class="odd">
+<td>🟠 Orange</td>
+<td><strong>Confounder</strong> — common cause of exposure and outcome</td>
+</tr>
+<tr class="even">
+<td>🟢 Green</td>
+<td><strong>Mediator</strong> — lies on the causal pathway exposure → outcome</td>
+</tr>
+<tr class="odd">
+<td>🟣 Purple</td>
+<td><strong>Collider</strong> — caused by both exposure and outcome</td>
+</tr>
+</tbody>
+</table>
+<p>A <strong>backdoor path</strong> is a path connecting the exposure to the outcome that begins with an arrow <em>into</em> the exposure — written as (exposure ← … → outcome). Such paths are non-causal: they arise when a common cause (confounder) influences both the exposure and the outcome, creating a spurious statistical association. To estimate the causal effect of exposure on outcome we must <strong>block every backdoor path</strong>, typically by conditioning on (adjusting for) the confounders that open them.</p>
+<p><strong>Further reading:</strong> Krishna NS, Kalyanasundaram M, Bhatnagar T. An Open Path to DAG: Navigating Causal Inference in Epidemiological Research. <em>Indian J Community Med.</em> 2025. PMID: 40837172</p>
+</section>
+<section id="example-1-age-confounds-physical-activity-cvd" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="example-1-age-confounds-physical-activity-cvd"><span class="header-section-number">3</span> Example 1 — Age confounds Physical Activity → CVD</h2>
+<p><strong>Research question</strong>: Does higher physical activity protect against cardiovascular disease?</p>
+<p><strong>The problem</strong>: Age drives <em>both</em> variables simultaneously. Older people are less active <strong>and</strong> face higher CVD risk. This creates a backdoor path:</p>
+<blockquote class="blockquote">
+<p>PA ← Age → CVD</p>
+</blockquote>
+<p>Because age simultaneously suppresses PA and raises CVD risk, the crude PA–CVD association will appear <em>more protective</em> than the true causal effect — age amplifies the apparent benefit. After adjusting for age, the estimate shrinks towards (but stays below) 1: the protection is real, but smaller than the crude figure suggested.</p>
+<div id="ex1_dag" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nodes_ex1 <span class="op">=</span> {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"age"</span>: {<span class="st">"pos"</span>: (<span class="fl">0.50</span>, <span class="fl">0.82</span>), <span class="st">"type"</span>: <span class="st">"confounder"</span>, <span class="st">"label"</span>: <span class="st">"Age"</span>},</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pa"</span>:  {<span class="st">"pos"</span>: (<span class="fl">0.12</span>, <span class="fl">0.25</span>), <span class="st">"type"</span>: <span class="st">"exposure"</span>,   <span class="st">"label"</span>: <span class="st">"Physical</span><span class="ch">\n</span><span class="st">activity"</span>},</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cvd"</span>: {<span class="st">"pos"</span>: (<span class="fl">0.88</span>, <span class="fl">0.25</span>), <span class="st">"type"</span>: <span class="st">"outcome"</span>,    <span class="st">"label"</span>: <span class="st">"CVD</span><span class="ch">\n</span><span class="st">event"</span>},</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>edges_ex1 <span class="op">=</span> [</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"from"</span>: <span class="st">"age"</span>, <span class="st">"to"</span>: <span class="st">"pa"</span>,  <span class="st">"label"</span>: <span class="st">"older → less active"</span>,  <span class="st">"label_dx"</span>: <span class="op">-</span><span class="fl">0.07</span>, <span class="st">"label_dy"</span>: <span class="fl">0.04</span>},</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"from"</span>: <span class="st">"age"</span>, <span class="st">"to"</span>: <span class="st">"cvd"</span>, <span class="st">"label"</span>: <span class="st">"older → higher risk"</span>,  <span class="st">"label_dx"</span>:  <span class="fl">0.07</span>, <span class="st">"label_dy"</span>: <span class="fl">0.04</span>},</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"from"</span>: <span class="st">"pa"</span>,  <span class="st">"to"</span>: <span class="st">"cvd"</span>, <span class="st">"label"</span>: <span class="st">"true protective effect (what we want)"</span>, <span class="st">"label_dy"</span>: <span class="fl">0.04</span>},</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>draw_dag(nodes_ex1, edges_ex1,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>         title<span class="op">=</span><span class="st">"Example 1 — Backdoor path: PA ← Age → CVD"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="ex1_sim" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data-generating model (known truth):</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   age     ~ Uniform(30, 80)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   pa_mets = 36 - 0.45·age + N(0,7)   [MET-h/wk, floor 0]</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   log-odds(CVD) = -6.2 + 0.09·age - 0.06·pa_mets</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># True log-OR for PA per MET-h/wk: -0.06</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># True OR per 10 MET-h/wk: exp(-0.60) = 0.549</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>rng1 <span class="op">=</span> np.random.default_rng(<span class="dv">42</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>N1   <span class="op">=</span> <span class="dv">3000</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>age1    <span class="op">=</span> rng1.uniform(<span class="dv">30</span>, <span class="dv">80</span>, N1)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>pa1     <span class="op">=</span> np.clip(<span class="dv">36</span> <span class="op">-</span> <span class="fl">0.45</span><span class="op">*</span>age1 <span class="op">+</span> rng1.normal(<span class="dv">0</span>, <span class="dv">7</span>, N1), <span class="dv">0</span>, <span class="dv">70</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>cvd1    <span class="op">=</span> rng1.binomial(<span class="dv">1</span>, expit(<span class="op">-</span><span class="fl">6.2</span> <span class="op">+</span> <span class="fl">0.09</span><span class="op">*</span>age1 <span class="op">-</span> <span class="fl">0.06</span><span class="op">*</span>pa1), N1)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.DataFrame({<span class="st">"age"</span>: age1, <span class="st">"pa"</span>: pa1, <span class="st">"cvd"</span>: cvd1})</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"N=</span><span class="sc">{</span>N1<span class="sc">}</span><span class="ss">  CVD events: </span><span class="sc">{</span>cvd1<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>cvd1<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss">%)"</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"PA  mean </span><span class="sc">{</span>pa1<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss"> MET-h/wk  SD </span><span class="sc">{</span>pa1<span class="sc">.</span>std()<span class="sc">:.1f}</span><span class="ss">"</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Age mean </span><span class="sc">{</span>age1<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss"> yr        SD </span><span class="sc">{</span>age1<span class="sc">.</span>std()<span class="sc">:.1f}</span><span class="ss">"</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">True OR per 10 MET-h/wk: </span><span class="sc">{</span>np<span class="sc">.</span>exp(<span class="op">-</span><span class="fl">0.06</span><span class="op">*</span><span class="dv">10</span>)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co"># ── visualise the confounding ────────────────────────────────────────</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>age_q <span class="op">=</span> pd.qcut(age1, <span class="dv">3</span>, labels<span class="op">=</span>[<span class="st">"Young 30–47"</span>, <span class="st">"Middle 47–63"</span>, <span class="st">"Older 63–80"</span>])</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>palette <span class="op">=</span> [<span class="st">"#1565C0"</span>, <span class="st">"#F57F17"</span>, <span class="st">"#B71C1C"</span>]</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col, (lbl, grp) <span class="kw">in</span> <span class="bu">zip</span>(palette, df1.groupby(age_q, observed<span class="op">=</span><span class="va">True</span>)):</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    jit <span class="op">=</span> rng1.uniform(<span class="op">-</span><span class="fl">0.03</span>, <span class="fl">0.03</span>, <span class="bu">len</span>(grp))</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].scatter(grp[<span class="st">"pa"</span>], grp[<span class="st">"cvd"</span>]<span class="op">+</span>jit, alpha<span class="op">=</span><span class="fl">0.25</span>, s<span class="op">=</span><span class="dv">7</span>, color<span class="op">=</span>col, label<span class="op">=</span>lbl)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">"Physical activity (MET-h/wk)"</span>)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">"CVD (jittered)"</span>)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"PA vs CVD — colour = age group</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Older people cluster bottom-right (low PA, high CVD)"</span>)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col, (lbl, grp) <span class="kw">in</span> <span class="bu">zip</span>(palette, df1.groupby(age_q, observed<span class="op">=</span><span class="va">True</span>)):</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].scatter(grp[<span class="st">"age"</span>], grp[<span class="st">"pa"</span>], alpha<span class="op">=</span><span class="fl">0.2</span>, s<span class="op">=</span><span class="dv">7</span>, color<span class="op">=</span>col)</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">"Age (years)"</span>)<span class="op">;</span> axes[<span class="dv">1</span>].set_ylabel(<span class="st">"PA (MET-h/wk)"</span>)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"Age → PA: the confounding mechanism</span><span class="ch">\n</span><span class="st">(older → less active)"</span>)</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="ex1_analysis" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>m1_crude <span class="op">=</span> smf.logit(<span class="st">"cvd ~ pa"</span>,       data<span class="op">=</span>df1).fit(disp<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>m1_adj   <span class="op">=</span> smf.logit(<span class="st">"cvd ~ pa + age"</span>, data<span class="op">=</span>df1).fit(disp<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>true_or1           <span class="op">=</span> np.exp(<span class="op">-</span><span class="fl">0.06</span> <span class="op">*</span> <span class="dv">10</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>or1c, lo1c, hi1c   <span class="op">=</span> get_or(m1_crude, <span class="st">"pa"</span>, <span class="dv">10</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>or1a, lo1a, hi1a   <span class="op">=</span> get_or(m1_adj,   <span class="st">"pa"</span>, <span class="dv">10</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"OR per 10 MET-h/wk:"</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  True (by construction) : </span><span class="sc">{</span>true_or1<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Crude                  : </span><span class="sc">{</span>or1c<span class="sc">:.3f}</span><span class="ss">  (95% CI </span><span class="sc">{</span>lo1c<span class="sc">:.3f}</span><span class="ss">–</span><span class="sc">{</span>hi1c<span class="sc">:.3f}</span><span class="ss">)"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Adjusted (+ age)       : </span><span class="sc">{</span>or1a<span class="sc">:.3f}</span><span class="ss">  (95% CI </span><span class="sc">{</span>lo1a<span class="sc">:.3f}</span><span class="ss">–</span><span class="sc">{</span>hi1a<span class="sc">:.3f}</span><span class="ss">)"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Bias: crude over-estimates protection by </span><span class="sc">{</span>true_or1 <span class="op">-</span> or1c<span class="sc">:+.3f}</span><span class="ss"> OR units"</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>or_plot([</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"label"</span>: <span class="st">"True (by construction)"</span>, <span class="st">"est"</span>: true_or1, <span class="st">"lo"</span>: true_or1, <span class="st">"hi"</span>: true_or1, <span class="st">"color"</span>: <span class="st">"#4CAF50"</span>},</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"label"</span>: <span class="st">"Crude (unadjusted)"</span>,     <span class="st">"est"</span>: or1c,     <span class="st">"lo"</span>: lo1c,     <span class="st">"hi"</span>: hi1c,     <span class="st">"color"</span>: <span class="st">"#F44336"</span>},</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"label"</span>: <span class="st">"Adjusted (+ age)"</span>,       <span class="st">"est"</span>: or1a,     <span class="st">"lo"</span>: lo1a,     <span class="st">"hi"</span>: hi1a,     <span class="st">"color"</span>: <span class="st">"#1565C0"</span>},</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>], title<span class="op">=</span><span class="st">"Example 1: PA → CVD, confounded by age"</span>, per_unit<span class="op">=</span><span class="st">"per 10 MET-h/wk"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="example-2-sex-confounds-supplement-use-bmi" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="example-2-sex-confounds-supplement-use-bmi"><span class="header-section-number">4</span> Example 2 — Sex confounds Supplement use → BMI</h2>
+<p><strong>Research question</strong>: Do people who take dietary supplements have a lower BMI?</p>
+<p><strong>The trap</strong>: Women take supplements more often than men <em>and</em> have a lower mean BMI. Sex is a common cause of both variables — a classic <strong>demographic confounder</strong>.</p>
+<p>The crude analysis will suggest supplements are associated with lower BMI. The true causal effect of the supplements is <strong>zero</strong>. After adjusting for sex, the association vanishes completely.</p>
+<p>This pattern is called <strong>healthy-user bias</strong>: supplement takers differ from non-takers on many characteristics unrelated to the supplement itself.</p>
+<div id="ex2_dag" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>nodes_ex2 <span class="op">=</span> {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sex"</span>:  {<span class="st">"pos"</span>: (<span class="fl">0.50</span>, <span class="fl">0.82</span>), <span class="st">"type"</span>: <span class="st">"confounder"</span>, <span class="st">"label"</span>: <span class="st">"Sex"</span>},</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"supp"</span>: {<span class="st">"pos"</span>: (<span class="fl">0.12</span>, <span class="fl">0.25</span>), <span class="st">"type"</span>: <span class="st">"exposure"</span>,   <span class="st">"label"</span>: <span class="st">"Supplement</span><span class="ch">\n</span><span class="st">use"</span>},</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"bmi"</span>:  {<span class="st">"pos"</span>: (<span class="fl">0.88</span>, <span class="fl">0.25</span>), <span class="st">"type"</span>: <span class="st">"outcome"</span>,    <span class="st">"label"</span>: <span class="st">"BMI"</span>},</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>edges_ex2 <span class="op">=</span> [</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"from"</span>: <span class="st">"sex"</span>, <span class="st">"to"</span>: <span class="st">"supp"</span>, <span class="st">"label"</span>: <span class="st">"women take more supplements"</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>     <span class="st">"label_dx"</span>: <span class="op">-</span><span class="fl">0.08</span>, <span class="st">"label_dy"</span>: <span class="fl">0.04</span>},</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"from"</span>: <span class="st">"sex"</span>, <span class="st">"to"</span>: <span class="st">"bmi"</span>,  <span class="st">"label"</span>: <span class="st">"women have lower mean BMI"</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>     <span class="st">"label_dx"</span>:  <span class="fl">0.08</span>, <span class="st">"label_dy"</span>: <span class="fl">0.04</span>},</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># No supp → bmi arrow: zero true causal effect</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>draw_dag(nodes_ex2, edges_ex2,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>         title<span class="op">=</span><span class="st">"Example 2 — Sex confounds supplement use → BMI</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>               <span class="st">"(no supp → BMI arrow: the crude association is entirely spurious)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="ex2_sim" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data-generating model:</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   sex   ~ Bernoulli(0.50)   [1 = female]</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   BMI   = 27.8 - 3.2·sex + N(0, 4.5)</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   p(supp) = 0.12 + 0.32·sex   → females 44%, males 12%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   True effect of supplements on BMI: ZERO</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>rng2 <span class="op">=</span> np.random.default_rng(<span class="dv">99</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>N2   <span class="op">=</span> <span class="dv">2500</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>sex2  <span class="op">=</span> rng2.binomial(<span class="dv">1</span>, <span class="fl">0.50</span>, N2)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>bmi2  <span class="op">=</span> np.clip(<span class="fl">27.8</span> <span class="op">-</span> <span class="fl">3.2</span><span class="op">*</span>sex2 <span class="op">+</span> rng2.normal(<span class="dv">0</span>, <span class="fl">4.5</span>, N2), <span class="dv">16</span>, <span class="dv">50</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>supp2 <span class="op">=</span> rng2.binomial(<span class="dv">1</span>, <span class="fl">0.12</span> <span class="op">+</span> <span class="fl">0.32</span><span class="op">*</span>sex2, N2)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>df2   <span class="op">=</span> pd.DataFrame({<span class="st">"sex"</span>: sex2, <span class="st">"supp"</span>: supp2, <span class="st">"bmi"</span>: bmi2})</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ── descriptive table ────────────────────────────────────────────────</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>tbl <span class="op">=</span> df2.groupby([<span class="st">"sex"</span>,<span class="st">"supp"</span>])[<span class="st">"bmi"</span>].agg([<span class="st">"mean"</span>,<span class="st">"count"</span>])</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>tbl.index <span class="op">=</span> tbl.index.set_levels([<span class="st">"Male"</span>,<span class="st">"Female"</span>], level<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>tbl.index <span class="op">=</span> tbl.index.set_levels([<span class="st">"No supp"</span>,<span class="st">"Supp"</span>], level<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tbl.rename(columns<span class="op">=</span>{<span class="st">"mean"</span>:<span class="st">"mean BMI"</span>,<span class="st">"count"</span>:<span class="st">"n"</span>}).<span class="bu">round</span>(<span class="dv">2</span>))</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co"># ── visualise ────────────────────────────────────────────────────────</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> {<span class="dv">0</span>: <span class="st">"#1565C0"</span>, <span class="dv">1</span>: <span class="st">"#C62828"</span>}</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>lbl <span class="op">=</span> {<span class="dv">0</span>: <span class="st">"Male"</span>, <span class="dv">1</span>: <span class="st">"Female"</span>}</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s, grp <span class="kw">in</span> df2.groupby(<span class="st">"sex"</span>):</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    jit <span class="op">=</span> rng2.uniform(<span class="op">-</span><span class="fl">0.12</span>, <span class="fl">0.12</span>, <span class="bu">len</span>(grp))</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].scatter(grp[<span class="st">"supp"</span>]<span class="op">+</span>jit, grp[<span class="st">"bmi"</span>],</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>                    alpha<span class="op">=</span><span class="fl">0.18</span>, s<span class="op">=</span><span class="dv">7</span>, color<span class="op">=</span>c[s], label<span class="op">=</span>lbl[s])</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> sv <span class="kw">in</span> [<span class="dv">0</span>, <span class="dv">1</span>]:</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>        sub <span class="op">=</span> grp[grp[<span class="st">"supp"</span>]<span class="op">==</span>sv]</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>        axes[<span class="dv">0</span>].plot(sv, sub[<span class="st">"bmi"</span>].mean(), <span class="st">"D"</span>, color<span class="op">=</span>c[s],</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>                     markersize<span class="op">=</span><span class="dv">12</span>, markeredgecolor<span class="op">=</span><span class="st">"white"</span>, markeredgewidth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xticks([<span class="dv">0</span>,<span class="dv">1</span>])<span class="op">;</span> axes[<span class="dv">0</span>].set_xticklabels([<span class="st">"No supplement"</span>,<span class="st">"Uses supplement"</span>])</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">"BMI (kg/m²)"</span>)</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Crude view: supplement users appear lighter</span><span class="ch">\n</span><span class="st">(diamonds = group means)"</span>)</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend()</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> [df2[(df2.sex<span class="op">==</span>s)<span class="op">&amp;</span>(df2.supp<span class="op">==</span>sv)][<span class="st">"bmi"</span>]</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>          <span class="cf">for</span> s <span class="kw">in</span> [<span class="dv">0</span>,<span class="dv">1</span>] <span class="cf">for</span> sv <span class="kw">in</span> [<span class="dv">0</span>,<span class="dv">1</span>]]</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>bp <span class="op">=</span> axes[<span class="dv">1</span>].boxplot(groups, patch_artist<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>                     boxprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"#CFD8DC"</span>),</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>                     medianprops<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">"#B71C1C"</span>, lw<span class="op">=</span><span class="dv">2</span>))</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xticks([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>])</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xticklabels([<span class="st">"Male</span><span class="ch">\n</span><span class="st">no supp"</span>,<span class="st">"Male</span><span class="ch">\n</span><span class="st">supp"</span>,<span class="st">"Female</span><span class="ch">\n</span><span class="st">no supp"</span>,<span class="st">"Female</span><span class="ch">\n</span><span class="st">supp"</span>],</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>                        fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">"BMI (kg/m²)"</span>)</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"Stratified by sex: supplements make no difference</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"(the confounding disappears)"</span>)</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="co"># ── regression ───────────────────────────────────────────────────────</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>m2_crude <span class="op">=</span> smf.ols(<span class="st">"bmi ~ supp"</span>,       data<span class="op">=</span>df2).fit()</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>m2_adj   <span class="op">=</span> smf.ols(<span class="st">"bmi ~ supp + sex"</span>, data<span class="op">=</span>df2).fit()</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>b2c, lo2c, hi2c <span class="op">=</span> get_beta(m2_crude, <span class="st">"supp"</span>)</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>b2a, lo2a, hi2a <span class="op">=</span> get_beta(m2_adj,   <span class="st">"supp"</span>)</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">BMI difference associated with supplement use (kg/m²):"</span>)</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  True (by construction) :  0.000"</span>)</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Crude                  : </span><span class="sc">{</span>b2c<span class="sc">:+.3f}</span><span class="ss">  (95% CI </span><span class="sc">{</span>lo2c<span class="sc">:+.3f}</span><span class="ss"> to </span><span class="sc">{</span>hi2c<span class="sc">:+.3f}</span><span class="ss">)"</span>)</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Adjusted (+ sex)       : </span><span class="sc">{</span>b2a<span class="sc">:+.3f}</span><span class="ss">  (95% CI </span><span class="sc">{</span>lo2a<span class="sc">:+.3f}</span><span class="ss"> to </span><span class="sc">{</span>hi2a<span class="sc">:+.3f}</span><span class="ss">)"</span>)</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>or_plot([</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"label"</span>: <span class="st">"True (by construction)"</span>, <span class="st">"est"</span>: <span class="fl">0.0</span>,  <span class="st">"lo"</span>: <span class="fl">0.0</span>,  <span class="st">"hi"</span>: <span class="fl">0.0</span>,  <span class="st">"color"</span>: <span class="st">"#4CAF50"</span>},</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"label"</span>: <span class="st">"Crude"</span>,                  <span class="st">"est"</span>: b2c,  <span class="st">"lo"</span>: lo2c, <span class="st">"hi"</span>: hi2c, <span class="st">"color"</span>: <span class="st">"#F44336"</span>},</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"label"</span>: <span class="st">"Adjusted (+ sex)"</span>,       <span class="st">"est"</span>: b2a,  <span class="st">"lo"</span>: lo2a, <span class="st">"hi"</span>: hi2a, <span class="st">"color"</span>: <span class="st">"#1565C0"</span>},</span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>], title<span class="op">=</span><span class="st">"Example 2: Supplement use → BMI, confounded by sex"</span>,</span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>   xlabel<span class="op">=</span><span class="st">"β (BMI kg/m² per supplement use)"</span>, ref<span class="op">=</span><span class="fl">0.0</span>,</span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>   per_unit<span class="op">=</span><span class="st">"supplement vs no supplement"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="example-3-multiple-backdoor-paths-ses-diet-smoking-and-cvd" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="example-3-multiple-backdoor-paths-ses-diet-smoking-and-cvd"><span class="header-section-number">5</span> Example 3 — Multiple backdoor paths: SES, diet, smoking, and CVD</h2>
+<p>This example raises the stakes. Socioeconomic status (SES) simultaneously:</p>
+<ul>
+<li>Drives <strong>diet quality</strong> (higher SES → better diet)</li>
+<li>Drives <strong>smoking</strong> (higher SES → less smoking)</li>
+<li>Has a small <strong>direct</strong> residual effect on CVD (healthcare access, stress, etc.)</li>
+</ul>
+<p>We want to estimate the causal effect of <strong>diet quality on CVD</strong>. The true effect exists, but SES opens <em>two</em> backdoor paths:</p>
+<blockquote class="blockquote">
+<p>Diet ← SES → CVD Diet ← SES → Smoking → CVD</p>
+</blockquote>
+<p>Adjusting for SES alone partially corrects the estimate — the second backdoor (through smoking) is still open. Only when we adjust for <strong>both SES and smoking</strong> do we recover the true effect. This illustrates why a single adjustment is often not enough.</p>
+<div id="ex3_dag" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nodes_ex3 <span class="op">=</span> {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ses"</span>:     {<span class="st">"pos"</span>: (<span class="fl">0.50</span>, <span class="fl">0.88</span>), <span class="st">"type"</span>: <span class="st">"confounder"</span>, <span class="st">"label"</span>: <span class="st">"SES"</span>},</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"diet"</span>:    {<span class="st">"pos"</span>: (<span class="fl">0.10</span>, <span class="fl">0.48</span>), <span class="st">"type"</span>: <span class="st">"exposure"</span>,   <span class="st">"label"</span>: <span class="st">"Diet</span><span class="ch">\n</span><span class="st">quality"</span>},</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"smoking"</span>: {<span class="st">"pos"</span>: (<span class="fl">0.50</span>, <span class="fl">0.48</span>), <span class="st">"type"</span>: <span class="st">"confounder"</span>, <span class="st">"label"</span>: <span class="st">"Smoking"</span>},</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cvd"</span>:     {<span class="st">"pos"</span>: (<span class="fl">0.90</span>, <span class="fl">0.15</span>), <span class="st">"type"</span>: <span class="st">"outcome"</span>,    <span class="st">"label"</span>: <span class="st">"CVD</span><span class="ch">\n</span><span class="st">event"</span>},</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>edges_ex3 <span class="op">=</span> [</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"from"</span>: <span class="st">"ses"</span>,     <span class="st">"to"</span>: <span class="st">"diet"</span>,    <span class="st">"label"</span>: <span class="st">"↑SES→better diet"</span>,   <span class="st">"label_dx"</span>: <span class="op">-</span><span class="fl">0.10</span>},</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"from"</span>: <span class="st">"ses"</span>,     <span class="st">"to"</span>: <span class="st">"smoking"</span>, <span class="st">"label"</span>: <span class="st">"↑SES→less smoking"</span>},</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"from"</span>: <span class="st">"ses"</span>,     <span class="st">"to"</span>: <span class="st">"cvd"</span>,     <span class="st">"label"</span>: <span class="st">"healthcare"</span>, <span class="st">"rad"</span>: <span class="fl">0.25</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>     <span class="st">"label_dx"</span>: <span class="fl">0.07</span>, <span class="st">"label_dy"</span>: <span class="fl">0.04</span>},</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"from"</span>: <span class="st">"diet"</span>,    <span class="st">"to"</span>: <span class="st">"cvd"</span>,     <span class="st">"label"</span>: <span class="st">"true causal effect"</span>},</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"from"</span>: <span class="st">"smoking"</span>, <span class="st">"to"</span>: <span class="st">"cvd"</span>,     <span class="st">"label"</span>: <span class="st">"↑CVD risk"</span>},</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>draw_dag(nodes_ex3, edges_ex3,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>         title<span class="op">=</span><span class="st">"Example 3 — SES opens two backdoor paths to CVD</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Path 1: Diet ← SES → CVD   |   Path 2: Diet ← SES → Smoking → CVD"</span>,</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>         figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="ex3_sim" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data-generating model:</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   SES           ~ Uniform(1,5)</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   diet_score    = 3 + 1.5·SES + N(0, 2.5)         [clipped 1–20]</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   p(smoking)    = expit(1.0 - 0.55·SES)</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   log-odds(CVD) = 1.8 - 0.12·diet - 1.5·smoking - 0.15·SES</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># True OR per 5-point diet score: exp(-0.12 × 5) = 0.549</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>rng3 <span class="op">=</span> np.random.default_rng(<span class="dv">7</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>N3   <span class="op">=</span> <span class="dv">3500</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>ses3     <span class="op">=</span> rng3.uniform(<span class="dv">1</span>, <span class="dv">5</span>, N3)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>diet3    <span class="op">=</span> np.clip(<span class="dv">3</span> <span class="op">+</span> <span class="fl">1.5</span><span class="op">*</span>ses3 <span class="op">+</span> rng3.normal(<span class="dv">0</span>, <span class="fl">2.5</span>, N3), <span class="dv">1</span>, <span class="dv">20</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>smok3    <span class="op">=</span> rng3.binomial(<span class="dv">1</span>, expit(<span class="fl">1.0</span> <span class="op">-</span> <span class="fl">0.55</span><span class="op">*</span>ses3), N3)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>cvd3     <span class="op">=</span> rng3.binomial(<span class="dv">1</span>, expit(<span class="fl">1.8</span> <span class="op">-</span> <span class="fl">0.12</span><span class="op">*</span>diet3 <span class="op">-</span> <span class="fl">1.5</span><span class="op">*</span>smok3 <span class="op">-</span> <span class="fl">0.15</span><span class="op">*</span>ses3), N3)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>df3 <span class="op">=</span> pd.DataFrame({<span class="st">"ses"</span>: ses3, <span class="st">"diet"</span>: diet3, <span class="st">"smoking"</span>: smok3, <span class="st">"cvd"</span>: cvd3})</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"N=</span><span class="sc">{</span>N3<span class="sc">}</span><span class="ss">  CVD events: </span><span class="sc">{</span>cvd3<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>cvd3<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss">%)"</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Diet score mean </span><span class="sc">{</span>diet3<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss">  SD </span><span class="sc">{</span>diet3<span class="sc">.</span>std()<span class="sc">:.1f}</span><span class="ss">"</span>)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Smokers: </span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>smok3<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss">%"</span>)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">True OR per 5-point diet score: </span><span class="sc">{</span>np<span class="sc">.</span>exp(<span class="op">-</span><span class="fl">0.12</span><span class="op">*</span><span class="dv">5</span>)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co"># ── stepwise adjustment ──────────────────────────────────────────────</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>m3_0 <span class="op">=</span> smf.logit(<span class="st">"cvd ~ diet"</span>,               data<span class="op">=</span>df3).fit(disp<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>m3_1 <span class="op">=</span> smf.logit(<span class="st">"cvd ~ diet + ses"</span>,         data<span class="op">=</span>df3).fit(disp<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>m3_2 <span class="op">=</span> smf.logit(<span class="st">"cvd ~ diet + ses + smoking"</span>, data<span class="op">=</span>df3).fit(disp<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>true3          <span class="op">=</span> np.exp(<span class="op">-</span><span class="fl">0.12</span> <span class="op">*</span> <span class="dv">5</span>)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>or30,lo30,hi30 <span class="op">=</span> get_or(m3_0, <span class="st">"diet"</span>, <span class="dv">5</span>)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>or31,lo31,hi31 <span class="op">=</span> get_or(m3_1, <span class="st">"diet"</span>, <span class="dv">5</span>)</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>or32,lo32,hi32 <span class="op">=</span> get_or(m3_2, <span class="st">"diet"</span>, <span class="dv">5</span>)</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">OR per 5-point diet score:"</span>)</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  True (by construction)     : </span><span class="sc">{</span>true3<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Crude                      : </span><span class="sc">{</span>or30<span class="sc">:.3f}</span><span class="ss">  (95% CI </span><span class="sc">{</span>lo30<span class="sc">:.3f}</span><span class="ss">–</span><span class="sc">{</span>hi30<span class="sc">:.3f}</span><span class="ss">)"</span>)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  + SES only                 : </span><span class="sc">{</span>or31<span class="sc">:.3f}</span><span class="ss">  (95% CI </span><span class="sc">{</span>lo31<span class="sc">:.3f}</span><span class="ss">–</span><span class="sc">{</span>hi31<span class="sc">:.3f}</span><span class="ss">)"</span>)</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  + SES + smoking            : </span><span class="sc">{</span>or32<span class="sc">:.3f}</span><span class="ss">  (95% CI </span><span class="sc">{</span>lo32<span class="sc">:.3f}</span><span class="ss">–</span><span class="sc">{</span>hi32<span class="sc">:.3f}</span><span class="ss">)"</span>)</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Adjusting for SES alone closes one backdoor but leaves the smoking path open."</span>)</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Both must be blocked to recover the true estimate."</span>)</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>or_plot([</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"label"</span>: <span class="st">"True (by construction)"</span>,    <span class="st">"est"</span>: true3, <span class="st">"lo"</span>: true3, <span class="st">"hi"</span>: true3, <span class="st">"color"</span>: <span class="st">"#4CAF50"</span>},</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"label"</span>: <span class="st">"Crude"</span>,                     <span class="st">"est"</span>: or30,  <span class="st">"lo"</span>: lo30,  <span class="st">"hi"</span>: hi30,  <span class="st">"color"</span>: <span class="st">"#F44336"</span>},</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"label"</span>: <span class="st">"Adjusted: + SES"</span>,           <span class="st">"est"</span>: or31,  <span class="st">"lo"</span>: lo31,  <span class="st">"hi"</span>: hi31,  <span class="st">"color"</span>: <span class="st">"#FF9800"</span>},</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"label"</span>: <span class="st">"Adjusted: + SES + smoking"</span>, <span class="st">"est"</span>: or32,  <span class="st">"lo"</span>: lo32,  <span class="st">"hi"</span>: hi32,  <span class="st">"color"</span>: <span class="st">"#1565C0"</span>},</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>], title<span class="op">=</span><span class="st">"Example 3: Diet → CVD — stepwise closing of backdoor paths"</span>,</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>   per_unit<span class="op">=</span><span class="st">"per 5-point diet score"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="example-4-positive-confounding-smoking-makes-coffee-look-dangerous" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="example-4-positive-confounding-smoking-makes-coffee-look-dangerous"><span class="header-section-number">6</span> Example 4 — Positive confounding: smoking makes coffee look dangerous</h2>
+<p><strong>Research question</strong>: Does drinking coffee increase CVD risk?</p>
+<p>In epidemiological studies from the 1970s–80s, coffee drinkers consistently showed higher CVD rates. The culprit was <strong>smoking</strong>. Smokers drink more coffee <em>and</em> have higher CVD risk. In the crude analysis coffee is a proxy for smoking.</p>
+<p>This is <strong>positive confounding</strong>: the confounder inflates the crude estimate <em>in the same direction</em> as you might expect a causal harm — making a null association look dangerous. This is arguably more insidious than negative confounding, because the result looks plausible and aligns with prior suspicion.</p>
+<p>After adjusting for smoking, the coffee–CVD association disappears entirely.</p>
+<div id="ex4_dag" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nodes_ex4 <span class="op">=</span> {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"smoking"</span>: {<span class="st">"pos"</span>: (<span class="fl">0.50</span>, <span class="fl">0.82</span>), <span class="st">"type"</span>: <span class="st">"confounder"</span>, <span class="st">"label"</span>: <span class="st">"Smoking"</span>},</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"coffee"</span>:  {<span class="st">"pos"</span>: (<span class="fl">0.12</span>, <span class="fl">0.25</span>), <span class="st">"type"</span>: <span class="st">"exposure"</span>,   <span class="st">"label"</span>: <span class="st">"Coffee</span><span class="ch">\n</span><span class="st">(cups/day)"</span>},</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cvd"</span>:     {<span class="st">"pos"</span>: (<span class="fl">0.88</span>, <span class="fl">0.25</span>), <span class="st">"type"</span>: <span class="st">"outcome"</span>,    <span class="st">"label"</span>: <span class="st">"CVD</span><span class="ch">\n</span><span class="st">event"</span>},</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>edges_ex4 <span class="op">=</span> [</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"from"</span>: <span class="st">"smoking"</span>, <span class="st">"to"</span>: <span class="st">"coffee"</span>, <span class="st">"label"</span>: <span class="st">"smokers drink more coffee"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>     <span class="st">"label_dx"</span>: <span class="op">-</span><span class="fl">0.08</span>, <span class="st">"label_dy"</span>: <span class="fl">0.04</span>},</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"from"</span>: <span class="st">"smoking"</span>, <span class="st">"to"</span>: <span class="st">"cvd"</span>,    <span class="st">"label"</span>: <span class="st">"strong causal harm"</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>     <span class="st">"label_dx"</span>:  <span class="fl">0.08</span>, <span class="st">"label_dy"</span>: <span class="fl">0.04</span>},</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># No coffee → cvd arrow: true causal effect is zero</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>draw_dag(nodes_ex4, edges_ex4,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>         title<span class="op">=</span><span class="st">"Example 4 — Smoking confounds Coffee → CVD  (positive confounding)</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>               <span class="st">"No causal arrow coffee → CVD: the crude association is entirely spurious"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="ex4_sim" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data-generating model:</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   smoking ~ Bernoulli(0.30)</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   coffee  = 1.8 + 1.8·smoking + N(0, 1.4)   [cups/day, floor 0]</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   log-odds(CVD) = -3.2 + 2.0·smoking   (coffee has NO effect)</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># True OR for coffee per cup/day: 1.000</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>rng4 <span class="op">=</span> np.random.default_rng(<span class="dv">123</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>N4   <span class="op">=</span> <span class="dv">4000</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>smok4   <span class="op">=</span> rng4.binomial(<span class="dv">1</span>, <span class="fl">0.30</span>, N4)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>coff4   <span class="op">=</span> np.clip(<span class="fl">1.8</span> <span class="op">+</span> <span class="fl">1.8</span><span class="op">*</span>smok4 <span class="op">+</span> rng4.normal(<span class="dv">0</span>, <span class="fl">1.4</span>, N4), <span class="dv">0</span>, <span class="va">None</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>cvd4    <span class="op">=</span> rng4.binomial(<span class="dv">1</span>, expit(<span class="op">-</span><span class="fl">3.2</span> <span class="op">+</span> <span class="fl">2.0</span><span class="op">*</span>smok4), N4)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>df4 <span class="op">=</span> pd.DataFrame({<span class="st">"smoking"</span>: smok4, <span class="st">"coffee"</span>: coff4, <span class="st">"cvd"</span>: cvd4})</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"N=</span><span class="sc">{</span>N4<span class="sc">}</span><span class="ss">  CVD events: </span><span class="sc">{</span>cvd4<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>cvd4<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss">%)"</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Coffee mean </span><span class="sc">{</span>coff4<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss"> cups/day  SD </span><span class="sc">{</span>coff4<span class="sc">.</span>std()<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Smokers: </span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>smok4<span class="sc">.</span>mean()<span class="sc">:.0f}</span><span class="ss">%  |  True OR for coffee: 1.000"</span>)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ── visualise ────────────────────────────────────────────────────────</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>cs <span class="op">=</span> {<span class="dv">0</span>: <span class="st">"#1565C0"</span>, <span class="dv">1</span>: <span class="st">"#B71C1C"</span>}</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>ls <span class="op">=</span> {<span class="dv">0</span>: <span class="st">"Non-smoker"</span>, <span class="dv">1</span>: <span class="st">"Smoker"</span>}</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s, grp <span class="kw">in</span> df4.groupby(<span class="st">"smoking"</span>):</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].hist(grp[<span class="st">"coffee"</span>], bins<span class="op">=</span><span class="dv">25</span>, alpha<span class="op">=</span><span class="fl">0.55</span>, color<span class="op">=</span>cs[s],</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>                 label<span class="op">=</span>ls[s], density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">"Coffee (cups/day)"</span>)<span class="op">;</span> axes[<span class="dv">0</span>].set_ylabel(<span class="st">"Density"</span>)</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Smokers drink more coffee</span><span class="ch">\n</span><span class="st">(the confounding mechanism)"</span>)</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend()</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>jit4 <span class="op">=</span> rng4.uniform(<span class="op">-</span><span class="fl">0.025</span>, <span class="fl">0.025</span>, N4)</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s, grp <span class="kw">in</span> df4.groupby(<span class="st">"smoking"</span>):</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].scatter(grp[<span class="st">"coffee"</span>], grp[<span class="st">"cvd"</span>]<span class="op">+</span>jit4[:<span class="bu">len</span>(grp)],</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>                    alpha<span class="op">=</span><span class="fl">0.12</span>, s<span class="op">=</span><span class="dv">6</span>, color<span class="op">=</span>cs[s], label<span class="op">=</span>ls[s])</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">"Coffee (cups/day)"</span>)<span class="op">;</span> axes[<span class="dv">1</span>].set_ylabel(<span class="st">"CVD event (jittered)"</span>)</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"CVD vs coffee — smokers dominate</span><span class="ch">\n</span><span class="st">the high-coffee / high-CVD region"</span>)</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].legend()</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a><span class="co"># ── regression ───────────────────────────────────────────────────────</span></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>m4_crude <span class="op">=</span> smf.logit(<span class="st">"cvd ~ coffee"</span>,           data<span class="op">=</span>df4).fit(disp<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>m4_adj   <span class="op">=</span> smf.logit(<span class="st">"cvd ~ coffee + smoking"</span>, data<span class="op">=</span>df4).fit(disp<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>or4c,lo4c,hi4c <span class="op">=</span> get_or(m4_crude, <span class="st">"coffee"</span>)</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>or4a,lo4a,hi4a <span class="op">=</span> get_or(m4_adj,   <span class="st">"coffee"</span>)</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">OR for coffee per cup/day:"</span>)</span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  True (by construction) : 1.000"</span>)</span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Crude                  : </span><span class="sc">{</span>or4c<span class="sc">:.3f}</span><span class="ss">  (95% CI </span><span class="sc">{</span>lo4c<span class="sc">:.3f}</span><span class="ss">–</span><span class="sc">{</span>hi4c<span class="sc">:.3f}</span><span class="ss">)"</span>)</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Adjusted (+ smoking)   : </span><span class="sc">{</span>or4a<span class="sc">:.3f}</span><span class="ss">  (95% CI </span><span class="sc">{</span>lo4a<span class="sc">:.3f}</span><span class="ss">–</span><span class="sc">{</span>hi4a<span class="sc">:.3f}</span><span class="ss">)"</span>)</span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Crude: coffee looks HARMFUL (OR &gt; 1). Adjusted: vanishes."</span>)</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Positive confounding — crude estimate inflated above the null."</span>)</span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>or_plot([</span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"label"</span>: <span class="st">"True (by construction)"</span>, <span class="st">"est"</span>: <span class="fl">1.0</span>,  <span class="st">"lo"</span>: <span class="fl">1.0</span>,  <span class="st">"hi"</span>: <span class="fl">1.0</span>,  <span class="st">"color"</span>: <span class="st">"#4CAF50"</span>},</span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"label"</span>: <span class="st">"Crude (unadjusted)"</span>,     <span class="st">"est"</span>: or4c, <span class="st">"lo"</span>: lo4c, <span class="st">"hi"</span>: hi4c, <span class="st">"color"</span>: <span class="st">"#F44336"</span>},</span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"label"</span>: <span class="st">"Adjusted (+ smoking)"</span>,   <span class="st">"est"</span>: or4a, <span class="st">"lo"</span>: lo4a, <span class="st">"hi"</span>: hi4a, <span class="st">"color"</span>: <span class="st">"#1565C0"</span>},</span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>], title<span class="op">=</span><span class="st">"Example 4: Coffee → CVD, confounded by smoking</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>         <span class="st">"(positive confounding — OR inflated above truth)"</span>,</span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>   per_unit<span class="op">=</span><span class="st">"per cup/day"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="summary" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="summary"><span class="header-section-number">7</span> Summary</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Example</th>
+<th>Confounder</th>
+<th>Bias direction</th>
+<th>Without adjustment</th>
+<th>With adjustment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1. PA → CVD</td>
+<td>Age</td>
+<td>Over-estimates protection</td>
+<td>OR too low</td>
+<td>OR → truth</td>
+</tr>
+<tr class="even">
+<td>2. Supplements → BMI</td>
+<td>Sex</td>
+<td>Spurious protection</td>
+<td>β &lt; 0 (false)</td>
+<td>β ≈ 0 (truth)</td>
+</tr>
+<tr class="odd">
+<td>3. Diet → CVD</td>
+<td>SES + smoking</td>
+<td>Over-estimates protection</td>
+<td>Needs two steps</td>
+<td>Closes both paths</td>
+</tr>
+<tr class="even">
+<td>4. Coffee → CVD</td>
+<td>Smoking</td>
+<td><strong>Positive</strong>: spurious harm</td>
+<td>OR &gt; 1 (false)</td>
+<td>OR ≈ 1 (truth)</td>
+</tr>
+</tbody>
+</table>
+<section id="checklist-before-fitting-any-regression-model" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="checklist-before-fitting-any-regression-model"><span class="header-section-number">7.1</span> Checklist before fitting any regression model</h3>
+<ol type="1">
+<li><strong>Draw the DAG</strong> — commit to causal assumptions before opening the data.</li>
+<li><strong>List all common causes</strong> of your exposure and outcome.</li>
+<li><strong>Adjust for all confounders</strong> — not just those that change the estimate.</li>
+<li><strong>Check for multiple backdoor paths</strong> — each must be blocked independently.</li>
+<li><strong>Acknowledge residual confounding</strong> — unmeasured confounders always remain.</li>
+</ol>
+<blockquote class="blockquote">
+<p><em>“Confounding is not a flaw in your analysis. It is a feature of the world you are studying. A DAG is your honest statement of what you believe about that world.”</em></p>
+</blockquote>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/ggkuhnle\.github\.io\/fb2nep-epi\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© University of Reading 2025 · Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ggkuhnle/fb2nep-epi/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.09a_confounding_dags.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with Quarto</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,31 @@
+---
+title: FB2NEP — Nutritional Epidemiology and Public Health
+format:
+  html:
+    toc: true
+    toc-depth: 2
+---
+
+## Welcome
+
+This site contains the core learning materials for **FB2NEP: Nutritional Epidemiology and Public Health**.
+
+You will mainly work through the notebooks in this repository. Use Blackboard for timetables, announcements, and assessment submission links.
+
+## Assessments
+
+Assessment is by **coursework only** and consists of **two assessments**:
+
+- [**Assessment 1:**](assessment_1.qmd) Data analysis and written interpretation (using a personal synthetic dataset).
+- [**Assessment 2:**](assessment_2.qmd) A **7-minute recorded presentation** pitching a public health intervention.
+
+
+## Use of AI tools
+
+Use of generative AI is **not permitted** for any part of the module assessments. This includes (but is not limited to):
+
+- generating, rewriting, paraphrasing, translating, summarising, or structuring text;
+- generating code, analyses, tables, figures, or slide content;
+- “checking” or “improving” your work, even if you believe the output is only editorial.
+
+You may use standard software for writing and analysis (for example LaTeX, pandoc, Word, PowerPoint, Excel, R, Python/Colab), but the intellectual work, analysis decisions, interpretation, and wording must be entirely your own.
