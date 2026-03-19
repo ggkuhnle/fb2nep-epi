@@ -34,7 +34,7 @@ The Jupyter notebook itself must **not** be submitted.
 
 ## Section A – Conceptual epidemiology (25%)
 
-Answer each question in **no more than 100 words** unless stated otherwise.
+Answer each question in **no more than 100 words** unless stated otherwise (this is not a strict limit but rather a guidance).
 
 1.  What is the most appropriate method to estimate SSB intake in a population study, and why?
 2.  Explain one type of censoring that can occur in epidemiological studies.
@@ -53,11 +53,11 @@ You will use the provided assignment notebook to generate and analyse a **person
 
 -   The dataset is generated dynamically using your student ID.
 -   Dataset generation is not reproducible across separate sessions unless completed in one continuous run.
--   You must therefore generate and analyse the dataset **in a single session**.
+-   You must therefore generate and analyse the dataset **in a single session** - but you can repeat this session as often as you like.
 
 ### Assignment notebook
 
-[Link to assessment notebook](assessment_1b.ipynb)
+You can find the raw version of the assessment notebook [here](assessment_1b.ipynb) - but you probably want to run it in Colab or Binder:
 
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/assessment/assessment_1b.ipynb" target="_blank">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab">
