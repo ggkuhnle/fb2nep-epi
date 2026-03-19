@@ -107,6 +107,19 @@ They show you how to open notebooks, run code safely, and try things out without
 
 ---
 
+### 1.09a - Confounding: causal diagrams and worked examples
+
+Four worked examples with DAGs and synthetic data — showing clearly how age, sex, SES, and smoking distort crude associations, and what happens when you adjust for them.
+
+<a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.09a_confounding_dags.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open 1.09a in Colab">
+</a>
+<a href="https://mybinder.org/v2/gh/ggkuhnle/fb2nep-epi/main?filepath=notebooks/1.09a_confounding_dags.ipynb" target="_blank">
+  <img src="https://mybinder.org/badge_logo.svg" alt="Open in Binder (no login required)">
+</a>
+
+---
+
 ### 1.10 - Missing data and sensitivity analysis
 
 <a href="https://colab.research.google.com/github/ggkuhnle/fb2nep-epi/blob/main/notebooks/1.10_missing_data_and_sensitivity.ipynb" target="_blank">
