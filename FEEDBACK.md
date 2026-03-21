@@ -30,3 +30,6 @@ Have additional notebook with advanced material
 
 
 
+1.09 - 1.09 mention collider and mediator, but not more, brief interaction
+
+Better Mediator example: show slat~CBF as well
