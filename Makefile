@@ -1,7 +1,7 @@
 PY=python3
 VENV=.venv
 
-.PHONY: venv deps data hippo-data validate clean
+.PHONY: venv deps data hippo-data validate clean rubric
 
 venv:
 	$(PY) -m venv $(VENV)
@@ -17,6 +17,10 @@ hippo-data:
 
 validate:
 	. $(VENV)/bin/activate && python scripts/validate_dataset.py
+
+rubric:
+	quarto render assessment/rubric_assessment_1.qmd --to pdf
+	cp _site/assessment/rubric_assessment_1.pdf assessment/rubric_assessment_1.pdf
 
 clean:
 	rm -rf $(VENV) data/synthetic/fb2nep.csv

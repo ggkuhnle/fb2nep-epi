@@ -36,7 +36,10 @@
       "Bash(cd /Users/gunter/Documents/fb2nep-epi/notebooks && python3 -c \"\nimport json\nwith open\\('1.09_regression_modelling_02.ipynb'\\) as f:\n    nb = json.load\\(f\\)\n    for cell in nb['cells']:\n        if cell['cell_type'] == 'markdown':\n            text = ''.join\\(cell['source']\\)\n            for line in text.split\\('\\\\n'\\):\n                if line.startswith\\('#'\\):\n                    print\\(line\\)\n\")",
       "Bash(cd /Users/gunter/Documents/fb2nep-epi/notebooks && python3 -c \"\nimport json\nwith open\\('1.09a_confounding_dags.ipynb'\\) as f:\n    nb = json.load\\(f\\)\n    for i, cell in enumerate\\(nb['cells']\\):\n        print\\(f'--- Cell {i}: {cell[\\\\\"cell_type\\\\\"]} \\(id: {cell.get\\(\\\\\"id\\\\\", \\\\\"?\\\\\"\\)}\\)'\\)\n        if cell['cell_type'] == 'markdown':\n            text = ''.join\\(cell['source']\\)\n            lines = text.split\\('\\\\n'\\)[:15]\n            for line in lines:\n                print\\(line\\)\n        else:\n            text = ''.join\\(cell['source']\\)\n            lines = text.split\\('\\\\n'\\)[:8]\n            for line in lines:\n                print\\(line\\)\n        print\\(\\)\n\")",
       "Bash(done)",
-      "Bash(source venv/bin/activate)"
+      "Bash(source venv/bin/activate)",
+      "Bash(cp assessment/rubric_assessment_1.qmd /tmp/rubric_assessment_1.qmd)",
+      "Bash(mv /tmp/rubric_assessment_1.pdf /Users/gunter/Documents/fb2nep-epi/assessment/)",
+      "Bash(make rubric *)"
     ]
   }
 }

@@ -32,16 +32,15 @@ website:
     left: "© University of Reading 2025 · Licensed <a href='https://creativecommons.org/licenses/by/4.0/'>CC BY 4.0</a>"
     right: "Built with Quarto"
 
-include-in-header:
-  - text: |
-      <img src="https://kuhnle.co.uk/pixel.png"
-           width="1"
-           height="1"
-           style="display:none"
-           alt="">
-
 format:
   html:
+    include-in-header:
+      - text: |
+          <img src="https://kuhnle.co.uk/pixel.png"
+               width="1"
+               height="1"
+               style="display:none"
+               alt="">
     theme: cosmo
     toc: true
     toc-depth: 3

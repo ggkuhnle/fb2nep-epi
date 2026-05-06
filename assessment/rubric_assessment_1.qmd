@@ -1,0 +1,315 @@
+---
+title: "FB2NEP Assessment 1 — Marking Rubric"
+date: 2025/6
+format:
+  pdf:
+    pdf-engine: xelatex
+    papersize: a4
+    fontsize: 11pt
+    geometry: margin=2.5cm
+    toc: true
+    toc-depth: 2
+    number-sections: false
+  html:
+    toc: true
+    toc-depth: 2
+---
+
+# FB2NEP Assessment 1 — Marking Rubric
+
+**Total marks: 100 + 5 bonus**
+Section A (25 marks) + Section B (75 marks)
+
+---
+
+## Section A — Conceptual epidemiology (25 marks)
+
+---
+
+### A1 — Dietary assessment method for SSB intake (6 marks)
+
+**What a good answer includes:**
+
+- Names a specific, plausible method (e.g. food frequency questionnaire, 24-hour dietary recall, food diary, beverage-specific questionnaire)
+- Explains why it is appropriate for habitual SSB intake (repeated exposure, population-level surveillance, practicality)
+- Acknowledges at least one limitation or trade-off
+
+| Marks | Descriptor |
+|:-----:|:-----------|
+| 5–6 | Appropriate method selected with clear, epidemiologically sound justification. Limitation acknowledged. Concise and precise. |
+| 3–4 | Correct method identified; justification present but partial or generic. Limited engagement with trade-offs. |
+| 1–2 | Method vague or partially correct; justification weak or incorrect. |
+| 0 | No relevant answer, or method is clearly inappropriate with no justification. |
+
+**Notes:**
+
+- FFQ is the most defensible choice for habitual intake in a large cohort; 24-h recall, DD are also acceptable if justified (e.g. multiple recalls or NDNS-style use)
+- bonus for commenting on problems with self-reporting
+
+---
+
+### A2 — Type of censoring in epidemiological studies (6 marks)
+
+**What a good answer includes:**
+
+- Names and correctly defines one type of censoring (right censoring is most common and expected; interval or left censoring also acceptable)
+- Gives a concrete epidemiological example relevant to the study context (e.g. loss to follow-up, end of study period, competing event)
+- Explains what censoring means for the analysis (the event had not occurred by the time of last observation)
+
+| Marks | Descriptor |
+|:-----:|:-----------|
+| 5–6 | Correct type named and defined. Clear, contextually appropriate example. Consequence for analysis noted. |
+| 3–4 | Correct type with reasonable definition. Example present but generic or slightly off. |
+| 1–2 | Type named but definition confused or example absent/wrong. |
+| 0 | No relevant answer, or fundamental misunderstanding of censoring. |
+
+**Marker notes:**
+
+- Right censoring is the standard expected answer
+- "Administrative censoring" (end of study) is acceptable as a specific instance of right censoring
+- Do not accept "missing data" as an equivalent to censoring without further clarification
+
+---
+
+### A3 — DAG for SSB intake → CVD risk (7 marks)
+
+**What a good answer includes:**
+
+- A diagram with directed arrows (hand-drawn is acceptable if scanned/photographed)
+- SSB as the exposure, CVD risk (or equivalent) as the outcome, with a direct arrow SSB → CVD
+- At least two plausible variables on the diagram (e.g. SES, obesity/BMI, smoking, age, sex, physical activity)
+- Correct directionality of arrows (e.g. SES → SSB; SES → CVD; not the reverse)
+- No directed cycles
+
+| Marks | Descriptor |
+|:-----:|:-----------|
+| 6–7 | Plausible DAG with exposure, outcome, and at least two additional correctly placed variables. Arrows directionally correct. No cycles. Brief explanation if needed. |
+| 4–5 | Exposure and outcome present with direct path. Additional variables included but one directional error or missing node. |
+| 2–3 | Basic exposure → outcome arrow present. Few or no additional variables, or errors in directionality. |
+| 0–1 | Absent, unreadable, or fundamentally incorrect (e.g. reversed arrows throughout, undirected graph). |
+
+**Marker notes:**
+
+- Award marks for a plausible structure even if it differs from the "model" answer, provided arrows are causally defensible
+- A DAG showing obesity as a mediator (SSB → BMI → CVD) alongside direct effect (SSB → CVD) is good epidemiological reasoning
+- Do not penalise for omitting variables that are not in the dataset, as long as the graph is internally consistent
+
+---
+
+### A4 — One confounder with causal reasoning (6 marks)
+
+**What a good answer includes:**
+
+- Identifies one specific variable (e.g. SES, smoking, physical activity, age)
+- Explicitly states the three confounding criteria: (1) associated with SSB intake, (2) associated with CVD risk, (3) not on the causal pathway from SSB to CVD
+- Uses causal language (not just statistical association)
+
+| Marks | Descriptor |
+|:-----:|:-----------|
+| 5–6 | Correct variable identified. All three criteria addressed with causal reasoning. Clear and concise. |
+| 3–4 | Correct variable. Two of three criteria addressed. Reasoning present but partially statistical rather than causal. |
+| 1–2 | Plausible variable named but reasoning absent, circular, or incorrect. |
+| 0 | No relevant answer, or variable chosen is a mediator or collider presented as a confounder. |
+
+**Marker notes:**
+
+- SES and smoking are the strongest answers given the dataset structure
+- Physical activity is acceptable — it affects both SSB intake and CVD risk and is not on the causal path
+- Age and sex are also defensible
+
+---
+
+## Section B — Data analysis and interpretation (75 marks)
+
+---
+
+### B1 — Table 1 and epidemiological commentary (18 marks)
+
+**What the question asks:**
+
+Compare obese and non-obese participants across all variables in Table 1. Report the population name. Write a commentary of approximately 150 words.
+
+**Table construction (6 marks)**
+
+| Marks | Descriptor |
+|:-----:|:-----------|
+| 5–6 | Table 1 present and correctly structured. Mean ± SD for continuous variables; n (%) for categorical. Both groups shown. Population name recorded. |
+| 3–4 | Table present but minor errors (e.g. wrong summary statistic for one variable, missing a variable). Population name present. |
+| 1–2 | Table incomplete, poorly formatted, or population name absent. |
+| 0 | Table absent or entirely incorrect. |
+
+**Epidemiological commentary (12 marks)**
+
+| Marks | Descriptor |
+|:-----:|:-----------|
+| 10–12 | Commentary identifies key differences between groups (higher SSB, lower PA, higher CVD risk in obese group; SES and smoking patterns). Uses epidemiological framing (not just "obese people have higher X"). Notes at least one potential data quality consideration or caveat. |
+| 7–9 | Most major differences identified. Some epidemiological reasoning. Minor omissions or imprecision. |
+| 4–6 | Some differences noted but commentary is mainly descriptive with little interpretation. |
+| 1–3 | Very brief or only partially correct. No epidemiological reasoning. |
+| 0 | Commentary absent or irrelevant. |
+
+**Marker notes:**
+
+- The population name must appear somewhere in the submitted document 
+- Do not penalise for dataset-specific variation in effect sizes (the dataset is individually generated)
+- Award credit for noting that Table 1 differences do not prove causation
+
+---
+
+### B2 — Distributions and transformation justification (15 marks)
+
+**What the question asks:**
+
+Describe the distributions of `ssb`, `bmi`, and `cvd_risk`. Justify any transformations or categorisations.
+
+**Distribution description (6 marks — 2 per variable)**
+
+| Marks | Descriptor |
+|:-----:|:-----------|
+| 2 | Distribution accurately described (e.g. right-skewed, approximately normal, bimodal). Key feature noted (outliers, floor effect, etc.). |
+| 1 | Partially correct or vague (e.g. "not normal" without description). |
+| 0 | Absent or wrong. |
+
+*Apply per variable: `ssb`, `bmi`, `cvd_risk`.*
+
+**Transformation/categorisation decisions (9 marks — 3 per variable)**
+
+| Marks | Descriptor |
+|:-----:|:-----------|
+| 3 | Decision stated (transform / do not transform / categorise) with clear epidemiological or statistical justification. Reference to model assumptions or interpretability. |
+| 2 | Reasonable decision with partial justification. |
+| 1 | Decision stated but justification weak, missing, or contradicted by described distribution. |
+| 0 | Absent or incoherent. |
+
+**Marker notes:**
+
+- `ssb` is right-skewed; log-transformation is well-justified. Categorisation (low/medium/high) is also acceptable with justification.
+- `bmi` is approximately normal; transformation is generally not required, though `obese` (binary) has already been created.
+- `cvd_risk` is approximately symmetric (logistic-sigmoid bounded 0–100); transformation is generally not needed.
+
+---
+
+### B3 — Regression model and interpretation (30 marks)
+
+**What the question asks:**
+Fit and interpret the pre-specified linear regression model (cvd_risk ~ ssb + obese + age + sex + ses + smoking). Interpret effect of SSB, obesity, age, sex, and discuss SES and smoking as potential confounders.
+
+**Regression output present and correctly fitted (4 marks)**
+
+| Marks | Descriptor |
+|:-----:|:-----------|
+| 4 | Model output (coefficient table with estimates, CIs, p-values) present and matches specified formula. |
+| 2–3 | Output present but incomplete (e.g. CIs missing, formula slightly different). |
+| 0–1 | Output absent or wrong model fitted. |
+
+**Interpretation of SSB effect (8 marks)**
+
+| Marks | Descriptor |
+|:-----:|:-----------|
+| 7–8 | Effect estimate reported (β, direction, magnitude). Confidence interval discussed. P-value contextualised. Clear statement of "per unit increase in SSB servings/day, CVD risk increases by X points, holding other variables constant." Uncertainty acknowledged. |
+| 5–6 | Effect correctly reported and interpreted but uncertainty (CI) underemphasised or p-value over-relied upon. |
+| 3–4 | Direction correct, magnitude mentioned, but interpretation imprecise or lacking conditional framing ("holding other variables constant"). |
+| 1–2 | Effect reported numerically but interpretation absent, reversed, or confused with OR/HR. |
+| 0 | Absent or entirely wrong. |
+
+**Interpretation of obesity effect (5 marks)**
+
+| Marks | Descriptor |
+|:-----:|:-----------|
+| 4–5 | Coefficient for `obese` correctly interpreted: mean difference in CVD risk for obese vs non-obese, adjusted for other covariates. Magnitude and direction stated. |
+| 2–3 | Correct direction, partial interpretation. Adjustment not mentioned. |
+| 0–1 | Absent or incorrect (e.g. interprets as OR). |
+
+**Interpretation of age and sex effects (5 marks)**
+
+| Marks | Descriptor |
+|:-----:|:-----------|
+| 4–5 | Both age and sex effects correctly interpreted with direction and magnitude. Notes that these are adjusted estimates. |
+| 2–3 | One of the two correctly interpreted, or both partially correct. |
+| 0–1 | Absent or incorrect. |
+
+**Discussion of SES and smoking as confounders (8 marks)**
+
+| Marks | Descriptor |
+|:-----:|:-----------|
+| 7–8 | Discusses whether SES and/or smoking coefficients change after inclusion in the model (compared to a simpler model or expected direction). Uses causal reasoning — not just statistical significance. Comments on the plausibility of confounding given the DAG. |
+| 5–6 | Both variables mentioned. Confounding discussed but reasoning is mostly statistical ("the p-value changed") rather than causal. |
+| 3–4 | One variable discussed, or both mentioned superficially. |
+| 0–2 | Absent, or confounding defined/applied incorrectly. |
+
+**Marker notes:**
+
+- Individual β values will vary by dataset — mark reasoning and interpretation, not specific numbers
+- Do not penalise for using `summary()` output rather than the concise table, as long as the correct values are reported
+- Penalise if the student reports ORs or HRs when the model is linear regression
+
+---
+
+### B4 — DAG-informed adjustment strategy (12 marks)
+
+**What the question asks:**
+Use the Part A DAG to justify the adjustment set in B3. Identify one variable that should **not** be adjusted for and explain why using the DAG.
+
+**Justification of adjustment set (6 marks)**
+
+| Marks | Descriptor |
+|:-----:|:-----------|
+| 5–6 | Correctly argues which variables in the model are confounders (open backdoor paths) and should be included. References the DAG structure explicitly. Distinguishes between confounders and other variable roles. |
+| 3–4 | Correct variables identified as requiring adjustment. Limited DAG reference or reasoning partially correct. |
+| 1–2 | Some correct variables mentioned but adjustment strategy not clearly justified or DAG not used. |
+| 0 | Absent or incorrect (e.g. recommends adjusting for all variables without reasoning). |
+
+**Identification of a variable not to adjust for (6 marks)**
+
+| Marks | Descriptor |
+|:-----:|:-----------|
+| 5–6 | Variable correctly identified (e.g. `obese`/BMI as a mediator on the SSB → CVD path, or a collider if the student has constructed the DAG appropriately). Role (mediator or collider) named and explained using the DAG. Correct consequence stated (adjusting would block the causal pathway / introduce bias). |
+| 3–4 | Correct variable identified, role stated, but explanation of consequence incomplete or slightly confused. |
+| 1–2 | A plausible variable named without adequate causal reasoning, or role incorrectly assigned. |
+| 0 | Absent, or student argues for adjusting for a mediator/collider without recognising the problem. |
+
+**Marker notes:**
+
+- The strongest answer for "should not adjust" is `obese`/BMI as a mediator (SSB → BMI → CVD), as this is supported by the dataset's generating model
+- If the student's DAG from Part A placed a variable as a collider, accept that variable here if their reasoning is internally consistent
+- Award credit for internal consistency with the student's own DAG, even if it differs from the model answer
+
+---
+
+## Optional Bonus — Robustness of findings (up to 5 marks)
+
+Two options available: Bonus A (stratified analysis) or Bonus B (variable transformation).
+
+| Marks | Descriptor |
+|:-----:|:-----------|
+| 5 | Additional analysis correctly performed. Results compared to main analysis with epidemiologically meaningful interpretation. Explains why the analytical choice is informative. Clear and concise (≤ 150 words). |
+| 3–4 | Analysis present and mostly correct. Interpretation reasonable but lacks depth or clear comparison with main findings. |
+| 1–2 | Analysis attempted but results misinterpreted or reasoning absent. |
+| 0 | Not attempted, or analysis present with no interpretation. |
+
+**Marker notes:**
+
+- Bonus marks are awarded for reasoning, not for technical sophistication
+- A simple and well-interpreted stratified analysis scores higher than a complex analysis with no interpretation
+- Do not award bonus marks if the main analysis (B3) is absent
+
+---
+
+## Mark summary sheet
+
+| Question | Max marks | Marks awarded |
+|:---------|:---------:|:-------------:|
+| A1 — Dietary assessment method | 6 | |
+| A2 — Censoring | 6 | |
+| A3 — DAG | 7 | |
+| A4 — Confounder | 6 | |
+| **Section A total** | **25** | |
+| B1 — Table 1 + commentary | 18 | |
+| B2 — Distributions + transformations | 15 | |
+| B3 — Regression + interpretation | 30 | |
+| B4 — DAG-informed adjustment | 12 | |
+| **Section B total** | **75** | |
+| **Total** | **100** | |
+| Bonus | 5 | |
+| **Final total** | **100 (+5)** | |
+
