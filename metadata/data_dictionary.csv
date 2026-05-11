@@ -1,0 +1,57 @@
+variable,type,units,coding,description,expected_range
+id,int,,unique identifier,Participant ID,1–10000000
+baseline_date,date,YYYY-MM-DD,,Baseline assessment date,2010-01-01–2015-12-31
+follow_up_years,float,years,,Follow-up duration to censoring/event,0.5–12
+age,int,years,,Age at baseline,40–90
+sex,category,,F=Female; M=Male,Sex assigned at birth,F/M
+menopausal_status,category,,pre/peri/post/NA,Menopausal status (F only; M=NA),pre/peri/post/NA
+IMD_quintile,int,,1=most deprived…5=least deprived,Index of Multiple Deprivation quintile,1–5
+SES_class,category,,ABC1/C2DE,Socioeconomic class (derived),ABC1/C2DE
+smoking_status,category,,never/former/current,Self‑reported smoking status,never/former/current
+physical_activity,category,,low/moderate/high,Usual physical activity category,low/moderate/high
+family_history_cvd,int,0/1,0=no;1=yes,First‑degree family history of CVD,0/1
+family_history_cancer,int,0/1,0=no;1=yes,First‑degree family history of cancer,0/1
+BMI,float,kg/m^2,,Body mass index (rounded 0.1),15–55
+SBP,float,mmHg,,Systolic blood pressure (rounded 0.1),80–220
+energy_kcal,float,kcal/day,,Estimated daily energy intake,800–4500
+fruit_veg_g_d,float,g/day,,Total fruit and vegetables,0–1500
+red_meat_g_d,float,g/day,,Red meat intake,0–500
+ssb_ml_d,float,ml/day,,Sugar‑sweetened beverage intake,0–2000
+fibre_g_d,float,g/day,,Dietary fibre,0–100
+alcohol_units_wk,float,UK units/week,,Alcohol consumption (weekly),0–100
+salt_g_d,float,g/day,,Salt intake,2–20
+plasma_vitC_umol_L,float,µmol/L,,Plasma vitamin C concentration,5–120
+urinary_sodium_mmol_L,float,mmol/L,,Urinary sodium concentration,10–250
+CVD_incident,int,0/1,0=no;1=yes,Incident cardiovascular disease by follow‑up,0/1
+CVD_date,date,YYYY-MM-DD,,Date of first CVD event if incident=1,blank or within FU
+Cancer_incident,int,0/1,0=no;1=yes,Incident cancer by follow‑up,0/1
+Cancer_date,date,YYYY-MM-DD,,Date of first cancer diagnosis if incident=1,blank or within FU
+```csv
+variable,type,units,coding,description,expected_range
+id,int,,unique identifier,Participant ID,1–25000
+baseline_date,date,YYYY-MM-DD,,Baseline assessment date,2010-01-01–2015-12-31
+follow_up_years,float,years,,Follow-up duration to censoring or event,0.5–12
+age,int,years,,Age at baseline,40–90
+sex,category,,F=Female; M=Male,Sex assigned at birth,F/M
+menopausal_status,category,,pre/peri/post/NA,Menopausal status (F only; M=NA),pre/peri/post/NA
+IMD_quintile,int,,1=most deprived…5=least deprived,Index of Multiple Deprivation quintile,1–5
+SES_class,category,,ABC1/C2DE,Socioeconomic class (derived),ABC1/C2DE
+smoking_status,category,,never/former/current,Self‑reported smoking status,never/former/current
+physical_activity,category,,low/moderate/high,Usual PA category,low/moderate/high
+family_history_cvd,int,0/1,0=no;1=yes,First-degree family history of CVD,0/1
+family_history_cancer,int,0/1,0=no;1=yes,First-degree family history of cancer,0/1
+BMI,float,kg/m^2,,Body mass index,15–55
+SBP,float,mmHg,,Systolic blood pressure,80–220
+energy_kcal,float,kcal/day,,Estimated energy intake per day,800–4500
+fruit_veg_g_d,float,g/day,,Total fruit and vegetables,0–1500
+red_meat_g_d,float,g/day,,Red meat intake,0–500
+ssb_ml_d,float,ml/day,,Sugar‑sweetened beverage intake,0–2000
+fibre_g_d,float,g/day,,Dietary fibre,0–100
+alcohol_units_wk,float,UK units/week,,Alcohol consumption,0–100
+salt_g_d,float,g/day,,Salt intake,2–20
+plasma_vitC_umol_L,float,µmol/L,,Plasma vitamin C concentration,5–120
+urinary_sodium_mmol_L,float,mmol/L,,Urinary sodium concentration,10–250
+CVD_incident,int,0/1,0=no;1=yes,Incident cardiovascular disease by follow‑up,0/1
+CVD_date,date,YYYY-MM-DD,,Date of first CVD event if any,blank or within FU
+Cancer_incident,int,0/1,0=no;1=yes,Incident cancer by follow‑up,0/1
+Cancer_date,date,YYYY-MM-DD,,Date of first cancer diagnosis if any,blank or within FU
