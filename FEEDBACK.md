@@ -57,3 +57,6 @@ Assessment 1:
 marks are still too high - so it should be more challenging
 - DAG should not be free drawing, but based on information (either given to students or they need to get it from literature)
 - interpretation of results is too vague to get good data
+
+Sugar and Salt campaigns should be lectures
+
